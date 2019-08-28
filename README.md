@@ -1,0 +1,1 @@
+# duck_comp_gen
