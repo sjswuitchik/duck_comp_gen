@@ -1,4 +1,4 @@
-# duck_comp_gen
+# Comparative genomics: Anatidae
 
 Authors:
 
