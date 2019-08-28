@@ -1,0 +1,15 @@
+# BUSCO version is: 3.0.2 
+# The lineage dataset is: aves_odb9 (Creation date: 2016-02-13, number of species: 40, number of BUSCOs: 4915)
+# To reproduce this run: python /n/sw/fasrcsw/apps/Core/BUSCO/3.0.2-fasrc01/bin/run_BUSCO.py -i oxyJam.1.fasta -o oxyJam_busco -l aves_odb9/ -m genome -c 1 -sp human
+#
+# Summarized benchmarking in BUSCO notation for file oxyJam.1.fasta
+# BUSCO was run in mode: genome
+
+	C:94.7%[S:93.0%,D:1.7%],F:3.1%,M:2.2%,n:4915
+
+	4658	Complete BUSCOs (C)
+	4572	Complete and single-copy BUSCOs (S)
+	86	Complete and duplicated BUSCOs (D)
+	154	Fragmented BUSCOs (F)
+	103	Missing BUSCOs (M)
+	4915	Total BUSCO groups searched

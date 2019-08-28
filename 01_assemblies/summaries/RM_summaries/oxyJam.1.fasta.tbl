@@ -1,0 +1,59 @@
+==================================================
+file name: oxyJam.1.fasta           
+sequences:          9843
+total length: 1148779557 bp  (1117307757 bp excl N/X-runs)
+GC level:         41.82 %
+bases masked:  103129058 bp ( 8.98 %)
+==================================================
+               number of      length   percentage
+               elements*    occupied  of sequence
+--------------------------------------------------
+Retroelements       161773     75164127 bp    6.54 %
+   SINEs:             7586       984183 bp    0.09 %
+   Penelope            127        26506 bp    0.00 %
+   LINEs:           120330     56141988 bp    4.89 %
+    CRE/SLACS            0            0 bp    0.00 %
+     L2/CR1/Rex     120120     56095413 bp    4.88 %
+     R1/LOA/Jockey       0            0 bp    0.00 %
+     R2/R4/NeSL          0            0 bp    0.00 %
+     RTE/Bov-B           0            0 bp    0.00 %
+     L1/CIN4            83        20069 bp    0.00 %
+   LTR elements:     33857     18037956 bp    1.57 %
+     BEL/Pao             0            0 bp    0.00 %
+     Ty1/Copia           0            0 bp    0.00 %
+     Gypsy/DIRS1         0            0 bp    0.00 %
+       Retroviral    33666     18004956 bp    1.57 %
+
+DNA transposons      21019      3268533 bp    0.28 %
+   hobo-Activator     3287       568111 bp    0.05 %
+   Tc1-IS630-Pogo      590       105588 bp    0.01 %
+   En-Spm                0            0 bp    0.00 %
+   MuDR-IS905            0            0 bp    0.00 %
+   PiggyBac              0            0 bp    0.00 %
+   Tourist/Harbinger  6208       600710 bp    0.05 %
+   Other (Mirage,        0            0 bp    0.00 %
+    P-element, Transib)
+
+Rolling-circles          0            0 bp    0.00 %
+
+Unclassified:         3123       548178 bp    0.05 %
+
+Total interspersed repeats:    78980838 bp    6.88 %
+
+
+Small RNA:            2188       299275 bp    0.03 %
+
+Satellites:            848       140139 bp    0.01 %
+Simple repeats:     543493     20260174 bp    1.76 %
+Low complexity:      74886      3693977 bp    0.32 %
+==================================================
+
+* most repeats fragmented by insertions or deletions
+  have been counted as one element
+                                                      
+
+The query species was assumed to be gallus gallus 
+RepeatMasker version open-4.0.5 , default mode
+                                   
+run with rmblastn version 2.2.27+
+RepBase Update 20160829, RM database version 20160829

@@ -1,0 +1,31 @@
+stiNae
+Raw coverage: 41.70x 
+Contig N50: 142.23 Kb 
+Scaffold N50: 10.96 Mb 
+Assembly size: 1.06 Gb 
+Assembly in scaffolds > 10 Kb: 96.5%
+Molecule length: 27.39 Kb 
+
+oxyJam
+Raw coverage: 54.96x
+Contig N50: 132.48 Kb
+Scaffold N50: 46.21 Mb
+Assembly size: 1.09 Gb
+Assembly in scaffolds > 10 Kb: 96.15%
+Molecule length: 77.09 Kb 
+
+netAur
+Raw coverage: 50.2x 
+Contig N50: 108.05 Kb 
+Scaffold N50: 25.86 Mb 
+Assembly size: 1.09 Gb 
+Assembly in scaffolds > 10 Kb: 95.84% 
+Molecule length: 56.06 Kb 
+
+hetAtr
+Raw coverage: 53.17x 
+Contig N50: 155.79 Kb
+Scaffold N50: 23.17 Mb
+Assembly size: 1.10 Gb
+Assembly in scaffolds > 10 Kb: 96.74% 
+Molecule length: 61.32 Kb

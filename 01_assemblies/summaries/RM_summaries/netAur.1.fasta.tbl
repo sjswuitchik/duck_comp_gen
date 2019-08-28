@@ -1,0 +1,59 @@
+==================================================
+file name: netAur.1.fasta           
+sequences:          9254
+total length: 1135889298 bp  (1114619998 bp excl N/X-runs)
+GC level:         41.65 %
+bases masked:  107976922 bp ( 9.51 %)
+==================================================
+               number of      length   percentage
+               elements*    occupied  of sequence
+--------------------------------------------------
+Retroelements       165709     79312879 bp    6.98 %
+   SINEs:             7302       952851 bp    0.08 %
+   Penelope            131        28204 bp    0.00 %
+   LINEs:           124241     59138664 bp    5.21 %
+    CRE/SLACS            0            0 bp    0.00 %
+     L2/CR1/Rex     124028     59091047 bp    5.20 %
+     R1/LOA/Jockey       0            0 bp    0.00 %
+     R2/R4/NeSL          0            0 bp    0.00 %
+     RTE/Bov-B           0            0 bp    0.00 %
+     L1/CIN4            82        19413 bp    0.00 %
+   LTR elements:     34166     19221364 bp    1.69 %
+     BEL/Pao             0            0 bp    0.00 %
+     Ty1/Copia           0            0 bp    0.00 %
+     Gypsy/DIRS1         0            0 bp    0.00 %
+       Retroviral    33974     19188115 bp    1.69 %
+
+DNA transposons      20666      3207729 bp    0.28 %
+   hobo-Activator     3219       556751 bp    0.05 %
+   Tc1-IS630-Pogo      558       103457 bp    0.01 %
+   En-Spm                0            0 bp    0.00 %
+   MuDR-IS905            0            0 bp    0.00 %
+   PiggyBac              0            0 bp    0.00 %
+   Tourist/Harbinger  6105       584642 bp    0.05 %
+   Other (Mirage,        0            0 bp    0.00 %
+    P-element, Transib)
+
+Rolling-circles          0            0 bp    0.00 %
+
+Unclassified:         3075       541919 bp    0.05 %
+
+Total interspersed repeats:    83062527 bp    7.31 %
+
+
+Small RNA:            2229       306650 bp    0.03 %
+
+Satellites:            932       146650 bp    0.01 %
+Simple repeats:     562066     21034326 bp    1.85 %
+Low complexity:      74000      3668181 bp    0.32 %
+==================================================
+
+* most repeats fragmented by insertions or deletions
+  have been counted as one element
+                                                      
+
+The query species was assumed to be gallus gallus 
+RepeatMasker version open-4.0.5 , default mode
+                                   
+run with rmblastn version 2.2.27+
+RepBase Update 20160829, RM database version 20160829
