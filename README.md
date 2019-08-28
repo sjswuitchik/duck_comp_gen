@@ -1,4 +1,4 @@
-# Comparative genomics: Anatidae
+# Duck comparative genomics
 
 Authors:
 
