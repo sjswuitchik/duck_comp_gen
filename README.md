@@ -8,6 +8,8 @@ Chris Balakrishnan (Associate Professor, East Carolina University; balakrishnanc
 
 Wes Warren (Professor, University of Missouri; warrenwc@missouri.edu)
 
+Jeff DaCosta (Assistant Professor, Boston College; jeffrey.dacosta@bc.edu)
+
 Mike Sorenson (Professor, Boston University; msoren@bu.edu)
 
 Tim Sackton (Director of Bioinformatics, Informatics Group, Harvard University; tsackton@g.harvard.edu)
