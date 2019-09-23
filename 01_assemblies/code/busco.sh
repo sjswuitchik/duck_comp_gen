@@ -7,7 +7,7 @@ cp /n/sw/fasrcsw/apps/Core/BUSCO/3.0.2-fasrc01/bin/../config/config.ini .
 # need to edit config file with specific paths for dependencies
 
 whereis makeblastdb
-whereis tblasn
+whereis tblastn
 whereis hmmsearch
 whereis augustus #this path has to be pasted four times in the appropriate places in the config - once with /bin at the end for the main path, and three times with /scripts instead of /bin at the end of the path for each script
 whereis etraining
