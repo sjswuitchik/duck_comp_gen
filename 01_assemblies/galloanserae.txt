@@ -1,0 +1,17 @@
+((anaPla,(braCan,(ansInd,(ansCyg,ansBra))),(netAur,(oxyJam,(hetAtr,stiNae)))),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))));
+#
+anaPla /n/scratchlfs02/informatics/swuitchik/ducks_cactus/anaPla.defline.fasta
+ansBra /n/scratchlfs02/informatics/swuitchik/ducks_cactus/ansBra.defline.fasta
+ansCyg /n/scratchlfs02/informatics/swuitchik/ducks_cactus/ansCyg.defline.fasta
+ansInd /n/scratchlfs02/informatics/swuitchik/ducks_cactus/ansInd.defline.fasta
+braCan /n/scratchlfs02/informatics/swuitchik/ducks_cactus/braCan.defline.fasta
+colVir /n/scratchlfs02/informatics/swuitchik/ducks_cactus/colVir.defline.fasta
+cotJap /n/scratchlfs02/informatics/swuitchik/ducks_cactus/cotJap.defline.fasta
+galGal /n/scratchlfs02/informatics/swuitchik/ducks_cactus/galGal.defline.fasta
+hetAtr /n/scratchlfs02/informatics/swuitchik/ducks_cactus/hetAtr.masked.defline.fasta
+netAur /n/scratchlfs02/informatics/swuitchik/ducks_cactus/netAur.masked.defline.fasta
+numMel /n/scratchlfs02/informatics/swuitchik/ducks_cactus/numMel.defline.fasta
+oxyJam /n/scratchlfs02/informatics/swuitchik/ducks_cactus/oxyJam.masked.defline.fasta
+stiNae /n/scratchlfs02/informatics/swuitchik/ducks_cactus/stiNae.masked.defline.fasta
+syrMik /n/scratchlfs02/informatics/swuitchik/ducks_cactus/syrMik.defline.fasta
+tymCupPin /n/scratchlfs02/informatics/swuitchik/ducks_cactus/tymCupPin.defline.fasta
