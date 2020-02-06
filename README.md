@@ -4,6 +4,8 @@ Authors:
 
 Sara Wuitchik (Postdoctoral Associate, Boston University & Harvard University; sjswuit@g.harvard.edu)
 
+LaDeana Hillier (Department of Genome Sciences, Washington University; lhillier@uw.edu)
+
 Chris Balakrishnan (Associate Professor, East Carolina University; balakrishnanc@ecu.edu)
 
 Wes Warren (Professor, University of Missouri; warrenwc@missouri.edu)
