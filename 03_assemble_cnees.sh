@@ -1,15 +1,3 @@
-#### HAL Tools summaries and MAF conversion for CESAR ####
-# in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus on bioinf01
-
-git clone https://github.com/ComparativeGenomicsToolkit/Comparative-Annotation-Toolkit.git
-cp ../ducks_cactus/galloanserae.hal Comparative-Annotation-Toolkit/
-cd Comparative-Annotation-Toolkit
-singularity shell --cleanenv /n/singularity_images/informatics/cat/cat:20200116.sif
-halValidate duck_data/galloanserae.hal
-hal2maf data/galloanserae.hal data/galloanserae.maf
-halStats data/galloanserae.hal > data/halStats.out
-halSummarizeMutations data/galloanserae.hal > data/halSumMut.out
-exit
 
 #### Building a set of consensus CNEEs from literature #### 
 # get data from /n/holylfs/LABS/informatics/tsackton/broodParasites/DATA/02_CNEEs/concat_cnees to build consensus CNEE set
