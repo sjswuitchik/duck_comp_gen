@@ -17,7 +17,7 @@ source activate py27
 cpanm Math::Round
 perl parse_cnee_halLiftover.pl 
 
-# some qc - check with Tim about what to look for here? 
+# some qc 
 grep "multiple_liftover_regions" galGal6_final_merged_liftover_parsing_log | cut -f1,1 | sort | uniq -c | sed "s/^[ \t]*//"  > multiple_liftovers_byCNEE.log
 grep "no_liftover" galGal6_final_merged_liftover_parsing_log | cut -f1,1 | sort | uniq -c | sed "s/^[ \t]*//" > no_liftOver_byCNEE.log
 
