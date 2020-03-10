@@ -8,7 +8,7 @@
 
 # run from /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cnees/alignments/aligned
 
-module load perl/5.26.1-fasrc01 mafft/7.407-fasrc01
+module load perl/5.26.1-fasrc01 mafft/7.407-fasrc01 trimal/1.2rev59-fasrc01
 
 printf -v BATCH "%03d" $SLURM_ARRAY_TASK_ID
 mkdir -p batch${BATCH}_output
