@@ -38,7 +38,7 @@ chmod +x ./twoBitInfo
 mkdir 2bitdir
 cd 2bitdir
 cp -v ../../../ducks_cactus/*.fasta .
-# these loops are ugly but quick - adjust files names with brename after
+# these loops are ugly but quick - adjust file names with brename after
 for file in *.fasta; 
 do
 	faToTwoBit $file $file.2bit
