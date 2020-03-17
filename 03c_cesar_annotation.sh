@@ -27,7 +27,7 @@ mv cesar tools/
 # inputGenes (from 4d_sites)
 cp ../Comparative-Annotation-Toolkit/4d_sites/galGal6.gp . 
 
-# alignment MAF (from postcactus)
+# alignment MAF (from CESAR2.0)
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/ducks_cactus/galloanserae_rooted.maf .
 
 # 2bit dir
