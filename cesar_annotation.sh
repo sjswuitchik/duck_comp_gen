@@ -27,7 +27,7 @@ mv cesar tools/
 # inputGenes (from 4d_sites)
 cp ../Comparative-Annotation-Toolkit/4d_sites/galGal6.gp . 
 
-# alignment MAF (from CESAR2.0)
+# alignment MAF (from postcactus)
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/ducks_cactus/galloanserae_rooted.maf .
 
 # 2bit dir
@@ -87,9 +87,19 @@ export querySpecies=hetAtr,netAur,oxyJam,stiNae
 export outputDir=CESARoutput 
 export resultsDir=geneAnnotation
 export maxMemory=50
-export profilePath=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/extra
+export profilePath=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/
 
 # create CESAR 
+
+#### 
+# these are weird rearrangements I had to do to get the jobList to run properly - try without these (ie/ go straight to formatGenePred.pl) and see if it works first. If not, may need these rearrangements
+cp tools/cesar extra/
+cd extra/tables/human/
+chmod +x *.txt
+cd ../../
+mkdir extra/
+mv tables/ extra/ 
+####
 formatGenePred.pl ${inputGenes} ${inputGenes}.forCESAR ${inputGenes}.discardedTranscripts -longest
 for transcript in `cut -f1 ${inputGenes}.forCESAR`; do 
    echo "annotateGenesViaCESAR.pl ${transcript} ${alignment} ${inputGenes}.forCESAR ${reference} ${querySpecies} ${outputDir} ${twoBitDir} ${profilePath} -maxMemory ${maxMemory}"
@@ -97,7 +107,7 @@ done > jobList
 
 # realign all genes (this step with test data takes 10.5 hr on single core)
 chmod +x jobList
-./jobList > jobList.out
+./jobList > jobList.out 2> jobList.err
 
 # convert results 
 for species in `echo $querySpecies | sed 's/,/ /g'`; do 
