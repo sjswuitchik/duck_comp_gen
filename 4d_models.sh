@@ -44,11 +44,11 @@ cd ../..
 export ENABLE_PHYLOP=1
 
 # tree top 1
-phast/bin/phyloFit --tree "(((anaPla,(braCan,(ansInd,(ansCyg,ansBra)))),(netAur,(oxyJam,(hetAtr,stiNae)))),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))))" --subst-mod SSREV --log gallo_top1.out --msa-format MAF ../../CESAR2.0/galloanserae_rooted.maf > gallo.neutral.top1.mod
+phast/bin/phyloFit --tree "(((anaPla,(braCan,(ansInd,(ansCyg,ansBra)))),(netAur,(oxyJam,(hetAtr,stiNae)))),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))))" --subst-mod SSREV --log gallo_top1.out --msa-format MAF ../../CESAR2.0/galloanserae_rooted.maf 
 
 # tree top 2
-phast/bin/phyloFit --tree "(((anaPla,(netAur,(oxyJam,(hetAtr,stiNae)))),(braCan,(ansInd,(ansCyg,ansBra)))),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))))" --subst-mod SSREV --log gallo_top2.out --msa-format MAF ../../CESAR2.0/galloanserae_rooted.maf > gallo.neutral.top2.mod
+phast/bin/phyloFit --tree "(((anaPla,(netAur,(oxyJam,(hetAtr,stiNae)))),(braCan,(ansInd,(ansCyg,ansBra)))),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))))" --subst-mod SSREV --log gallo_top2.out --msa-format MAF --out-root galloTop2 ../../CESAR2.0/galloanserae_rooted.maf 
 
 # tree top 3
-phast/bin/phyloFit --tree "((((braCan,(ansInd,(ansCyg,ansBra))),(netAur,(oxyJam,(hetAtr,stiNae)))),anaPla),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))))" --subst-mod SSREV --log gallo_top3.out --msa-format MAF ../../CESAR2.0/galloanserae_rooted.maf > gallo.neutral.top3.mod
+phast/bin/phyloFit --tree "((((braCan,(ansInd,(ansCyg,ansBra))),(netAur,(oxyJam,(hetAtr,stiNae)))),anaPla),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))))" --subst-mod SSREV --log gallo_top3.out --msa-format MAF --out-root galloTop3 ../../CESAR2.0/galloanserae_rooted.maf 
 
