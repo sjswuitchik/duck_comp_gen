@@ -4,7 +4,7 @@
 #SBATCH -t 1-00:00
 #SBATCH -p serial_requeue
 #SBATCH --mem=2000
-#SBATCH --array=0-929
+#SBATCH --array=0-360
 
 # run from /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cnees/alignments/aligned
 
