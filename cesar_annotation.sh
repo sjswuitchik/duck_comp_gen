@@ -8,9 +8,9 @@ git clone https://github.com/ComparativeGenomicsToolkit/Comparative-Annotation-T
 cp ../ducks_cactus/galloanserae.hal Comparative-Annotation-Toolkit/
 cd Comparative-Annotation-Toolkit
 singularity shell --cleanenv /n/singularity_images/informatics/cat/cat:20200116.sif
-halValidate duck_data/galloanserae.hal
+halValidate galloanserae.hal
 hal2maf galloanserae.hal galloanserae_rooted.maf --refGenome galGal 
-halStats data/galloanserae.hal > data/halStats.out
+halStats galloanserae.hal > halStats.out
 exit
 
 # set up and compile in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus
