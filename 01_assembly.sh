@@ -32,4 +32,4 @@ export AUGUSTUS_CONFIG_PATH=/scratch/swuitchik/raw_data_ducks/genomes/config
 run_BUSCO.py -i stiNae.1.fasta -o stiNae_busco -l aves_odb9 -m geno > stiNae_busco.out
 
 # RepeatMasker: on ordered and oriented chromosomal fastas
-RepeatMasker -species chicken -xsmall -gff -dir stiNae_RM_chrom/ BPBGC_Snae1.0.chromosomal_ordered_oriented.fasta > stiNae_RM.out
+RepeatMasker -species chicken -xsmall -gff -dir stiNae_RM_chrom/BPBGC_Snae1.0.chromosomal_ordered_oriented.fasta > stiNae_RM.out
