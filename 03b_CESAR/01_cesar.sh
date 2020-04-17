@@ -20,7 +20,7 @@ make
 cd kent/src
 make 
 cd ../..
-export PATH=`pwd`/kent/bin:`pwd`/tools:$PATH
+export PATH=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/kent/bin:/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/tools:$PATH
 mv cesar tools/
 
 # organize data needed for variables
@@ -29,6 +29,10 @@ cp ../Comparative-Annotation-Toolkit/4d_sites/galGal6.gp .
 
 # alignment MAF (from postcactus)
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/ducks_cactus/galloanserae_rooted.maf .
+module load Anaconda3/2019.10
+#conda create -c bioconda -n cesar perl perl-scalar-util-numeric
+source activate cesar
+python3 mafSpeciesScaffoldOnly.py galloanserae_rooted.maf > galloanserae_final.maf
 
 # 2bit dir
 wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/faToTwoBit
@@ -76,30 +80,31 @@ cd ..
 export cesarTools=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/tools
 export PATH=$PATH:$cesarTools
 # replace chr names in galGal.chrom.sizes from NC_006089.5 to NC_006089, etc. 
-tools/mafIndex galloanserae_rooted.maf galloanserae_rooted.bb -chromSizes=2bitdir/galGal/galGal.chrom.sizes
+tools/mafIndex galloanserae_pruned.maf galloanserae_pruned.bb -chromSizes=2bitdir/galGal/galGal.chrom.sizes
 
 # define variables 
 export inputGenes=galGal6.gp
 export reference=galGal
 export twoBitDir=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/2bitdir
-export alignment=galloanserae_rooted.bb
+export alignment=galloanserae_final.bb
 export querySpecies=hetAtr,netAur,oxyJam,stiNae 
 export outputDir=CESARoutput 
 export resultsDir=geneAnnotation
 export maxMemory=50
-export profilePath=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/
+export profilePath=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0
 
 # create CESAR 
 
 #### 
 # these are weird rearrangements I had to do to get the jobList to run properly - try without these (ie/ go straight to formatGenePred.pl) and see if it works first. If not, may need these rearrangements
 cp tools/cesar extra/
+cp tools/cesar .
 cd extra/tables/human/
 chmod +x *.txt
 cd ../../
-mkdir extra/
-mv tables/ extra/ 
 ####
+
+
 formatGenePred.pl ${inputGenes} ${inputGenes}.forCESAR ${inputGenes}.discardedTranscripts -longest
 for transcript in `cut -f1 ${inputGenes}.forCESAR`; do 
    echo "annotateGenesViaCESAR.pl ${transcript} ${alignment} ${inputGenes}.forCESAR ${reference} ${querySpecies} ${outputDir} ${twoBitDir} ${profilePath} -maxMemory ${maxMemory}"
@@ -119,4 +124,5 @@ mkdir $resultsDir
 
 # tidy
 rm -rf $outputDir
+
 
