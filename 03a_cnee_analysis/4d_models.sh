@@ -31,7 +31,7 @@ chmod +x ./genePredToBed
 ./gff3ToGenePred galGal6.filt2.gff galGal6.gp
 ./genePredToBed galGal6.gp galGal6.cds.bed
 
-#run phylo4d from HALtools
+# alternative topologies for polytomy
 wget http://www.netlib.org/clapack/clapack.tgz
 tar -xvzf clapack.tgz
 rm clapack.tgz 
