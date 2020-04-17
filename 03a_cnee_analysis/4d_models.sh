@@ -47,7 +47,7 @@ cd ../..
 export ENABLE_PHYLOP=1
 
 # tree top 1
-phast/bin/phyloFit --tree "(((anaPla,(braCan,(ansInd,(ansCyg,ansBra)))),(netAur,(oxyJam,(hetAtr,stiNae)))),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))))" --subst-mod SSREV --log gallo_top1.out --msa-format MAF ../../CESAR2.0/galloanserae_rooted.maf 
+phast/bin/phyloFit --tree "(((anaPla,(braCan,(ansInd,(ansCyg,ansBra)))),(netAur,(oxyJam,(hetAtr,stiNae)))),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))))" --subst-mod SSREV --log gallo_top1.out --msa-format MAF --out-root galloTop1 ../../CESAR2.0/galloanserae_rooted.maf 
 
 # tree top 2
 phast/bin/phyloFit --tree "(((anaPla,(netAur,(oxyJam,(hetAtr,stiNae)))),(braCan,(ansInd,(ansCyg,ansBra)))),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))))" --subst-mod SSREV --log gallo_top2.out --msa-format MAF --out-root galloTop2 ../../CESAR2.0/galloanserae_rooted.maf 
