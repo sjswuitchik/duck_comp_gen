@@ -43,7 +43,6 @@ python /usr/local/lib/python2.7/site-packages/hal/phyloP/halPhyloPTrain.py \
 --precision HIGH \
 /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/galloanserae.hal galGal galGal6.cds.bed galloTop1.mod 2> top1.err
 
-<<<<<<< HEAD
 python /usr/local/lib/python2.7/site-packages/hal/phyloP/halPhyloPTrain.py \
 --numProc 12 \
 --noAncestors \
@@ -52,10 +51,6 @@ python /usr/local/lib/python2.7/site-packages/hal/phyloP/halPhyloPTrain.py \
 --targetGenomes anaPla braCan ansInd ansCyg ansBra netAur oxyJam hetAtr stiNae numMel colVir tymCupPin syrMik galGal cotJap \
 --precision HIGH \
 /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/galloanserae.hal galGal galGal6.cds.bed galloTop2.mod 2> top2.err
-=======
-# tree top 1
-phast/bin/phyloFit --tree "(((anaPla,(braCan,(ansInd,(ansCyg,ansBra)))),(netAur,(oxyJam,(hetAtr,stiNae)))),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))))" --subst-mod SSREV --log gallo_top1.out --msa-format MAF --out-root galloTop1 ../../CESAR2.0/galloanserae_rooted.maf 
->>>>>>> 856e0746c379a7e98faecbc1c661b4be5cc7e6b0
 
 python /usr/local/lib/python2.7/site-packages/hal/phyloP/halPhyloPTrain.py \
 --numProc 12 \
