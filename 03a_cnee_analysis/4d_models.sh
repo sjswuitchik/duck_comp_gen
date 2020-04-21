@@ -31,33 +31,43 @@ chmod +x ./genePredToBed
 ./gff3ToGenePred galGal6.filt2.gff galGal6.gp
 ./genePredToBed galGal6.gp galGal6.cds.bed
 
-# alternative topologies for polytomy
-wget http://www.netlib.org/clapack/clapack.tgz
-tar -xvzf clapack.tgz
-rm clapack.tgz 
-mv CLAPACK-3.2.1 clapack
-cd clapack
-cp make.inc.example make.inc && make f2clib && make blaslib && make lib
-export CLAPACKPATH=`pwd`
-cd ..
-git clone https://github.com/CshlSiepelLab/phast.git
-cd phast
-cd src && make
-cd ../..
-export ENABLE_PHYLOP=1
+# extract 4d sites
+singularity shell --bind /usr/bin/split --cleanenv /n/singularity_images/informatics/cactus/cactus:2019.03.01--py27hdbcaa40_1.sif 
+export PATH=$PWD/phast/bin:$PATH
+python /usr/local/lib/python2.7/site-packages/hal/phyloP/halPhyloPTrain.py \
+--numProc 12 \
+--noAncestors \
+--substMod SSREV \
+--tree "(((anaPla,(braCan,(ansInd,(ansCyg,ansBra)))),(netAur,(oxyJam,(hetAtr,stiNae)))),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))));" \
+--targetGenomes anaPla braCan ansInd ansCyg ansBra netAur oxyJam hetAtr stiNae numMel colVir tymCupPin syrMik galGal cotJap \
+--precision HIGH \
+/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/galloanserae.hal galGal galGal6.cds.bed galloTop1.mod 2> top1.err
 
-# tree top 1
-phast/bin/phyloFit --tree "(((anaPla,(braCan,(ansInd,(ansCyg,ansBra)))),(netAur,(oxyJam,(hetAtr,stiNae)))),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))))" --subst-mod SSREV --log gallo_top1.out --msa-format MAF ../../CESAR2.0/galloanserae_rooted.maf 
+python /usr/local/lib/python2.7/site-packages/hal/phyloP/halPhyloPTrain.py \
+--numProc 12 \
+--noAncestors \
+--substMod SSREV \
+--tree "(((anaPla,(netAur,(oxyJam,(hetAtr,stiNae)))),(braCan,(ansInd,(ansCyg,ansBra)))),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))));" \
+--targetGenomes anaPla braCan ansInd ansCyg ansBra netAur oxyJam hetAtr stiNae numMel colVir tymCupPin syrMik galGal cotJap \
+--precision HIGH \
+/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/galloanserae.hal galGal galGal6.cds.bed galloTop2.mod 2> top2.err
 
-# tree top 2
-phast/bin/phyloFit --tree "(((anaPla,(netAur,(oxyJam,(hetAtr,stiNae)))),(braCan,(ansInd,(ansCyg,ansBra)))),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))))" --subst-mod SSREV --log gallo_top2.out --msa-format MAF --out-root galloTop2 ../../CESAR2.0/galloanserae_rooted.maf 
+python /usr/local/lib/python2.7/site-packages/hal/phyloP/halPhyloPTrain.py \
+--numProc 12 \
+--noAncestors \
+--substMod SSREV \
+--tree "((((braCan,(ansInd,(ansCyg,ansBra))),(netAur,(oxyJam,(hetAtr,stiNae)))),anaPla),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))));" \
+--targetGenomes anaPla braCan ansInd ansCyg ansBra netAur oxyJam hetAtr stiNae numMel colVir tymCupPin syrMik galGal cotJap \
+--precision HIGH \
+/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/galloanserae.hal galGal galGal6.cds.bed galloTop3.mod 2> top3.err
 
-# tree top 3
-phast/bin/phyloFit --tree "((((braCan,(ansInd,(ansCyg,ansBra))),(netAur,(oxyJam,(hetAtr,stiNae)))),anaPla),(numMel,(colVir,((tymCupPin,syrMik),(galGal,cotJap)))))" --subst-mod SSREV --log gallo_top3.out --msa-format MAF --out-root galloTop3 ../../CESAR2.0/galloanserae_rooted.maf 
+exit
 
 # rename ancestral nodes for PhyloAcc
-phast/bin/tree_doctor --name-ancestors galloTop1.mod > galloTop1.named.mod
-phast/bin/tree_doctor --name-ancestors galloTop2.mod > galloTop2.named.mod
-phast/bin/tree_doctor --name-ancestors galloTop3.mod > galloTop3.named.mod
+# conda create -n phast -c bioconda phast
+source activate phast 
+tree_doctor --name-ancestors galloTop1.mod > galloTop1.named.mod
+tree_doctor --name-ancestors galloTop2.mod > galloTop2.named.mod
+tree_doctor --name-ancestors galloTop3.mod > galloTop3.named.mod
  
 
