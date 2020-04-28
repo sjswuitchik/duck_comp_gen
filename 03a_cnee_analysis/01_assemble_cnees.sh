@@ -1,5 +1,5 @@
-
 #### Building a set of consensus CNEEs from literature #### 
+
 # get data from /n/holylfs/LABS/informatics/tsackton/broodParasites/DATA/02_CNEEs/concat_cnees to build consensus CNEE set
 # notes on data downloads can be found at https://github.com/tsackton/brood-parasite-genomics/tree/master/03_CNEEs/assemble_ces.txt
 cp FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol.bed galGal4_phastCons_SP_conserved_elements_LoweEtAlMBE.bed galGal4_phastCons_TP_conserved_elements_SacktonEtAl.bed hg38_phastCons_SP_conserved_elements_UCSC.bed replace_chrs.pl /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cnees
@@ -59,22 +59,21 @@ cut -f2,3 ficAlb_chr_key > acckey
 cut -f1,3 ficAlb_chr_key > acckey
 ./replace_chrs.pl acckey FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol.bed > FicAlb.part2.bed
 cat FicAlb.part1.bed FicAlb.part2.bed > FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol_NCBI.bed
-cp FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol_NCBI.bed ../Comparative-Annotation-Toolkit
-cd ../Comparative-Annotation-Toolkit
 cut -f1,2,3,4 FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol_NCBI.bed > FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol_NCBI_cut.bed
 singularity shell --cleanenv /n/singularity_images/informatics/cat/cat:20200116.sif
-halLiftover --noDupes data/broodParaAlign.hal ficAlb FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol_NCBI_cut.bed galGal galGal5_Craig.bed 2> craig_liftover.log
+halLiftover --noDupes ../Comparative-Annotation-Toolkit/data/broodParaAlign.hal ficAlb FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol_NCBI_cut.bed galGal galGal5_Craig.bed 2> craig_liftover.log
 exit
-mv galGal5_Craig.bed ../cnees
 awk '{print $3, $1}' galGal5_chr_key > acckey
 ./replace_chrs.pl acckey galGal5_Craig.bed > galGal5_Craig_chr.bed
 ./liftOver galGal5_Craig_chr.bed galGal5ToGalGal6.over.chain galGal6_Craig.bed Craig_unmapped.bed
+awk '{print $4, $3}' galGal6_chr_key > acckey
+./replace_chrs.pl acckey galGal6_Craig.bed > galGal6_Craig2.bed 
 
 # merge within 5 bp
 bedtools sort -i galGal6_phastcons_SP_conserved_elements_LoweEtAlMBE_NCBI.bed | bedtools merge -i - -d 5 > galGal6_Lowe_merged.bed
 bedtools sort -i galGal6_phastcons_TP_conserved_elements_SacktonEtAl_NCBI.bed | bedtools merge -i - -d 5 > galGal6_Sackton_merged.bed
 bedtools sort -i galGal6_phastcons_SP_conserved_elements_UCSC_NCBI.bed | bedtools merge -i - -d 5 > galGal6_UCSC_merged.bed
-bedtools sort -i galGal6_Craig.bed | bedtools merge -i - -d 5 > galGal6_Craig_merged.bed 
+bedtools sort -i galGal6_Craig2.bed | bedtools merge -i - -d 5 > galGal6_Craig_merged.bed 
 
 # get ce lengths 
 awk '{print $3-$2, "\tLowe"}' galGal6_Lowe_merged.bed  >> ce.lengths
