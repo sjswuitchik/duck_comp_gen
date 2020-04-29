@@ -11,7 +11,7 @@ cd CESAR2.0
 make
 cd kent/src
 make 
-cd ../..
+cd ../../..
 export PATH=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/kent/bin:/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/tools:$PATH
 mv cesar tools/
 
