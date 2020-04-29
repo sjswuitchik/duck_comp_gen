@@ -48,3 +48,4 @@ srun -n 1 singularity exec --cleanenv \
 # next job to run on this node needs lots of /space...
 
 rm -rf ${CACTUS_SCRATCH}
+
