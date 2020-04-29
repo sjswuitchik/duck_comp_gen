@@ -1,19 +1,11 @@
-## CESAR for duck alignment ## 
-## https://github.com/hillerlab/CESAR2.0 ## 
+################################
+## Gene annotation with CESAR ## 
+################################
 
-## HAL Tools summaries and MAF conversion 
-# in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus on bioinf01
-
-git clone https://github.com/ComparativeGenomicsToolkit/Comparative-Annotation-Toolkit.git
-cp ../ducks_cactus/galloanserae.hal Comparative-Annotation-Toolkit/
-cd Comparative-Annotation-Toolkit
-singularity shell --cleanenv /n/singularity_images/informatics/cat/cat:20200116.sif
-halValidate galloanserae.hal
-hal2maf galloanserae.hal galloanserae_rooted.maf --refGenome galGal 
-halStats galloanserae.hal > halStats.out
-exit
+module load Anaconda3/2019.10
 
 # set up and compile in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus
+
 git clone https://github.com/hillerlab/CESAR2.0.git
 cd CESAR2.0
 make
@@ -24,17 +16,25 @@ export PATH=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CES
 mv cesar tools/
 
 # organize data needed for variables
-# inputGenes (from 4d_sites)
-cp ../Comparative-Annotation-Toolkit/4d_sites/galGal6.gp . 
 
-# alignment MAF (from postcactus)
-cp /n/holyscratch01/informatics/swuitchik/ducks_project/ducks_cactus/galloanserae_rooted.maf .
-module load Anaconda3/2019.10
+# for input genes
+cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cnees/4d_sites/galGal6.gp .
+
+# for alignment
+cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/galloanserae.maf .
 #conda create -c bioconda -n cesar perl perl-scalar-util-numeric
 source activate cesar
-python3 mafSpeciesScaffoldOnly.py galloanserae_rooted.maf > galloanserae_final.maf
+python3 mafSpeciesScaffoldOnly.py galloanserae.maf > galloanserae_stripped.maf
+cd ../tools
+wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/bedToBigBed
+chmod +x ./bedToBigBed
+chmod +x ./bedSort
+cd ..
+export cesarTools=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/tools
+export PATH=$PATH:$cesarTools
+tools/mafIndex galloanserae_stripped.maf galloanserae.bb -chromSizes=2bitdir/galGal/galGal.chrom.sizes
 
-# 2bit dir
+# for 2bit dirs
 wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/faToTwoBit
 chmod +x ./faToTwoBit
 wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/twoBitInfo
@@ -71,30 +71,6 @@ chomd +x ./brename
 
 # sort all these files into spp-specific subdirectories in 2bitdir
 
-# alignment
-cd ../tools
-wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/bedToBigBed
-chmod +x ./bedToBigBed
-chmod +x ./bedSort
-cd ..
-export cesarTools=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/tools
-export PATH=$PATH:$cesarTools
-# replace chr names in galGal.chrom.sizes from NC_006089.5 to NC_006089, etc. 
-tools/mafIndex galloanserae_pruned.maf galloanserae_pruned.bb -chromSizes=2bitdir/galGal/galGal.chrom.sizes
-
-# define variables 
-export inputGenes=galGal6.gp
-export reference=galGal
-export twoBitDir=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/2bitdir
-export alignment=galloanserae_final.bb
-export querySpecies=hetAtr,netAur,oxyJam,stiNae 
-export outputDir=CESARoutput 
-export resultsDir=geneAnnotation
-export maxMemory=50
-export profilePath=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0
-
-# create CESAR 
-
 #### 
 # these are weird rearrangements I had to do to get the jobList to run properly - try without these (ie/ go straight to formatGenePred.pl) and see if it works first. If not, may need these rearrangements
 cp tools/cesar extra/
@@ -104,17 +80,27 @@ chmod +x *.txt
 cd ../../
 ####
 
+# define variables 
+export inputGenes=galGal6.gp
+export reference=galGal
+export twoBitDir=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/2bitdir
+export alignment=galloanserae.bb
+export querySpecies=hetAtr,netAur,oxyJam,stiNae 
+export outputDir=CESARoutput 
+export resultsDir=geneAnnotation
+export maxMemory=50
+export profilePath=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0
 
 formatGenePred.pl ${inputGenes} ${inputGenes}.forCESAR ${inputGenes}.discardedTranscripts -longest
 for transcript in `cut -f1 ${inputGenes}.forCESAR`; do 
    echo "annotateGenesViaCESAR.pl ${transcript} ${alignment} ${inputGenes}.forCESAR ${reference} ${querySpecies} ${outputDir} ${twoBitDir} ${profilePath} -maxMemory ${maxMemory}"
 done > jobList
 
-# realign all genes (this step with test data takes 10.5 hr on single core)
+# realign all genes
 chmod +x jobList
 ./jobList > jobList.out 2> jobList.err
 
-# convert results 
+# convert results
 for species in `echo $querySpecies | sed 's/,/ /g'`; do 
   echo "bed2GenePred.pl $species $outputDir /dev/stdout | awk '{if (\$4 != \$5) print \$0}' > $resultsDir/$species.gp"
 done > jobListGenePred
@@ -124,5 +110,4 @@ mkdir $resultsDir
 
 # tidy
 rm -rf $outputDir
-
 
