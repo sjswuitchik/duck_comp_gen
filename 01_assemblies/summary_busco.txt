@@ -1,0 +1,46 @@
+BUSCO summaries
+
+hetAtr
+C:94.7%[S:92.7%,D:2.0%],F:3.3%,M:2.0%,n:4915
+4650 Complete BUSCOs (C)
+4554 Complete and single-copy BUSCOs (S)
+96 Complete and duplicated BUSCOs (D)
+163 Fragmented BUSCOs (F)
+102 Missing BUSCOs (M)
+4915 Total BUSCO groups searched
+BUSCO analysis done. Total running time: 338341.16619968414 seconds
+Results written in /scratch/swuitchik/raw_data_ducks/genomes/run_hetAtr_busco/
+
+netAur
+C:94.6%[S:93.0%,D:1.6%],F:3.2%,M:2.2%,n:4915
+4650 Complete BUSCOs (C)
+4570 Complete and single-copy BUSCOs (S)
+80 Complete and duplicated BUSCOs (D)
+159 Fragmented BUSCOs (F)
+106 Missing BUSCOs (M)
+4915 Total BUSCO groups searched
+BUSCO analysis done. Total running time: 329180.98614406586 seconds
+Results written in /scratch/swuitchik/raw_data_ducks/genomes/run_netAur_busco/
+
+stiNae
+C:95.0%[S:92.9%,D:2.1%],F:2.8%,M:2.2%,n:4915
+4672 Complete BUSCOs (C)
+4567 Complete and single-copy BUSCOs (S)
+105 Complete and duplicated BUSCOs (D)
+138 Fragmented BUSCOs (F)
+105 Missing BUSCOs (M)
+4915 Total BUSCO groups searched
+BUSCO analysis done. Total running time: 297734.8914296627 seconds
+Results written in /scratch/swuitchik/raw_data_ducks/genomes/run_stiNae_busco/
+
+oxyJam
+C:94.7%[S:93.0%,D:1.7%],F:3.1%,M:2.2%,n:4915
+4658 Complete BUSCOs (C)
+4572 Complete and single-copy BUSCOs (S)
+86 Complete and duplicated BUSCOs (D)
+154 Fragmented BUSCOs (F)
+103 Missing BUSCOs (M)
+4915 Total BUSCO groups searched
+BUSCO analysis done. Total running time: 362798.000177145 seconds
+Results written in /scratch/swuitchik/raw_data_ducks/genomes/run_oxyJam_busco/
+
