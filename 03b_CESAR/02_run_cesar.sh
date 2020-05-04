@@ -90,7 +90,7 @@ CESAR2.0/tools/mafIndex galloanserae_stripped.maf galloanserae.bb -chromSizes=2b
 # define variables 
 export inputGenes=galGal6.gp
 export reference=galGal
-export twoBitDir=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest/CESAR2.0/2bitdir
+export twoBitDir=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest/2bitdir
 export alignment=galloanserae.bb
 export querySpecies=hetAtr,netAur,oxyJam,stiNae 
 export outputDir=CESARoutput 
