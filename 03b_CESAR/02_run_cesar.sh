@@ -83,6 +83,8 @@ chmod +x ./bedSort
 cd ../..
 export cesarTools=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest/CESAR2.0/tools
 export PATH=$PATH:$cesarTools
+# need to edit chr names in galGal.chrom.sizes - currently doing manually, will write a strip script soon
+# NC_006089.5 -> NC_006089
 CESAR2.0/tools/mafIndex galloanserae_stripped.maf galloanserae.bb -chromSizes=2bitdir/galGal/galGal.chrom.sizes
 
 # define variables 
