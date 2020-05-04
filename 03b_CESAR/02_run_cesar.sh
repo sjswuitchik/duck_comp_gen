@@ -98,6 +98,7 @@ export resultsDir=geneAnnotation
 export maxMemory=50
 export profilePath=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest/CESAR2.0
 
+chmod +x CESAR2.0/tools/formatGenePred.pl
 formatGenePred.pl ${inputGenes} ${inputGenes}.forCESAR ${inputGenes}.discardedTranscripts -longest
 for transcript in `cut -f1 ${inputGenes}.forCESAR`; do 
    echo "annotateGenesViaCESAR.pl ${transcript} ${alignment} ${inputGenes}.forCESAR ${reference} ${querySpecies} ${outputDir} ${twoBitDir} ${profilePath} -maxMemory ${maxMemory}"
