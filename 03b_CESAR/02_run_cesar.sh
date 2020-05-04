@@ -56,6 +56,7 @@ chomd +x ./brename
 # sort all these files into spp-specific subdirectories in 2bitdir
 
 # for alignment
+cd ..
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/galloanserae_test.maf .
 #conda create -c bioconda -n cesar perl perl-scalar-util-numeric
 source activate cesar
