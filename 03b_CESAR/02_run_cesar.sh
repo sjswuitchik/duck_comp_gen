@@ -22,22 +22,22 @@ cd ..
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cnees/4d_sites/galGal6.gp .
 
 # for 2bit dirs
+mkdir 2bitdir
+cd 2bitdir
 wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/faToTwoBit
 chmod +x ./faToTwoBit
 wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/twoBitInfo
 chmod +x ./twoBitInfo
-mkdir 2bitdir
-cd 2bitdir
 cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/ducks_cactus/for_cnees/*.fasta .
 # these loops are ugly but quick - adjust file names with brename after
 for file in *.fasta; 
 do
-	faToTwoBit $file $file.2bit
+	./faToTwoBit $file $file.2bit
 done
 
 for file in *.2bit;
 do
-	twoBitInfo $file stdout | sort -k2rn > $file.chrom.sizes
+	./twoBitInfo $file stdout | sort -k2rn > $file.chrom.sizes
 done
 
 for file in anaPla ansBra ansCyg ansInd braCan colVir cotJap galGal hetAtr netAur numMel oxyJam stiNae syrMik tymCupPin;
