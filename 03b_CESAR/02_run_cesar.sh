@@ -60,7 +60,7 @@ cd ..
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/galloanserae_test.maf .
 #conda create -c bioconda -n cesar perl perl-scalar-util-numeric
 source activate cesar
-python3 mafSpeciesScaffoldOnly.py galloanserae.maf > galloanserae_stripped.maf
+python3 mafSpeciesScaffoldOnly.py galloanserae_test.maf > galloanserae_stripped.maf
 cd ../tools
 wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/bedToBigBed
 chmod +x ./bedToBigBed
