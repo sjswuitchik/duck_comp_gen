@@ -27,7 +27,7 @@ wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/twoBitInfo
 chmod +x ./twoBitInfo
 mkdir 2bitdir
 cd 2bitdir
-cp -v ../../../ducks_cactus/*.fasta .
+cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/ducks_cactus/for_cnees/ducks_cactus/*.fasta .
 # these loops are ugly but quick - adjust file names with brename after
 for file in *.fasta; 
 do
