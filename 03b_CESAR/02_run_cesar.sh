@@ -52,14 +52,11 @@ chomd +x ./brename
 ./brename -p ".defline." -r "." -R
 ./brename -p ".fasta.2bit" -r ".2bit" -R
 ./brename -p ".2bit.chrom.sizes" -r ".chrom.sizes" -R
-./brename -p "oxyJam.masked" -r "oxyJam" -R
-./brename -p "stiNae.masked" -r "stiNae" -R
-./brename -p "hetAtr.masked" -r "hetAtr" -R
 
 # sort all these files into spp-specific subdirectories in 2bitdir
 
 # for alignment
-cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/galloanserae.maf .
+cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/galloanserae_test.maf .
 #conda create -c bioconda -n cesar perl perl-scalar-util-numeric
 source activate cesar
 python3 mafSpeciesScaffoldOnly.py galloanserae.maf > galloanserae_stripped.maf
