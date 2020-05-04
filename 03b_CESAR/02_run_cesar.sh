@@ -14,6 +14,7 @@ make
 cd ../..
 export PATH=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/kent/bin:/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/tools:$PATH
 mv cesar tools/
+cd ..
 
 # organize data needed for variables
 
@@ -27,7 +28,7 @@ wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/twoBitInfo
 chmod +x ./twoBitInfo
 mkdir 2bitdir
 cd 2bitdir
-cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/ducks_cactus/for_cnees/ducks_cactus/*.fasta .
+cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/ducks_cactus/for_cnees/*.fasta .
 # these loops are ugly but quick - adjust file names with brename after
 for file in *.fasta; 
 do
