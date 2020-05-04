@@ -4,7 +4,7 @@
 
 module load Anaconda3/2019.10
 
-# set up and compile in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus
+# set up and compile in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest
 
 git clone https://github.com/hillerlab/CESAR2.0.git
 cd CESAR2.0
@@ -12,7 +12,7 @@ make
 cd kent/src
 make 
 cd ../..
-export PATH=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/kent/bin:/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/tools:$PATH
+export PATH=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest/CESAR2.0/kent/bin:/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest/CESAR2.0/tools:$PATH
 mv cesar tools/
 cd ..
 
@@ -54,6 +54,21 @@ chomd +x ./brename
 ./brename -p ".2bit.chrom.sizes" -r ".chrom.sizes" -R
 
 # sort all these files into spp-specific subdirectories in 2bitdir
+mv anaPla.* anaPla
+mv ansBra.* ansBra
+mv ansCyg.* ansCyg
+mv ansInd.* ansInd
+mv braCan.* braCan
+mv colVir.* colVir
+mv cotJap.* cotJap
+mv galGal.* galGal
+mv hetAtr.* hetAtr
+mv netAur.* netAur
+mv numMel.* numMel
+mv oxyJam.* oxyJam
+mv stiNae.* stiNae
+mv syrMik.* syrMik
+mv tymCupPin.* tymCupPin
 
 # for alignment
 cd ..
@@ -61,34 +76,25 @@ cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/galloanserae
 #conda create -c bioconda -n cesar perl perl-scalar-util-numeric
 source activate cesar
 python3 mafSpeciesScaffoldOnly.py galloanserae_test.maf > galloanserae_stripped.maf
-cd ../tools
+cd CESAR2.0/tools
 wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/bedToBigBed
 chmod +x ./bedToBigBed
 chmod +x ./bedSort
-cd ..
-export cesarTools=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/tools
+cd ../..
+export cesarTools=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest/CESAR2.0/tools
 export PATH=$PATH:$cesarTools
-tools/mafIndex galloanserae_stripped.maf galloanserae.bb -chromSizes=2bitdir/galGal/galGal.chrom.sizes
-
-#### 
-# these are weird rearrangements I had to do to get the jobList to run properly - try without these (ie/ go straight to formatGenePred.pl) and see if it works first. If not, may need these rearrangements
-cp tools/cesar extra/
-cp tools/cesar .
-cd extra/tables/human/
-chmod +x *.txt
-cd ../../
-####
+CESAR2.0/tools/mafIndex galloanserae_stripped.maf galloanserae.bb -chromSizes=2bitdir/galGal/galGal.chrom.sizes
 
 # define variables 
 export inputGenes=galGal6.gp
 export reference=galGal
-export twoBitDir=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/2bitdir
+export twoBitDir=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest/CESAR2.0/2bitdir
 export alignment=galloanserae.bb
 export querySpecies=hetAtr,netAur,oxyJam,stiNae 
 export outputDir=CESARoutput 
 export resultsDir=geneAnnotation
 export maxMemory=50
-export profilePath=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0
+export profilePath=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest/CESAR2.0
 
 formatGenePred.pl ${inputGenes} ${inputGenes}.forCESAR ${inputGenes}.discardedTranscripts -longest
 for transcript in `cut -f1 ${inputGenes}.forCESAR`; do 
