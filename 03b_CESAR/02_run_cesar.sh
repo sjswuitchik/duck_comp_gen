@@ -31,8 +31,7 @@ wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/twoBitInfo
 chmod +x ./twoBitInfo
 cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/ducks_cactus/for_cnees/*.fasta .
 # strip version number off scaffolds of ref seq
-sed '/^>/s/\.*//g' galGal.fasta > galGal_stripped.fasta
-rm galGal.fasta
+awk -f stripFasta.awk galGal.defline.fasta > galGal_stripped.fasta
 mv galGal_stripped.fasta galGal.fasta
 # these loops are ugly but quick - adjust file names with brename after
 for file in *.fasta; 
