@@ -20,6 +20,7 @@ cd ..
 
 # for input genes
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cnees/4d_sites/galGal6.gp .
+python3 stripGPversion.py galGal6.gp > galGal6_stripped.gp
 
 # for 2bit dirs
 mkdir 2bitdir
@@ -29,6 +30,10 @@ chmod +x ./faToTwoBit
 wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/twoBitInfo
 chmod +x ./twoBitInfo
 cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/ducks_cactus/for_cnees/*.fasta .
+# strip version number off scaffolds of ref seq
+sed '/^>/s/\.*//g' galGal.fasta > galGal_stripped.fasta
+rm galGal.fasta
+mv galGal_stripped.fasta galGal.fasta
 # these loops are ugly but quick - adjust file names with brename after
 for file in *.fasta; 
 do
@@ -83,8 +88,6 @@ chmod +x ./bedSort
 cd ../..
 export cesarTools=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest/CESAR2.0/tools
 export PATH=$PATH:$cesarTools
-# need to edit chr names in galGal.chrom.sizes - currently doing manually, will write a strip script soon
-# NC_006089.5 -> NC_006089
 CESAR2.0/tools/mafIndex galloanserae_stripped.maf galloanserae.bb -chromSizes=2bitdir/galGal/galGal.chrom.sizes
 
 # define variables 
