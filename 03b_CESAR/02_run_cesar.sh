@@ -4,7 +4,7 @@
 
 module load Anaconda3/2019.10
 
-# set up and compile in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest
+# set up and compile in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar
 
 git clone https://github.com/hillerlab/CESAR2.0.git
 cd CESAR2.0
@@ -12,8 +12,9 @@ make
 cd kent/src
 make 
 cd ../..
-export PATH=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest/CESAR2.0/kent/bin:/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest/CESAR2.0/tools:$PATH
-mv cesar tools/
+export PATH=`pwd`/kent/bin:`pwd`/tools:$PATH
+export profilePath=`pwd`
+cp cesar tools/
 cd ..
 
 # organize data needed for variables
@@ -33,6 +34,8 @@ cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/ducks_cactus/for_cnees/*.fasta
 # strip version number off scaffolds of ref seq
 awk -f stripFasta.awk galGal.defline.fasta > galGal_stripped.fasta
 mv galGal_stripped.fasta galGal.fasta
+rm galGal.defline.fasta
+
 # these loops are ugly but quick - adjust file names with brename after
 for file in *.fasta; 
 do
@@ -58,21 +61,16 @@ chomd +x ./brename
 ./brename -p ".2bit.chrom.sizes" -r ".chrom.sizes" -R
 
 # sort all these files into spp-specific subdirectories in 2bitdir
-mv anaPla.* anaPla
-mv ansBra.* ansBra
-mv ansCyg.* ansCyg
-mv ansInd.* ansInd
-mv braCan.* braCan
-mv colVir.* colVir
-mv cotJap.* cotJap
-mv galGal.* galGal
-mv hetAtr.* hetAtr
-mv netAur.* netAur
-mv numMel.* numMel
-mv oxyJam.* oxyJam
-mv stiNae.* stiNae
-mv syrMik.* syrMik
-mv tymCupPin.* tymCupPin
+for file in anaPla ansBra ansCyg ansInd braCan colVir cotJap galGal hetAtr netAur numMel oxyJam stiNae syrMik tymCupPin;
+do
+	mv $file.* $file/
+done
+
+# each '*.chrom.sizes' file needs to be named 'chrom.sizes', so need to rename after sorting 
+for file in anaPla ansBra ansCyg ansInd braCan colVir cotJap galGal hetAtr netAur numMel oxyJam stiNae syrMik tymCupPin;
+do
+	mv $file/$file.chrom.sizes $file/chrom.sizes
+done
 
 # for alignment
 cd ..
@@ -84,21 +82,21 @@ cd CESAR2.0/tools
 wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/bedToBigBed
 chmod +x ./bedToBigBed
 chmod +x ./bedSort
-cd ../..
-export cesarTools=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest/CESAR2.0/tools
+cd ..
+export cesarTools=`pwd`/tools
 export PATH=$PATH:$cesarTools
+cd ..
 CESAR2.0/tools/mafIndex galloanserae_stripped.maf galloanserae.bb -chromSizes=2bitdir/galGal/galGal.chrom.sizes
 
 # define variables 
 export inputGenes=galGal6.gp
 export reference=galGal
-export twoBitDir=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest/2bitdir
+export twoBitDir=2bitdir
 export alignment=galloanserae.bb
 export querySpecies=hetAtr,netAur,oxyJam,stiNae 
 export outputDir=CESARoutput 
 export resultsDir=geneAnnotation
 export maxMemory=50
-export profilePath=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesartest/CESAR2.0
 
 chmod +x CESAR2.0/tools/formatGenePred.pl
 formatGenePred.pl ${inputGenes} ${inputGenes}.forCESAR ${inputGenes}.discardedTranscripts -longest
