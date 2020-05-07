@@ -3,6 +3,8 @@
 ################################
 
 module load Anaconda3/2019.10
+#conda create -c bioconda -n cesar perl perl-scalar-util-numeric
+source activate cesar
 
 # set up and compile in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar
 
@@ -75,8 +77,6 @@ done
 # for alignment
 cd ..
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/galloanserae_test.maf .
-#conda create -c bioconda -n cesar perl perl-scalar-util-numeric
-source activate cesar
 python3 mafSpeciesScaffoldOnly.py galloanserae_test.maf > galloanserae_stripped.maf
 cd CESAR2.0/tools
 wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/bedToBigBed
