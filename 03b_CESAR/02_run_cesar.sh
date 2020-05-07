@@ -23,6 +23,7 @@ cd ..
 
 # for input genes
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cnees/4d_sites/galGal6.gp .
+# strip version number off scaffolds in GenePred
 python3 stripGPversion.py galGal6.gp > galGal6_stripped.gp
 
 # for 2bit dirs
@@ -33,7 +34,7 @@ chmod +x ./faToTwoBit
 wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/twoBitInfo
 chmod +x ./twoBitInfo
 cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/ducks_cactus/for_cnees/*.fasta .
-# strip version number off scaffolds of ref seq
+# strip version number off scaffolds in ref seq
 awk -f stripFasta.awk galGal.defline.fasta > galGal_stripped.fasta
 mv galGal_stripped.fasta galGal.fasta
 rm galGal.defline.fasta
@@ -60,7 +61,6 @@ rm brename_linux_amd64.tar.gz
 chomd +x ./brename
 ./brename -p ".defline." -r "." -R
 ./brename -p ".fasta.2bit" -r ".2bit" -R
-./brename -p ".2bit.chrom.sizes" -r ".chrom.sizes" -R
 
 # sort all these files into spp-specific subdirectories in 2bitdir
 for file in anaPla ansBra ansCyg ansInd braCan colVir cotJap galGal hetAtr netAur numMel oxyJam stiNae syrMik tymCupPin;
@@ -68,10 +68,10 @@ do
 	mv $file.* $file/
 done
 
-# each '*.chrom.sizes' file needs to be named 'chrom.sizes', so need to rename after sorting 
+# each '*.2bit.chrom.sizes' file needs to be named 'chrom.sizes', so need to rename after sorting 
 for file in anaPla ansBra ansCyg ansInd braCan colVir cotJap galGal hetAtr netAur numMel oxyJam stiNae syrMik tymCupPin;
 do
-	mv $file/$file.chrom.sizes $file/chrom.sizes
+	mv $file/$file.2bit.chrom.sizes $file/chrom.sizes
 done
 
 # for alignment
@@ -86,10 +86,10 @@ cd ..
 export cesarTools=`pwd`/tools
 export PATH=$PATH:$cesarTools
 cd ..
-CESAR2.0/tools/mafIndex galloanserae_stripped.maf galloanserae.bb -chromSizes=2bitdir/galGal/galGal.chrom.sizes
+CESAR2.0/tools/mafIndex galloanserae_stripped.maf galloanserae.bb -chromSizes=2bitdir/galGal/chrom.sizes
 
 # define variables 
-export inputGenes=galGal6.gp
+export inputGenes=galGal6_stripped.gp
 export reference=galGal
 export twoBitDir=2bitdir
 export alignment=galloanserae.bb
@@ -116,6 +116,6 @@ chmod +x jobListGenePred
 mkdir $resultsDir
 ./jobListGenePred
 
-# tidy
+# tidy up
 rm -rf $outputDir
 
