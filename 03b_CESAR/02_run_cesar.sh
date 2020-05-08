@@ -119,3 +119,9 @@ mkdir $resultsDir
 # tidy up
 rm -rf $outputDir
 
+# convert each query species output to GTF for filtering
+wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/genePredToGtf
+chmod +x ./genePredToGtf
+
+#genePredToGtf file refGene.input hg19refGene.gtf
+genePredToGtf geneAnnotation/hetAtr.gp ____ hetAtr.gtf
