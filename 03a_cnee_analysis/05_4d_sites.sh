@@ -18,7 +18,7 @@ sed -i '1i#!gff-spec-version 1.21' galGal6.filt.gff && sed -i '1i##gff-version 3
 python3 CustomExtractPassFiltMrnaFromGff.py
 python3 WriteFilteredGff.py
 
-# convert to GP & BED
+# convert to GP & BED (for use in CESAR as well) 
 wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gff3ToGenePred
 wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/genePredToBed
 chmod +x ./gff3ToGenePred
