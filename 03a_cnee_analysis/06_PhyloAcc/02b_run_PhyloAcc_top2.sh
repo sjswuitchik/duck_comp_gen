@@ -7,4 +7,4 @@
 #SBATCH --array 0-178
 
 source /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cnees/PhyloAcc/setupPhyloAcc.sh
-PhyloAcc top2_param/run${SLURM_ARRAY_TASK_ID}
+./PhyloAcc top2_param/run${SLURM_ARRAY_TASK_ID}
