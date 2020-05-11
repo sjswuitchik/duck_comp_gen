@@ -16,4 +16,4 @@ cd ../top3_outs
 mv elem_lik_combined.txt ../elem_lik_combined_top3_${VERSION}.txt
 ../concat_output.sh  rate_postZ_M2
 mv rate_postZ_M2_combined.txt ../rate_postZ_M2_combined_top3_${VERSION}.txt
-cd ..
+
