@@ -1,4 +1,4 @@
-## Gene concatenation for CNEE analysis ##
+## Concatenation for CNEE analysis ##
 ## https://github.com/ChrisCreevey/catsequences ## 
 ## NB: run from git clone  --branch seqname https://github.com/harvardinformatics/catsequences.git until PR is fulfilled ##
 
