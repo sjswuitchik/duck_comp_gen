@@ -124,4 +124,7 @@ wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/genePredToGtf
 chmod +x ./genePredToGtf
 
 #genePredToGtf file refGene.input hg19refGene.gtf
-genePredToGtf geneAnnotation/hetAtr.gp ____ hetAtr.gtf
+./genePredToGtf file geneAnnotation/hetAtr.gp output_gtfs/hetAtr.gtf
+./genePredToGtf file geneAnnotation/netAur.gp output_gtfs/netAur.gtf
+./genePredToGtf file geneAnnotation/oxyJam.gp output_gtfs/oxyJam.gtf
+./genePredToGtf file geneAnnotation/stiNae.gp output_gtfs/stiNae.gtf
