@@ -1,4 +1,4 @@
-## filtering a sorted GTF created by GenePredToGtf from a CESAR 2.0 GenePred ## 
+## filtering a sorted GTF created by genePredToGtf from a CESAR 2.0 GenePred ## 
 # AH Freedman, May 2020 # 
 
 import argparse
