@@ -3,7 +3,7 @@
 ################################
 
 module load Anaconda3/2019.10
-#conda create -c bioconda -n cesar perl perl-scalar-util-numeric
+#conda create -c bioconda -n cesar perl perl-scalar-util-numeric bedtools
 source activate cesar
 
 # set up and compile in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar
@@ -122,9 +122,22 @@ rm -rf $outputDir
 # convert each query species output to GTF for filtering
 wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/genePredToGtf
 chmod +x ./genePredToGtf
-
-#genePredToGtf file refGene.input hg19refGene.gtf
 ./genePredToGtf file geneAnnotation/hetAtr.gp output_gtfs/hetAtr.gtf
 ./genePredToGtf file geneAnnotation/netAur.gp output_gtfs/netAur.gtf
 ./genePredToGtf file geneAnnotation/oxyJam.gp output_gtfs/oxyJam.gtf
 ./genePredToGtf file geneAnnotation/stiNae.gp output_gtfs/stiNae.gtf
+
+# filter GTF
+cd output_gtfs/
+for file in *.gtf;
+do 
+	bedtools sort -i $file > $file.sorted
+	../2bitdir/brename -p ".gtf.sorted" -r ".sorted.gtf" -R 
+done
+python3 FilterGtfFromCesarGenepred.py --cesar-gtf hetAtr.sorted.gtf -sizes /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/2bitdir/hetAtr/chrom.sizes
+python3 FilterGtfFromCesarGenepred.py --cesar-gtf netAur.sorted.gtf -sizes /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/2bitdir/netAur/chrom.sizes
+python3 FilterGtfFromCesarGenepred.py --cesar-gtf oxyJam.sorted.gtf -sizes /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/2bitdir/oxyJam/chrom.sizes
+python3 FilterGtfFromCesarGenepred.py --cesar-gtf stiNae.sorted.gtf -sizes /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/2bitdir/stiNae/chrom.sizes
+
+
+
