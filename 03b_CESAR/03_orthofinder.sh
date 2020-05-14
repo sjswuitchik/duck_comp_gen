@@ -66,13 +66,9 @@ do
   gffread $file.gff -g /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/2bitdir/$file/$file.fasta -y $file.translated.fa -S
 done
 
-# had indexing issues with cotJap and galGal, so use stripFasta.awk
-cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/2bitdir/galGal/galGal.fasta /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/2bitdir/cotJap/cotJap.fasta .
-for file in cotJap galGal;
-do
-  awk -f stripFasta.awk $file.fasta > $file.stripped.fasta
-  gffread $file.gff -g $file.stripped.fasta -y $file.translated.fs -S
-done
+# had indexing issues with galGal, need to strip version information from GFF
+python3 stripGFF.py galGal.gff > galGal.stripped.gff
+gffread galGal.stripped.gff -g /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/2bitdir/galGal/galGal.fasta -y galGal.translated.fa -S
 
 # tidy
 mv *.translated.fa input_data/
