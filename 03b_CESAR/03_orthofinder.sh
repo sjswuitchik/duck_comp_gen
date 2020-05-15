@@ -70,6 +70,14 @@ done
 python3 stripGFF.py galGal.gff > galGal.stripped.gff
 gffread galGal.stripped.gff -g /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/2bitdir/galGal/galGal.fasta -y galGal.translated.fa -S
 
+# and conversion issues with ansBra, ansInd, braCan, colVir, syrMik, tymCupPin; need to strip version information from FASTA
+for file in ansBra ansInd braCan colVir syrMik tymCupPin;
+do
+  cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/2bitdir/$file/$file.fasta .
+  awk -f stripFasta.awk $file.fasta > $file.stripped.fasta
+  gffread $file.gff -g $file.stripped.fasta -y $file.translated.fa -S 
+done
+
 # tidy
 mv *.translated.fa input_data/
 
