@@ -20,4 +20,4 @@ Tim Sackton (Director of Bioinformatics, Informatics Group, Harvard University; 
 
 Genome assembly and comparative genomics project with the freckled duck (Stictonetta naevosa; stiNae), ruddy duck (Oxyura jamaicensis; oxyJam), African pygmy-goose (Nettapus auritus; netAur), and black-headed duck (Heteronetta atricapilla; hetAtr) from 10x data using Supernova assembly.
 
-Code is being written and optimized, so will change frequently as analyses progress. As of May 14, 2020: working on 03b_CESAR/03_orthofinder.sh
+Code is being written and optimized, so will change frequently as analyses progress.
