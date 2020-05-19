@@ -59,9 +59,12 @@ cut -f1,3 ficAlb_chr_key > acckey
 ./replace_chrs.pl acckey FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol.bed > FicAlb.part2.bed
 cat FicAlb.part1.bed FicAlb.part2.bed > FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol_NCBI.bed
 cut -f1,2,3,4 FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol_NCBI.bed > FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol_NCBI_cut.bed
+cp /n/holylfs/LABS/informatics/tsackton/broodParasites/DATA/01_alignment/work/broodParaAlign.hal .
+
 singularity shell --cleanenv /n/singularity_images/informatics/cat/cat:20200116.sif
-halLiftover --noDupes ../Comparative-Annotation-Toolkit/data/broodParaAlign.hal ficAlb FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol_NCBI_cut.bed galGal galGal5_Craig.bed 2> craig_liftover.log
+halLiftover --noDupes broodParaAlign.hal ficAlb FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol_NCBI_cut.bed galGal galGal5_Craig.bed 2> craig_liftover.log
 exit
+
 awk '{print $3, $1}' galGal5_chr_key > acckey
 ./replace_chrs.pl acckey galGal5_Craig.bed > galGal5_Craig_chr.bed
 ./liftOver galGal5_Craig_chr.bed galGal5ToGalGal6.over.chain galGal6_Craig.bed Craig_unmapped.bed
