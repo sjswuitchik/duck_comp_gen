@@ -6,7 +6,7 @@ module load Anaconda3/2019.10
 
 # from /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/orthos/
 
-#conda create -c bioconda -c conda-forge -n busco busco=4.0.6  gffread
+#conda create -c bioconda -c conda-forge -n busco busco=4.0.6 gffread
 conda activate busco
 
 # copy GTFs from CESAR 
