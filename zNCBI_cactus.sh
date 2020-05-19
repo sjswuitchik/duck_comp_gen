@@ -15,10 +15,7 @@ mv GCA_011074415.1_BPBGC_Snae_1.0_genomic.fna.gz stiNae.ncbi.fasta.gz
 mv GCA_011077185.1_BPBGC_Ojam_1.0_genomic.fna.gz oxyJam.ncbi.fasta.gz
 mv GCA_011076525.1_BPBGC_Naur_1.0_genomic.fna.gz netAur.ncbi.fasta.gz
 
-gunzip hetAtr.ncbi.fasta.gz
-gunzip stiNae.ncbi.fasta.gz
-gunzip oxyJam.ncbi.fasta.gz
-gunzip netAur.ncbi.fasta.gz
+gunzip *.gz
 
 cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/ducks_cactus/*.defline.fasta .
 rm *.masked.defline.fasta
@@ -30,7 +27,7 @@ done
 
 rm *.ncbi.fasta
 
-/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/brename -p ".fasta.bre" -r ".fasta" -R
+/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/2bitdir/brename -p ".fasta.bre" -r ".fasta" -R
 
 # remade galloanserae.txt with new paths for gallo_ncbi.txt
 # redid cesar batch script for new files 
