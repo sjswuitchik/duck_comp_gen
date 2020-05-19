@@ -53,7 +53,6 @@ awk '{print $4, $3}' galGal6_chr_key > acckey
 ./replace_chrs.pl acckey galGal6_phastcons_SP_conserved_elements_UCSC.bed > galGal6_phastcons_SP_conserved_elements_UCSC_NCBI.bed
 
 # replace chr in Craig et al set (eg/ chr 1 -> NW_004775899.1) and use Tim's alignment to liftover to galGal5, then do liftOver to galGal6
-
 cut -f2,3 ficAlb_chr_key > acckey
 ./replace_chrs.pl acckey FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol.bed > FicAlb.part1.bed
 cut -f1,3 ficAlb_chr_key > acckey
