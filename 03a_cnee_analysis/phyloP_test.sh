@@ -11,4 +11,6 @@ cp -v ../PhyloAcc/input_data/galloseq_gapFixed.fa ../PhyloAcc/input_data/gallose
 # usage: phyloP [OPTIONS] tree.mod [alignment] > out
 phyloP --method LRT --mode CON --msa-format FASTA --features galloseq.part.bed galloTop1.named.mod galloseq_gapFixed.fa > cnees_phyloP.out
 
+phyloP --method LRT --mode CON --msa-format FASTA --features galloseq.part.bed galloTop2.named.mod galloseq_gapFixed.fa > cnees_phyloP_top2.out
+
 
