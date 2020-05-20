@@ -10,3 +10,5 @@ conda activate phast
 cp -v ../PhyloAcc/input_data/galloseq_gapFixed.fa ../PhyloAcc/input_data/galloseq.part.bed ../PhyloAcc/input_data/galloTop1.named.mod .
 # usage: phyloP [OPTIONS] tree.mod [alignment] > out
 phyloP --method LRT --mode CON --msa-format FASTA --features galloseq.part.bed galloTop1.named.mod galloseq_gapFixed.fa > cnees_phyloP.out
+
+
