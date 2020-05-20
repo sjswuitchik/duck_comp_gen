@@ -63,3 +63,8 @@ awk '{print ">"$1 >> "unaligned/"$2".fa"; print $3 >> "unaligned/"$2".fa"; close
 mkdir -p aligned
 cut -f4,4 galGal_cnees_parsed_liftover.bed | split -a 3 -d  -l 1000 - batch
 mv batch* aligned/
+
+# run MAFFT 
+cd aligned/
+sbatch run_mafft.sh
+
