@@ -1,26 +1,32 @@
 # extract CNEEs from HAL alignment 
+# in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03a_cnee_analysis for ncbi_run
+
+module load Anaconda3/2019.10
+
+mkdir -p alignments/
+cp ../galloanserae.hal .
+
 singularity shell --cleanenv /n/singularity_images/informatics/cat/cat:20200116.sif
-for SP in anaPla ansBra ansCyg ansInd braCan colVir cotJap galGal hetAtr netAur numMel oxyJam stiNae syrMik tymCupPin
+for SP in anaPla ansBra ansCyg ansInd braCan colVir cotJap galGal hetAtr netAur numMel oxyJam stiNae syrMik tymCupPin;
 do
 	halLiftover --outPSLWithName galloanserae.hal galGal galGal6_final_merged_CNEEs_named.bed $SP $SP.psl &
 done
 exit
+
 mv *.psl alignments
 cd alignments
 
 # get ratite script from Tim, edit for specific genomes in HAL file and file names
 wget https://raw.githubusercontent.com/tsackton/ratite-genomics/master/07_cnee_analysis/00_make_cnee_aligns/parse_cnee_halLiftover.pl
-cp ../galloanserae.hal .
 cp ../galGal6_final_merged_CNEEs_named.bed .
 #conda create -n py27 python=2.7 perl perl-app-cpanminus bedtools bioawk
 source activate py27
 #cpanm Math::Round
 perl parse_cnee_halLiftover.pl 
 
-# some qc - check with Tim about what to look for here? 
+# some qc
 grep "multiple_liftover_regions" galGal6_final_merged_liftover_parsing_log | cut -f1,1 | sort | uniq -c | sed "s/^[ \t]*//"  > multiple_liftovers_byCNEE.log
 grep "no_liftover" galGal6_final_merged_liftover_parsing_log | cut -f1,1 | sort | uniq -c | sed "s/^[ \t]*//" > no_liftOver_byCNEE.log
-
 
 # generating mafft input: bedtools to get a fasta file for each species with an entry for each CNEE, then split and merge by CNEE name, output should be one file per CNEE with fasta header = species (instead of one file per species with fasta header = CNEE)
 
