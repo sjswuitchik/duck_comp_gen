@@ -18,3 +18,5 @@ cat galloseq.fa | perl -p -e 's/[?]/-/g' > galloseq_gapFixed.fa
 
 # need to make part.txt into a bed with CNEE-start-end
 sed 's/\.\/batch086_output\///g' galloseq.partitions.txt | awk 'BEGIN{FS="="; OFS="\t"} {split($2,a,"-"); print $1,a[1],a[2]}' | sed 's/;$//' | sed 's/\.aligned\.fa//g' | awk 'BEGIN{OFS="\t"} {print $1, $2-1, $3}' > galloseq.part.bed
+
+
