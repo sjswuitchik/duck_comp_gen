@@ -52,21 +52,21 @@ done
 
 #check
 cut -f1,1 all_cnees.tab | sort | uniq -c
-1405671 anaPla
-1463584 ansBra
-1458108 ansCyg
-1460988 ansInd
-1464332 braCan
-1390828 colVir
-1461016 cotJap
+351418 anaPla
+365896 ansBra
+364527 ansCyg
+365247 ansInd
+366083 braCan
+347707 colVir
+365254 cotJap
 375591 galGal
-1447708 hetAtr
-1444388 netAur
-1356537 numMel
-1087656 oxyJam
-1077396 stiNae
-1092396 syrMik
-1106220 tymCupPin
+361927 hetAtr
+361097 netAur
+369276 numMel
+362552 oxyJam
+359132 stiNae
+364132 syrMik
+368740 tymCupPin
 
 wc -l *_liftover.bed
 351418 anaPla_cnees_parsed_liftover.bed
