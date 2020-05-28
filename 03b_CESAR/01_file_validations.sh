@@ -2,7 +2,7 @@
 ## File validations ## 
 ######################
 
-## in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/CESAR2.0/cesar.gffcheck
+## archived in /n/holylfs/LABS/informatics/swuitchik/ducks/
 
 ## MAF creation and validation
 
