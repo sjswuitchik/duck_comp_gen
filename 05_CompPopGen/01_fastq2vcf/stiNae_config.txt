@@ -1,0 +1,34 @@
+#Stictonetta naevosa
+
+#Path to desired output directory (directory for each species will be created within this directory). If not specified will be current working directory
+--OUT_DIR /n/holyscratch01/informatics/swuitchik/CompPopGen/duck_popgen
+
+#Species abbreviation for use in file headers (ie/ outlong)
+--ABBV Snaevosa
+
+# sample IDs and info for local fastqs from 00_setup_local_fastq.py
+--SAMPLE_LOCAL CNB0001 CNB001_L0041
+--SAMPLE_LOCAL CNB0001 CNB001_L0011
+
+# everything below this line has been manually added in
+
+# genome assembly access
+--GENOME_NCBI https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna.gz
+
+# het for HaplotypeCaller and GenotypeVCF
+--HETEROZYGOSITY 0.005
+
+# pipeline version (set after output of 03_haplotypecalling.py
+--PIPELINE lowcoverage
+
+# number of intervals at a time
+--NINTERVALS CHROMOSOME
+
+# starting mem (GB) for HaplotypeCaller
+--MEMORY_HC 16
+
+# starting time (hours) for HaplotypeCaller
+--TIME_HC 72
+
+# starting time (hours) for GenotypeGVCF
+--TIME_GG 8
