@@ -13,4 +13,4 @@ conda activate ortho
 # run OrthoFinder 
 mkdir -p run_ortho/input_data
 cp -v from_cesar/input_data/* from_ncbi/input_data/* run_ortho/input_data
-orthofinder -o run_ortho/output -f run_ortho/input_data
+orthofinder -o run_ortho/ -f run_ortho/input_data
