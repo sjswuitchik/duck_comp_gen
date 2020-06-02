@@ -1,2 +1,2 @@
-# Fastq to VCF from https://github.com/ajshultz/comp-pop-gen 
+## Fastq to VCF from https://github.com/ajshultz/comp-pop-gen 
 
