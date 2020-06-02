@@ -16,7 +16,7 @@
 # het for HaplotypeCaller and GenotypeGVCF
 --HETEROZYGOSITY 0.005
 
-# pipeline version (set based on recommendations from 03_haplotypecalling.py)
+# pipeline version (set based on recommendations from 02_dedup_gather_metrics.py)
 --PIPELINE lowcoverage
 
 # number of intervals at a time
