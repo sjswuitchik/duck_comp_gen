@@ -1,2 +1,3 @@
-## Fastq to VCF from https://github.com/ajshultz/comp-pop-gen 
+## Fastq to VCF scripts 
 
+From https://github.com/ajshultz/comp-pop-gen 
