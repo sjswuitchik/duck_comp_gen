@@ -10,4 +10,4 @@
 module purge
 module load Anaconda3/2019.10
 source activate ortho
-orthofinder -o run_ortho/output -f run_ortho/input_data
+orthofinder -o run_ortho -f run_ortho/input_data
