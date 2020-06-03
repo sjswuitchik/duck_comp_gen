@@ -24,12 +24,12 @@ def parse_local_config(config_filename):
 #Write config file
 def write_main_config(config_local, config_out, abbv):
     with open(config_out, mode="w") as f:
-        print("#Example config file:", file=f)
+        print("#Config file:", file=f)
         print("", file=f)
-        print("#Path to desired output directory (directory for each species will be created within this directory). If not specified will be current working directory", file=f)
+        print("#Path to desired output directory (directory for each species will be created within this directory) - If not specified will be current working directory", file=f)
         print("--OUT_DIR .", file=f)
         print("", file=f)
-        print("#Species abbreviation for use in file headers (e.g. CCornix for hooded crow)", file=f)
+        print("#Species abbreviation for use in file headers (ie/ outlong)", file=f)
         print("--ABBV", abbv, sep=" ", file=f)
         print("", file=f)
         
@@ -87,4 +87,3 @@ def main():
     
 if __name__ == "__main__":
     main()
-
