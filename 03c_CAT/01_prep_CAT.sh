@@ -3,6 +3,7 @@
 ##############################
 
 # in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/
+# https://github.com/ComparativeGenomicsToolkit/Comparative-Annotation-Toolkit
 
 module load samtools/1.10-fasrc01
 
