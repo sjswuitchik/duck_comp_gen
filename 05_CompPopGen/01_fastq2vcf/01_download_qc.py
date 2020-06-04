@@ -188,7 +188,7 @@ def get_ncbi_genome(sp_dir,fasta_ftp,sp_abbr):
     slurm_script = script_create()
     
     #Load modules, also print samtools and bwa versions
-    cmd_1 = 'module load samtools/1.5-fasrc02\nmodule load bwa/0.7.15-fasrc02'
+    cmd_1 = 'module load Anaconda3/2019.10\nmodule load samtools/1.5-fasrc02\nmodule load bwa/0.7.15-fasrc02\nconda activate gatk4'
     
     cmd_2 = 'wget -P %s %s'%(genome_dir,fasta_ftp)
     cmd_3 = 'gunzip %s/%s'%(genome_dir,genome_filename)
