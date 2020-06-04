@@ -188,7 +188,7 @@ def get_ncbi_genome(sp_dir,fasta_ftp,sp_abbr):
     slurm_script = script_create()
     
     #Load modules, also print samtools and bwa versions
-    cmd_1 = 'module load Anaconda3/2019.10\nmodule load samtools/1.5-fasrc02\nmodule load bwa/0.7.15-fasrc02\nconda activate gatk4'
+    cmd_1 = 'module load samtools/1.5-fasrc02\nmodule load bwa/0.7.15-fasrc02'
     
     cmd_2 = 'wget -P %s %s'%(genome_dir,fasta_ftp)
     cmd_3 = 'gunzip %s/%s'%(genome_dir,genome_filename)
@@ -447,7 +447,7 @@ def fastq_trim_align_stats(sp_dir,sra,sp_abbr,sample):
 	#Map to genome with BWA mem
 	cmd_3 = r"bwa mem -M -t 8 -R '%s' %s/genome/%s.fa %s/fastq/%s_trimmed_1.fastq.gz %s/fastq/%s_trimmed_2.fastq.gz > %s/alignment/%s_bwa.sam"%(read_group_info,sp_dir,sp_abbr,sp_dir,sra,sp_dir,sra,sp_dir,sra)
 
-	cmd_4 ='gatk --java-options "-Xmx8g -XX:ParallelGCThreads=6" SortSam -I %s/alignment/%s_bwa.sam -O %s/alignment/%s.sorted.bam --SORT_ORDER=coordinate --CREATE_INDEX=true --COMPRESSION_LEVEL 5'%(sp_dir,sra,sp_dir,sra)
+	cmd_4 ='/n/holyscratch01/informatics/swuitchik/CompPopGen/gatk --java-options "-Xmx8g -XX:ParallelGCThreads=6" SortSam -I %s/alignment/%s_bwa.sam -O %s/alignment/%s.sorted.bam --SORT_ORDER=coordinate --CREATE_INDEX=true --COMPRESSION_LEVEL 5'%(sp_dir,sra,sp_dir,sra)
 
 	cmd_5 = 'if [ -f %s/alignment/%s.sorted.bai ]\nthen\n rm %s/alignment/%s_bwa.sam \nfi'%(sp_dir,sra,sp_dir,sra)
 
