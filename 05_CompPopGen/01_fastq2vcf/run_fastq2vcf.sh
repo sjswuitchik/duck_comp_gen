@@ -6,9 +6,8 @@ module load Anaconda3/2019.10
 
 # from /n/holyscratch01/informatics/swuitchik/CompPopGen/duck_popgen
 
-python3 ../00_setup_local_fastq.py --config configs/hetAtr_setup_local.txt --out_dir /n/holyscratch01/informatics/swuitchik/CompPopGen/duck_popgen --abbv Hatricapilla --config_out configs/hetAtr_config.txt
-python3 ../00_setup_local_fastq.py --config configs/stiNae_setup_local.txt --out_dir /n/holyscratch01/informatics/swuitchik/CompPopGen/duck_popgen --abbv Snaevosa --config_out configs/stiNae_config.txt
-
+python3 ../00_setup_local_fastq.py --config configs/hetAtr_local.txt --out_dir /n/holyscratch01/informatics/swuitchik/CompPopGen/duck_popgen --abbv Hatricapilla --config_out configs/hetAtr_config.txt
+python3 ../00_setup_local_fastq.py --config configs/stiNae_local.txt --out_dir /n/holyscratch01/informatics/swuitchik/CompPopGen/duck_popgen --abbv Snaevosa --config_out configs/stiNae_config.txt
 # manually add in required options to new configs before running 01_download_qc.py
 
 python3 ../01_download_qc.py --config configs/hetAtr_config.txt
