@@ -4,7 +4,7 @@
 #SBATCH -t 1-00:00
 #SBATCH -p serial_requeue
 #SBATCH --mem=2000
-#SBATCH --array=0-360
+#SBATCH --array=0-375
 
 module load perl/5.26.1-fasrc01 mafft/7.407-fasrc01 trimal/1.2rev59-fasrc01
 
