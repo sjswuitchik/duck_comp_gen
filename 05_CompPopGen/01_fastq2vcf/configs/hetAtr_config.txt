@@ -74,3 +74,24 @@
 --SAMPLE_LOCAL MS-H03 MS-H03_550
 --SAMPLE_LOCAL MS-H03 MS-H03_551
 --SAMPLE_LOCAL MS-H03 MS-H03_552
+
+# genome assembly access
+--GENOME_NCBI https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna.gz
+
+# het for HaplotypeCaller and GenotypeGVCF
+--HETEROZYGOSITY 0.005
+
+# pipeline version (set based on recommendations from 02_dedup_gather_metrics.py)
+--PIPELINE lowcoverage
+
+# number of intervals at a time
+--NINTERVALS CHROMOSOME
+
+# starting mem (GB) for HaplotypeCaller
+--MEMORY_HC 16
+
+# starting time (hours) for HaplotypeCaller
+--TIME_HC 72
+
+# starting time (hours) for GenotypeGVCF
+--TIME_GG 8
