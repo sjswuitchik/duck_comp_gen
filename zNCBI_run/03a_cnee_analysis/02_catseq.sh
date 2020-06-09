@@ -6,6 +6,12 @@
 
 # in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03a_cnee_analysis/alignments/aligned
 
+# every dir/file in aligned needs to be target ie/ no non-target files in dir for list
+mkdir slurm_outs
+mv slurm-* run_mafft.sh slurm_outs/
+mv slurm_outs/ ..
+
+# set up and run catseq
 find . -name '*.fa' > list
 git clone  --branch seqname https://github.com/harvardinformatics/catsequences.git
 cd catsequences/
@@ -21,3 +27,4 @@ cat galloseq.fa | perl -p -e 's/[?]/-/g' > galloseq_gapFixed.fa
 # need to make part.txt into a bed with CNEE-start-end
 sed 's/\.\/batch.*_output\///g' galloseq.partitions.txt | awk 'BEGIN{FS="="; OFS="\t"} {split($2,a,"-"); print $1,a[1],a[2]}' | sed 's/;$//' | sed 's/\.aligned\.fa//g' | awk 'BEGIN{OFS="\t"} {print $1, $2-1, $3}' > galloseq.part.bed
 
+mv ../slurm_outs/ .
