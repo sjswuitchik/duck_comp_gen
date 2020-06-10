@@ -22,7 +22,7 @@ mv allseqs.fas galloseq_ncbi.fa
 mv allseqs.partitions.txt galloseq_ncbi.partitions.txt
 
 # clean up ?s
-cat galloseq.fa | perl -p -e 's/[?]/-/g' > galloseq_ncbi_gapFixed.fa
+cat galloseq_ncbi.fa | perl -p -e 's/[?]/-/g' > galloseq_ncbi_gapFixed.fa
 
 # need to make part.txt into a bed with CNEE-start-end
 sed 's/\.\/batch.*_output\///g' galloseq_ncbi.partitions.txt | awk 'BEGIN{FS="="; OFS="\t"} {split($2,a,"-"); print $1,a[1],a[2]}' | sed 's/;$//' | sed 's/\.aligned\.fa//g' | awk 'BEGIN{OFS="\t"} {print $1, $2-1, $3}' > galloseq_ncbi.part.bed
