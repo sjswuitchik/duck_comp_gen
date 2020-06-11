@@ -30,22 +30,8 @@ chmod +x ./genePredToBed
 ./gff3ToGenePred galGal6.filtpy.gff galGal6.gp
 ./genePredToBed galGal6.gp galGal6.cds.bed
 
-# download PHAST and dependencies
-wget http://www.netlib.org/clapack/clapack.tgz
-tar zxvf clapack.tgz
-cd CLAPACK-3.2.1
-cp make.inc.example make.inc && make f2clib && make blaslib && make lib
-
-cd ..
-wget http://compgen.cshl.edu/phast/downloads/phast.v1_5.tgz
-tar zxvf phast.v1_5.tgz
-cd phast/src/
-make CLAPACKPATH=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03a_cnee_analysis/4d_neut_models/CLAPACK-3.2.1
-
 # extract 4d sites
-singularity shell --bind /usr/bin/split --cleanenv /n/singularity_images/informatics/cactus/cactus:2019.03.01--py27hdbcaa40_1.sif 
-export PATH=$PWD/phast/bin:$PATH
-python /usr/local/lib/python2.7/site-packages/hal/phyloP/halPhyloPTrain.py \
+singularity exec --cleanenv /n/singularity_images/informatics/hal/hal:20200527.sif halPhyloPTrain.py \
 --numProc 12 \
 --noAncestors \
 --substMod SSREV \
