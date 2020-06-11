@@ -1,0 +1,11 @@
+#Config file:
+
+#Path to desired output directory (directory for each species will be created within this directory) - If not specified will be current working directory
+--OUT_DIR .
+
+#Species abbreviation for use in file headers (ie/ outlong)
+--ABBV Snaevosa_REU
+
+--SAMPLE_LOCAL CNB0001 CNB001_s4
+--SAMPLE_LOCAL CNB0001 CNB001_s5
+--SAMPLE_LOCAL SnMale SnMale_L01
