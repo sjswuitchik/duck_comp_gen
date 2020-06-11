@@ -37,7 +37,7 @@ done
 cd ..
 
 # run CAT
-singularity exec --cleanenv /n/singularity_images/informatics/cat/cat:20200604.sif \
+singularity exec --cleanenv --no-home /n/singularity_images/informatics/cat/cat:20200604.sif \
 luigi \
   --module cat RunCat \
   --hal=input_data/galloForCAT.hal \
