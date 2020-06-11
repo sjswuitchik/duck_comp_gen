@@ -1,5 +1,7 @@
 ## Concat output from PhyloAcc ## 
 
+# in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cnees/PhyloAcc
+
 VERSION=$1
 cd top1_outs
 ../concat_output.sh elem_lik
