@@ -3,6 +3,7 @@
 ##############################
 
 # in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/
+# also testing in /scratch/swuitchik on bioinf01 for optimization and debugging
 # https://github.com/ComparativeGenomicsToolkit/Comparative-Annotation-Toolkit
 
 module load samtools/1.10-fasrc01
@@ -33,3 +34,19 @@ do
   cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/2bitdir/$SP/$SP.fasta /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/2bitdir/$SP/$SP.fasta.fai .
 done
 
+cd ..
+
+# run CAT
+singularity exec --cleanenv /n/singularity_images/informatics/cat/cat:20200604.sif \
+luigi \
+  --module cat RunCat \
+  --hal=input_data/galloForCAT.hal \
+  --ref-genome=galGal \
+  --workers=10 \
+  --config=input_data/cat.config \
+  --local-scheduler \
+  --binary-mode local \
+  --augustus \
+  --augustus-cgp \
+  --augustus-pb \
+  --assembly-hub
