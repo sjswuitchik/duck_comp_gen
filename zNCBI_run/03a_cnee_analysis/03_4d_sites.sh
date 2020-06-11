@@ -40,7 +40,7 @@ cd ..
 wget http://compgen.cshl.edu/phast/downloads/phast.v1_5.tgz
 tar zxvf phast.v1_5.tgz
 cd phast/src/
-make CLAPACKPATH=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cnees/4d_sites/CLAPACK-3.2.1
+make CLAPACKPATH=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03a_cnee_analysis/4d_neut_models/CLAPACK-3.2.1
 
 # extract 4d sites
 singularity shell --bind /usr/bin/split --cleanenv /n/singularity_images/informatics/cactus/cactus:2019.03.01--py27hdbcaa40_1.sif 
