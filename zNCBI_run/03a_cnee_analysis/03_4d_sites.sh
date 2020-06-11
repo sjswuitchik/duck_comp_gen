@@ -40,7 +40,7 @@ singularity exec --cleanenv /n/singularity_images/informatics/hal/hal:20200527.s
 --precision HIGH \
 /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03a_cnee_analysis/gallo_ncbi.hal galGal galGal6.cds.bed galloTop1.mod 2> top1.err
 
-python /usr/local/lib/python2.7/site-packages/hal/phyloP/halPhyloPTrain.py \
+singularity exec --cleanenv /n/singularity_images/informatics/hal/hal:20200527.sif halPhyloPTrain.py \
 --numProc 12 \
 --noAncestors \
 --substMod SSREV \
@@ -49,7 +49,7 @@ python /usr/local/lib/python2.7/site-packages/hal/phyloP/halPhyloPTrain.py \
 --precision HIGH \
 /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03a_cnee_analysis/gallo_ncbi.hal galGal galGal6.cds.bed galloTop2.mod 2> top2.err
 
-python /usr/local/lib/python2.7/site-packages/hal/phyloP/halPhyloPTrain.py \
+singularity exec --cleanenv /n/singularity_images/informatics/hal/hal:20200527.sif halPhyloPTrain.py \
 --numProc 12 \
 --noAncestors \
 --substMod SSREV \
