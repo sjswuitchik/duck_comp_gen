@@ -42,10 +42,14 @@ luigi \
   --module cat RunCat \
   --hal=input_data/galloForCAT.hal \
   --ref-genome=galGal \
-  --workers=10 \
+  --workers=24 \
   --config=input_data/cat.config \
+  --target-genomes='("hetAtr", "netAur", "oxyJam", "stiNae")' \
   --local-scheduler \
   --binary-mode local \
   --augustus \
+  --augustus-species=chicken \
   --augustus-cgp \
-  --assembly-hub
+  --maf-chunksize 850000 \
+  --maf-overlap 250000 \
+  --assembly-hub > log_stdout.log 2> log_stderr.log
