@@ -58,8 +58,6 @@ singularity exec --cleanenv /n/singularity_images/informatics/hal/hal:20200527.s
 --precision HIGH \
 /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03a_cnee_analysis/gallo_ncbi.hal galGal galGal6.cds.bed galloTop3.mod 2> top3.err
 
-exit
-
 # rename ancestral nodes for PhyloAcc
 #conda create -n phast -c bioconda phast
 source activate phast 
