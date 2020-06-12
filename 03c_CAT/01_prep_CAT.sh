@@ -39,7 +39,7 @@ conda activate gmap
 # build database
 gmap_build -D galGal_db -d galGal galGal.fasta
 # map cDNA to genome database
-gmap -D galGal_db -d galGal -f sampe -A Gallus_gallus.GRCg6a.cdna.all.fa > galGal.sam
+gmap -D galGal_db -d galGal -f sampe --sam-extended-cigar -A Gallus_gallus.GRCg6a.cdna.all.fa > galGal.sam
 
 # convert output to a sorted & indexed BAM 
 
