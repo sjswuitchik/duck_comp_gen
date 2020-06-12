@@ -48,5 +48,4 @@ luigi \
   --binary-mode local \
   --augustus \
   --augustus-cgp \
-  --augustus-pb \
   --assembly-hub
