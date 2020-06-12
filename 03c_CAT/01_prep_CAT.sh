@@ -52,4 +52,4 @@ luigi \
   --augustus-cgp \
   --maf-chunksize 850000 \
   --maf-overlap 250000 \
-  --assembly-hub > log_stdout.log 2> log_stderr.log
+  --assembly-hub > stdout.log 2> stdout.err
