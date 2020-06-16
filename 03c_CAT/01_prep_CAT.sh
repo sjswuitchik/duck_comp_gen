@@ -12,7 +12,7 @@ module load Anaconda3/2019.10
 # extract only focal and reference species from WGA
 mkdir input_data
 cd input_data
-singularity shell --cleanenv /n/singularity_images/informatics/cat/cat:20200116.sif
+singularity shell --cleanenv /n/singularity_images/informatics/cat/cat:20200604.sif
 hal2maf galloanserae.hal galloForCAT.maf --refGenome galGal --noAncestors --noDupes --targetGenomes galGal,hetAtr,netAur,oxyJam,stiNae
 maf2hal galloForCAT.maf galloForCAT.hal --refGenome galGal
 exit 
