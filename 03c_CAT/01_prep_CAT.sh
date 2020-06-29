@@ -42,5 +42,6 @@ gmap_build -D galGal_db -d galGal galGal.fasta
 gmap -D galGal_db -d galGal -f sampe --sam-extended-cigar Gallus_gallus.GRCg6a.cdna.all.fa > galGal.map.sam
 
 # convert output to a sorted & indexed BAM 
-samtools sort galGal.map.sam -O BAM -o galGal.bam
-samtools index galGal.bam
+samtools view -b -h -o galGal.bam galGal.map.sam 
+samtools sort -o galGal.sorted.bam galGal.bam
+samtools index galGal.sorted.bam
