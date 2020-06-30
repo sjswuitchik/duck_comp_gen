@@ -197,14 +197,14 @@ def dedup_sbatch(sp_dir,sp_abbr,sample_ncbi_dict):
             rg_cmd_list = []
             for sra in sample_ncbi_dict[sample]:
                 
-                rg_cmd = '/n/holyscratch01/informatics/swuitchik/CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx8g -XX:ParallelGCThreads=1" AddOrReplaceReadGroups -I %s/alignment/%s.sorted.bam -O %s/alignment/%s.sorted.rg.bam -ID %s -SM %s -PU %s.%s -LB %s -PL illumina --COMPRESSION_LEVEL 5 --CREATE_INDEX true'%(sp_dir,sra,sp_dir,sra,sra,sample,sra,sample,sample)
+                rg_cmd = '/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05_CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx8g -XX:ParallelGCThreads=1" AddOrReplaceReadGroups -I %s/alignment/%s.sorted.bam -O %s/alignment/%s.sorted.rg.bam -ID %s -SM %s -PU %s.%s -LB %s -PL illumina --COMPRESSION_LEVEL 5 --CREATE_INDEX true'%(sp_dir,sra,sp_dir,sra,sra,sample,sra,sample,sample)
                 
                 rg_cmd_list.append(rg_cmd)
             
             rg_cmd = "\n\n".join(rg_cmd_list)
             
             #Create GATK mark duplicates command
-            gatk_cmd_1 = '/n/holyscratch01/informatics/swuitchik/CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx8g -XX:ParallelGCThreads=1" MarkDuplicatesGATK '
+            gatk_cmd_1 = '/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05_CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx8g -XX:ParallelGCThreads=1" MarkDuplicatesGATK '
             gatk_cmd_2 = ('-I '+align_dir+'%s.sorted.rg.bam ')*len(sample_ncbi_dict[sample])%tuple(sample_ncbi_dict[sample])
             gatk_cmd_3 = '-O %s/dedup/%s.dedup.bam '%(sp_dir,sample)
             gatk_cmd_4 = '--METRICS_FILE %s/stats/%s.dedup.metrics.txt '%(sp_dir,sample)
@@ -214,12 +214,12 @@ def dedup_sbatch(sp_dir,sp_abbr,sample_ncbi_dict):
             cmd_2 = "".join([gatk_cmd_1,gatk_cmd_2,gatk_cmd_3,gatk_cmd_4,gatk_cmd_5])
             
             #Sort and index dedup bam file
-            cmd_3 = '/n/holyscratch01/informatics/swuitchik/CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx8g -XX:ParallelGCThreads=1" SortSam -I %s/dedup/%s.dedup.bam -O %s/dedup/%s.dedup.sorted.bam --SORT_ORDER coordinate --CREATE_INDEX true --COMPRESSION_LEVEL 5'%(sp_dir,sample,sp_dir,sample)
+            cmd_3 = '/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05_CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx8g -XX:ParallelGCThreads=1" SortSam -I %s/dedup/%s.dedup.bam -O %s/dedup/%s.dedup.sorted.bam --SORT_ORDER coordinate --CREATE_INDEX true --COMPRESSION_LEVEL 5'%(sp_dir,sample,sp_dir,sample)
             
-            cmd_4 = '/n/holyscratch01/informatics/swuitchik/CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx8g -XX:ParallelGCThreads=1" CollectAlignmentSummaryMetrics -I %s/dedup/%s.dedup.sorted.bam -R %s/genome/%s.fa --METRIC_ACCUMULATION_LEVEL=SAMPLE -O %s/stats/%s.alignment_metrics.txt'%(sp_dir,sample,sp_dir,sp_abbr,sp_dir,sample)
+            cmd_4 = '/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05_CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx8g -XX:ParallelGCThreads=1" CollectAlignmentSummaryMetrics -I %s/dedup/%s.dedup.sorted.bam -R %s/genome/%s.fa --METRIC_ACCUMULATION_LEVEL=SAMPLE -O %s/stats/%s.alignment_metrics.txt'%(sp_dir,sample,sp_dir,sp_abbr,sp_dir,sample)
             
             #Validate sorted bam
-            cmd_5 = '/n/holyscratch01/informatics/swuitchik/CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx8g -XX:ParallelGCThreads=1" ValidateSamFile -I %s/dedup/%s.dedup.sorted.bam -O %s/stats/%s.validate.txt'%(sp_dir,sample,sp_dir,sample)
+            cmd_5 = '/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05_CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx8g -XX:ParallelGCThreads=1" ValidateSamFile -I %s/dedup/%s.dedup.sorted.bam -O %s/stats/%s.validate.txt'%(sp_dir,sample,sp_dir,sample)
             
             #Compute coverage histogram of sorted bam
             cmd_6 = 'bedtools genomecov -ibam %s/dedup/%s.dedup.sorted.bam -g %s/genome/%s.fa > %s/stats/%s.coverage'%(sp_dir,sample,sp_dir,sp_abbr,sp_abbr,sample)
