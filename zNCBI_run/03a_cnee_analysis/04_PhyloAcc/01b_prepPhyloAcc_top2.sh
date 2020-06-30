@@ -6,7 +6,7 @@ mkdir -p top2_batches
 # get number of elements
 wc -l input_data/galloseq_ncbi.part.bed
 # shuffle lines in random order with 0-(n-1) from wc -l above 
-shuf -i 0-375589 > top1_batches/full_list
+shuf -i 0-375589 > top2_batches/full_list
 # make input files
 split -d -a 3 -l 2000 top2_batches/full_list top2_batches/batch
 
