@@ -1,4 +1,4 @@
-#Config file:
+#Config file: Stictonetta naevosa
 
 #Path to desired output directory (directory for each species will be created within this directory) - If not specified will be current working directory
 --OUT_DIR /n/holyscratch01/informatics/swuitchik/CompPopGen/duck_popgen
