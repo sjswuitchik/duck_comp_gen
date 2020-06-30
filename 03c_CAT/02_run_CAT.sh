@@ -1,6 +1,12 @@
-# still in progress - not working yet
+#!/bin/bash
+#SBATCH -p shared
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH --mem 4000
+#SBATCH -t 02:00:00
+#SBATCH -o slurm.%N.%j.out
+#SBATCH -e slurm.%N.%j.err
 
-# run CAT
 singularity exec --cleanenv --home=/var/empty /n/singularity_images/informatics/cat/cat:20200604.sif \
 luigi \
   --module cat RunCat \
