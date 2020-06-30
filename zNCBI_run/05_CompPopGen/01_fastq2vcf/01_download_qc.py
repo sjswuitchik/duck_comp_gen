@@ -447,7 +447,7 @@ def fastq_trim_align_stats(sp_dir,sra,sp_abbr,sample):
 	#Map to genome with BWA mem
 	cmd_3 = r"bwa mem -M -t 8 -R '%s' %s/genome/%s.fa %s/fastq/%s_trimmed_1.fastq.gz %s/fastq/%s_trimmed_2.fastq.gz > %s/alignment/%s_bwa.sam"%(read_group_info,sp_dir,sp_abbr,sp_dir,sra,sp_dir,sra,sp_dir,sra)
 
-	cmd_4 ='/n/holyscratch01/informatics/swuitchik/CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx8g -XX:ParallelGCThreads=6" SortSam -I %s/alignment/%s_bwa.sam -O %s/alignment/%s.sorted.bam --SORT_ORDER=coordinate --CREATE_INDEX=true --COMPRESSION_LEVEL 5'%(sp_dir,sra,sp_dir,sra)
+	cmd_4 ='/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05_CompPopGen/gatk --java-options "-Xmx8g -XX:ParallelGCThreads=6" SortSam -I %s/alignment/%s_bwa.sam -O %s/alignment/%s.sorted.bam --SORT_ORDER=coordinate --CREATE_INDEX=true --COMPRESSION_LEVEL 5'%(sp_dir,sra,sp_dir,sra)
 
 	cmd_5 = 'if [ -f %s/alignment/%s.sorted.bai ]\nthen\n rm %s/alignment/%s_bwa.sam \nfi'%(sp_dir,sra,sp_dir,sra)
 
