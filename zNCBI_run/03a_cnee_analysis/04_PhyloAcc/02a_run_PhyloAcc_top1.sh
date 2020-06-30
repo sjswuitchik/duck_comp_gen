@@ -4,4 +4,6 @@
 #SBATCH -N 1
 #SBATCH -t 2-00:00
 #SBATCH --mem 32000
-#SBATCH --array 0-178
+#SBATCH --array 0-187
+
+source 
