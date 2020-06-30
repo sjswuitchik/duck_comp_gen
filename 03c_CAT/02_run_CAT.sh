@@ -14,7 +14,6 @@ luigi \
   --augustus \
   --augustus-species=chicken \
   --augustus-cgp \
-  --augustus-pb \
   --maf-chunksize 850000 \
   --maf-overlap 250000 \
   --assembly-hub > stdout.log 2> stdout.err
