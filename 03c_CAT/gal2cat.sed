@@ -1,6 +1,6 @@
 #!/usr/bin/sed -f
 # USAGE
-#     gal2cat.sed galGal6.filtpy.gff > galGal6.filtpy.cat.gff
+#     gal2cat.sed input.gff > output.cat.gff
 
 # for each "mRNA" and "transcript" feature
 /	[mt][Rr][Na][An]/ {
