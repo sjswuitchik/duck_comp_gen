@@ -19,6 +19,8 @@ exit
 
 # get filtered GFF for galGal
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cnees/4d_sites/galGal6.filtpy.gff . 
+# prep for CAT custom GFF parser
+./gal2cat.sed galGal6.filtpy.gff > galGal6.cat.gff
 
 # get galGal protein alignment
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_protein.faa.gz
