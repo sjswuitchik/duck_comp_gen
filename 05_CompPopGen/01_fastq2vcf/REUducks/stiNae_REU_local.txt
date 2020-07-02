@@ -1,6 +1,0 @@
-/n/holyscratch01/informatics/swuitchik/CompPopGen/duck_popgen/orig_fastqs/stiNae_female/DGAB-CNB0001-QM1-lib1_S4_L004_R1_001.fastq.gz 1 CNB0001 CNB001_s4
-/n/holyscratch01/informatics/swuitchik/CompPopGen/duck_popgen/orig_fastqs/stiNae_female/DGAB-CNB0001-QM1-lib1_S4_L004_R2_001.fastq.gz 2 CNB0001 CNB001_s4
-/n/holyscratch01/informatics/swuitchik/CompPopGen/duck_popgen/orig_fastqs/stiNae_female/DGAB-CNB0001-QM1-lib1_S5_L001_R1_001.fastq.gz 1 CNB0001 CNB001_s5
-/n/holyscratch01/informatics/swuitchik/CompPopGen/duck_popgen/orig_fastqs/stiNae_female/DGAB-CNB0001-QM1-lib1_S5_L001_R2_001.fastq.gz 2 CNB0001 CNB001_s5
-/n/holyscratch01/informatics/swuitchik/CompPopGen/duck_popgen/orig_fastqs/stiNae_male/DP8400009343BR_L01_SP2003170309_1.fastq.gz 1 SnMale SnMale_L01
-/n/holyscratch01/informatics/swuitchik/CompPopGen/duck_popgen/orig_fastqs/stiNae_male/DP8400009343BR_L01_SP2003170309_2.fastq.gz 2 SnMale SnMale_L01
