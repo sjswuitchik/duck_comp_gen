@@ -318,23 +318,23 @@ def genotypegvcf_sbatch(sp_dir,sp_abbr,sample_list,het,nintervals,memory_gg,comb
     #Before running GenotypeGVCFs, need to combine GVCFs for all individuals into a single file
     
     if combine_gvcf_program == "CombineGVCFs":
-        cmd_3 = 'if [ -f %s/gvcf/%s.${SLURM_ARRAY_TASK_ID}.g.vcf.gz.tbi ]\nthen\necho "gvcf file already complete, will not recreate"\nelse\nif [ -f %s/gvcf/%s.${SLURM_ARRAY_TASK_ID}.g.vcf.gz ]\nthen\nrm %s/gvcf/%s.${SLURM_ARRAY_TASK_ID}.g.vcf.gz\nelse\necho "No Combined gvcf file yet"\nfi\n/n/holyscratch01/informatics/swuitchik/CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx${MEM}g -XX:ParallelGCThreads=1" CombineGVCFs -R %s/genome/%s.fa %s -O %s/gvcf/%s.${SLURM_ARRAY_TASK_ID}.g.vcf.gz --intervals %s/genome/%s_splits_interval_lists/%s_${SLURM_ARRAY_TASK_ID}.interval_list\nfi'%(sp_dir,sp_abbr,sp_dir,sp_abbr,sp_dir,sp_abbr,sp_dir,sp_abbr,all_sample_variant_call,sp_dir,sp_abbr,sp_dir,nintervals,sp_abbr)
+        cmd_3 = 'if [ -f %s/gvcf/%s.${SLURM_ARRAY_TASK_ID}.g.vcf.gz.tbi ]\nthen\necho "gvcf file already complete, will not recreate"\nelse\nif [ -f %s/gvcf/%s.${SLURM_ARRAY_TASK_ID}.g.vcf.gz ]\nthen\nrm %s/gvcf/%s.${SLURM_ARRAY_TASK_ID}.g.vcf.gz\nelse\necho "No Combined gvcf file yet"\nfi\n/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/gatk-4.0.3.0/gatk --java-options "-Xmx${MEM}g -XX:ParallelGCThreads=1" CombineGVCFs -R %s/genome/%s.fa %s -O %s/gvcf/%s.${SLURM_ARRAY_TASK_ID}.g.vcf.gz --intervals %s/genome/%s_splits_interval_lists/%s_${SLURM_ARRAY_TASK_ID}.interval_list\nfi'%(sp_dir,sp_abbr,sp_dir,sp_abbr,sp_dir,sp_abbr,sp_dir,sp_abbr,all_sample_variant_call,sp_dir,sp_abbr,sp_dir,nintervals,sp_abbr)
     
-        cmd_4 = '/n/holyscratch01/informatics/swuitchik/CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx${MEM}g -XX:ParallelGCThreads=1" GenotypeGVCFs -R %s/genome/%s.fa -V %s/gvcf/%s.${SLURM_ARRAY_TASK_ID}.g.vcf.gz -O %s/vcf/%s.${SLURM_ARRAY_TASK_ID}.vcf.gz --heterozygosity %s --intervals %s/genome/%s_splits_interval_lists/%s_${SLURM_ARRAY_TASK_ID}.interval_list'%(sp_dir,sp_abbr,sp_dir,sp_abbr,sp_dir,sp_abbr,het,sp_dir,nintervals,sp_abbr)
+        cmd_4 = '/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/gatk-4.0.3.0/gatk --java-options "-Xmx${MEM}g -XX:ParallelGCThreads=1" GenotypeGVCFs -R %s/genome/%s.fa -V %s/gvcf/%s.${SLURM_ARRAY_TASK_ID}.g.vcf.gz -O %s/vcf/%s.${SLURM_ARRAY_TASK_ID}.vcf.gz --heterozygosity %s --intervals %s/genome/%s_splits_interval_lists/%s_${SLURM_ARRAY_TASK_ID}.interval_list'%(sp_dir,sp_abbr,sp_dir,sp_abbr,sp_dir,sp_abbr,het,sp_dir,nintervals,sp_abbr)
     elif combine_gvcf_program == "GenomicsDBImport":
-        cmd_3 = '/n/holyscratch01/informatics/swuitchik/CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx${MEM}g -XX:ParallelGCThreads=1" GenomicsDBImport -R %s/genome/%s.fa %s --intervals %s/genome/%s_splits_interval_lists/%s_${SLURM_ARRAY_TASK_ID}.interval_list --genomicsdb-workspace-path %s/genomics_db/interval_${SLURM_ARRAY_TASK_ID}'%(sp_dir,sp_abbr,all_sample_variant_call,sp_dir,nintervals,sp_abbr,sp_dir)
+        cmd_3 = '/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/gatk-4.0.3.0/gatk --java-options "-Xmx${MEM}g -XX:ParallelGCThreads=1" GenomicsDBImport -R %s/genome/%s.fa %s --intervals %s/genome/%s_splits_interval_lists/%s_${SLURM_ARRAY_TASK_ID}.interval_list --genomicsdb-workspace-path %s/genomics_db/interval_${SLURM_ARRAY_TASK_ID}'%(sp_dir,sp_abbr,all_sample_variant_call,sp_dir,nintervals,sp_abbr,sp_dir)
     
-        cmd_4 = '/n/holyscratch01/informatics/swuitchik/CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx${MEM}g -XX:ParallelGCThreads=1" GenotypeGVCFs -R %s/genome/%s.fa -V gendb://%s/genomics_db/interval_${SLURM_ARRAY_TASK_ID} -O %s/vcf/%s.${SLURM_ARRAY_TASK_ID}.vcf.gz --heterozygosity %s --intervals %s/genome/%s_splits_interval_lists/%s_${SLURM_ARRAY_TASK_ID}.interval_list'%(sp_dir,sp_abbr,sp_dir,sp_dir,sp_abbr,het,sp_dir,nintervals,sp_abbr)
+        cmd_4 = '/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/gatk-4.0.3.0/gatk --java-options "-Xmx${MEM}g -XX:ParallelGCThreads=1" GenotypeGVCFs -R %s/genome/%s.fa -V gendb://%s/genomics_db/interval_${SLURM_ARRAY_TASK_ID} -O %s/vcf/%s.${SLURM_ARRAY_TASK_ID}.vcf.gz --heterozygosity %s --intervals %s/genome/%s_splits_interval_lists/%s_${SLURM_ARRAY_TASK_ID}.interval_list'%(sp_dir,sp_abbr,sp_dir,sp_dir,sp_abbr,het,sp_dir,nintervals,sp_abbr)
     
     else:
         print("Program to combine gvcf files not specified")
         sys.exit()
     
     #Extract stat distributions    
-    cmd_5 = '/n/holyscratch01/informatics/swuitchik/CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx${MEM}g -XX:ParallelGCThreads=1" VariantsToTable -V %s/vcf/%s.${SLURM_ARRAY_TASK_ID}.vcf.gz -O %s/stats/%s_${SLURM_ARRAY_TASK_ID}_unfilteredVCFstats.txt -F CHROM -F POS -F TYPE -F HET -F HOM-REF -F HOM-VAR -F NO-CALL -F NCALLED -F QD -F MQ -F FS -F SOR -F MQRankSum -F ReadPosRankSum -R %s/genome/%s.fa --intervals %s/genome/%s_splits_interval_lists/%s_${SLURM_ARRAY_TASK_ID}.interval_list'%(sp_dir,sp_abbr,sp_dir,sp_abbr,sp_dir,sp_abbr,sp_dir,nintervals,sp_abbr)
+    cmd_5 = '/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/gatk-4.0.3.0/gatk --java-options "-Xmx${MEM}g -XX:ParallelGCThreads=1" VariantsToTable -V %s/vcf/%s.${SLURM_ARRAY_TASK_ID}.vcf.gz -O %s/stats/%s_${SLURM_ARRAY_TASK_ID}_unfilteredVCFstats.txt -F CHROM -F POS -F TYPE -F HET -F HOM-REF -F HOM-VAR -F NO-CALL -F NCALLED -F QD -F MQ -F FS -F SOR -F MQRankSum -F ReadPosRankSum -R %s/genome/%s.fa --intervals %s/genome/%s_splits_interval_lists/%s_${SLURM_ARRAY_TASK_ID}.interval_list'%(sp_dir,sp_abbr,sp_dir,sp_abbr,sp_dir,sp_abbr,sp_dir,nintervals,sp_abbr)
     
     #Apply default GATK hard filters
-    cmd_6 = r"""/n/holyscratch01/informatics/swuitchik/CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx${MEM}g -XX:ParallelGCThreads=1" VariantFiltration -R %s/genome/%s.fa -V  %s/vcf/%s.${SLURM_ARRAY_TASK_ID}.vcf.gz -O  %s/vcf/%s_hardfilters.${SLURM_ARRAY_TASK_ID}.vcf.gz --filter-expression "(vc.isSNP() && (vc.hasAttribute('ReadPosRankSum') && ReadPosRankSum < -8.0)) || ((vc.isIndel() || vc.isMixed()) && (vc.hasAttribute('ReadPosRankSum') && ReadPosRankSum < -20.0)) || (vc.hasAttribute('QD') && QD < 2.0) " --filter-name "GATK_default" --filter-expression "(vc.isSNP() && ((vc.hasAttribute('FS') && FS > 60.0) || (vc.hasAttribute('SOR') &&  SOR > 3.0))) || ((vc.isIndel() || vc.isMixed()) && ((vc.hasAttribute('FS') && FS > 200.0) || (vc.hasAttribute('SOR') &&  SOR > 10.0)))" --filter-name "GATK_default" --filter-expression "vc.isSNP() && ((vc.hasAttribute('MQ') && MQ < 40.0) || (vc.hasAttribute('MQRankSum') && MQRankSum < -12.5))" --filter-name "GATK_default" """%(sp_dir,sp_abbr,sp_dir,sp_abbr,sp_dir,sp_abbr)
+    cmd_6 = r"""/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/gatk-4.0.3.0/gatk --java-options "-Xmx${MEM}g -XX:ParallelGCThreads=1" VariantFiltration -R %s/genome/%s.fa -V  %s/vcf/%s.${SLURM_ARRAY_TASK_ID}.vcf.gz -O  %s/vcf/%s_hardfilters.${SLURM_ARRAY_TASK_ID}.vcf.gz --filter-expression "(vc.isSNP() && (vc.hasAttribute('ReadPosRankSum') && ReadPosRankSum < -8.0)) || ((vc.isIndel() || vc.isMixed()) && (vc.hasAttribute('ReadPosRankSum') && ReadPosRankSum < -20.0)) || (vc.hasAttribute('QD') && QD < 2.0) " --filter-name "GATK_default" --filter-expression "(vc.isSNP() && ((vc.hasAttribute('FS') && FS > 60.0) || (vc.hasAttribute('SOR') &&  SOR > 3.0))) || ((vc.isIndel() || vc.isMixed()) && ((vc.hasAttribute('FS') && FS > 200.0) || (vc.hasAttribute('SOR') &&  SOR > 10.0)))" --filter-name "GATK_default" --filter-expression "vc.isSNP() && ((vc.hasAttribute('MQ') && MQ < 40.0) || (vc.hasAttribute('MQRankSum') && MQRankSum < -12.5))" --filter-name "GATK_default" """%(sp_dir,sp_abbr,sp_dir,sp_abbr,sp_dir,sp_abbr)
     
     #Calculate missingness per individual
     cmd_7 = 'vcftools --gzvcf %s/vcf/%s_hardfilters.${SLURM_ARRAY_TASK_ID}.vcf.gz --missing-indv --out %s/stats/%s_ind_missingness.${SLURM_ARRAY_TASK_ID}'%(sp_dir,sp_abbr,sp_dir,sp_abbr)
@@ -570,8 +570,8 @@ def main():
     sample_miss_dict = {}
     
     #Write headers
-    all_missing_file.write('INDV	N_DATA	N_GENOTYPES_FILTERED	N_MISS	F_MISS	INTERVAL\n')
-    mean_sd_missing_file.write('INDV	MEAN_MISS	SD_MISS	MAX_MISS	MIN_MISS\n')
+    all_missing_file.write('INDV    N_DATA  N_GENOTYPES_FILTERED    N_MISS  F_MISS  INTERVAL\n')
+    mean_sd_missing_file.write('INDV    MEAN_MISS   SD_MISS MAX_MISS    MIN_MISS\n')
     
     #If missingness file exists for interval, write results to all_missing_file, and add fraction missing to dictionary for each sample
     for i in range(1,int(nintervalfiles)+1):
@@ -629,4 +629,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

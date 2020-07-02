@@ -244,7 +244,7 @@ def check_missing_gvcfs(arraystart,arrayend,sample_files,sample):
 
 ##Currently requires NCBI names if you specify chromosome. Add config option to specify regex to identify chromosomes, have default be NCBI.
 def split_genome(sp_dir,sp_abbr,nintervals,outputdir):
-	#Open input		
+    #Open input     
     fai = open("%s/genome/%s.fa.fai"%(sp_dir,sp_abbr),"r")
     outHandle = sp_abbr
 
@@ -288,7 +288,7 @@ def split_genome(sp_dir,sp_abbr,nintervals,outputdir):
             outFile = (outputdir+outHandle+"_"+(str(i+1))+".interval_list")
             outList.append(open(outFile,"w"))
         
-        #Append scaffold name to appropriate output file.						
+        #Append scaffold name to appropriate output file.                       
         for i in range(len(faiList)):
             outList[fileDes[(i)]-1].write(faiList[i][0]+"\n")
         
@@ -320,7 +320,7 @@ def split_genome(sp_dir,sp_abbr,nintervals,outputdir):
         randoutFile.close()
 
     fai.close()
-	
+    
     return(nintervalfiles)
 
 
@@ -339,10 +339,10 @@ def haplotypecaller_sbatch(sp_dir,sp_abbr,sample,het,memory_hc,nintervals,pipeli
     
     if pipeline == "highcoverage":
     #Command to donwsample if proportion <0.95, if >0.95, just copy
-        cmd_3 = '/n/holyscratch01/informatics/swuitchik/CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx${MEM}g -XX:ParallelGCThreads=1" HaplotypeCaller -I %s/dedup/%s.dedup.sorted.bam -O %s/gvcf/%s.${SLURM_ARRAY_TASK_ID}.g.vcf.gz -R %s/genome/%s.fa --heterozygosity %s --ERC GVCF --intervals %s/genome/%s_splits_interval_lists/%s_${SLURM_ARRAY_TASK_ID}.interval_list'%(sp_dir,sample,sp_dir,sample,sp_dir,sp_abbr,het,sp_dir,nintervals,sp_abbr)
+        cmd_3 = '/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/gatk-4.0.3.0/gatk --java-options "-Xmx${MEM}g -XX:ParallelGCThreads=1" HaplotypeCaller -I %s/dedup/%s.dedup.sorted.bam -O %s/gvcf/%s.${SLURM_ARRAY_TASK_ID}.g.vcf.gz -R %s/genome/%s.fa --heterozygosity %s --ERC GVCF --intervals %s/genome/%s_splits_interval_lists/%s_${SLURM_ARRAY_TASK_ID}.interval_list'%(sp_dir,sample,sp_dir,sample,sp_dir,sp_abbr,het,sp_dir,nintervals,sp_abbr)
     
     elif pipeline == "lowcoverage":
-        cmd_3 = '/n/holyscratch01/informatics/swuitchik/CompPopGen/gatk-4.0.3.0/gatk --java-options "-Xmx${MEM}g -XX:ParallelGCThreads=1" HaplotypeCaller -I %s/dedup/%s.dedup.sorted.bam -O %s/gvcf/%s.${SLURM_ARRAY_TASK_ID}.g.vcf.gz -R %s/genome/%s.fa --heterozygosity %s --ERC GVCF --intervals %s/genome/%s_splits_interval_lists/%s_${SLURM_ARRAY_TASK_ID}.interval_list --min-dangling-branch-length 1 --min-pruning 1'%(sp_dir,sample,sp_dir,sample,sp_dir,sp_abbr,het,sp_dir,nintervals,sp_abbr)
+        cmd_3 = '/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/gatk-4.0.3.0/gatk --java-options "-Xmx${MEM}g -XX:ParallelGCThreads=1" HaplotypeCaller -I %s/dedup/%s.dedup.sorted.bam -O %s/gvcf/%s.${SLURM_ARRAY_TASK_ID}.g.vcf.gz -R %s/genome/%s.fa --heterozygosity %s --ERC GVCF --intervals %s/genome/%s_splits_interval_lists/%s_${SLURM_ARRAY_TASK_ID}.interval_list --min-dangling-branch-length 1 --min-pruning 1'%(sp_dir,sample,sp_dir,sample,sp_dir,sp_abbr,het,sp_dir,nintervals,sp_abbr)
     
     cmd_list = [cmd_1,cmd_2,cmd_3]
 
@@ -558,4 +558,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
