@@ -1,0 +1,6 @@
+/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/orig_fastqs/oxyJam_female/DGAB-CNB0002-CN2-lib1_S6_L001_R1_001.fastq.gz 1 OjFemale OjFemale_L001
+/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/orig_fastqs/oxyJam_female/DGAB-CNB0002-CN2-lib1_S6_L001_R2_001.fastq.gz 2 OjFemale OjFemale_L001
+/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/orig_fastqs/oxyJam_female/DGAB-CNB0002-CN2-lib1_S6_L004_R1_001.fastq.gz 1 OjFemale OjFemale_L004
+/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/orig_fastqs/oxyJam_female/DGAB-CNB0002-CN2-lib1_S6_L004_R2_001.fastq.gz 2 OjFemale OjFemale_L004
+/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/orig_fastqs/oxyJam_male/DP8400009485BR_L01_SP2003170311_1.fastq.gz 1 OjMale OjMale_L01
+/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/orig_fastqs/oxyJam_male/DP8400009485BR_L01_SP2003170311_2.fastq.gz 2 OjMale OjMale_L01
