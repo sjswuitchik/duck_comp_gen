@@ -1,7 +1,7 @@
 #Config file: Heteronetta atricapilla
 
 #Path to desired output directory (directory for each species will be created within this directory) - If not specified will be current working directory
---OUT_DIR /n/holyscratch01/informatics/swuitchik/CompPopGen/duck_popgen
+--OUT_DIR /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen
 
 #Species abbreviation for use in file headers (ie/ outlong)
 --ABBV Hatricapilla
