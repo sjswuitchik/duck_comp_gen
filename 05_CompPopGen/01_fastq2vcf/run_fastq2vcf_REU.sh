@@ -6,8 +6,8 @@ module load Anaconda3/2019.10
 
 # from /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen
 
-python3 00_setup_local_fastq.py --config configs/netAur_local.txt --out_dir /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen --abbv Nauritus --config_out configs/netAurREU_config.txt
-python3 00_setup_local_fastq.py --config configs/oxyJam_local.txt --out_dir /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen --abbv Ojamaicensis --config_out configs/oxyJamREU_config.txt
+python3 00_setup_local_fastq.py --config configs/netAurREU_local.txt --out_dir /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen --abbv Nauritus --config_out configs/netAurREU_config.txt
+python3 00_setup_local_fastq.py --config configs/oxyJamREU_local.txt --out_dir /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen --abbv Ojamaicensis --config_out configs/oxyJamREU_config.txt
 python3 00_setup_local_fastq.py --config configs/stiNaeREU_local.txt --out_dir /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen --abbv Snaevosa_REU --config_out configs/stiNaeREU_config.txt
 
 # manually add in required options to new configs before running 01_download_qc.py
