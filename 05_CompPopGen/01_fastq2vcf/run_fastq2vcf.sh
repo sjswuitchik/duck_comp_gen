@@ -10,11 +10,11 @@ python3 00_setup_local_fastq.py --config configs/stiNae_local.txt --out_dir /n/h
 
 # manually add in required options to new configs before running 01_download_qc.py
 
-python3 01_download_qc.py --config configs/hetAtr_config.txt
-python3 01_download_qc.py --config configs/stiNae_config.txt
-
 #conda create -n mpl python=3.6 anaconda matplotlib bedtools vcftools 
 conda activate mpl
+
+python3 01_download_qc.py --config configs/hetAtr_config.txt
+python3 01_download_qc.py --config configs/stiNae_config.txt
 
 python3 02_dedup_gather_metrics.py --config configs/hetAtr_config.txt 
 python3 02_dedup_gather_metrics.py --config configs/stiNae_config.txt
