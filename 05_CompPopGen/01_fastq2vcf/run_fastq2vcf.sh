@@ -24,8 +24,8 @@ python3 02_dedup_gather_metrics.py --config configs/stiNae_config.txt
 python3 03_haplotypecalling.py --config configs/hetAtr_config.txt 
 python3 03_haplotypecalling.py --config configs/stiNae_config.txt
 
-python3 04_gvcf_filtering.py --config configs/hetAtr_config.txt 
-python3 04_gvcf_filtering.py --config configs/stiNae_config.txt
+python3 04_genotypegvcf_filtering.py --config configs/hetAtr_config.txt 
+python3 04_genotypegvcf_filtering.py --config configs/stiNae_config.txt
 
 python3 05_calculate_coverage.py --config configs/hetAtr_config.txt 
 python3 05_calculate_coverage.py --config configs/stiNae_config.txt
