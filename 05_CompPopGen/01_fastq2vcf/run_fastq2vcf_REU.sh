@@ -11,12 +11,13 @@ python3 00_setup_local_fastq.py --config configs/oxyJamREU_local.txt --out_dir /
 python3 00_setup_local_fastq.py --config configs/stiNaeREU_local.txt --out_dir /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen --abbv SnaevosaREU --config_out configs/stiNaeREU_config.txt
 
 # manually add in required options to new configs before running 01_download_qc.py
-python3 01_download_qc.py --config configs/netAurREU_config.txt
-python3 01_download_qc.py --config configs/oxyJamREU_config.txt
-python3 01_download_qc.py --config configs/stiNaeREU_config.txt
 
 #conda create -n mpl python=3.6 anaconda matplotlib bedtools vcftools 
 conda activate mpl
+
+python3 01_download_qc.py --config configs/netAurREU_config.txt
+python3 01_download_qc.py --config configs/oxyJamREU_config.txt
+python3 01_download_qc.py --config configs/stiNaeREU_config.txt
 
 python3 02_dedup_gather_metrics.py --config configs/netAurREU_config.txt
 python3 02_dedup_gather_metrics.py --config configs/oxyJamREU_config.txt
