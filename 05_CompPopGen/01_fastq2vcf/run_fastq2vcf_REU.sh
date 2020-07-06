@@ -29,9 +29,9 @@ python3 03_haplotypecalling.py --config configs/netAurREU_config.txt
 python3 03_haplotypecalling.py --config configs/oxyJamREU_config.txt
 python3 03_haplotypecalling.py --config configs/stiNaeREU_config.txt
 
-python3 04_gvcf_filtering.py --config configs/netAurREU_config.txt
-python3 04_gvcf_filtering.py --config configs/oxyJamREU_config.txt
-python3 04_gvcf_filtering.py --config configs/stiNaeREU_config.txt
+python3 04_genotypegvcf_filtering.py --config configs/netAurREU_config.txt
+python3 04_genotypegvcf_filtering.py --config configs/oxyJamREU_config.txt
+python3 04_genotypegvcf_filtering.py --config configs/stiNaeREU_config.txt
 
 python3 05_calculate_coverage.py --config configs/netAurREU_config.txt
 python3 05_calculate_coverage.py --config configs/oxyJamREU_config.txt
