@@ -9,12 +9,25 @@ module load Anaconda3/2019.10
 
 #conda create -c bioconda -n ortho orthofinder diamond
 
+# issues with duplicate sequences in hetAtr; use seqtk to remove seq
+cd from_cesar/input_data
+git clone https://github.com/lh3/seqtk.git;
+cd seqtk
+make
+cd ..
+seqtk/seqtk subseq hetAtr.translated.fa dups.list > hetAtr.translated.dedups.fa
+
 # fix annoying scaffold version issues 
 cd from_cesar/input_data/
-for SP in hetAtr netAur oxyJam stiNae;
+for SP in netAur oxyJam stiNae;
 do
 	sed '/^>/s/\./_/g' $SP.translated.fa > $SP.translated.clean.fa
 done
+
+
+
+
+
 cd ../..
 
 # run OrthoFinder 
