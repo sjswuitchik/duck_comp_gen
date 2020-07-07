@@ -11,7 +11,7 @@ module load Anaconda3/2019.10
 
 # issues with duplicate sequences in hetAtr; janky grep to remove
 cd from_cesar/input_data/
-grep -v -f dup1.txt hetAtr.translated.fa | grep -v -f dup2.txt | grep -v -f dup3.txt > hetAtr.translated.dedup.fa
+grep -v -f dup1.txt hetAtr.translated.fa | grep -v -f dup2.txt > hetAtr.translated.dedup.fa
 
 # fix annoying scaffold version issues 
 for SP in netAur oxyJam stiNae;
