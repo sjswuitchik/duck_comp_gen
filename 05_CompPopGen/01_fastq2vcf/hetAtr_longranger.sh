@@ -3,4 +3,4 @@
 
 module load longranger/2.2.2-fasrc01
 
-longranger mkfastq
+longranger mkfastq 
