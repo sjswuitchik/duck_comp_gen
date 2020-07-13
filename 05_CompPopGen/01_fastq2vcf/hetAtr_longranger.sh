@@ -22,3 +22,10 @@ longranger wgs --id hetAtr \
 --reference=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/longranger_proc/refdata-GCA_011075105.1_BPBGC_Hatr_1.0_genomic \
 --vcmode=gatk:/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/gatk-4.0.3.0/gatk-package-4.0.3.0-local.jar
 
+
+netAur
+--reference=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/longranger_proc/refdata-GCA_011076525.1_BPBGC_Naur_1.0_genomic 
+oxyJam
+--reference=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/longranger_proc/refdata-GCF_011077185.1_BPBGC_Ojam_1.0_genomic
+stiNae
+--reference=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/longranger_proc/refdata-GCA_011074415.1_BPBGC_Snae_1.0_genomic
