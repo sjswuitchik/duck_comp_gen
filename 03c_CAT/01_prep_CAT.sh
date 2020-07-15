@@ -26,9 +26,10 @@ do
   cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/2bitdir/$SP/$SP.fasta /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/2bitdir/$SP/$SP.fasta.fai .
 done
 
-# get galGal cDNA fasta 
+# get galGal cDNA fasta & un-scaffold-stripped genome fasta
 wget ftp://ftp.ensembl.org/pub/release-100/fasta/gallus_gallus/cdna/Gallus_gallus.GRCg6a.cdna.all.fa.gz
-gunzip Gallus_gallus.GRCg6a.cdna.all.fa.gz
+wget GCF_000002315.6_GRCg6a_genomic.fna.gz
+gunzip *.gz
 
 # use GMAP to align cDNA to galGal genome
 mkdir galGal_db
