@@ -19,6 +19,7 @@ cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cnees/4d_sit
 
 # get galGal protein alignment
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_protein.faa.gz
+gunzip GCF_000002315.6_GRCg6a_protein.faa.gz
 
 # get indexed fastas for focal and reference species
 for SP in galGal hetAtr netAur oxyJam stiNae;
