@@ -44,3 +44,5 @@ gmap -D galGal_db -d galGal -f sampe --sam-extended-cigar Gallus_gallus.GRCg6a.c
 samtools view -b -h -o galGal.bam galGal.map.sam 
 samtools sort -o galGal.sorted.bam galGal.bam
 samtools index galGal.sorted.bam
+
+# all relevant files for debugging moved to testAll_input dir
