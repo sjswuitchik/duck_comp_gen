@@ -15,7 +15,7 @@ conda activate ortho
 cd from_cesar/input_data/
 for SP in hetAtr netAur oxyJam stiNae;
 do
-	perl /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/orthos/rm_dup_fa.pl $SP.translated.fa
+	perl /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/orthos/rm_dup_acc.pl $SP.translated.fa
 done
 
 # fix annoying scaffold version issues 
