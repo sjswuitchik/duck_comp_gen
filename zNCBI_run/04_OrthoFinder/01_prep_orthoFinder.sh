@@ -16,4 +16,4 @@ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/011/077/185/GCF_011077185.1_BP
 gunzip *.gz
 
 # run OrthoFinder 
-sbatch ortho_run.sh
+sbatch 02_ncbi_ortho.sh
