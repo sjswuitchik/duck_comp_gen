@@ -21,3 +21,5 @@ bedtools sort -i galGal6_final_merged_CNEEs_named.bed > galGal6_final_merged_CNE
 
 # find closest gene to CNEEs
 bedtools closest -a galGal6_final_merged_CNEEs_named_sorted.bed -b galGal.genes.sorted.bed | cut -f1,2,3,4,8 | bedtools merge -i - -d -1 -c 4,5 -o distinct > galGal_cnees_genes.bed
+
+# copy accelerated CNEEs BED from R output
