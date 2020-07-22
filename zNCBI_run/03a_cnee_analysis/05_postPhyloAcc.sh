@@ -26,7 +26,14 @@ bedtools closest -a galGal6_final_merged_CNEEs_named_sorted.bed -b galGal.genes.
 bedtools intersect -a acc_cnees.bed -b galGal_cnees_genes.bed -wb | cut -f1,2,3,4,9 > acc_cnees_genes.bed
 
 # cut for PANTHER upload 
-cat acc_cnees_genes.bed | cut -f5 > genes.txt
+cat acc_cnees_genes.bed | cut -f5 > acc_cnees_genes.txt
+
+# cut all galGal CNEE list for PANTHER reference
+cat galGal_cnees_genes.bed | cut -f5 | uniq > galGal_cnees_genes.txt
+
+
+
+
 
 
 
