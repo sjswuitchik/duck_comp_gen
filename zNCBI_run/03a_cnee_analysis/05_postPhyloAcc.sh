@@ -25,43 +25,6 @@ bedtools closest -a galGal6_final_merged_CNEEs_named_sorted.bed -b galGal.genes.
 # copy accelerated CNEEs BED from R output
 bedtools intersect -a acc_cnees.bed -b galGal_cnees_genes.bed -wb | cut -f1,2,3,4,9 > acc_cnees_genes.bed
 
-module purge
-module load centos6/0.0.1-fasrc01 ncf/1.0.0-fasrc01 bio/blast2go
-
-
-
-
-
-
-
-java -Xmx2g -jar /n/sw/blast2go/blast2go.jar -prop /n/sw/blast2go/b2gPipe.properties -in /n/sw/blast2go/blastResult_2009.xml -v -a out MyAnnot 
-
-
-
-
-
-
-
-# topGO
-export R_LIBS_USER=$HOME/apps/R_3.6.1
-R
-#if (!requireNamespace("BiocManager", quietly=TRUE)) \
-#  install.packages("BiocManager")
-#BiocManager::install("topGO")
-
-library(topGO)
-library(ALL)
-
-# example data
-data(ALL)
-data(geneList)
-
-
-
-
-
-
-
 
 
 
