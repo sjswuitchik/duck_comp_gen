@@ -28,11 +28,14 @@ bedtools intersect -a acc_cnees.bed -b galGal_cnees_genes.bed -wb | cut -f1,2,3,
 # cut for PANTHER upload 
 cat acc_cnees_genes.bed | cut -f5 > acc_cnees_genes.txt
 
-# cut all galGal CNEE list for PANTHER reference
-cat galGal_cnees_genes.bed | cut -f5 | uniq > galGal_cnees_genes.txt
+# cut all galGal genes list for reference
+cat galGal.genes.bed | cut -f4 | uniq > galGal_refgenes.txt
 
+# make a list of all genes not in CNEEs
+grep -v -f acc_cnees_genes.txt galGal_refgenes.txt > reflist_forGO.txt
 
-
+# get GO terms by uploading acc_cnee_genes.txt ref'd on Gallus gallus in Generic GOTerm Finder of GO Tools https://go.princeton.edu/
+# parse output to associate genes with their GO terms
 
 
 
