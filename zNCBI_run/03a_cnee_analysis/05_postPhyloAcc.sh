@@ -35,9 +35,9 @@ cat galGal.genes.bed | cut -f4 | uniq > galGal_refgenes.txt
 grep -v -f acc_cnees_genes.txt galGal_refgenes.txt > reflist_forGO.txt
 
 # get GO terms by uploading acc_cnee_genes.txt ref'd on Gallus gallus in Generic GOTerm Finder of GO Tools https://go.princeton.edu/
+
 # parse output to associate genes with their GO terms
-
-
+python3 gene_GOIDs.py 1190221acc_cnees_genes_terms.txt > gomwu_input.txt
 
 
 
