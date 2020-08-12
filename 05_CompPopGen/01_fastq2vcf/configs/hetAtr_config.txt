@@ -93,5 +93,5 @@
 # starting time (hours) for HaplotypeCaller
 --TIME_HC 72
 
-# starting time (hours) for GenotypeGVCF
---TIME_GG 8
+# program to use for combining gvcf files
+--COMBINE_GVCF_PROGRAM CombineGVCFs
