@@ -13,4 +13,5 @@ phyloP --method LRT --mode CON --msa-format FASTA --features galloseq.part.bed g
 
 phyloP --method LRT --mode CON --msa-format FASTA --features galloseq.part.bed galloTop2.named.mod galloseq_gapFixed.fa > cnees_phyloP_top2.out
 
+phyloP --method LRT --mode CON --msa-format FASTA --features galloseq.part.bed galloTop3.named.mod galloseq_gapFixed.fa > cnees_phyloP_top3.out
 
