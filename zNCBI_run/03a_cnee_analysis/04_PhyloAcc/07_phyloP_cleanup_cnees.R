@@ -45,6 +45,6 @@ final.cnee <- acc.cnee %>%
   filter(cnee != "zfCNEE300947")
 
 # write out new acc.cnees BED file
-write_delim(final.cnee, "acc.cnees.final.bed", delim = "\t", col_names = T)
+write_delim(final.cnee, "acc.cnees.final.bed", delim = "\t", col_names = F)
 
 
