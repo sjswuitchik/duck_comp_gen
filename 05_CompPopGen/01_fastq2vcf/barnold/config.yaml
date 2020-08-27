@@ -2,7 +2,7 @@
 # Variables you need to change
 ##############################
 
-ref: "data/zebraFinch/genome/Tgut_subseg_renamed.fa"    # location of the reference genome
+ref: "data/stiNae/genome/stiNae.fa"    # location of the reference genome
 
 # If using the fastq -> BAM workflow change these, otherwise ignore them
 fastqDir: "data/stiNae/fastqs/"      # location of fastq files; must be followed by a "/"
