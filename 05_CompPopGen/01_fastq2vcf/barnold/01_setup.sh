@@ -12,3 +12,6 @@ mkdir data/hetAtr
 cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/orig_fastqs/stiNae_male/*.gz data/stiNae
 cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/orig_fastqs/hetAtr_reseq/*.gz data/hetAtr
 
+# concat fastqs (in same order!) for individuals 
+./concat_fastqs.sh 
+
