@@ -1,5 +1,8 @@
 # in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/
 
+module load Anaconda/5.0.1-fasrc01
+#conda create --name snakemake -c bioconda snakemake 
+
 # clone pipeline & repo 
 git clone https://github.com/harvardinformatics/shortRead_mapping_variantCalling
 cd shortRead_mapping_variantCalling
@@ -21,4 +24,7 @@ mv GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna hetAtr.fa
 
 # concat fastqs (in same order!) for individuals 
 ./concat_fastqs.sh 
+
+sbatch run_fastq2bam.sh
+
 
