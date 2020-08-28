@@ -1,14 +1,14 @@
 #!/usr/bin/bash
 
-# VCF concatenation
+# VCF concatenation - not needed for the snakemake output
 
-cd $INSHORT.vcfs 
-bcftools concat *.vcf.gz -O v -o $INSHORT.concat.vcf
-mv $INSHORT.concat.vcf ..
-cd ../$OUTSHORT.vcfs 
-bcftools concat *.vcf.gz -O v -o $OUTSHORT.concat.vcf
-mv $OUTSHORT.concat.vcf ..
-cd ..
+#cd $INSHORT.vcfs 
+#bcftools concat *.vcf.gz -O v -o $INSHORT.concat.vcf
+#mv $INSHORT.concat.vcf ..
+#cd ../$OUTSHORT.vcfs 
+#bcftools concat *.vcf.gz -O v -o $OUTSHORT.concat.vcf
+#mv $OUTSHORT.concat.vcf ..
+#cd ..
 
 # VCF filtering
 vcftools --vcf $INSHORT.concat.vcf --remove-filtered-all --remove-indels --min-alleles 2 --max-alleles 2 --mac 1 --max-missing 0.75 --recode --recode-INFO-all --out $INSHORT.clean
