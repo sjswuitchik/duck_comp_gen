@@ -28,10 +28,3 @@ mv hetAtr*_L*.fastq.gz orig_fastqs/
 
 sbatch run_fastq2bam.sh
 sbatch run_bam2vcf_gatk.sh
-
-# pull out the stiNae individual to its own VCF
-bcftools view -c1 -Oz -s stiNae_ind01 -o stiNae.vcf.gz Combined_hardFiltered.vcf
-
-mv Combined_hardFiltered.vcf hetAtr.vcf.gz
-
-
