@@ -14,3 +14,6 @@ mv missing_data_per_ind.txt /n/holyscratch01/informatics/swuitchik/ducks_project
 cd /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline
 
 # pull out stiNae from missingness file & rename
+grep -v stiNae_ind01 missing_data_per_ind.txt > hetAtr_all_all_missingness_info.txt
+grep -v -f hetAtr_all_all_missingness_info.txt missing_data_per_ind.txt > stiNae_all_all_missingness_info.txt
+
