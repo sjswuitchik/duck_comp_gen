@@ -1,6 +1,6 @@
 # in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/
 
-module load Anaconda/5.0.1-fasrc01
+module load Anaconda/5.0.1-fasrc01 bcftools/1.5-fasrc02
 #conda create --name snakemake -c bioconda snakemake 
 
 # clone pipeline & repo 
@@ -27,5 +27,9 @@ mkdir orig_fastqs/
 mv hetAtr*_L*.fastq.gz orig_fastqs/
 
 sbatch run_fastq2bam.sh
+sbatch run_bam2vcf_gatk.sh
+
+# pull out the stiNae individual to its own VCF
+bcftools view -c1 -Oz -s stiNae_ind01 -o stiNae.vcf.gz ________.vcf.gz
 
 
