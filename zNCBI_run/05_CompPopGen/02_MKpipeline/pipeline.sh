@@ -11,10 +11,10 @@
 #cd ..
 
 # VCF filtering
-vcftools --vcf $INSHORT.vcf --remove-filtered-all --remove-indels --min-alleles 2 --max-alleles 2 --mac 1 --max-missing 0.75 --recode --recode-INFO-all --out $INSHORT.clean
+vcftools --gzvcf $INSHORT.vcf.gz --remove-filtered-all --remove-indels --min-alleles 2 --max-alleles 2 --mac 1 --max-missing 0.75 --recode --recode-INFO-all --out $INSHORT.clean
 mv $INSHORT.clean.recode.vcf $INSHORT.clean.vcf
 
-vcftools --vcf $OUTSHORT.vcf --remove-filtered-all --remove-indels --min-alleles 2 --max-alleles 2 --maf 0 --max-missing 0.75 --recode --recode-INFO-all --out $OUTSHORT.clean
+vcftools --gzvcf $OUTSHORT.vcf.gz --remove-filtered-all --remove-indels --min-alleles 2 --max-alleles 2 --maf 0 --max-missing 0.75 --recode --recode-INFO-all --out $OUTSHORT.clean
 mv $OUTSHORT.clean.recode.vcf $OUTSHORT.clean.vcf
 
 Rscript --vanilla missingness.R $INLONG'_all_all_missingness_info.txt' $OUTLONG'_all_all_missingness_info.txt'
