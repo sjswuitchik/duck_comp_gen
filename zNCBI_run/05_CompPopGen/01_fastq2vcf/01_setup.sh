@@ -23,7 +23,7 @@ gunzip GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna.gz
 mv GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna hetAtr.fa
 
 # concat fastqs (in same order!) for individuals 
-./concat_fastqs.sh 
+./data/hetAtr/fastqs/concat_fastqs.sh 
 
 sbatch run_fastq2bam.sh
 
