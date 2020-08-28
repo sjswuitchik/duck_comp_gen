@@ -13,6 +13,7 @@ Tim Sackton (Director of Bioinformatics, Informatics Group, Harvard University; 
 
 ## Configuration and set up
 
+#### NB: this is slightly different from the original version in sjswuitchik/CompPopGen_sjsw to work with the snakemake version of fastq2vcf 
 Project directory should be set up as outlined in directory_tree.pdf so the main pipeline can automatically switch between directories and call files as necessary. 
 
 First, set up a conda environment that will allow access to python and R packages:
