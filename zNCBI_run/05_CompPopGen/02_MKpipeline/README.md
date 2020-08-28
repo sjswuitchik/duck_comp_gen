@@ -7,8 +7,6 @@ Authors:
 
 Sara Wuitchik (Postdoctoal associate, Boston University & Harvard University; sjswuit@g.harvard.edu)
 
-Allison Shultz (Assistant Curator of Ornithology, LA Natural History Museum; ashultz@nhm.org)
-
 Tim Sackton (Director of Bioinformatics, Informatics Group, Harvard University; tsackton@g.harvard.edu)
 
 ## Configuration and set up
