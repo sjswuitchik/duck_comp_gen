@@ -8,13 +8,11 @@ git clone https://github.com/harvardinformatics/shortRead_mapping_variantCalling
 cd shortRead_mapping_variantCalling
 
 # make directories for data
-mkdir -p data/stiNae/fastqs
 mkdir -p data/hetAtr/fastqs
 mkdir -p data/hetAtr/genome
 
 # copy fastqs over 
-cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/orig_fastqs/stiNae_male/*.gz data/stiNae/fastqs
-cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/orig_fastqs/hetAtr_reseq/*.gz data/hetAtr/fastqs
+cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/orig_fastqs/stiNae_male/*.gz /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/comppopgen/orig_fastqs/hetAtr_reseq/*.gz data/hetAtr/fastqs
 
 # get reference genome
 cd data/hetAtr/genome
@@ -28,7 +26,6 @@ cd data/hetAtr/fastqs
 mkdir orig_fastqs/
 mv hetAtr*_L*.fastq.gz orig_fastqs/
 
-# NB re: config.yaml - can't have two config.yaml files, so edits need to be made to config between runs
 sbatch run_fastq2bam.sh
 
 
