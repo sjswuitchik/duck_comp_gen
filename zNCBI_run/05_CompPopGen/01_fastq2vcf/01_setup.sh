@@ -25,7 +25,10 @@ mv GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna hetAtr.fa
 # concat fastqs (in same order!) for individuals 
 cd data/hetAtr/fastqs
 ./concat_fastqs.sh 
+mkdir orig_fastqs/
+mv hetAtr*_L*.fastq.gz orig_fastqs/
 
+# NB re: config.yaml - can't have two config.yaml files, so edits need to be made to config between runs
 sbatch run_fastq2bam.sh
 
 
