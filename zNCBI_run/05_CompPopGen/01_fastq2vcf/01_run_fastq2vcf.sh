@@ -27,4 +27,5 @@ mkdir orig_fastqs/
 mv hetAtr*_L*.fastq.gz orig_fastqs/
 
 sbatch run_fastq2bam.sh
+sbatch run_intervals.sh
 sbatch run_bam2vcf_gatk.sh
