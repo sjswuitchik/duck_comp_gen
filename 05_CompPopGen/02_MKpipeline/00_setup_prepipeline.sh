@@ -1,19 +1,22 @@
-# in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling
+# in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/MK_pipeline
 
-# there is a little bit of prep that needs to be done before the output from the snakemake pipeline will be suitable to work in the MK pipeline
+module load Anaconda3/2019.10
+#conda create -c bioconda -c conda-forge -n busco busco=4.0.6 gffread
 
-# pull out the stiNae individual to its own VCF
-bcftools view -c1 -Oz -s stiNae_ind01 -o stiNae.vcf.gz Combined_hardFiltered.vcf
+# only using previously build busco env for the gffread util
+conda activate busco
 
-mv Combined_hardFiltered.vcf hetAtr.vcf.gz
+# from /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline, copy over these files: 
+# hetAtr.vcf.gz
+# stiNae.vcf.gz
+# hetAtr_all_all_missingness_info.txt
+# stiNae_all_all_missingness_info.txt
 
-# move VCFs and missingness over to MK dir
-mv stiNae.vcf.gz hetAtr.vcf.gz /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline
-mv missing_data_per_ind.txt /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline
+#### still need to figure out what the coverage output from snakemake will look like
 
-cd /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline
-
-# pull out stiNae from missingness file & rename
-grep -v stiNae_ind01 missing_data_per_ind.txt > hetAtr_all_all_missingness_info.txt
-grep -v -f hetAtr_all_all_missingness_info.txt missing_data_per_ind.txt > stiNae_all_all_missingness_info.txt
-
+cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/output_gtfs/cleaned_reordered_* .
+for file in hetAtr netAur oxyJam stiNae;
+do
+  gffread cleaned_reordered_$file.sorted.gtf -o $file.gff
+  
+### finish this up after dog walk ...   
