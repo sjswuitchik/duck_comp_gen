@@ -6,6 +6,8 @@ mkdir postPhyloAcc
 cp galGal6_final_merged_CNEEs_named.bed postPhyloAcc/
 cd postPhyloAcc/
 
+### spatial enrichment analyses
+
 # sort full final list
 bedtools sort -i galGal6_final_merged_CNEEs_named.bed > galGal6_final_merged_CNEEs_named_sorted.bed
 
@@ -35,4 +37,23 @@ bedtools intersect -a galGal.5Mbwindows.bed -b galGal6_final_merged_CNEEs_named_
 bedtools intersect -a galGal.5Mbwindows.bed -b acc.cnees.final.bed -loj | cut -f1,2,3,7 | sed --expression='s/\.$/0/g' > 5Mbwindow.acc.cnees.bed
 
 
+### cluster profiler
+
+# get galGal6 genome
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_genomic.gff.gz
+gunzip GCF_000002315.6_GRCg6a_genomic.gff.gz
+
+# gff to bed
+column -s, -t < GCF_000002315.6_GRCg6a_genomic.gff | awk '$3 == "CDS"' > galGal.onlyCDS.gff
+awk -f gff2bed.awk galGal.onlyCDS.gff > galGal.gff.bed
+
+# pull out genes
+cat galGal.gff.bed | python3 genenames.py > galGal.genes.bed
+
+# sort input
+bedtools sort -i galGal.genes.bed > galGal.genes.sorted.bed
+bedtools sort -i galGal6_final_merged_CNEEs_named.bed > galGal6_final_merged_CNEEs_named_sorted.bed
+
+# find closest gene to CNEEs
+bedtools closest -a galGal6_final_merged_CNEEs_named_sorted.bed -b galGal.genes.sorted.bed | cut -f1,2,3,4,8 | bedtools merge -i - -d -1 -c 4,5 -o distinct > galGal_cnees_genes.bed
 
