@@ -6,7 +6,7 @@ mkdir postPhyloAcc
 cp galGal6_final_merged_CNEEs_named.bed postPhyloAcc/
 cd postPhyloAcc/
 
-### spatial enrichment analyses
+### spatial enrichment analyses input generation
 
 # sort full final list
 bedtools sort -i galGal6_final_merged_CNEEs_named.bed > galGal6_final_merged_CNEEs_named_sorted.bed
@@ -37,7 +37,7 @@ bedtools intersect -a galGal.5Mbwindows.bed -b galGal6_final_merged_CNEEs_named_
 bedtools intersect -a galGal.5Mbwindows.bed -b acc.cnees.final.bed -loj | cut -f1,2,3,7 | sed --expression='s/\.$/0/g' > 5Mbwindow.acc.cnees.bed
 
 
-### cluster profiler
+### cluster profiler input generation
 
 # get galGal6 genome
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_genomic.gff.gz
