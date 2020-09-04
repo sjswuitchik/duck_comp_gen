@@ -14,9 +14,43 @@ conda activate busco
 
 #### still need to figure out what the coverage output from snakemake will look like
 
-cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/output_gtfs/cleaned_reordered_* .
-for file in hetAtr netAur oxyJam stiNae;
-do
-  gffread cleaned_reordered_$file.sorted.gtf -o $file.gff
-  
-### finish this up after dog walk ...   
+mkdir gffs
+cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/output_gtfs/cleaned_reordered_hetAtr.sorted.gtf gffs/
+cd gffs/
+
+gffread cleaned_reordered_hetAtr.sorted.gtf -o hetAtr.gff
+
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt
+
+awk 'NR > 33 { print }' GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt | awk '{print $1, $5}' - > acckey
+./replace_chrs.pl acckey hetAtr.gff > hetAtr.repchr.gff
+
+# download SnpEff
+wget http://sourceforge.net/projects/snpeff/files/snpEff_latest_core.zip
+unzip snpEff_latest_core.zip
+rm snpEff_latest_core.zip
+rm -r clinEff/
+cd snpEff/
+
+export R_LIBS_USER=$HOME/swuitchik/apps/R_3.6.1
+export PATHW=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/MK_pipeline
+export PATHS=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/MK_pipeline/snpEff
+export INSHORT=hetAtr
+export OUTGROUP=stiNae
+# need to figure out if there should be an INLONG and OUTLONG...
+
+mkdir -p data/$INSHORT
+cd data/$INSHORT
+cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/MK_pipeline/gffs/hetAtr.repchr.gff .
+mv hetAtr.gff genes.gff
+gzip genes.gff
+
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna.gz
+mv GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna.gz sequences.fa.gz
+
+cd ../..
+
+conda deactivate 
+conda activate mk_v2
+
+java -jar $PATHS/snpEff.jar build -gff3 -v $INSHORT
