@@ -59,7 +59,6 @@ final.data %>%
 
 #### GO term enrichment
 
-library(tidyverse)
 library(permute)
 library(biomaRt)
 library(clusterProfiler)
