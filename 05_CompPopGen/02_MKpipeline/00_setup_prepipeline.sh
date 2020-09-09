@@ -33,8 +33,11 @@ export OUTGROUP=stiNae
 
 mkdir -p data/$INSHORT
 cd data/$INSHORT
-cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/2bitdir/hetAtr/hetAtr.fasta .
-mv hetAtr.fasta sequences.fa
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna.gz
+gunzip GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna.gz
+
+
+mv GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna sequences.fa
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/MK_pipeline/hetAtr.repchr.gtf .
 mv hetAtr.repchr.gtf genes.gtf
 
