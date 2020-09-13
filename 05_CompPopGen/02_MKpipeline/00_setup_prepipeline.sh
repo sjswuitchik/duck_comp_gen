@@ -13,6 +13,10 @@ module load Anaconda3/2019.10
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/output_gtfs/cleaned_reordered_hetAtr.sorted.gtf .
 
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt
+cut -f5 assembly_report.txt > scaffolds_only.txt
+mv snpEff/data/hetAtr/sequences.fa .
+grep -v -f scaffolds_only.txt sequences.fa > chr.only.seq.fa
+### pick up here on Monday 
 
 awk 'NR > 33 { print }' GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt | awk '{print $1, $5}' - > acckey
 ./replace_chrs.pl acckey cleaned_reordered_hetAtr.sorted.gtf > hetAtr.repchr.gtf
