@@ -2,6 +2,8 @@
 
 # there is a little bit of prep that needs to be done before the output from the snakemake pipeline will be suitable to work in the MK pipeline
 
+module load bcftools/1.5-fasrc02
+
 # pull out the stiNae individual to its own VCF
 bcftools view -c1 -Oz -s stiNae_ind01 -o stiNae.vcf.gz Combined_hardFiltered.vcf
 
