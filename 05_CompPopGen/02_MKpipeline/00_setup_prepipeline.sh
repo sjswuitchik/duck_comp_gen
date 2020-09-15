@@ -46,8 +46,8 @@ awk 'NR > 33 { print }' GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt | awk
 
 agat_convert_sp_gxf2gxf.pl -g hetAtr.repchr.gtf --gvo 3 -o hetAtr.repchr.gff
 
-mv hetAtr.repchr.gtf genes.gtf
-mv genes.gtf snpEff/data/hetAtr
+mv hetAtr.repchr.gff genes.gff
+mv genes.gff snpEff/data/hetAtr
 
 # build snpEff database
 java -jar $PATHS/snpEff.jar build -gff3 -v $INSHORT
