@@ -44,7 +44,7 @@ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BP
 awk 'NR > 33 { print }' GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt | awk '{print $1, $5}' - > acckey
 ./replace_chrs.pl acckey cleaned_reordered_hetAtr.sorted.gtf > hetAtr.repchr.gtf
 
-agat_convert_sp_gxf2gxf -v -g hetAtr.repchr.gtf --gvo 3 -o hetAtr.repchr.gff
+agat_convert_sp_gxf2gxf.pl -g hetAtr.repchr.gtf --gvo 3 -o hetAtr.repchr.gff
 
 mv hetAtr.repchr.gtf genes.gtf
 mv genes.gtf snpEff/data/hetAtr
