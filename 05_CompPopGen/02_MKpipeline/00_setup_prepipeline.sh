@@ -1,6 +1,6 @@
 # in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/MK_pipeline
 
-module load Anaconda3/2019.10
+module load Anaconda3/2019.10 samtools/1.10-fasrc01
 
 # from /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline, copy over these files: 
 # hetAtr.vcf.gz
@@ -10,43 +10,44 @@ module load Anaconda3/2019.10
 
 #### still need to figure out what the coverage output from snakemake will look like
 
-cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/output_gtfs/cleaned_reordered_hetAtr.sorted.gtf .
-
-wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt
-cut -f5 assembly_report.txt > scaffolds_only.txt
-mv snpEff/data/hetAtr/sequences.fa .
-grep -v -f scaffolds_only.txt sequences.fa > chr.only.seq.fa
-### pick up here on Monday 
-
-awk 'NR > 33 { print }' GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt | awk '{print $1, $5}' - > acckey
-./replace_chrs.pl acckey cleaned_reordered_hetAtr.sorted.gtf > hetAtr.repchr.gtf
-
 # download SnpEff
 wget http://sourceforge.net/projects/snpeff/files/snpEff_latest_core.zip
 unzip snpEff_latest_core.zip
 rm snpEff_latest_core.zip
 rm -r clinEff/
 cd snpEff/
+mkdir -p data/$INSHORT
+cd data/$INSHORT
+cd ../..
 
 export R_LIBS_USER=$HOME/swuitchik/apps/R_3.6.1
 export PATHW=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/MK_pipeline
 export PATHS=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/MK_pipeline/snpEff
 export INSHORT=hetAtr
 export OUTGROUP=stiNae
-# need to figure out if there should be an INLONG and OUTLONG...
+# need to figure out if there should still be an INLONG and OUTLONG...
 
-mkdir -p data/$INSHORT
-cd data/$INSHORT
+# download genome and pull out only chromosomes (to match chromosome only WGA annotation)
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna.gz
 gunzip GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna.gz
+samtools faidx -r chr_only.txt GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna > chr.only.seq.fa
+mv chr.only.seq.fa sequences.fa
+rm GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna.fai
+mv sequences.fa snpEff/data/hetAtr/
 
-
-mv GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna sequences.fa
-cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/MK_pipeline/hetAtr.repchr.gtf .
-mv hetAtr.repchr.gtf genes.gtf
-
-cd ../..
- 
+# get assembly report to replace chromosome names in GTF (from het1 -> CM021731.1, etc.) 
 conda activate mk_v2
+conda install -c bioconda agat # needed for gtf conversion
 
-java -jar $PATHS/snpEff.jar build -gtf22 -v $INSHORT
+cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cesar/output_gtfs/cleaned_reordered_hetAtr.sorted.gtf .
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt
+awk 'NR > 33 { print }' GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt | awk '{print $1, $5}' - > acckey
+./replace_chrs.pl acckey cleaned_reordered_hetAtr.sorted.gtf > hetAtr.repchr.gtf
+
+agat_convert_sp_gxf2gxf -v -g hetAtr.repchr.gtf --gvo 3 -o hetAtr.repchr.gff
+
+mv hetAtr.repchr.gtf genes.gtf
+mv genes.gtf snpEff/data/hetAtr
+
+# build snpEff database
+java -jar $PATHS/snpEff.jar build -gff3 -v $INSHORT
