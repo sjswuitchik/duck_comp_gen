@@ -12,10 +12,9 @@ bcftools view -O z -s stiNae_ind01 Combined_hardFiltered.vcf > stiNae.vcf.gz
 bcftools view -O z -S hetAtr_indvs Combined_hardFiltered.vcf > hetAtr.vcf.gz
 
 # pull out stiNae from missingness file & rename
-grep -v stiNae_ind01 missing_data_per_ind.txt > hetAtr_all_all_missingness_info.txt
+grep -v stiNae_ind01 missing_data_per_ind.txt > hetAtr_missing_data.txt
 sed -n 1p missing_data_per_ind.txt > stiNae_missing_data.txt
-grep -v -f hetAtr_all_all_missingness_info.txt missing_data_per_ind.txt > temp
+grep -v -f hetAtr_missing_data.txt missing_data_per_ind.txt > temp
 cat temp >> stiNae_missing_data.txt
 rm temp
-
 
