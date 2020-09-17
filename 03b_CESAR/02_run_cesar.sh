@@ -58,7 +58,7 @@ done
 wget https://github.com/shenwei356/brename/releases/download/v2.10.0/brename_linux_amd64.tar.gz
 tar zxvf brename_linux_amd64.tar.gz 
 rm brename_linux_amd64.tar.gz 
-chomd +x ./brename
+chmod +x ./brename
 ./brename -p ".defline." -r "." -R
 ./brename -p ".fasta.2bit" -r ".2bit" -R
 
