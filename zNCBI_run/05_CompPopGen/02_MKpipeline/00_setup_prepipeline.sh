@@ -23,9 +23,15 @@ cd /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_
 
 for file in *_dedup.bam;
 do
-  bedtools genome -bga -ibam $file -g /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/hetAtr/genome/hetAtr.fa > $file.statscov.bg
-  sed -i 's/\_dedup\.bam\.//g' $file.statscov.bg > $file
+  bedtools genomecov -bga -ibam $file -g /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/hetAtr/genome/hetAtr.fa > $file.statscov.bg
 done
+
+wget https://github.com/shenwei356/brename/releases/download/v2.10.0/brename_linux_amd64.tar.gz
+tar zxvf brename_linux_amd64.tar.gz 
+rm brename_linux_amd64.tar.gz 
+chmod +x ./brename
+
+./brename -p "_dedup.bam." -r "." -R 
 
 
 
