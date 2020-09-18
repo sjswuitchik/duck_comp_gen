@@ -33,7 +33,8 @@ chmod +x ./brename
 
 ./brename -p "_dedup.bam." -r "." -R 
 
-cp *.statscov.bg /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline
+cp *.statscov.bg /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline/coverage_stats
+cd /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline/coverage_stats
 
-
+sbatch 
 
