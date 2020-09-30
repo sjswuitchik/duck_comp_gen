@@ -41,7 +41,7 @@ awk '{print $4, $3}' galGal6_chr_key > acckey
 ./replace_chrs.pl acckey galGal6_phastcons_SP_conserved_elements_LoweEtAlMBE.bed > galGal6_phastcons_SP_conserved_elements_LoweEtAlMBE_NCBI.bed
 
 # liftOver Sackton et al galGal4 -> galGal6
-cut -f3,4 galGal4_chr_kay > acckey
+cut -f3,4 galGal4_chr_key > acckey
 ./replace_chrs.pl acckey galGal4_phastCons_TP_conserved_elements_SacktonEtAl.bed > galGal4_phastCons_TP_conserved_elements_SacktonEtAl_UCSC.bed 
 ./liftOver galGal4_phastCons_TP_conserved_elements_SacktonEtAl_UCSC.bed galGal4ToGalGal6.over.chain galGal6_phastcons_TP_conserved_elements_SacktonEtAl.bed SacktonEtAlUnmapped.bed
 awk '{print $4, $3}' galGal6_chr_key > acckey
