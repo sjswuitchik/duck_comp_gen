@@ -7,6 +7,6 @@
 
 module load bedtools2/2.26.0-fasrc01
 
-bedtools unionbedg -header -empty -g hetAtr.fa -i hetAtr_ind*.statscov.bg.gz > hetAtr_union.bg
+bedtools unionbedg -header -empty -g /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/hetAtr/genome/hetAtr.fa -i hetAtr_ind*.statscov.bg.gz > hetAtr_union.bg
 
 gzip hetAtr_union.bg
