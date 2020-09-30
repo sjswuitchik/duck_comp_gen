@@ -61,7 +61,7 @@ cat FicAlb.part1.bed FicAlb.part2.bed > FicAlb1.5_phastCons_TP_conserved_element
 cut -f1,2,3,4 FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol_NCBI.bed > FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol_NCBI_cut.bed
 cp /n/holylfs/LABS/informatics/tsackton/broodParasites/DATA/01_alignment/work/broodParaAlign.hal .
 
-singularity shell --cleanenv /n/singularity_images/informatics/cat/cat:20200116.sif
+singularity shell --cleanenv /n/singularity_images/informatics/cat/cat_v2.1.0-cf7a06e.sif
 halLiftover --noDupes broodParaAlign.hal ficAlb FicAlb1.5_phastCons_TP_conserved_elements_CraigEtAlMolEcol_NCBI_cut.bed galGal galGal5_Craig.bed 2> craig_liftover.log
 exit
 
