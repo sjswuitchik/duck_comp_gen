@@ -38,5 +38,7 @@ cd /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_
 
 sbatch unioncov.sh
 
+# add in a header with all ind names - for some reason, `-header` and `-names` in unionbedg weren't working together well
+sed -e '1i\'chrom'\t'start'\t'end'\t'ind01'\t'ind02'\t'ind03'\t'ind04'\t'ind05'\t'ind06'\t'ind07'\t'ind08'\t'ind09'\t'ind10'\t'ind11'\t'ind12'\t'ind13'\t'ind14' hetAtr_union.bg.gz > hetAtr_union.head.bg.gz
 
 
