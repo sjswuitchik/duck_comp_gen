@@ -58,7 +58,10 @@ Rscript --slave --vanilla tidygenes.R 'galGal.NCBIgenes.clean.bed' >std.Rout 2> 
 bedtools sort -i galGal.tidygenes.bed > galGal.genes.sorted.bed
 
 # set 100 kb window around genes
-bedtools slop 
+bedtools slop -i galGal.genes.sorted.bed -g galGal.chrom.sizes -b 100000 > galGal.slop.bed
+
+# combine accel CNEEs with the slopped BED 
+
 
 # find closest gene to CNEEs
 bedtools sort -i galGal6_final_merged_CNEEs_named.bed > galGal6_final_merged_CNEEs_named_sorted.bed
