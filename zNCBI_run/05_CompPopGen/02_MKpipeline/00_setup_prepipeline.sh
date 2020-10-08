@@ -38,5 +38,12 @@ cd /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_
 
 sbatch unioncov.sh
 
-gzip -dc hetAtr_union.bg.gz | ./sum_cov.awk 
+gzip -dc hetAtr_union.bg.gz | ./sum_cov.awk
+bedtools merge -i coverage_sites_clean.bed > hetAtr_coverage_sites_clean_merged.bed
+bedtools merge -i coverage_sites_low.bed > hetAtr_coverage_sites_low_merged.bed
+bedtools merge -i coverage_sites_high.bed > hetAtr_coverage_sites_high_merged.bed
+
 gzip -dc stiNae_ind01.statscov.bg.gz | ./sum_cov.awk
+bedtools merge -i coverage_sites_clean.bed > stiNae_coverage_sites_clean_merged.bed
+bedtools merge -i coverage_sites_low.bed > stiNae_coverage_sites_low_merged.bed
+bedtools merge -i coverage_sites_high.bed > stiNae_coverage_sites_high_merged.bed
