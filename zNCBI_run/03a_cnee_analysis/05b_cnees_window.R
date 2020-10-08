@@ -57,8 +57,8 @@ adjP <- bind_cols(final.data.window, pv)
 adjP %>% filter(adjustP < 0.05) %>%
   write_delim("final.cnees.window.sig.txt", delim = "\t", col_names = T)
 
-test <- left_join(all.cnees.window, adjP, by = c("chr" = "chr", "start" = "start", "end" = "end")) %>%
-  filter(cnee != 0)
+test <- left_join(acc.cnees.window, adjP, by = c("chr" = "chr", "start" = "start", "end" = "end")) %>%
+  na.omit()
 write_delim(test, "~/Desktop/test.txt", delim = "\t", col_names = F)
 
 ## bash repl chr:
@@ -70,11 +70,12 @@ write_delim(test, "~/Desktop/test.txt", delim = "\t", col_names = F)
 # also replaced W with 34, Z with 35
 
 testrep <- read_delim("~/Desktop/test.rep.txt", delim = "\t", col_names = F, col_types = "dddcddddd") %>%
-  rename(chr = X1, start = X2, end = X3, cnee = X4, total = X5, acc = X6, prop = X7, pVal = X8, Padj = X9) %>%
+  rename(chr = X1, start = X2, end = X3, acc = X4, total = X5, acc.cnee = X6, prop = X7, pVal = X8, pAdj = X9) %>%
+  select(-c(acc.cnee)) %>%
   na.omit()
 
-qq(testrep$Padj)
+qq(testrep$pAdj)
 
-manhattan(testrep, chr="chr", bp = "start", snp = "cnee", p = "Padj", col = c("grey", "skyblue"), annotatePval = 0.05) # note: W = 34, Z = 35
+manhattan(testrep, chr="chr", bp = "start", snp = "acc", p = "pAdj", col = c("grey", "skyblue"), annotatePval = 0.05) # note: W = 34, Z = 35
 
 
