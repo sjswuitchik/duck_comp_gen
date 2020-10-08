@@ -36,14 +36,18 @@ chmod +x ./brename
 cp *.statscov.bg /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline/coverage_stats
 cd /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline/coverage_stats
 
+gzip stiNae_ind01.statscov.bg
+
 sbatch unioncov.sh
 
 gzip -dc hetAtr_union.bg.gz | ./sum_cov.awk
+gunzip coverage*.gz
 bedtools merge -i coverage_sites_clean.bed > hetAtr_coverage_sites_clean_merged.bed
 bedtools merge -i coverage_sites_low.bed > hetAtr_coverage_sites_low_merged.bed
 bedtools merge -i coverage_sites_high.bed > hetAtr_coverage_sites_high_merged.bed
 
 gzip -dc stiNae_ind01.statscov.bg.gz | ./sum_cov.awk
+gunzip coverage*.gz
 bedtools merge -i coverage_sites_clean.bed > stiNae_coverage_sites_clean_merged.bed
 bedtools merge -i coverage_sites_low.bed > stiNae_coverage_sites_low_merged.bed
 bedtools merge -i coverage_sites_high.bed > stiNae_coverage_sites_high_merged.bed
