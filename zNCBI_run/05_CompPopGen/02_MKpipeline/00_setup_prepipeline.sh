@@ -42,12 +42,12 @@ sbatch unioncov.sh
 
 gzip -dc hetAtr_union.bg.gz | ./sum_cov.awk
 gunzip coverage*.gz
-bedtools merge -i coverage_sites_clean.bed > hetAtr_coverage_sites_clean_merged.bed
-bedtools merge -i coverage_sites_low.bed > hetAtr_coverage_sites_low_merged.bed
-bedtools merge -i coverage_sites_high.bed > hetAtr_coverage_sites_high_merged.bed
+sed '1d' coverage_sites_clean.bed | bedtools sort -i - | bedtools merge -i - > hetAtr_coverage_sites_clean_merged.bed
+sed '1d' coverage_sites_low.bed | bedtools sort -i - | bedtools merge -i - > hetAtr_coverage_sites_low_merged.bed
+sed '1d' coverage_sites_high.bed | bedtools sort -i - | bedtools merge -i - > hetAtr_coverage_sites_high_merged.bed
 
 gzip -dc stiNae_ind01.statscov.bg.gz | ./sum_cov.awk
 gunzip coverage*.gz
-bedtools merge -i coverage_sites_clean.bed > stiNae_coverage_sites_clean_merged.bed
-bedtools merge -i coverage_sites_low.bed > stiNae_coverage_sites_low_merged.bed
-bedtools merge -i coverage_sites_high.bed > stiNae_coverage_sites_high_merged.bed
+sed '1d' coverage_sites_clean.bed | bedtools sort -i - | bedtools merge -i - > stiNae_coverage_sites_clean_merged.bed
+sed '1d' coverage_sites_low.bed | bedtools sort -i - | bedtools merge -i - > stiNae_coverage_sites_low_merged.bed
+sed '1d' coverage_sites_high.bed | bedtools sort -i - | bedtools merge -i - > stiNae_coverage_sites_high_merged.bed
