@@ -61,7 +61,7 @@ bedtools sort -i galGal.tidygenes.bed > galGal.genes.sorted.bed
 bedtools slop -i galGal.genes.sorted.bed -g galGal.chrom.sizes -b 100000 > galGal.slop.bed
 
 # combine accel CNEEs with the slopped BED 
-bedtools annotate -i galGal.slop.bed -files acc_cnees.bed galGal6_final_merged_CNEEs_named_sorted.bed -counts | less 
+bedtools annotate -i galGal.slop.bed -files acc_cnees.bed galGal6_final_merged_CNEEs_named_sorted.bed > cnee_gene100kb.bed 
 
 # find closest gene to CNEEs
 bedtools sort -i galGal6_final_merged_CNEEs_named.bed > galGal6_final_merged_CNEEs_named_sorted.bed
