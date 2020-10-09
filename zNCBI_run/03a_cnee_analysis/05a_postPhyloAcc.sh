@@ -60,8 +60,24 @@ bedtools sort -i galGal.tidygenes.bed > galGal.genes.sorted.bed
 # set 100 kb window around genes
 bedtools slop -i galGal.genes.sorted.bed -g galGal.chrom.sizes -b 100000 > galGal.slop.bed
 
-# combine accel CNEEs with the slopped BED 
-bedtools annotate -i galGal.slop.bed -files acc_cnees.bed galGal6_final_merged_CNEEs_named_sorted.bed > cnee_gene100kb.bed 
+# annotate slopped BED with accel CNEEs 
+bedtools annotate -i galGal.slop.bed -files acc_cnees.bed galGal6_final_merged_CNEEs_named_sorted.bed -counts > cnee_gene100kb.bed 
+awk '{FS = OFS = '\t'} $6 > 0 {print}' cnee_gene100kb.bed > cnee_gene100kb.clean.bed
+
+# replace non-zero counts with '1's 
+awk '{FS = OFS = '\t'} $5 != 0 {$5 = 1} {print}' cnee_gene100kb.clean.bed > cnee_gene100kb.rep.bed
+
+# do permutations
+mkdir cnee_perms/
+for i in {1..1000}; 
+do
+  shuf -n 294 cnee_gene100kb.rep.bed > cnee_perms/'shuffle'$i.bed
+done
+
+
+# annotate perms together
+mv cnee_perms/shuffle1.bed .
+bedtools annotate -i shuffle1.bed -files cnee_perms/*.bed > cnee_perms
 
 # find closest gene to CNEEs
 bedtools sort -i galGal6_final_merged_CNEEs_named.bed > galGal6_final_merged_CNEEs_named_sorted.bed
