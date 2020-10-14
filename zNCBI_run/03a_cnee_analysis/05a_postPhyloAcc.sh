@@ -65,7 +65,12 @@ bedtools annotate -i galGal.slop.bed -files acc_cnees.bed galGal6_final_merged_C
 awk '{FS = OFS = '\t'} $6 > 0 {print}' cnee_gene100kb.bed > cnee_gene100kb.clean.bed
 
 # replace '-' in gene names (because FS were being weird) and non-zero accel counts with '1's 
-sed -i 's/' ## need to work on this 
+
+
+
+
+
+
 awk '{FS = OFS = '\t'} $5 != 0 {$5 = 1} {print}' cnee_gene100kb.clean.bed > cnee_gene100kb.rep.bed
 
 # do permutations
