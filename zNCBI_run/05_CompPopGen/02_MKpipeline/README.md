@@ -37,9 +37,9 @@ A few variables need to be set before running:
 
 Example species names variables: 
 
-```export INSHORT=corCor```
+```export INSHORT=hetAtr```
 
-```export OUTSHORT=corMon```
+```export OUTSHORT=stiNae```
 
 ```export INLONG=_Ccornix```
 
@@ -73,9 +73,9 @@ $INSHORT.genome : genome_name
 
 For example: 
 
-\# Hooded crow genome, NCBI version 2
+\# Black-headed duck genome, NCBI version 1
 
-corCor.genome : Corvus_cornix_cornix
+hetAtr.genome : Heteronetta_atricapilla
 
 Once snpEff is ready, export the path to a variable:
 
@@ -89,9 +89,9 @@ From your working directory, run:
 
 ### In your working directory, you'll need: 
 
-- Missingness data (all_all_missingness_info.txt) for both ingroup and outgroup
+- Missingness data (missing_data.txt) for hetAtr and stiNae
 
-- Coverage site data (clean_coverage_sites_merged.bed) for both ingroup and outgroup
+- Coverage site data (coverage_sites_clean_merged.bed) for hetAtr and stiNae
 
 - genes.gff (same file that's in the snpEff data directory, gunzipped)
 
@@ -109,6 +109,6 @@ From your working directory, run:
 
 - mktest.R
 
-- ingroup and outgroup VCFs
+- hetAtr and stiNae VCFs
 
 #### All of the above information can be found in config.sh; once working directory is ready, pipeline.sh can be run from within the directory to output results from SnIPRE, MK tests, and direction of selection calculations
