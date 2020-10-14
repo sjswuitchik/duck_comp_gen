@@ -30,20 +30,11 @@ A few variables need to be set before running:
 
 ```export OUTSHORT=outgroup_spp_name (six letter code)```
 
-```export INLONG=ingroup_spp_name (longform spp name, with leading underscore)```
-
-```export OUTLONG=outgroup_spp_name (longform spp name, with leading underscore)```
-
-
 Example species names variables: 
 
 ```export INSHORT=hetAtr```
 
 ```export OUTSHORT=stiNae```
-
-```export INLONG=_Ccornix```
-
-```export OUTLONG=_Cmonedula```
 
 ### SnpEff
 
