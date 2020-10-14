@@ -62,31 +62,14 @@ bedtools slop -i galGal.genes.sorted.bed -g galGal.chrom.sizes -b 100000 > galGa
 
 # annotate slopped BED with accel CNEEs 
 bedtools annotate -i galGal.slop.bed -files acc_cnees.bed galGal6_final_merged_CNEEs_named_sorted.bed -counts > cnee_gene100kb.bed 
-awk '{FS = OFS = '\t'} $6 > 0 {print}' cnee_gene100kb.bed > cnee_gene100kb.clean.bed
-
-# replace '-' in gene names (because FS were being weird) and non-zero accel counts with '1's 
-
-
-
-
-
-
-awk '{FS = OFS = '\t'} $5 != 0 {$5 = 1} {print}' cnee_gene100kb.clean.bed > cnee_gene100kb.rep.bed
+awk '$6 > 0 {print}' cnee_gene100kb.bed | awk '$5 != 0 {$5 = 1} {print}' - | sed 's/ /\t/g' - > cnee_gene100kb.clean.bed
 
 # do permutations
 mkdir cnee_perms/
 for i in {0001..1000}; 
 do
-  shuf -n 294 cnee_gene100kb.rep.bed > cnee_perms/'shuffle'$i.bed
+  shuf -n 294 cnee_gene100kb.clean.bed > cnee_perms/'shuffle'$i.bed
 done
-
-cd cnee_perms
-for file in *.bed;
-do
-  awk '{FS = OFS = '\t'} (NF == 6) {print}' $file > $file.clean
-done
-rm *.bed 
-rename -v 'bed.clean' 'bed' cnee_perms/*.clean
 
 # annotate perms together
 mv cnee_perms/shuffle0001.bed .
@@ -94,7 +77,7 @@ cd cnee_perms
 ls *.bed > shuffle
 mv shuffle ..
 cd ..
-bedtools annotate -i shuffle0001.bed -files shuffle > cnee_perms.bed
+bedtools annotate -i shuffle0001.bed -files cnee_perms/*.bed > cnee_perms.bed
 
 # find closest gene to CNEEs
 bedtools sort -i galGal6_final_merged_CNEEs_named.bed > galGal6_final_merged_CNEEs_named_sorted.bed
