@@ -71,13 +71,8 @@ do
   shuf -n 294 cnee_gene100kb.clean.bed > cnee_perms/'shuffle'$i.bed
 done
 
-# annotate perms together
-mv cnee_perms/shuffle0001.bed .
-cd cnee_perms
-ls *.bed > shuffle
-mv shuffle ..
-cd ..
-bedtools annotate -i shuffle0001.bed -files cnee_perms/*.bed -counts -names> cnee_perms.counts.bed
+# annotate 
+bedtools annotate -i cnee_gene100kb.clean.bed -files cnee_perms/*.bed -counts -names> cnee_perms.counts.bed
 
 # find closest gene to CNEEs
 bedtools sort -i galGal6_final_merged_CNEEs_named.bed > galGal6_final_merged_CNEEs_named_sorted.bed
