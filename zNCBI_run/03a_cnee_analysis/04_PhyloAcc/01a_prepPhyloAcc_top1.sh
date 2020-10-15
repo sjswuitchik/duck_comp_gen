@@ -1,7 +1,9 @@
 ## Prep, top 1
 # in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03a_cnee_analysis
 
+module load gcc/7.1.0-fasrc01 armadillo/7.800.2-fasrc02 gsl/2.4-fasrc01
 git clone https://github.com/xyz111131/PhyloAcc.git
+make
 
 mkdir -p PhyloAcc/input_data
 cd PhyloAcc/input_data
