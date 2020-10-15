@@ -1,6 +1,8 @@
 ## Prep, top 1
 # in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03a_cnee_analysis
 
+git clone https://github.com/xyz111131/PhyloAcc.git
+
 mkdir -p PhyloAcc/input_data
 cd PhyloAcc/input_data
 cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03a_cnee_analysis/4d_neut_models/galloTop*.named.mod /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03a_cnee_analysis/alignments/aligned/galloseq_ncbi.part.bed /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03a_cnee_analysis/alignments/aligned/galloseq_ncbi_gapFixed.fa .
