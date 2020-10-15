@@ -77,7 +77,7 @@ cd cnee_perms
 ls *.bed > shuffle
 mv shuffle ..
 cd ..
-bedtools annotate -i shuffle0001.bed -files cnee_perms/*.bed > cnee_perms.bed
+bedtools annotate -i shuffle0001.bed -files cnee_perms/*.bed -counts -names> cnee_perms.counts.bed
 
 # find closest gene to CNEEs
 bedtools sort -i galGal6_final_merged_CNEEs_named.bed > galGal6_final_merged_CNEEs_named_sorted.bed
