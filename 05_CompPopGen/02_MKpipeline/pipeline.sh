@@ -17,7 +17,7 @@ mv $INSHORT.clean.recode.vcf $INSHORT.clean.vcf
 vcftools --gzvcf $OUTSHORT.vcf.gz --remove-filtered-all --remove-indels --min-alleles 2 --max-alleles 2 --maf 0 --max-missing 0.75 --recode --recode-INFO-all --out $OUTSHORT.clean
 mv $OUTSHORT.clean.recode.vcf $OUTSHORT.clean.vcf
 
-Rscript --vanilla missingness.R $INLONG'_all_all_missingness_info.txt' $OUTLONG'_all_all_missingness_info.txt'
+Rscript --vanilla missingness.R $INSHORT'_missing_data.txt' $OUTSHORT'_missing_data.txt'
 
 # remove individuals with high relative missingness, if any
 export ININDV=`cat ingroup.remove.indv | wc -l`
@@ -39,7 +39,7 @@ else
 fi
 
 # create callable sites for in and outgroup
-bedtools intersect -a $INLONG'_clean_coverage_sites_merged.bed' -b $OUTLONG'_clean_coverage_sites_merged.bed' > callable.bed
+bedtools intersect -a $INSHORT'_coverage_sites_clean_merged.bed' -b $OUTSHORT'__coverage_sites_clean_merged.bed' > callable.bed
 # intersect with in and out group to filter for callable sites only
 bedtools intersect -a $INSHORT.clean.vcf -b callable.bed -header > $INSHORT.call.vcf 
 bedtools intersect -a $OUTSHORT.clean.vcf -b callable.bed -header > $OUTSHORT.call.vcf
