@@ -5,10 +5,10 @@ module load Anaconda3/2019.10 samtools/1.10-fasrc01
 # from /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline, copy over these files: 
 # hetAtr.vcf.gz
 # stiNae.vcf.gz
-# hetAtr_all_all_missingness_info.txt
-# stiNae_all_all_missingness_info.txt
-
-#### still need to figure out what the coverage output from snakemake will look like
+# hetAtr_missing_data.txt
+# stiNae_missing_data.txt
+# hetAtr_coverage_sites_clean_merged.bed
+# stiNae_coverage_sites_clean_merged.bed
 
 # download SnpEff
 wget http://sourceforge.net/projects/snpeff/files/snpEff_latest_core.zip
@@ -24,8 +24,8 @@ export R_LIBS_USER=$HOME/swuitchik/apps/R_3.6.1
 export PATHW=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/MK_pipeline
 export PATHS=/n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/MK_pipeline/snpEff
 export INSHORT=hetAtr
-export OUTGROUP=stiNae
-# need to figure out if there should still be an INLONG and OUTLONG...
+export OUTSHORT=stiNae
+
 
 # download genome and pull out only chromosomes (to match chromosome only WGA annotation)
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna.gz
