@@ -36,7 +36,7 @@ bedtools intersect -a galGal.windows.bed -b acc.cnees.final.bed -loj | cut -f1,2
 
 ### cluster profiler input generation
 
-# get galGal6 genome
+# get galGal6 annotation
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_genomic.gff.gz
 gunzip GCF_000002315.6_GRCg6a_genomic.gff.gz
 
