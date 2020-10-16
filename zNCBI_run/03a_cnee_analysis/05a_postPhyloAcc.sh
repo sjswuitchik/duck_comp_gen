@@ -31,10 +31,7 @@ bedtools intersect -a galGal.windows.bed -b galGal6_final_merged_CNEEs_named_sor
 # use output from 04_PhyloAcc/07_phyloP_cleanup_cnees.R to bin accelerated CNEEs list into windows
 bedtools intersect -a galGal.windows.bed -b acc.cnees.final.bed -loj | cut -f1,2,3,7 | sed --expression='s/\.$/0/g' > window.acc.cnees.bed
 
-# repeat above steps in 5Mb windows, no slide
-bedtools makewindows -g galGal.chrom.sizes -w 5000000 > galGal.5Mbwindows.bed
-bedtools intersect -a galGal.5Mbwindows.bed -b galGal6_final_merged_CNEEs_named_sorted.bed -loj | cut -f1,2,3,7 | sed --expression='s/\.$/0/g' > 5Mbwindow.cnees.bed
-bedtools intersect -a galGal.5Mbwindows.bed -b acc.cnees.final.bed -loj | cut -f1,2,3,7 | sed --expression='s/\.$/0/g' > 5Mbwindow.acc.cnees.bed
+
 
 
 ### cluster profiler input generation
