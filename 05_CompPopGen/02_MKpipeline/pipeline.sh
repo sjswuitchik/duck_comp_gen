@@ -39,7 +39,7 @@ else
 fi
 
 # create callable sites for in and outgroup
-bedtools intersect -a $INSHORT'_coverage_sites_clean_merged.bed' -b $OUTSHORT'__coverage_sites_clean_merged.bed' > callable.bed
+bedtools intersect -a $INSHORT'_coverage_sites_clean_merged.bed' -b $OUTSHORT'_coverage_sites_clean_merged.bed' > callable.bed
 # intersect with in and out group to filter for callable sites only
 bedtools intersect -a $INSHORT.clean.vcf -b callable.bed -header > $INSHORT.call.vcf 
 bedtools intersect -a $OUTSHORT.clean.vcf -b callable.bed -header > $OUTSHORT.call.vcf
