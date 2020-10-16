@@ -55,12 +55,6 @@ sed '1d' coverage_sites_high.bed | bedtools sort -i - | bedtools merge -i - > st
 cp -v hetAtr_coverage_sites_clean_merged.bed stiNae_coverage_sites_clean_merged.bed ..
 cd ..
 
-# get GTF from CESAR for intermediate work (annotation isn't good but will suffice while we hopefully wait for NCBI)
-cp /n/holylfs/LABS/informatics/swuitchik/ducks/cesar/output_gtfs/cleaned_reordered_hetAtr.sorted.gtf .
-mv cleaned_reordered_hetAtr.sorted.gtf genes.gtf
-mv genes.gtf snpEff/data/hetAtr/
-
-# build snpEff database using GTF
-
+# using GTF from CESAR annotation in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/MK_pipeline to test while waiting for RNA seq data/NCBI annotation
 
 
