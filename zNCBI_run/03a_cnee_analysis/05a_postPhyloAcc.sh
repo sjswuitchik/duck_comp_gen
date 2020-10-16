@@ -41,18 +41,14 @@ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GR
 gunzip GCF_000002315.6_GRCg6a_genomic.gff.gz
 
 # gff to bed
-column -s, -t < GCF_000002315.6_GRCg6a_genomic.gff | awk '$3 == "CDS"' > galGal.onlyCDS.gff
-awk -f gff2bed.awk galGal.onlyCDS.gff > galGal.gff.bed
+column -s, -t < GCF_000002315.6_GRCg6a_genomic.gff | awk '$3 == "gene"' > galGal.genes.gff
+awk -f gff2bed.awk galGal.genes.gff > galGal.gff.bed
 
 # pull out genes
 cat galGal.gff.bed | python3 genenames.py > galGal.genes.bed
-awk '{ if (NF == 4) { print } }' galGal.genes.bed > galGal.genes.clean.bed
-
-export R_LIBS_USER=$HOME/apps/R_4.0.2
-Rscript --slave --vanilla tidygenes.R 'galGal.NCBIgenes.clean.bed' >std.Rout 2> std.Rerr
 
 # sort 
-bedtools sort -i galGal.tidygenes.bed > galGal.genes.sorted.bed
+bedtools sort -i galGal.genes.bed > galGal.genes.sorted.bed
 
 # set 100 kb window around genes
 bedtools slop -i galGal.genes.sorted.bed -g galGal.chrom.sizes -b 100000 > galGal.slop.bed
@@ -65,11 +61,11 @@ awk '$6 > 0 {print}' cnee_gene100kb.bed | awk '$5 != 0 {$5 = 1} {print}' - | sed
 mkdir cnee_perms/
 for i in {0001..1000}; 
 do
-  shuf -n 294 cnee_gene100kb.clean.bed > cnee_perms/'shuffle'$i.bed
+  shuf -n 294 galGal6_final_merged_CNEEs_named_sorted.bed > cnee_perms/'shuffle'$i.bed
 done
 
 # annotate 
-bedtools annotate -i cnee_gene100kb.clean.bed -files cnee_perms/*.bed -counts -names> cnee_perms.counts.bed
+bedtools annotate -i cnee_gene100kb.clean.bed -files cnee_perms/*.bed -counts > cnee_perms.counts.bed
 
 # find closest gene to CNEEs
 bedtools sort -i galGal6_final_merged_CNEEs_named.bed > galGal6_final_merged_CNEEs_named_sorted.bed
