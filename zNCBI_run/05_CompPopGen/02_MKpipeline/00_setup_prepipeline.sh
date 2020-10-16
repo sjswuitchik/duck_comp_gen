@@ -57,4 +57,10 @@ cd ..
 
 # get GTF from CESAR for intermediate work (annotation isn't good but will suffice while we hopefully wait for NCBI)
 cp /n/holylfs/LABS/informatics/swuitchik/ducks/cesar/output_gtfs/cleaned_reordered_hetAtr.sorted.gtf .
+mv cleaned_reordered_hetAtr.sorted.gtf genes.gtf
+mv genes.gtf snpEff/data/hetAtr/
+
+# build snpEff database using GTF
+
+
 
