@@ -55,7 +55,7 @@ bedtools slop -i galGal.genes.sorted.bed -g galGal.chrom.sizes -b 100000 > galGa
 
 # annotate slopped BED with accel CNEEs 
 bedtools annotate -i galGal.slop.bed -files acc.cnees.final.bed galGal6_final_merged_CNEEs_named_sorted.bed -counts > cnee_gene100kb.bed 
-awk '$6 > 0 {print}' cnee_gene100kb.bed | awk '$5 != 0 {$5 = 1} {print}' - | sed 's/ /\t/g' - > cnee_gene100kb.clean.bed
+awk '$6 > 0 {print}' cnee_gene100kb.bed | sed 's/ /\t/g' - > cnee_gene100kb.clean.bed
 
 # do permutations
 mkdir cnee_perms/
