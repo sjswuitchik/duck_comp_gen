@@ -52,13 +52,15 @@ bedtools sort -i galGal.genes.bed > galGal.genes.sorted.bed
 # set 100 kb window around genes
 bedtools slop -i galGal.genes.sorted.bed -g galGal.chrom.sizes -b 100000 > galGal.slop.bed
 
+# sort full list of CNEEs
+bedtools sort -i galGal6_final_merged_CNEEs_named.bed > galGal6_final_merged_CNEEs_named_sorted.bed
+
 # annotate slopped BED with accel CNEEs 
 bedtools annotate -i galGal.slop.bed -files acc.cnees.final.bed galGal6_final_merged_CNEEs_named_sorted.bed -counts > cnee_gene100kb.bed 
 awk '$6 > 0 {print}' cnee_gene100kb.bed | sed 's/ /\t/g' - > cnee_gene100kb.clean.bed
 
 # do permutations
 mkdir cnee_perms/
-bedtools sort -i galGal6_final_merged_CNEEs_named.bed > galGal6_final_merged_CNEEs_named_sorted.bed
 for i in {0001..1000}; 
 do
   shuf -n 294 galGal6_final_merged_CNEEs_named_sorted.bed > cnee_perms/'shuffle'$i.bed
@@ -70,8 +72,15 @@ bedtools annotate -i cnee_gene100kb.clean.bed -files cnee_perms/*.bed -counts > 
 
 
 # input generation for cluster profiler (GO enrichment permutations) 
-awk '$6 > 0 {print}' cnee_gene100kb.bed | awk '$5 != 0 {$5 = 1} {print}' - | sed 's/ /\t/g' - > cnee_gene100kb.GO.bed
 
+#create foreground
+awk '$6 > 0 {print $1, $2, $3, $4, $5}' cnee_gene100kb.bed | awk '$5 != 0 {$5 = 1} {print}' - | sed 's/ /\t/g' - > cnee_gene100kb.GO.bed
+
+# create background
+bedtools closest -a galGal6_final_merged_CNEEs_named_sorted.bed -b galGal.genes.sorted.bed | cut -f1,2,3,4,8 | bedtools merge -i - -d -1 -c 4,5 -o distinct > galGal_cnees_genes.bed
+
+
+# permutations 
 mkdir go_perms/
 for i in {0001..1000}; 
 do
@@ -80,9 +89,4 @@ done
 
 
 
-
-
-
-# find closest gene to CNEEs
-bedtools closest -a galGal6_final_merged_CNEEs_named_sorted.bed -b galGal.genes.sorted.bed | cut -f1,2,3,4,8 | bedtools merge -i - -d -1 -c 4,5 -o distinct > galGal_cnees_genes.bed
 
