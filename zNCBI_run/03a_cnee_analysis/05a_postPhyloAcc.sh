@@ -33,8 +33,7 @@ bedtools intersect -a galGal.windows.bed -b acc.cnees.final.bed -loj | cut -f1,2
 
 
 
-
-### cluster profiler input generation
+### input generation for the assessment of genes with evidence for excess of nearby accelerated CNEEs
 
 # get galGal6 annotation
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_genomic.gff.gz
@@ -59,6 +58,7 @@ awk '$6 > 0 {print}' cnee_gene100kb.bed | sed 's/ /\t/g' - > cnee_gene100kb.clea
 
 # do permutations
 mkdir cnee_perms/
+bedtools sort -i galGal6_final_merged_CNEEs_named.bed > galGal6_final_merged_CNEEs_named_sorted.bed
 for i in {0001..1000}; 
 do
   shuf -n 294 galGal6_final_merged_CNEEs_named_sorted.bed > cnee_perms/'shuffle'$i.bed
@@ -67,7 +67,22 @@ done
 # annotate 
 bedtools annotate -i cnee_gene100kb.clean.bed -files cnee_perms/*.bed -counts > cnee_perms.counts.bed
 
+
+
+# input generation for cluster profiler (GO enrichment permutations) 
+awk '$6 > 0 {print}' cnee_gene100kb.bed | awk '$5 != 0 {$5 = 1} {print}' - | sed 's/ /\t/g' - > cnee_gene100kb.GO.bed
+
+mkdir go_perms/
+for i in {0001..1000}; 
+do
+  shuf -n 294 galGal6_final_merged_CNEEs_named_sorted.bed > go_perms/'go_shuffle'$i.bed
+done
+
+
+
+
+
+
 # find closest gene to CNEEs
-bedtools sort -i galGal6_final_merged_CNEEs_named.bed > galGal6_final_merged_CNEEs_named_sorted.bed
 bedtools closest -a galGal6_final_merged_CNEEs_named_sorted.bed -b galGal.genes.sorted.bed | cut -f1,2,3,4,8 | bedtools merge -i - -d -1 -c 4,5 -o distinct > galGal_cnees_genes.bed
 
