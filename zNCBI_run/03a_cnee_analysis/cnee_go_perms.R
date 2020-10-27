@@ -83,7 +83,7 @@ cnee_top2 <- read_tsv(paste0(path_to_data, "/cnee_final_top2.tsv")) %>%
   dplyr::select(ID, accel, gene)
 
 #top3
-cnee_top1 <- read_tsv(paste0(path_to_data, "/cnee_final_top3.tsv")) %>% 
+cnee_top3 <- read_tsv(paste0(path_to_data, "/cnee_final_top3.tsv")) %>% 
   dplyr::select(ID, logBF1, logBF2) %>%
   dplyr::rename(cnee = ID) %>%
   full_join(gene_gg, by = c("cnee" = "cnee")) %>%
@@ -94,5 +94,5 @@ cnee_top1 <- read_tsv(paste0(path_to_data, "/cnee_final_top3.tsv")) %>%
 
 compute_go_results(cnee_top1, paste0(path_to_data, "/original_GO_top1_", "_run", args[1]), args[2], args[3])
 compute_go_results(cnee_top2, paste0(path_to_data, "/original_GO_top2_", "_run", args[1]), args[2], args[3])
-compute_go_results(cnee_top2, paste0(path_to_data, "/original_GO_top3_", "_run", args[1]), args[2], args[3])
+compute_go_results(cnee_top3, paste0(path_to_data, "/original_GO_top3_", "_run", args[1]), args[2], args[3])
 
