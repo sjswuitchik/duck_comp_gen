@@ -2,7 +2,7 @@
 
 #SBATCH -t 800
 #SBATCH --mem 40000
-#SBATCH -p serial_requeue,bos-info
+#SBATCH -p serial_requeue
 #SBATCH -n 5
 #SBATCH -N 1
 #SBATCH --array=1-50
