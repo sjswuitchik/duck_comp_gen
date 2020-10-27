@@ -1,7 +1,7 @@
 #### GO enrichment perms ####
 library(org.Gg.eg.db) # BiocManager::install("org.Gg.eg.db")
 library(tidyverse)
-library(clusterProfiler)
+library(clusterProfiler) #  BiocManager::install("clusterProfiler")
 library(parallel)
 library(rlist)
 
