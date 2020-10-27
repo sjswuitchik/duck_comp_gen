@@ -61,7 +61,7 @@ done <genomes.tbl
 load2sqlitedb --makeIdx --dbaccess=chicken.db
 
 # qc
-sqlite3 -header -column vertebrates.db "\
+sqlite3 -header -column chicken.db "\
  SELECT speciesname, \
   sum(end-start+1) AS 'genome length',\
   count(*) AS '# chunks',\
@@ -70,10 +70,10 @@ sqlite3 -header -column vertebrates.db "\
  GROUP BY speciesname;"
 
 # run Comp Aug 
-mkdir augCGP_denovo
-cd augCGP_denovo
+mkdir -p augCGP_denovo/top1
+cd augCGP_denovo/top1
 
-for ali in *.maf
+for ali in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/*.maf
 do
 id=${ali%.maf} # remove .maf suffix
 augustus \
@@ -82,7 +82,7 @@ augustus \
 --treefile=top1.nwk \
 --alnfile=$ali \
 --dbaccess=chicken.db \
---speciesfilenames=genomes.tbl \
+--speciesfilenames=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/genomes.tbl \
 --alternatives-from-evidence=0 \
 --/CompPred/outdir=pred$id > aug$id.out 2> err$id.out &
 done
