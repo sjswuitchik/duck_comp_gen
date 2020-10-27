@@ -115,7 +115,7 @@ args <- commandArgs(trailingOnly = TRUE)
 
 path_to_data <- args[4]
 
-gene_gg <- read_tsv(paste0(path_to_data, "/galGal_background.txt"), col_names = c("cnee", "gene"))
+gene_gg <- read_tsv(paste0(path_to_data, "/galGal_background_ncbi.txt"), col_names = T)
 
 #top1
 cnee_top1 <- read_tsv(paste0(path_to_data, "/cnee_final_top1.tsv")) %>% 
