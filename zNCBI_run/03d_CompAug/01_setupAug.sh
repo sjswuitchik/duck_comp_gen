@@ -23,5 +23,11 @@ mv GCA_011074415.1_BPBGC_Snae_1.0_genomic.fna.gz stiNae.ncbi.fasta.gz
 mv GCA_011077185.1_BPBGC_Ojam_1.0_genomic.fna.gz oxyJam.ncbi.fasta.gz
 mv GCA_011076525.1_BPBGC_Naur_1.0_genomic.fna.gz netAur.ncbi.fasta.gz
 
+while read line
+do
+  species=$(echo "$line" | cut -f 1)
+  genome=$(echo "$line" | cut -f 2)
+  load2sqlitedb --noIdx --species=$species --dbaccess=chicken.db $genome
+done <genomes.tbl
 
 
