@@ -70,8 +70,8 @@ cnee_top1 <- read_tsv(paste0(path_to_data, "/cnee_final_top1.tsv")) %>%
   dplyr::rename(cnee = ID) %>%
   full_join(gene_gg, by = c("cnee" = "cnee")) %>%
   mutate(accel = ifelse(logBF1 >= 10 & logBF2 >= 1), TRUE, FALSE) %>%
-  distinct(ID, .keep_all=TRUE) %>%
-  dplyr::select(ID, accel, gene)
+  distinct(cnee, .keep_all=TRUE) %>%
+  dplyr::select(cnee, accel, gene)
 
 #top2
 cnee_top2 <- read_tsv(paste0(path_to_data, "/cnee_final_top2.tsv")) %>% 
@@ -79,8 +79,8 @@ cnee_top2 <- read_tsv(paste0(path_to_data, "/cnee_final_top2.tsv")) %>%
   dplyr::rename(cnee = ID) %>%
   full_join(gene_gg, by = c("cnee" = "cnee")) %>%
   mutate(accel = ifelse(logBF1 >= 10 & logBF2 >= 1), TRUE, FALSE) %>%
-  distinct(ID, .keep_all=TRUE) %>%
-  dplyr::select(ID, accel, gene)
+  distinct(cnee, .keep_all=TRUE) %>%
+  dplyr::select(cnee, accel, gene)
 
 #top3
 cnee_top3 <- read_tsv(paste0(path_to_data, "/cnee_final_top3.tsv")) %>% 
@@ -88,8 +88,8 @@ cnee_top3 <- read_tsv(paste0(path_to_data, "/cnee_final_top3.tsv")) %>%
   dplyr::rename(cnee = ID) %>%
   full_join(gene_gg, by = c("cnee" = "cnee")) %>%
   mutate(accel = ifelse(logBF1 >= 10 & logBF2 >= 1), TRUE, FALSE) %>%
-  distinct(ID, .keep_all=TRUE) %>%
-  dplyr::select(ID, accel, gene)
+  distinct(cnee, .keep_all=TRUE) %>%
+  dplyr::select(cnee, accel, gene)
 
 
 compute_go_results(cnee_top1, paste0(path_to_data, "/original_GO_top1_", "_run", args[1]), args[2], args[3])
