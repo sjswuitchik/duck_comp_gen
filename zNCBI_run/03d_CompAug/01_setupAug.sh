@@ -71,6 +71,8 @@ sqlite3 -header -column chicken.db "\
 
 # run Comp Aug 
 mkdir -p augCGP_denovo/top1
+mkdir -p augCGP_denovo/top2
+mkdir -p augCGP_denovo/top3
 cd augCGP_denovo/top1
 
 for ali in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/*.maf
