@@ -147,7 +147,7 @@ cnee_top1 <- read_tsv(paste0(path_to_data, "/cnee_final_top3.tsv")) %>%
   dplyr::select(cnee, accel, gene)
 
 
-compute_go_results(cnee_top1, paste0(path_to_data, "/original_GO_top1_run", args[1]), args[2], args[3])
-compute_go_results(cnee_top2, paste0(path_to_data, "/original_GO_top2_run", args[1]), args[2], args[3])
-compute_go_results(cnee_top2, paste0(path_to_data, "/original_GO_top3_run", args[1]), args[2], args[3])
+compute_go_results(cnee_top1, paste0(path_to_data, "/GO_top1", args[1]), args[2], args[3])
+compute_go_results(cnee_top2, paste0(path_to_data, "/GO_top2", args[1]), args[2], args[3])
+compute_go_results(cnee_top2, paste0(path_to_data, "/GO_top3", args[1]), args[2], args[3])
 
