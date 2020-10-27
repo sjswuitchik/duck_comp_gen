@@ -1,7 +1,7 @@
 #### GO enrichment perms ####
 library(org.Gg.eg.db) # BiocManager::install("org.Gg.eg.db")
 library(tidyverse)
-library(clusterProfiler) #  BiocManager::install("clusterProfiler")
+library(clusterProfiler)
 library(parallel)
 library(rlist)
 
@@ -51,8 +51,61 @@ compute_go_results <- function(DF, outname, CORES, PERMS) {
     try(lapply(input, get_go_perm, DF=DF, golist=golist, ont=ont) %>%
           dplyr::bind_rows(.id="    set"), TRUE)
   }
+
+  bp_perm_all <- list()
+  bp_res_all <- list()
   
+  mf_perm_all <- list()
+  mf_res_all <- list()
+  
+  cnee <- DF 
+  
+  background <- cnee %>%
+    filter(gene != ".") %>%
+    dplyr::select(gene) %>%
+    separate(gene, into = c("ncbi", "sym"), sep = ":") %>%
+    distinct(ncbi)
+  
+  set <- cnee %>%
+    filter(gene != ".", accel) %>%
+    dplyr::select(gene) %>%
+    separate(gene, into = c("ncbi", "sym"), sep = ":") %>%
+    distinct(ncbi)
+  
+  inputs <- list("accel" = set)
+  
+  bp_res_all <- lapply(inputs, calc_enrich, background = background$ncbi, ont = "BP") %>%
+    lapply(slot, name = "result") %>%
+    dplyr::bind_rows(.id = "set")
+  
+  mf_res_all <- lapply(inputs, calc_enrich, background = background$ncbi, ont = "MF") %>%
+    lapply(slot, name = "result") %>%
+    dplyr::bind_rows(.id = "set")
+  
+  merged_mf_terms <- mf_res_all%>% dplyr::distinct(ID)
+  merged_bp_terms <- bp_res_all %>% dplyr::distinct(ID)
+  
+  input_counts<-list("accel" = cnee %>% filter(gene != ".", accel) %>% count %>% pull(n))
+  
+  bp_perm_all <- mclapply(1:PERMS, get_one_perm_set, input=input_counts, DF=cnee, golist=merged_bp_terms, ont="BP", mc.cores=CORES, mc.preschedule = FALSE) %>%
+    list.filter(class(.) == "data.frame") %>% 
+    dplyr::bind_rows(.id="perm")
+  
+  mf_perm_all <- mclapply(1:PERMS, get_one_perm_set, input=input_counts, DF=cnee, golist=merged_mf_terms, ont="MF", mc.cores=CORES, mc.preschedule = FALSE) %>%
+    list.filter(class(.) == "data.frame") %>% 
+    dplyr::bind_rows(.id="perm")
+    
+  bind_rows(bp_perm_all) %>% write_tsv(paste0(outname, "_BP_perm.tsv"))
+  bind_rows(bp_res_all) %>% write_tsv(paste0(outname, "_BP_real.tsv"))              
+  bind_rows(mf_perm_all) %>% write_tsv(paste0(outname, "_MF_perm.tsv"))
+  bind_rows(mf_res_all) %>% write_tsv(paste0(outname, "_MF_real.tsv"))       
 }
+
+
+
+
+
+
 
 
 ### REAL WORK ###
@@ -69,30 +122,31 @@ cnee_top1 <- read_tsv(paste0(path_to_data, "/cnee_final_top1.tsv")) %>%
   dplyr::select(ID, logBF1, logBF2) %>%
   dplyr::rename(cnee = ID) %>%
   full_join(gene_gg, by = c("cnee" = "cnee")) %>%
-  mutate(accel = ifelse(logBF1 >= 10 & logBF2 >= 1, TRUE, FALSE)) %>%
+  mutate(accel = ifelse(logBF1 >= 10 & logBF2 >= 1, T, F)) %>%
   distinct(cnee, .keep_all=TRUE) %>%
   dplyr::select(cnee, accel, gene)
+
 
 #top2
 cnee_top2 <- read_tsv(paste0(path_to_data, "/cnee_final_top2.tsv")) %>% 
   dplyr::select(ID, logBF1, logBF2) %>%
   dplyr::rename(cnee = ID) %>%
   full_join(gene_gg, by = c("cnee" = "cnee")) %>%
-  mutate(accel = ifelse(logBF1 >= 10 & logBF2 >= 1, TRUE, FALSE)) %>%
+  mutate(accel = ifelse(logBF1 >= 10 & logBF2 >= 1, T, F)) %>%
   distinct(cnee, .keep_all=TRUE) %>%
   dplyr::select(cnee, accel, gene)
 
 #top3
-cnee_top3 <- read_tsv(paste0(path_to_data, "/cnee_final_top3.tsv")) %>% 
+cnee_top1 <- read_tsv(paste0(path_to_data, "/cnee_final_top3.tsv")) %>% 
   dplyr::select(ID, logBF1, logBF2) %>%
   dplyr::rename(cnee = ID) %>%
   full_join(gene_gg, by = c("cnee" = "cnee")) %>%
-  mutate(accel = ifelse(logBF1 >= 10 & logBF2 >= 1, TRUE, FALSE)) %>%
+  mutate(accel = ifelse(logBF1 >= 10 & logBF2 >= 1, T, F)) %>%
   distinct(cnee, .keep_all=TRUE) %>%
   dplyr::select(cnee, accel, gene)
 
 
 compute_go_results(cnee_top1, paste0(path_to_data, "/original_GO_top1_", "_run", args[1]), args[2], args[3])
 compute_go_results(cnee_top2, paste0(path_to_data, "/original_GO_top2_", "_run", args[1]), args[2], args[3])
-compute_go_results(cnee_top3, paste0(path_to_data, "/original_GO_top3_", "_run", args[1]), args[2], args[3])
+compute_go_results(cnee_top2, paste0(path_to_data, "/original_GO_top3_", "_run", args[1]), args[2], args[3])
 
