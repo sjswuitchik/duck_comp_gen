@@ -69,7 +69,7 @@ cnee_top1 <- read_tsv(paste0(path_to_data, "/cnee_final_top1.tsv")) %>%
   dplyr::select(ID, logBF1, logBF2) %>%
   dplyr::rename(cnee = ID) %>%
   full_join(gene_gg, by = c("cnee" = "cnee")) %>%
-  mutate(accel = ifelse(logBF1 >= 10 & logBF2 >= 1), TRUE, FALSE) %>%
+  mutate(accel = ifelse(logBF1 >= 10 & logBF2 >= 1, TRUE, FALSE)) %>%
   distinct(cnee, .keep_all=TRUE) %>%
   dplyr::select(cnee, accel, gene)
 
@@ -78,7 +78,7 @@ cnee_top2 <- read_tsv(paste0(path_to_data, "/cnee_final_top2.tsv")) %>%
   dplyr::select(ID, logBF1, logBF2) %>%
   dplyr::rename(cnee = ID) %>%
   full_join(gene_gg, by = c("cnee" = "cnee")) %>%
-  mutate(accel = ifelse(logBF1 >= 10 & logBF2 >= 1), TRUE, FALSE) %>%
+  mutate(accel = ifelse(logBF1 >= 10 & logBF2 >= 1, TRUE, FALSE)) %>%
   distinct(cnee, .keep_all=TRUE) %>%
   dplyr::select(cnee, accel, gene)
 
@@ -87,7 +87,7 @@ cnee_top3 <- read_tsv(paste0(path_to_data, "/cnee_final_top3.tsv")) %>%
   dplyr::select(ID, logBF1, logBF2) %>%
   dplyr::rename(cnee = ID) %>%
   full_join(gene_gg, by = c("cnee" = "cnee")) %>%
-  mutate(accel = ifelse(logBF1 >= 10 & logBF2 >= 1), TRUE, FALSE) %>%
+  mutate(accel = ifelse(logBF1 >= 10 & logBF2 >= 1, TRUE, FALSE)) %>%
   distinct(cnee, .keep_all=TRUE) %>%
   dplyr::select(cnee, accel, gene)
 
