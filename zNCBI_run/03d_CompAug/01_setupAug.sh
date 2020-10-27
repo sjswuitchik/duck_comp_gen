@@ -49,6 +49,7 @@ mv GCA_011076525.1_BPBGC_Naur_1.0_genomic.fna.gz netAur.ncbi.fasta.gz
 
 gunzip *.gz
 
+# load genomes into an SQLite database
 while read line
 do
   species=$(echo "$line" | cut -f 1)
@@ -56,4 +57,32 @@ do
   load2sqlitedb --noIdx --species=$species --dbaccess=chicken.db $genome
 done <genomes.tbl
 
+# index
+load2sqlitedb --makeIdx --dbaccess=chicken.db
 
+# qc
+sqlite3 -header -column vertebrates.db "\
+ SELECT speciesname, \
+  sum(end-start+1) AS 'genome length',\
+  count(*) AS '# chunks',\
+  count(distinct seqnr) AS '# seqs'\
+ FROM genomes natural join speciesnames\
+ GROUP BY speciesname;"
+
+# run Comp Aug 
+mkdir augCGP_denovo
+cd augCGP_denovo
+
+for ali in *.maf
+do
+id=${ali%.maf} # remove .maf suffix
+augustus \
+--species=chicken \
+--softmasking=1 \
+--treefile=top1.nwk \
+--alnfile=$ali \
+--dbaccess=chicken.db \
+--speciesfilenames=genomes.tbl \
+--alternatives-from-evidence=0 \
+--/CompPred/outdir=pred$id > aug$id.out 2> err$id.out &
+done
