@@ -36,9 +36,9 @@ orig_bp_merge <-
 
 pv <- data.frame(qval_logp = p.adjust(orig_bp_merge$pval_logp, method = "BH"),  qval_frac = p.adjust(orig_bp_merge$pval_frac, method = "BH"), qval_enrich = p.adjust(orig_bp_merge$pval_enrich, method = "BH"))
 
-plot(-log10(pv$qval_logp), -log10(orig_bp_merge$pval_logp))
-plot(-log10(pv$qval_frac), -log10(orig_bp_merge$pval_frac))
-plot(-log10(pv$qval_enrich), -log10(orig_bp_merge$pval_enrich))
+#plot(-log10(pv$qval_logp), -log10(orig_bp_merge$pval_logp))
+#plot(-log10(pv$qval_frac), -log10(orig_bp_merge$pval_frac))
+#plot(-log10(pv$qval_enrich), -log10(orig_bp_merge$pval_enrich))
 
 BPadjP <- bind_cols(orig_bp_merge, pv)
 
@@ -51,9 +51,9 @@ orig_mf_merge <-
 
 pv <- data.frame(qval_logp = p.adjust(orig_mf_merge$pval_logp, method = "BH"),  qval_frac = p.adjust(orig_mf_merge$pval_frac, method = "BH"), qval_enrich = p.adjust(orig_mf_merge$pval_enrich, method = "BH"))
 
-plot(-log10(pv$qval_logp), -log10(orig_mf_merge$pval_logp))
-plot(-log10(pv$qval_frac), -log10(orig_mf_merge$pval_frac))
-plot(-log10(pv$qval_enrich), -log10(orig_mf_merge$pval_enrich))
+#plot(-log10(pv$qval_logp), -log10(orig_mf_merge$pval_logp))
+#plot(-log10(pv$qval_frac), -log10(orig_mf_merge$pval_frac))
+#plot(-log10(pv$qval_enrich), -log10(orig_mf_merge$pval_enrich))
 
 MFadjP <- bind_cols(orig_mf_merge, pv)
 
