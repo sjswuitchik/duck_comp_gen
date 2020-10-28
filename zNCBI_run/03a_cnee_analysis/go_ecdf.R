@@ -16,7 +16,7 @@ for (whichont in c("BP", "MF")) {
     summarize(ecdf_frac = list(ecdf(target_frac)),
               ecdf_enrich = list(ecdf(enrich)),
               ecdf_logp = list(ecdf(logp.perm))) %>%
-    saveRDS(file = paste0(wd, "GO_top1_", whichont, ".robj"))
+    saveRDS(file = paste0(wd, "/GO_top1_", whichont, ".robj"))
 }
 
 for (whichont in c("BP", "MF")) {
@@ -33,7 +33,7 @@ for (whichont in c("BP", "MF")) {
     summarize(ecdf_frac = list(ecdf(target_frac)),
               ecdf_enrich = list(ecdf(enrich)),
               ecdf_logp = list(ecdf(logp.perm))) %>%
-    saveRDS(file = paste0(wd, "GO_top2_", whichont, ".robj"))
+    saveRDS(file = paste0(wd, "/GO_top2_", whichont, ".robj"))
 }
 
 for (whichont in c("BP", "MF")) {
@@ -50,5 +50,5 @@ for (whichont in c("BP", "MF")) {
     summarize(ecdf_frac = list(ecdf(target_frac)),
               ecdf_enrich = list(ecdf(enrich)),
               ecdf_logp = list(ecdf(logp.perm))) %>%
-    saveRDS(file = paste0(wd, "GO_top3_", whichont, ".robj"))
+    saveRDS(file = paste0(wd, "/GO_top3_", whichont, ".robj"))
 }
