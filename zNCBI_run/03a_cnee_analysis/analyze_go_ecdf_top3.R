@@ -34,7 +34,7 @@ orig_bp_merge <-
   mutate(pval_frac = max(1-ecdf_frac(target_frac), 0.0002), 
          pval_logp = max(1-ecdf_logp(logp), 0.0002), 
          pval_enrich = max(1-ecdf_enrich(enrich), 0.0002)) %>% 
-  ungroup %>% group_by(version, set) %>% 
+  ungroup %>% group_by(set) %>% 
   mutate(qval_logp = p.adjust(pval_logp, "BH"),
          qval_frac = p.adjust(pval_frac, "BH"),
          qval_enrich = p.adjust(pval_enrich, "BH"))
@@ -45,18 +45,18 @@ orig_mf_merge <-
   mutate(pval_frac = max(1-ecdf_frac(target_frac), 0.0002), 
          pval_logp = max(1-ecdf_logp(logp), 0.0002), 
          pval_enrich = max(1-ecdf_enrich(enrich), 0.0002)) %>% 
-  ungroup %>% group_by(version, set) %>% 
+  ungroup %>% group_by(set) %>% 
   mutate(qval_logp = p.adjust(pval_logp, "BH"),
          qval_frac = p.adjust(pval_frac, "BH"),
          qval_enrich = p.adjust(pval_enrich, "BH"))
 
 # analysis
-orig_mf_merge %>% filter(version == "gain") %>% filter(qval_frac < 0.25) %>% 
+orig_mf_merge %>% filter(qval_frac < 0.25) %>% 
   mutate(exp_frac = map(ecdf_frac, summary) %>% map_dbl(., 3)) %>%
   select(set, ID, target_frac, exp_frac, bg_frac, enrich, pval_frac, qval_frac) %>% 
   write_tsv(paste0(path_to_data, "/GOPERM_mf_results_top3.tsv"))
 
-orig_bp_merge %>%filter(version == "gain") %>% filter(qval_frac < 0.25) %>% 
+orig_bp_merge %>% filter(qval_frac < 0.25) %>% 
   mutate(exp_frac = map(ecdf_frac, summary) %>% map_dbl(., 3)) %>%
   select(set, ID, target_frac, exp_frac, bg_frac, enrich, pval_frac, qval_frac) %>% 
   write_tsv(paste0(path_to_data, "/GOPERM_bp_results_top3.tsv"))
