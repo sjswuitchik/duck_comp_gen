@@ -16,7 +16,6 @@ transform_real <- function(DF) {
     arrange(ID)
 }
 
-#top2
 orig_bp <- read_tsv(paste0(path_to_data, "/GO_top2_1_BP_real.tsv")) %>% transform_real()
 orig_mf <- read_tsv(paste0(path_to_data, "/GO_top2_1_MF_real.tsv")) %>% transform_real()
 
