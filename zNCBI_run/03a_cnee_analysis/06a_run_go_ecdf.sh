@@ -3,6 +3,4 @@
 module load R/4.0.2-fasrc01
 export R_LIBS_USER=$HOME/apps/R_4.0.2
 
-Rscript 
-Rscript
-Rscript
+Rscript go_ecdf.R
