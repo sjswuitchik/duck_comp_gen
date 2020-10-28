@@ -54,10 +54,10 @@ orig_mf_merge <-
 orig_mf_merge %>% filter(version == "gain") %>% filter(qval_frac < 0.25) %>% 
   mutate(exp_frac = map(ecdf_frac, summary) %>% map_dbl(., 3)) %>%
   select(set, ID, target_frac, exp_frac, bg_frac, enrich, pval_frac, qval_frac) %>% 
-  write_tsv(paste0(path_to_data, "/GOPERM_mf_results.tsv"))
+  write_tsv(paste0(path_to_data, "/GOPERM_mf_results_top1.tsv"))
 
 orig_bp_merge %>%filter(version == "gain") %>% filter(qval_frac < 0.25) %>% 
   mutate(exp_frac = map(ecdf_frac, summary) %>% map_dbl(., 3)) %>%
   select(set, ID, target_frac, exp_frac, bg_frac, enrich, pval_frac, qval_frac) %>% 
-  write_tsv(paste0(path_to_data, "/GOPERM_bp_results.tsv"))
+  write_tsv(paste0(path_to_data, "/GOPERM_bp_results_top1.tsv"))
 
