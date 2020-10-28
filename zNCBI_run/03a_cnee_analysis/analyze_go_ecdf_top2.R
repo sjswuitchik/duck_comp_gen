@@ -16,7 +16,7 @@ transform_real <- function(DF) {
     arrange(ID)
 }
 
-#top1
+#top2
 orig_bp <- read_tsv(paste0(path_to_data, "/GO_top2_1_BP_real.tsv")) %>% transform_real()
 orig_mf <- read_tsv(paste0(path_to_data, "/GO_top2_1_MF_real.tsv")) %>% transform_real()
 
@@ -33,30 +33,38 @@ orig_bp_merge <-
   rowwise %>% 
   mutate(pval_frac = max(1-ecdf_frac(target_frac), 0.0002), 
          pval_logp = max(1-ecdf_logp(logp), 0.0002), 
-         pval_enrich = max(1-ecdf_enrich(enrich), 0.0002)) %>% 
-  ungroup %>% group_by(set) %>% 
-  mutate(qval_logp = p.adjust(pval_logp, "BH"),
-         qval_frac = p.adjust(pval_frac, "BH"),
-         qval_enrich = p.adjust(pval_enrich, "BH"))
+         pval_enrich = max(1-ecdf_enrich(enrich), 0.0002)) 
 
-orig_mf_merge <-
+# mutate with p.adjust doesn't seem to work so do it this way instead
+pv <- data.frame(qval_logp = p.adjust(orig_bp_merge$pval_logp, method = "BH"),  qval_frac = p.adjust(orig_bp_merge$pval_frac, method = "BH"), qval_enrich = p.adjust(orig_bp_merge$pval_enrich, method = "BH"))
+# make sure it's not 1:1
+#plot(-log10(pv$qval_logp), -log10(orig_bp_merge$pval_logp))
+#plot(-log10(pv$qval_frac), -log10(orig_bp_merge$pval_frac))
+#plot(-log10(pv$qval_enrich), -log10(orig_bp_merge$pval_enrich))
+# create new df
+BPadjP <- bind_cols(orig_bp_merge, pv)
+
+orig_mf_merge <- 
   orig_mf_merge %>% 
   rowwise %>% 
   mutate(pval_frac = max(1-ecdf_frac(target_frac), 0.0002), 
          pval_logp = max(1-ecdf_logp(logp), 0.0002), 
-         pval_enrich = max(1-ecdf_enrich(enrich), 0.0002)) %>% 
-  ungroup %>% group_by(set) %>% 
-  mutate(qval_logp = p.adjust(pval_logp, "BH"),
-         qval_frac = p.adjust(pval_frac, "BH"),
-         qval_enrich = p.adjust(pval_enrich, "BH"))
+         pval_enrich = max(1-ecdf_enrich(enrich), 0.0002)) 
+
+pv <- data.frame(qval_logp = p.adjust(orig_mf_merge$pval_logp, method = "BH"),  qval_frac = p.adjust(orig_mf_merge$pval_frac, method = "BH"), qval_enrich = p.adjust(orig_mf_merge$pval_enrich, method = "BH"))
+
+#plot(-log10(pv$qval_logp), -log10(orig_mf_merge$pval_logp))
+#plot(-log10(pv$qval_frac), -log10(orig_mf_merge$pval_frac))
+#plot(-log10(pv$qval_enrich), -log10(orig_mf_merge$pval_enrich))
+
+MFadjP <- bind_cols(orig_mf_merge, pv)
+
 
 # analysis
-orig_mf_merge %>% filter(qval_frac < 0.25) %>% 
-  mutate(exp_frac = map(ecdf_frac, summary) %>% map_dbl(., 3)) %>%
-  select(set, ID, target_frac, exp_frac, bg_frac, enrich, pval_frac, qval_frac) %>% 
-  write_tsv(paste0(path_to_data, "/GOPERM_mf_results_top2.tsv"))
-
-orig_bp_merge %>% filter(qval_frac < 0.25) %>% 
-  mutate(exp_frac = map(ecdf_frac, summary) %>% map_dbl(., 3)) %>%
-  select(set, ID, target_frac, exp_frac, bg_frac, enrich, pval_frac, qval_frac) %>% 
+BPadjP %>% 
+  select(set, ID, target_frac, bg_frac, enrich, pval_frac, qval_frac) %>%
   write_tsv(paste0(path_to_data, "/GOPERM_bp_results_top2.tsv"))
+
+MFadjP %>% 
+  select(set, ID, target_frac, bg_frac, enrich, pval_frac, qval_frac) %>% 
+  write_tsv(paste0(path_to_data, "/GOPERM_mf_results_top2.tsv"))
