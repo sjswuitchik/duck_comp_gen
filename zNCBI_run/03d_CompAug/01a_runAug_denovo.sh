@@ -96,9 +96,3 @@ augustus \
 --alternatives-from-evidence=0 \
 --/CompPred/outdir=pred$id > aug$id.out 2> err$id.out &
 done
-
-# insert top2 and top3 here if need be
-
-
-
-
