@@ -1,7 +1,7 @@
 ## in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/genomes/
 
 module load Anaconda/5.0.1-fasrc01
-#conda create -c conda-forge -c bioconda -n compAug augustus bcftools htslib samtools
+#conda create -c conda-forge -c bioconda -n compAug augustus bcftools htslib samtools star
 source activate compAug
 
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/850/225/GCF_003850225.1_IASCAAS_PekingDuck_PBH1.5/GCF_003850225.1_IASCAAS_PekingDuck_PBH1.5_genomic.fna.gz
@@ -104,12 +104,6 @@ done
 mkdir -p 03d_CompAug/augCGP_rnahints/
 cd augCGP_rnahints/
 
-# download STAR 
-git clone https://github.com/alexdobin/STAR.git
-cd STAR/source
-make STAR 
-cd ..
-
 # get galGal and oxyJam files
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/011/077/185/GCF_011077185.1_BPBGC_Ojam_1.0/GCF_011077185.1_BPBGC_Ojam_1.0_genomic.gff.gz
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_genomic.fna.gz
@@ -123,7 +117,7 @@ mkdir genome
 mv galGal6.fa genome
 
 # generate genome indices
-source/STAR --runMode genomeGenerate --genomeDir genome/ --genomeFastaFiles genome/galGal6.fa --sjdbGTFtagExonParentTranscript Parent --genomeSAindexNbases 13
+sbatch run_starPrep.sh
 
 # map
 
