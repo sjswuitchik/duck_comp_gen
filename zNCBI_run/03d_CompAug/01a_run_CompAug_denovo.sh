@@ -82,17 +82,4 @@ do
  ln -s $f $num.maf; ((num++)); 
 done
 
-# top1 - seems to need a fully resolved tree? Will have to check with Tim. top1.nwk came from phyloP (/n/holylfs/LABS/informatics/swuitchik/ducks/ncbi_analyses/03_cnees/galloTop1.named.mod)
-for ali in *.maf;
-do
-id=${ali%.maf} 
-augustus \
---species=chicken \
---softmasking=1 \
---treefile=top1.nwk \
---alnfile=$ali \
---dbaccess=../chicken.db \
---speciesfilenames=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/genomes.tbl \
---alternatives-from-evidence=0 \
---/CompPred/outdir=pred$id > aug$id.out 2> err$id.out &
-done
+sbatch run_compAug_denovo.sh
