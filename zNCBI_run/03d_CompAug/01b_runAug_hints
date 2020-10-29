@@ -8,17 +8,25 @@ source activate compAug
 mkdir -p 03d_CompAug/augCGP_rnahints/
 cd augCGP_rnahints/
 
-# get galGal and oxyJam files
+# get galGal genome and oxyJam annotation
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/011/077/185/GCF_011077185.1_BPBGC_Ojam_1.0/GCF_011077185.1_BPBGC_Ojam_1.0_genomic.gff.gz
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_genomic.fna.gz
-wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_genomic.gff.gz
 mv GCF_011077185.1_BPBGC_Ojam_1.0_genomic.gff.gz oxyJam.gff.gz
 mv GCF_000002315.6_GRCg6a_genomic.fna.gz galGal6.fa.gz
-mv GCF_000002315.6_GRCg6a_genomic.gff.gz galGal6.gff.gz
 gunzip galGal6.fa.gz
 
 mkdir genome
-mv galGal6.fa genome
+mv galGal6.fa genome/
+
+# get RNA seq fastqs from SRA (Ruddy Duck replicates 1-3 from bioProject PRJNA517454) 
+mkdir fastqs/
+wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.10.8/sratoolkit.2.10.8-centos_linux64.tar.gz
+tar zxvf sratoolkit.2.10.8-centos_linux64.tar.gz
+rm *.tar.gz
+mv sratoolkit.2.10.8-centos_linux64/ sratoolkit/
+cd sratoolkit/bin/
+./fasterq-dump -O ../../fastqs/ -p -S --skip-technical SRR8495655 SRR8495656 SRR8495657 SRR8495658 SRR8495659 SRR8495660 SRR8495661 SRR8495662 SRR8495663 SRR8495664 SRR8495665 SRR8495666 SRR8495667 SRR8495668 SRR8495669 SRR8495670 SRR8495641 SRR8495642 SRR8495643 SRR8495644 SRR8495645 SRR8495646 SRR8495647 SRR8495648 SRR8495649 SRR8495650 SRR8495651 SRR8495652 SRR8495653 SRR8495654 SRR8495625 SRR8495626 SRR8495627 SRR8495628 SRR8495629 SRR8495630 SRR8495631 SRR8495632 SRR8495633 SRR8495634 SRR8495635 SRR8495636 SRR8495637 SRR8495638 SRR8495639 SRR8495640
+
 
 # generate genome indices
 sbatch run_starPrep.sh
