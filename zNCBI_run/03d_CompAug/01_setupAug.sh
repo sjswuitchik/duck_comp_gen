@@ -82,7 +82,7 @@ do
  ln -s $f $num.maf; ((num++)); 
 done
 
-# top1 - seems to need a fully resolved tree? Will have to check with Tim. top1.nwk came from phyloP (/n/holylfs/LABS/informatics/swuitchik/ducks/ncbi_analyses/03_cnees/cnees_ncbi_phyloP_top1.out)
+# top1 - seems to need a fully resolved tree? Will have to check with Tim. top1.nwk came from phyloP (/n/holylfs/LABS/informatics/swuitchik/ducks/ncbi_analyses/03_cnees/galloTop1.named.mod)
 for ali in *.maf;
 do
 id=${ali%.maf} 
