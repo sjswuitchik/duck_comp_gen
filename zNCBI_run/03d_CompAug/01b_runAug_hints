@@ -32,4 +32,5 @@ cd sratoolkit/bin/
 sbatch run_starPrep.sh
 
 # map
+sbatch run_starMap.sh
 
