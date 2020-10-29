@@ -70,18 +70,23 @@ sqlite3 -header -column chicken.db "\
  GROUP BY speciesname;"
 
 # run Comp Aug 
-mkdir -p augCGP_denovo/top1
-mkdir -p augCGP_denovo/top2
-mkdir -p augCGP_denovo/top3
-cd augCGP_denovo/top1
+mkdir augCGP_denovo
+cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03b_cesar/gallo_ncbi.maf .
 
-for ali in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/*.maf
+# assign numbers to alignment chunks
+num=1
+for f in gallo_ncbi.maf; 
+do 
+ ln -s $f $num.maf; ((num++)); 
+done
+
+for ali in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/gallo_ncbi.maf
 do
 id=${ali%.maf} # remove .maf suffix
 augustus \
 --species=chicken \
 --softmasking=1 \
---treefile=top1.nwk \
+--treefile=galloanserae.nwk \
 --alnfile=$ali \
 --dbaccess=chicken.db \
 --speciesfilenames=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/genomes.tbl \
