@@ -70,7 +70,7 @@ sqlite3 -header -column chicken.db "\
  FROM genomes natural join speciesnames\
  GROUP BY speciesname;"
 
-# run Comp Aug 
+# run Comp Aug de novo without hints
 mkdir augCGP_denovo
 cd augCGP_denovo
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03b_cesar/gallo_ncbi.maf .
@@ -96,3 +96,37 @@ augustus \
 --alternatives-from-evidence=0 \
 --/CompPred/outdir=pred$id > aug$id.out 2> err$id.out &
 done
+
+# insert top2 and top3 here if need be
+
+
+#### run Comp Aug with RNA seq hints from chicken and ruddy duck (oxyJam) ####
+mkdir -p 03d_CompAug/augCGP_rnahints/
+cd augCGP_rnahints/
+
+# download STAR 
+git clone https://github.com/alexdobin/STAR.git
+cd STAR/source
+make STAR 
+cd ..
+
+# get galGal and oxyJam files
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/011/077/185/GCF_011077185.1_BPBGC_Ojam_1.0/GCF_011077185.1_BPBGC_Ojam_1.0_genomic.gff.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_genomic.gff.gz
+mv GCF_011077185.1_BPBGC_Ojam_1.0_genomic.gff.gz oxyJam.gff.gz
+mv GCF_000002315.6_GRCg6a_genomic.fna.gz galGal6.fa.gz
+mv GCF_000002315.6_GRCg6a_genomic.gff.gz galGal6.gff.gz
+gunzip galGal6.fa.gz
+
+mkdir genome
+mv galGal6.fa genome
+
+# generate genome indices
+source/STAR --runMode genomeGenerate --genomeDir genome/ --genomeFastaFiles genome/galGal6.fa --sjdbGTFtagExonParentTranscript Parent --genomeSAindexNbases 13
+
+# map
+
+
+
+
