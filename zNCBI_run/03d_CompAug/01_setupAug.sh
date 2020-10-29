@@ -82,6 +82,7 @@ do
  ln -s $f $num.maf; ((num++)); 
 done
 
+# top1 - seems to need a fully resolved tree? Will have to check with Tim
 for ali in *.maf;
 do
 id=${ali%.maf} 
