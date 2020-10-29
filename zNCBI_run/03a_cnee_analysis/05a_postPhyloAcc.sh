@@ -68,19 +68,3 @@ done
 
 # annotate 
 bedtools annotate -i cnee_gene100kb.clean.bed -files cnee_perms/*.bed -counts > cnee_perms.counts.bed
-
-
-
-# input generation for cluster profiler (GO enrichment permutations) 
-mkdir go_perms/
-
-#create foreground
-awk '$6 > 0 {print $1, $2, $3, $4, $5}' cnee_gene100kb.bed | awk '$5 != 0 {$5 = 1} {print}' - | sed 's/ /\t/g' - > cnee_gene100kb.GO.bed
-
-# create background
-bedtools closest -a galGal6_final_merged_CNEEs_named_sorted.bed -b galGal.genes.sorted.bed | cut -f1,2,3,4,8 | bedtools merge -i - -d -1 -c 4,5 -o distinct > galGal_cnees_genes.bed
-cat galGal_cnees_genes.bed | cut -f4,5 > galGal_background.txt
-
-mv cnee_gene100kb.GO.bed galGal_background.txt go_perms/
-cd go_perms/
-
