@@ -100,27 +100,5 @@ done
 # insert top2 and top3 here if need be
 
 
-#### run Comp Aug with RNA seq hints from chicken and ruddy duck (oxyJam) ####
-mkdir -p 03d_CompAug/augCGP_rnahints/
-cd augCGP_rnahints/
-
-# get galGal and oxyJam files
-wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/011/077/185/GCF_011077185.1_BPBGC_Ojam_1.0/GCF_011077185.1_BPBGC_Ojam_1.0_genomic.gff.gz
-wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_genomic.fna.gz
-wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_genomic.gff.gz
-mv GCF_011077185.1_BPBGC_Ojam_1.0_genomic.gff.gz oxyJam.gff.gz
-mv GCF_000002315.6_GRCg6a_genomic.fna.gz galGal6.fa.gz
-mv GCF_000002315.6_GRCg6a_genomic.gff.gz galGal6.gff.gz
-gunzip galGal6.fa.gz
-
-mkdir genome
-mv galGal6.fa genome
-
-# generate genome indices
-sbatch run_starPrep.sh
-
-# map
-
-
 
 
