@@ -48,6 +48,7 @@ mv GCA_011077185.1_BPBGC_Ojam_1.0_genomic.fna.gz oxyJam.ncbi.fasta.gz
 mv GCA_011076525.1_BPBGC_Naur_1.0_genomic.fna.gz netAur.ncbi.fasta.gz
 
 gunzip *.gz
+cd ..
 
 # load genomes into an SQLite database
 while read line
@@ -71,6 +72,7 @@ sqlite3 -header -column chicken.db "\
 
 # run Comp Aug 
 mkdir augCGP_denovo
+cd augCGP_denovo
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03b_cesar/gallo_ncbi.maf .
 
 # assign numbers to alignment chunks
@@ -80,9 +82,9 @@ do
  ln -s $f $num.maf; ((num++)); 
 done
 
-for ali in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/gallo_ncbi.maf
+for ali in *.maf;
 do
-id=${ali%.maf} # remove .maf suffix
+id=${ali%.maf} 
 augustus \
 --species=chicken \
 --softmasking=1 \
