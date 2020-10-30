@@ -12,8 +12,8 @@ def gene_abrvs(line):
 def ncbi_abrvs(line):
     """Abbreviations imbedded as ;Dbxref=GeneID:"""
     parts = line.split(';')
-    numabrvs = [part.rsplit('=')[1] for part in parts if 'Dbxref=GeneID' in part]
-    numabrvs = set(numabrvs) # uniq, arbitrary order
+    numabrvs = [part.rsplit('=')[1] for part in parts if 'Dbxref=' in part]
+    numabrvs = set(numabrvs)
     return numabrvs
 
 
