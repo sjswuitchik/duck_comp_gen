@@ -68,3 +68,33 @@ done
 
 # annotate 
 bedtools annotate -i cnee_gene100kb.clean.bed -files cnee_perms/*.bed -counts > cnee_perms.counts.bed
+
+
+### input generation for GO permutations 
+# nb: could also write quick script (like replace_chr.pl) to replace the gene symbols with NCBI gene IDs in cnee_perms.counts.bed
+
+# pull out gene symbols & NCBI IDs
+cat galGal.gff.bed | python3 gene_ncbi_names.py > go_perms/galGal.ncbigenes.bed
+cd go_perms/
+
+# sort 
+bedtools sort -i galGal.ncbigenes.bed > galGal.ncbigenes.sorted.bed
+
+# set 100 kb window around genes
+bedtools slop -i galGal.ncbigenes.sorted.bed -g ../galGal.chrom.sizes -b 100000 > galGal.ncbislop.bed
+
+# annotate slopped BED with accel CNEEs 
+bedtools annotate -i galGal.ncbislop.bed -files ../acc.cnees.final.bed ../galGal6_final_merged_CNEEs_named_sorted.bed -counts > cnee_ncbigene100kb.bed 
+awk '$8 > 0 {print}' cnee_ncbigene100kb.bed | sed 's/ //g' - > cnee_ncbigene100kb.clean.bed
+
+# do permutations
+mkdir perms/
+for i in {0001..1000}; 
+do
+  shuf -n 294 ../galGal6_final_merged_CNEEs_named_sorted.bed > perms/'shuffle'$i.bed
+done
+
+# annotate 
+bedtools annotate -i cnee_ncbigene100kb.clean.bed -files perms/*.bed -counts > cnee_goperms.counts.bed
+
+
