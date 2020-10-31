@@ -9,3 +9,6 @@
 #SBATCH -t 23:00:00
 
 module load Anaconda/5.0.1-fasrc01
+source activate compAug
+
+STAR --runThreadN ${SLURM_JOB_CPUS_PER_NODE} --genomeDir genome --sjdbFileChrStartEnd ____ --outFileNamePrefix oxyJamPass2 --readFilesManifest mapManifest.tsv
