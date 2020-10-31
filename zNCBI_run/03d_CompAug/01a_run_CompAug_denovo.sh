@@ -82,4 +82,17 @@ do
  ln -s $f $num.maf; ((num++)); 
 done
 
-sbatch run_compAug_denovo.sh
+# run de novo
+for ali in *.maf;
+do
+id=${ali%.maf} 
+augustus \
+--species=chicken \
+--softmasking=1 \
+--treefile=top1.nwk \
+--alnfile=$ali \
+--dbaccess=../chicken.db \
+--speciesfilenames=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/genomes.tbl \
+--alternatives-from-evidence=0 \
+--/CompPred/outdir=pred$id > aug$id.out 2> err$id.out &
+done
