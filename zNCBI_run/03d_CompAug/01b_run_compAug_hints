@@ -38,5 +38,14 @@ sbatch run_starMap.sh
 sbatch run_starMap_2pass.sh
 
 # convert output to BAM and filter
-samtools view oxyJamPass2Aligned.out.sam -b -h -o oxyJam.input > oxyJam.input.bam
+samtools view oxyJamPass2Aligned.out.sam -b -h > oxyJam.input.bam
+samtools sort oxyJam.input.bam -O bam > oxyJam.input.sort.bam
 
+OR 
+sort -k 1,1 oxyJamPass2Aligned.out.sam > oxyJam.input.sort.sam
+samtools view oxyJam.input.sort.sam -b -h > oxyJam.input.sort.bam
+
+
+cp /n/home_rc/afreedman/software/Augustus/augustus-2020-05-27-1b69b25ed001.sif .
+singularity shell --cleanenv augustus-2020-05-27-1b69b25ed001.sif
+filterBam --in oxyJam.input.sort.bam --out oxyJam.filter.bam --uniq 
