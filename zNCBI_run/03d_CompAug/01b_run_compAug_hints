@@ -37,3 +37,6 @@ sbatch run_starMap.sh
 # 2nd pass
 sbatch run_starMap_2pass.sh
 
+# convert output to BAM and filter
+samtools view oxyJamPass2Aligned.out.sam -b -h -o oxyJam.input > oxyJam.input.bam
+
