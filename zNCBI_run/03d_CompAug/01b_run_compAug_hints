@@ -34,3 +34,6 @@ sbatch run_starPrep.sh
 # map
 sbatch run_starMap.sh
 
+# 2nd pass
+sbatch run_starMap_2pass.sh
+
