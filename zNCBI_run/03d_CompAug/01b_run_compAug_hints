@@ -44,4 +44,5 @@ samtools view oxyJam.input.sort.sam -b -h > oxyJam.input.sort.bam
 # filter 
 cp /n/home_rc/afreedman/software/Augustus/augustus-2020-05-27-1b69b25ed001.sif .
 singularity shell --cleanenv augustus-2020-05-27-1b69b25ed001.sif
-filterBam --in oxyJam.input.sort.bam --out oxyJam.filter.bam --uniq 
+filterBam --in oxyJam.input.sort.bam --out oxyJam.filter.bam --uniq
+exit
