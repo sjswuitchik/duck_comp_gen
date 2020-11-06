@@ -41,8 +41,74 @@ sbatch run_starMap_2pass.sh
 sort -k 1,1 oxyJamPass2Aligned.out.sam > oxyJam.input.sort.sam
 samtools view oxyJam.input.sort.sam -b -h > oxyJam.input.sort.bam
 
-# filter 
+# filter & create hints
+mkdir hints/
+cd hints/
 cp /n/home_rc/afreedman/software/Augustus/augustus-2020-05-27-1b69b25ed001.sif .
 singularity shell --cleanenv augustus-2020-05-27-1b69b25ed001.sif
-filterBam --in oxyJam.input.sort.bam --out oxyJam.filter.bam --uniq --paired --pairwiseAlignment 
+filterBam --in ../oxyJam.input.sort.bam --out oxyJam.filter.bam --uniq --paired --pairwiseAlignment 
 bam2hints --in oxyJam.filter.bam --out oxyJam.hints.gff
+bam2wig --in oxyJam.filter.bam --out oxyJam.wig
+cat oxyJam.wig | wig2hints.pl --width=10 --margin=10 --minthresh=2 --minscore=4 --prune=0.1 --src=W --type=ep --UCSC=unstranded.track --radius=4.5 --pri=4 --strand="." > oxyJam.hints.ep.gff
+exit
+
+# load hints into SQL database
+cd ..
+for file in hints/*.gff; 
+do 
+  echo -ne "$(basename $file .hints.gff)\t$file\n"; 
+done >hints.tbl
+
+# copy database from parent dir (created in 01a_run_CompAug_denovo.sh) 
+cp ../chicken.db .
+mv chicken.db chicken_rnaseq.db
+
+# load hints into new database
+while read line
+do
+  species=$(echo "$line" | cut -f 1)
+  hints=$(echo "$line" | cut -f 2)
+  load2sqlitedb --noIdx --species=$species --dbaccess=chicken_rnaseq.db $hints
+done <hints.tbl
+
+# finalize db
+load2sqlitedb --makeIdx --dbaccess=vertebrates_rnaseq.db
+
+# qc
+sqlite3 -header -column chicken_rnaseq.db "\
+  SELECT count(*) AS '#hints',typename,speciesname\
+  FROM (hints as H join featuretypes as F on H.type=F.typeid)\
+        natural join speciesnames\
+  GROUP BY speciesid,typename;"
+  
+# prep extrinsic config (from https://github.com/nextgenusfs/augustus/blob/master/config/extrinsic/cgp.extrinsic.cfg) with notes from http://bioinf.uni-greifswald.de/augustus/binaries/tutorial-cgp/rnaseq.html
+
+# copy over MAF and Newick tree from de novo dir for simplicity
+cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_denovo/top1.nwk .
+cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_denovo/gallo_ncbi.maf .
+
+num=1
+for f in gallo_ncbi.maf; 
+do 
+ ln -s $f $num.maf; ((num++)); 
+done
+
+# run comp Aug with hints
+for ali in *.maf;
+do
+ id=${ali%.maf} # remove .maf suffix
+ augustus \
+  --species=chicken \
+  --softmasking=1 \
+  --treefile=top1.nwk \
+  --alnfile=$ali \
+  --dbaccess=chicken_rnaseq.db \
+  --speciesfilenames=../genomes.tbl \
+  --alternatives-from-evidence=0 \
+  --dbhints=1 \
+  --UTR=1 \
+  --allow_hinted_splicesites=atac \
+  --extrinsicCfgFile=extrinsic-rnaseq.cfg \
+  --/CompPred/outdir=pred$id > aug$id.out 2> err$id.out &
+done
+
