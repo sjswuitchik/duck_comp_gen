@@ -1,7 +1,7 @@
 ## in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/genomes/
 
-module load Anaconda/5.0.1-fasrc01
-#conda create -c conda-forge -c bioconda -n compAug augustus bcftools htslib samtools star
+module load Anaconda/5.0.1-fasrc01 samtools/1.10-fasrc01
+#conda create -c conda-forge -c bioconda -n compAug augustus star
 source activate compAug
 
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/850/225/GCF_003850225.1_IASCAAS_PekingDuck_PBH1.5/GCF_003850225.1_IASCAAS_PekingDuck_PBH1.5_genomic.fna.gz
