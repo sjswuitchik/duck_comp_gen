@@ -1,4 +1,5 @@
 #### run GO analysis ####
+library(tidyverse)
 library(org.Gg.eg.db) # BiocManager::install("org.Gg.eg.db")
 library(clusterProfiler)
 bg <- read_delim("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/cnee_goperms.counts.bed", delim = "\t", col_names = F) %>%
