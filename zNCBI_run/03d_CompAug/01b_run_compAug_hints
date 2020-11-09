@@ -1,4 +1,4 @@
-#### run Comp Aug with RNA seq hints from chicken and ruddy duck (oxyJam) ####
+#### run Comp Aug with RNA seq hints from ruddy duck (oxyJam) ####
 # in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug
 
 module load Anaconda/5.0.1-fasrc01 samtools/1.10-fasrc01
