@@ -49,11 +49,11 @@ singularity shell --cleanenv augustus-2020-05-27-1b69b25ed001.sif
 filterBam --in ../oxyJam.input.sort.bam --out oxyJam.filter.bam --uniq --paired --pairwiseAlignment 
 bam2hints --in oxyJam.filter.bam --out oxyJam.hints.gff
 exit 
-samtools sort -o oxyJam.filter.sorted.bam -O bam oxyJam.filter.bam 
-singularity shell --cleanenv augustus-2020-05-27-1b69b25ed001.sif
-bam2wig oxyJam.filter.sorted.bam > oxyJam.wig
-exit
-cat oxyJam.wig | ./wig2hints.pl --width=10 --margin=10 --minthresh=2 --minscore=4 --prune=0.1 --src=W --type=ep --UCSC=unstranded.track --radius=4.5 --pri=4 --strand="." > oxyJam.hints.ep.gff
+#samtools sort -o oxyJam.filter.sorted.bam -O bam oxyJam.filter.bam 
+#singularity shell --cleanenv augustus-2020-05-27-1b69b25ed001.sif
+#bam2wig oxyJam.filter.sorted.bam > oxyJam.wig
+#exit
+#cat oxyJam.wig | ./wig2hints.pl --width=10 --margin=10 --minthresh=2 --minscore=4 --prune=0.1 --src=W --type=ep --UCSC=unstranded.track --radius=4.5 --pri=4 --strand="." > oxyJam.hints.ep.gff
 
 # load hints into SQL database
 cd ..
