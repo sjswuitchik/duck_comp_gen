@@ -1,7 +1,9 @@
 #### run GO analysis ####
-library(tidyverse)
 library(org.Gg.eg.db) # BiocManager::install("org.Gg.eg.db")
+library(tidyverse)
 library(clusterProfiler)
+
+
 bg <- read_delim("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/cnee_goperms.counts.bed", delim = "\t", col_names = F) %>%
   rename(chr = X1, start = X2, end = X3, gene = X4, combo = X5, accel = X6, total = X7) %>%
   separate(combo, into = c(NA, "ncbi"), sep = "GeneID:", remove = T) %>%
@@ -20,56 +22,68 @@ calc_enrich <- function(targetset, background, ont) {
 }
 
 bp.perms <- data.frame()
-mf.perms <- data.frame()
-cc.perms <- data.frame()
+#mf.perms <- data.frame()
+#cc.perms <- data.frame()
 
 for (i in 2:ncol(target)) {
   perm.target <- filter(target, i >= 1) %>%
     select(ncbi)
   bp <- calc_enrich(perm.target, bg, ont = "BP")
-  mf <- calc_enrich(perm.target, bg, ont = "MF")
-  cc <- calc_enrich(perm.target, bg, ont = "CC")
+#  mf <- calc_enrich(perm.target, bg, ont = "MF")
+#  cc <- calc_enrich(perm.target, bg, ont = "CC")
   bp.clean <- bp@result %>% 
-    separate(GeneRatio, into = c("target_in", "target_total")) %>%
-    separate(BgRatio, into = c("bg_in", "bg_total")) %>%
+    separate(GeneRatio, into = c("target_in", "target_total"), sep = '/') %>%
+    separate(BgRatio, into = c("bg_in", "bg_total"), sep = '/') %>%
     mutate(target_frac = as.numeric(target_in)/as.numeric(target_total),
            bg_frac = as.numeric(bg_in)/as.numeric(bg_total),
-           OR = target_frac/bg_frac) %>%
-    dplyr::select(ID, target_frac, bg_frac, OR) %>%
+           OR = target_frac/bg_frac,
+           enrich = log2(target_frac/bg_frac),
+           newpval = ifelse(is.na(pvalue), 1, pvalue),
+           logp = -log10(newpval)) %>%
+    dplyr::select(ID, logp, target_frac, bg_frac, OR, enrich) %>%
     arrange(ID) 
-  mf.clean <- mf@result %>% 
-    separate(GeneRatio, into = c("target_in", "target_total")) %>%
-    separate(BgRatio, into = c("bg_in", "bg_total")) %>%
-    mutate(target_frac = as.numeric(target_in)/as.numeric(target_total),
-           bg_frac = as.numeric(bg_in)/as.numeric(bg_total),
-           OR = target_frac/bg_frac) %>%
-    dplyr::select(ID, target_frac, bg_frac, OR) %>%
-    arrange(ID) 
-  cc.clean <- cc@result %>% 
-    separate(GeneRatio, into = c("target_in", "target_total")) %>%
-    separate(BgRatio, into = c("bg_in", "bg_total")) %>%
-    mutate(target_frac = as.numeric(target_in)/as.numeric(target_total),
-           bg_frac = as.numeric(bg_in)/as.numeric(bg_total),
-           OR = target_frac/bg_frac) %>%
-    dplyr::select(ID, target_frac, bg_frac, OR) %>%
-    arrange(ID) 
+#  mf.clean <- mf@result %>% 
+#    separate(GeneRatio, into = c("target_in", "target_total")) %>%
+#    separate(BgRatio, into = c("bg_in", "bg_total")) %>%
+#    mutate(target_frac = as.numeric(target_in)/as.numeric(target_total),
+#           bg_frac = as.numeric(bg_in)/as.numeric(bg_total),
+#           OR = target_frac/bg_frac,
+#           enrich = log2(target_frac/bg_frac),
+#           newpval = ifelse(is.nas(pvalue), 1, pvalue),
+#           logp = -log10(newpval)) %>%
+#    dplyr::select(ID, logp, target_frac, bg_frac, OR, enrich) %>%
+#    arrange(ID) 
+#  cc.clean <- cc@result %>% 
+#    separate(GeneRatio, into = c("target_in", "target_total")) %>%
+#    separate(BgRatio, into = c("bg_in", "bg_total")) %>%
+#    mutate(target_frac = as.numeric(target_in)/as.numeric(target_total),
+#           bg_frac = as.numeric(bg_in)/as.numeric(bg_total),
+#           OR = target_frac/bg_frac,
+#           enrich = log2(target_frac/bg_frac),
+#           newpval = ifelse(is.nas(pvalue), 1, pvalue),
+#           logp = -log10(newpval)) %>%
+#    dplyr::select(ID, logp, target_frac, bg_frac, OR, enrich) %>%
+#    arrange(ID) 
   bp.perms <- as.data.frame(rbind(bp.perms, bp.clean))
-  mf.perms <- as.data.frame(rbind(mf.perms, mf.clean))
-  cc.perms <- as.data.frame(rbind(cc.perms, cc.clean))
+#  mf.perms <- as.data.frame(rbind(mf.perms, mf.clean))
+#  cc.perms <- as.data.frame(rbind(cc.perms, cc.clean))
   
 }
 
 bp.real <- calc_enrich(target, bg, "BP")
-mf.real <- calc_enrich(target, bg, "MF")
-cc.real <- calc_enrich(target, bg, "CC")
+#mf.real <- calc_enrich(target, bg, "MF")
+#cc.real <- calc_enrich(target, bg, "CC")
 
 bp.real.clean <- bp.real@result %>% 
   separate(GeneRatio, into = c("target_in", "target_total")) %>%
   separate(BgRatio, into = c("bg_in", "bg_total")) %>%
   mutate(target_frac = as.numeric(target_in)/as.numeric(target_total),
          bg_frac = as.numeric(bg_in)/as.numeric(bg_total),
-         OR = target_frac/bg_frac) %>%
-  dplyr::select(ID, target_frac, bg_frac, OR) %>%
+         OR = target_frac/bg_frac,
+         enrich = log2(target_frac/bg_frac),
+         newpval = ifelse(is.nas(pvalue), 1, pvalue),
+         logp = -log10(newpval)) %>%
+  dplyr::select(ID, logp, target_frac, bg_frac, OR, enrich) %>%
   arrange(ID)
 
 mf.real.clean <- mf.real@result %>% 
@@ -77,8 +91,11 @@ mf.real.clean <- mf.real@result %>%
   separate(BgRatio, into = c("bg_in", "bg_total")) %>%
   mutate(target_frac = as.numeric(target_in)/as.numeric(target_total),
          bg_frac = as.numeric(bg_in)/as.numeric(bg_total),
-         OR = target_frac/bg_frac) %>%
-  dplyr::select(ID, target_frac, bg_frac, OR) %>%
+         OR = target_frac/bg_frac,
+         enrich = log2(target_frac/bg_frac),
+         newpval = ifelse(is.nas(pvalue), 1, pvalue),
+         logp = -log10(newpval)) %>%
+  dplyr::select(ID, logp, target_frac, bg_frac, OR, enrich) %>%
   arrange(ID)
 
 cc.real.clean <- cc.real@result %>% 
@@ -86,8 +103,13 @@ cc.real.clean <- cc.real@result %>%
   separate(BgRatio, into = c("bg_in", "bg_total")) %>%
   mutate(target_frac = as.numeric(target_in)/as.numeric(target_total),
          bg_frac = as.numeric(bg_in)/as.numeric(bg_total),
-         OR = target_frac/bg_frac) %>%
-  dplyr::select(ID, target_frac, bg_frac, OR) %>%
+         OR = target_frac/bg_frac,
+         enrich = log2(target_frac/bg_frac),
+         newpval = ifelse(is.nas(pvalue), 1, pvalue),
+         logp = -log10(newpval)) %>%
+  dplyr::select(ID, logp, target_frac, bg_frac, OR, enrich) %>%
   arrange(ID)
-  
-left_join(bp.real.clean, bp.perms, by = "ID", suffix = c(".real", ".perm"))
+
+
+
+left_join(bp.real.clean, bp.perms, by = "ID", suffix = c(".real", ".perm")) %>% View()
