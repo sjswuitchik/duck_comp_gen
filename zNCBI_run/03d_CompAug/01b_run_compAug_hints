@@ -60,7 +60,7 @@ cat oxyJam.hints.gff oxyJam.hints.ep.gff > oxyJam.combohints.gff
 
 # load hints into SQL database
 cd ..
-for file in hints/*.gff; 
+for file in hints/oxyJam.combohints.gff; 
 do 
   echo -ne "$(basename $file .hints.gff)\t$file\n"; 
 done >hints.tbl
