@@ -10,4 +10,4 @@
 module load Anaconda/5.0.1-fasrc01
 source activate compAug
 
-STAR --runMode genomeGenerate --runThreadN ${SLURM_JOB_CPUS_PER_NODE} --genomeDir genome/ --genomeFastaFiles genome/galGal6.fa --sjdbGTFtagExonParentTranscript Parent --genomeSAindexNbases 13
+STAR --runMode genomeGenerate --runThreadN ${SLURM_JOB_CPUS_PER_NODE} --genomeDir genome/ --genomeFastaFiles genome/oxyJam.fa --sjdbGTFtagExonParentTranscript Parent --genomeSAindexNbases 13
