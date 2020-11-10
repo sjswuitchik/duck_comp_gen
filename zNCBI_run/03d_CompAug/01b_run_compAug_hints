@@ -8,15 +8,15 @@ source activate compAug
 mkdir -p 03d_CompAug/augCGP_rnahints/
 cd augCGP_rnahints/
 
-# get galGal genome and oxyJam annotation
+# get oxyJam genome & annotation
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/011/077/185/GCF_011077185.1_BPBGC_Ojam_1.0/GCF_011077185.1_BPBGC_Ojam_1.0_genomic.gff.gz
-wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/077/185/GCA_011077185.1_BPBGC_Ojam_1.0/GCA_011077185.1_BPBGC_Ojam_1.0_genomic.fna.gz
 mv GCF_011077185.1_BPBGC_Ojam_1.0_genomic.gff.gz oxyJam.gff.gz
-mv GCF_000002315.6_GRCg6a_genomic.fna.gz galGal6.fa.gz
-gunzip galGal6.fa.gz
+mv GCA_011077185.1_BPBGC_Ojam_1.0_genomic.fna.gz oxyJam.fa.gz
+gunzip oxyJam.fa.gz
 
 mkdir genome
-mv galGal6.fa genome/
+mv oxyJam.fa genome/
 
 # get RNA seq fastqs from SRA (Ruddy Duck replicates 1-3 from bioProject PRJNA517454) 
 mkdir fastqs/
