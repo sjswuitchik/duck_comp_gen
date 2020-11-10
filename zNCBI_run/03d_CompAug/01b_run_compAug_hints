@@ -55,6 +55,9 @@ bam2wig oxyJam.filter.sorted.bam > oxyJam.wig
 exit
 cat oxyJam.wig | ./wig2hints.pl --width=10 --margin=10 --minthresh=2 --minscore=4 --src=W --type=ep --radius=4.5 > oxyJam.hints.ep.gff
 
+# concat hints
+cat oxyJam.hints.gff oxyJam.hints.ep.gff > oxyJam.combohints.gff
+
 # load hints into SQL database
 cd ..
 for file in hints/*.gff; 
