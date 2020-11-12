@@ -14,7 +14,7 @@ calc_enrich <- function(targetset, background, ont) {
   enrichGO(targetset$ncbi,'org.Gg.eg.db',
            pvalueCutoff=1.5,
            qvalueCutoff = 1.5, minGSSize=5, maxGSSize=2000, 
-           pAdjustMethod="none",
+           pAdjustMethod="BH",
            universe=background$ncbi,
            keyType="ENTREZID",
            ont=ont) 
@@ -35,7 +35,7 @@ for (i in target[,2:1001]) {
            enrich = log2(target_frac/bg_frac),
            newpval = ifelse(is.na(pvalue), 1, pvalue),
            logp = -log10(newpval)) %>%
-    dplyr::select(ID, geneID, logp, target_frac, bg_frac, enrich) %>%
+    dplyr::select(ID, geneID, logp, target_frac, bg_frac, enrich,pvalue, qvalue) %>%
     arrange(ID) 
   bp.perms <- as.data.frame(rbind(bp.perms, bp.clean))
   
@@ -57,7 +57,7 @@ bp.real.clean <- bp.real@result %>%
          enrich = log2(target_frac/bg_frac),
          newpval = ifelse(is.na(pvalue), 1, pvalue),
          logp = -log10(newpval)) %>%
-  dplyr::select(ID, logp, target_frac, bg_frac, enrich) %>%
+  dplyr::select(ID, geneID, logp, target_frac, bg_frac, enrich, pvalue, qvalue) %>%
   distinct() %>%
   arrange(ID)
 
