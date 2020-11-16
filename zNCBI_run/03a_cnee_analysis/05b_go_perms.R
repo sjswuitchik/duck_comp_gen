@@ -81,9 +81,9 @@ mf.perms.clean <- bind_rows(list(mf.perms), .id = "perm")
 cc.perms.clean <- bind_rows(list(cc.perms), .id = "perm")
 
 # write out perms so you don't have to re-run when your session inevitably crashes
-write.delim(bp.perms.clean, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/bp.perms.clean.tsv", delim = "\t", col_names = T)
-write.delim(mf.perms.clean, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/mf.perms.clean.tsv", delim = "\t", col_names = T)
-write.delim(cc.perms.clean, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/cc.perms.clean.tsv", delim = "\t", col_names = T)
+write_delim(bp.perms.clean, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/bp.perms.clean.tsv", delim = "\t", col_names = T)
+write_delim(mf.perms.clean, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/mf.perms.clean.tsv", delim = "\t", col_names = T)
+write_delim(cc.perms.clean, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/cc.perms.clean.tsv", delim = "\t", col_names = T)
 
 # filter out observed target set from background data
 target <- bg %>% filter(accel >= 1)
