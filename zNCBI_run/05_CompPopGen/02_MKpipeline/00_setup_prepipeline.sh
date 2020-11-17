@@ -2,7 +2,7 @@
 
 # there is a little bit of prep that needs to be done before the output from the snakemake pipeline will be suitable to work in the MK pipeline
 
-module load bcftools/1.5-fasrc02 bedtools2/2.26.0-fasrc01 perl/5.26.1-fasrc01 Anaconda/5.0.1-fasrc01 
+module load bcftools/1.5-fasrc02 bedtools2/2.26.0-fasrc01 perl/5.26.1-fasrc01 Anaconda/5.0.1-fasrc01
 
 cp Combined_hardFiltered.vcf missing_data_per_ind.txt /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline 
 cd /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline
@@ -61,7 +61,6 @@ cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03b_cesar/outpu
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt
 sed 's/\r$//g' GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt | grep -v "^#" | cut -f1,5 > hetAtr_key
 ./replace_chrs.pl hetAtr_key cleaned_reordered_hetAtr.sorted.gtf > genes.gtf
-gzip genes.gtf
 
 cd ../..
 source activate mk_v2
