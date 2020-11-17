@@ -85,6 +85,11 @@ write_delim(bp.perms.clean, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NC
 write_delim(mf.perms.clean, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/mf.perms.clean.tsv", delim = "\t", col_names = T)
 write_delim(cc.perms.clean, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/cc.perms.clean.tsv", delim = "\t", col_names = T)
 
+# read in permutation results if working in a new session
+bp.perms.clean <- read_tsv("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/bp.perms.clean.tsv", col_names = T)
+mf.perms.clean <- read_tsv("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/mf.perms.clean.tsv", col_names = T)
+cc.perms.clean <- read_tsv("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/cc.perms.clean.tsv", col_names = T)
+
 # filter out observed target set from background data
 target <- bg %>% filter(accel >= 1)
 
@@ -144,7 +149,7 @@ cc.merge <- cc.real.clean %>%
   arrange(ID) %>%
   select(-perm)
 
-# calculate empirical pvalues (number of instances where real data is greater than permutation)
+# calculate empirical pvalues (number of instances where real data is greater than or equal to permutation)
 bp.p <- bp.merge %>%
   group_by(ID) %>%
   mutate(gt_target = target_frac.perm <= target_frac.real,
@@ -187,9 +192,6 @@ cc.pval <- cc.p %>%
   select(ID, pVal_target, pVal_enrich) %>%
   distinct()
 
-write_delim(bp.pval, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/sigterms_BP.tsv", delim = "\t", col_names = T)
-write_delim(mf.pval, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/sigterms_MF.tsv", delim = "\t", col_names = T)
-write_delim(cc.pval, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/sigterms_CC.tsv", delim = "\t", col_names = T)
-
-
-
+write_delim(bp.pval, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/GOterms_BP.tsv", delim = "\t", col_names = T)
+write_delim(mf.pval, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/GOterms_MF.tsv", delim = "\t", col_names = T)
+write_delim(cc.pval, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/GOterms_CC.tsv", delim = "\t", col_names = T)
