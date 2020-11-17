@@ -55,6 +55,20 @@ sed '1d' coverage_sites_high.bed | bedtools sort -i - | bedtools merge -i - > st
 cp -v hetAtr_coverage_sites_clean_merged.bed stiNae_coverage_sites_clean_merged.bed ..
 cd ..
 
-# using GTF from CESAR annotation in /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/MK_pipeline to test while waiting for RNA seq data/NCBI annotation
+# using GTF from CESAR annotation 
+# in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline/snpEff/data/hetAtr
+cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03b_cesar/output_gtfs/cleaned_reordered_hetAtr.sorted.gtf .
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt
+sed 's/\r$//g' GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt | grep -v "^#" | cut -f1,5 > hetAtr_key
+./replace_chrs.pl hetAtr_key cleaned_reordered_hetAtr.sorted.gtf > genes.gtf
+gzip genes.gtf
+
+
+
+
+
+
+
+
 
 
