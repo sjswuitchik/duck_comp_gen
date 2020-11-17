@@ -6,7 +6,7 @@
 
 ## MAF creation and validation
 
-singularity shell --cleanenv /n/singularity_images/informatics/cat/cat:20200116.sif
+singularity shell --cleanenv /n/singularity_images/informatics/cat/cat:20200604.sif
 hal2maf galloanserae.hal galloanserae.maf --refGenome galGal --noAncestors --noDupes
 
 mafTools/bin/mafValidator.py --maf=galloanserae.maf
