@@ -78,17 +78,18 @@ cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03b_cesar/gallo
 # separate HAL into chunks for more efficient processing
 mkdir mafs
 # chunk size and overlap are recommendations for WGAs
+singularity shell --cleanenv /n/singularity_images/informatics/cat/cat:20200604.sif #NB could also use the augustus image augustus-2020-05-27-1b69b25ed001.sif
 hal2maf_split.pl --halfile gallo_ncbi.hal --refGenome galGal --cpus 8 --chunksize 2500000 --overlap 500000 --outdir mafs
 
 # assign numbers to alignment chunks
 num=1
-for f in gallo_ncbi.maf; 
+for f in mafs/*.maf; 
 do 
  ln -s $f $num.maf; ((num++)); 
 done
 
 # run Comp Aug de novo without hints
-for ali in *.maf;
+for ali in mafs/*.maf;
 do
 id=${ali%.maf} 
 augustus \
