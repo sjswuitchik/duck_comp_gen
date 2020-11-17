@@ -70,10 +70,15 @@ sqlite3 -header -column chicken.db "\
  FROM genomes natural join speciesnames\
  GROUP BY speciesname;"
 
-# run Comp Aug de novo without hints
+# set up de novo run - first convert HAL to MAF with comp Aug specific conversion
 mkdir augCGP_denovo
 cd augCGP_denovo
-cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03b_cesar/gallo_ncbi.maf .
+cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03b_cesar/gallo_ncbi.hal .
+
+# separate HAL into chunks for more efficient processing
+mkdir mafs
+# chunk size and overlap are recommendations for WGAs
+hal2maf_split.pl --halfile gallo_ncbi.hal --refGenome galGal --cpus 8 --chunksize 2500000 --overlap 500000 --outdir mafs
 
 # assign numbers to alignment chunks
 num=1
@@ -82,7 +87,7 @@ do
  ln -s $f $num.maf; ((num++)); 
 done
 
-# run de novo
+# run Comp Aug de novo without hints
 for ali in *.maf;
 do
 id=${ali%.maf} 
