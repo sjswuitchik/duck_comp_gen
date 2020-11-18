@@ -91,16 +91,16 @@ sqlite3 -header -column chicken_rnaseq.db "\
 
 # copy over MAF and Newick tree from de novo dir for simplicity
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_denovo/top1.nwk .
-cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_denovo/gallo_ncbi.maf .
+cp -rv /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_denovo/mafs
 
 num=1
-for f in gallo_ncbi.maf; 
+for f in mafs/*.maf; 
 do 
  ln -s $f $num.maf; ((num++)); 
 done
 
 # run comp Aug with hints
-for ali in *.maf;
+for ali in mafs/*.maf;
 do
  id=${ali%.maf} # remove .maf suffix
  augustus \
