@@ -10,8 +10,15 @@ do
   mkdir -p data/$file/genome
 done
 
+# make a v2 directory for hetAtr to include both the reseq data and the genome data (was not included in initial run with REU data)
+mkdir -p data/hetAtr_v2/fastqs
+mkdir -p data/hetAtr_v2/genome
+
 # copy fastqs over 
-cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/BGI_duck_reseq _____ /n/holylfs/LABS/informatics/swuitchik/ducks/## get orig hetAtr indiv from 00_raw_fastqs.tar.gz as well
+cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/BGI_duck_reseq/CNB0005/* /n/holylfs/LABS/informatics/swuitchik/ducks/raw_fastqs/01_stiNae/* data/stiNae/fastqs
+cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/BGI_duck_reseq/CNB0006/* /n/holylfs/LABS/informatics/swuitchik/ducks/raw_fastqs/03_netAur/* data/netAur/fastqs
+cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/BGI_duck_reseq/CNB0007/* /n/holylfs/LABS/informatics/swuitchik/ducks/raw_fastqs/02_oxyJam/* data/oxyJam/fastqs
+cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/BGI_duck_reseq/M*/* /n/holylfs/LABS/informatics/swuitchik/ducks/raw_fastqs/04_hetAtr/* data/hetAtr_v2/fastqs
 
 # get reference genomes
 cd data/hetAtr/genome
