@@ -64,8 +64,17 @@ sed 's/\r$//g' GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt | grep -v "^#"
 python2 gtf2gff.py genes.gtf > genes.gff
 gzip genes.gff
 
-cd ../..
+# try converting GP to GFF 
 module load Anaconda/5.0.1-fasrc02
+#conda create -c bioconda -n gp2gtf ucsc-genepredtogtf 
+source activate gp2gtf 
+cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03b_cesar/geneAnnotation/hetAtr.gp .
+
+
+
+
+cd ../..
+
 source activate mk_v2
 java -jar snpEff.jar build -gff3 -v hetAtr
 
