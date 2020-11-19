@@ -90,25 +90,14 @@ bp.perms.clean <- read_tsv("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCB
 mf.perms.clean <- read_tsv("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/mf.perms.clean.tsv", col_names = T)
 cc.perms.clean <- read_tsv("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/cc.perms.clean.tsv", col_names = T)
 
-# look at perm results 
-sample(1:1587, 5, replace=FALSE) 
-# 757  867  164 1138  981
-test <- bp.perms.clean %>% group_by(ID) %>% filter(ID == 'GO:0061077')
+# randomly sample IDs to make sure distributions of target_frac and and enrich look okay
+sample(1:1587, 15, replace=FALSE) 
+# 757 867 164 1138 981 662 133 231 846 95 892 1456 1458 694 1147
+ids <- bp.perms.clean %>% group_by(ID) %>% distinct(ID)
+ids[1147,]
+test <- bp.perms.clean %>% group_by(ID) %>% filter(ID == 'GO:0042255')
 ggplot(data = test, aes(x = target_frac)) + geom_histogram()
 ggplot(data = test, aes(x = enrich)) + geom_histogram()
-ggplot(data = test, aes(x = bg_frac)) + geom_histogram()
-
-# randomly sample IDs to make sure distributions of target_frac and and enrich look okay
-ids <- bp.merge %>% group_by(ID) %>% distinct(ID)
-sample(1:1587, 5, replace=FALSE) 
-test <- bp.merge %>% filter(ID == 'GO:0010970' | ID == 'GO:0008104' | ID == 'GO:0048609' | ID == 'GO:1901566' | ID == 'GO:0061077') %>% group_by(ID) 
-
-
-
-
-
-
-
 
 # filter out observed target set from background data
 target <- bg %>% filter(accel >= 1)
