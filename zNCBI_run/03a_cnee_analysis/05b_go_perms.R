@@ -2,7 +2,6 @@
 library(org.Gg.eg.db) # BiocManager::install("org.Gg.eg.db")
 library(tidyverse)
 library(clusterProfiler)
-library(enrichplot)
 
 # load in background data and clean up NCBI IDs
 bg <- read_delim("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/cnee_goperms.counts.bed", delim = "\t", col_names = F) %>%
@@ -37,43 +36,44 @@ for (i in 1:1000) {
   mf <- calc_enrich(perm.target, bg, ont = "MF")
   cc <- calc_enrich(perm.target, bg, ont = "CC")
   bp.clean <- bp@result %>% 
-    separate(GeneRatio, into = c("target_in", "target_total"), sep = '/') %>%
-    separate(BgRatio, into = c("bg_in", "bg_total"), sep = '/') %>%
+    separate(GeneRatio, into = c("target_in", "target_total"), sep = '/', remove= F) %>%
+    separate(BgRatio, into = c("bg_in", "bg_total"), sep = '/', remove= F) %>%
     mutate(target_frac = as.numeric(target_in)/as.numeric(target_total),
            bg_frac = as.numeric(bg_in)/as.numeric(bg_total),
            OR = target_frac/bg_frac,
            enrich = log2(target_frac/bg_frac),
            newpval = ifelse(is.na(pvalue), 1, pvalue),
            logp = -log10(newpval)) %>%
-    dplyr::select(ID, logp, target_frac, bg_frac, enrich) %>%
+    dplyr::select(ID, GeneRatio, BgRatio, logp, target_frac, bg_frac, enrich) %>%
     arrange(ID)
   mf.clean <- mf@result %>% 
-    separate(GeneRatio, into = c("target_in", "target_total"), sep = '/') %>%
-    separate(BgRatio, into = c("bg_in", "bg_total"), sep = '/') %>%
+    separate(GeneRatio, into = c("target_in", "target_total"), sep = '/', remove= F) %>%
+    separate(BgRatio, into = c("bg_in", "bg_total"), sep = '/', remove= F) %>%
     mutate(target_frac = as.numeric(target_in)/as.numeric(target_total),
            bg_frac = as.numeric(bg_in)/as.numeric(bg_total),
            OR = target_frac/bg_frac,
            enrich = log2(target_frac/bg_frac),
            newpval = ifelse(is.na(pvalue), 1, pvalue),
            logp = -log10(newpval)) %>%
-    dplyr::select(ID, logp, target_frac, bg_frac, enrich) %>%
+    dplyr::select(ID, GeneRatio, BgRatio, logp, target_frac, bg_frac, enrich) %>%
     arrange(ID)
   cc.clean <- cc@result %>% 
-    separate(GeneRatio, into = c("target_in", "target_total"), sep = '/') %>%
-    separate(BgRatio, into = c("bg_in", "bg_total"), sep = '/') %>%
+    separate(GeneRatio, into = c("target_in", "target_total"), sep = '/', remove= F) %>%
+    separate(BgRatio, into = c("bg_in", "bg_total"), sep = '/', remove= F) %>%
     mutate(target_frac = as.numeric(target_in)/as.numeric(target_total),
            bg_frac = as.numeric(bg_in)/as.numeric(bg_total),
            OR = target_frac/bg_frac,
            enrich = log2(target_frac/bg_frac),
            newpval = ifelse(is.na(pvalue), 1, pvalue),
            logp = -log10(newpval)) %>%
-    dplyr::select(ID, logp, target_frac, bg_frac, enrich) %>%
+    dplyr::select(ID, GeneRatio, BgRatio, logp, target_frac, bg_frac, enrich) %>%
     arrange(ID)
   bp.perms[[i]] <- bp.clean
   mf.perms[[i]] <- mf.clean
   cc.perms[[i]] <- cc.clean
   
 }
+
 
 # bind permutation results
 bp.perms.clean <- bind_rows(list(bp.perms), .id = "perm")
@@ -89,6 +89,26 @@ write_delim(cc.perms.clean, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NC
 bp.perms.clean <- read_tsv("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/bp.perms.clean.tsv", col_names = T)
 mf.perms.clean <- read_tsv("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/mf.perms.clean.tsv", col_names = T)
 cc.perms.clean <- read_tsv("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/cc.perms.clean.tsv", col_names = T)
+
+# look at perm results 
+sample(1:1587, 5, replace=FALSE) 
+# 757  867  164 1138  981
+test <- bp.perms.clean %>% group_by(ID) %>% filter(ID == 'GO:0061077')
+ggplot(data = test, aes(x = target_frac)) + geom_histogram()
+ggplot(data = test, aes(x = enrich)) + geom_histogram()
+ggplot(data = test, aes(x = bg_frac)) + geom_histogram()
+
+# randomly sample IDs to make sure distributions of target_frac and and enrich look okay
+ids <- bp.merge %>% group_by(ID) %>% distinct(ID)
+sample(1:1587, 5, replace=FALSE) 
+test <- bp.merge %>% filter(ID == 'GO:0010970' | ID == 'GO:0008104' | ID == 'GO:0048609' | ID == 'GO:1901566' | ID == 'GO:0061077') %>% group_by(ID) 
+
+
+
+
+
+
+
 
 # filter out observed target set from background data
 target <- bg %>% filter(accel >= 1)
@@ -192,6 +212,12 @@ cc.pval <- cc.p %>%
   select(ID, pVal_target, pVal_enrich) %>%
   distinct()
 
+# write out GO terms
 write_delim(bp.pval, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/GOterms_BP.tsv", delim = "\t", col_names = T)
 write_delim(mf.pval, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/GOterms_MF.tsv", delim = "\t", col_names = T)
 write_delim(cc.pval, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/GOterms_CC.tsv", delim = "\t", col_names = T)
+
+# write out sig GO terms
+filter(bp.pval, pVal_enrich <= 0.05) %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/sigGOterms_BP.tsv", delim = "\t", col_names = T)
+filter(mf.pval, pVal_enrich <= 0.05) %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/sigGOterms_MF.tsv", delim = "\t", col_names = T)
+filter(cc.pval, pVal_enrich <= 0.05) %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/sigGOterms_CC.tsv", delim = "\t", col_names = T)
