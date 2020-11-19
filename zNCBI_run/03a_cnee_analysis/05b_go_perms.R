@@ -90,15 +90,6 @@ bp.perms.clean <- read_tsv("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCB
 mf.perms.clean <- read_tsv("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/mf.perms.clean.tsv", col_names = T)
 cc.perms.clean <- read_tsv("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/cc.perms.clean.tsv", col_names = T)
 
-# randomly sample IDs to make sure distributions of target_frac and and enrich look okay
-sample(1:1587, 15, replace=FALSE) 
-# 757 867 164 1138 981 662 133 231 846 95 892 1456 1458 694 1147
-ids <- bp.perms.clean %>% group_by(ID) %>% distinct(ID)
-ids[1147,]
-test <- bp.perms.clean %>% group_by(ID) %>% filter(ID == 'GO:0042255')
-ggplot(data = test, aes(x = target_frac)) + geom_histogram()
-ggplot(data = test, aes(x = enrich)) + geom_histogram()
-
 # filter out observed target set from background data
 target <- bg %>% filter(accel >= 1)
 
@@ -108,7 +99,7 @@ mf.real <- calc_enrich(target, bg, "MF")
 cc.real <- calc_enrich(target, bg, "CC")
 
 bp.real.clean <- bp.real@result %>% 
-  separate(GeneRatio, into = c("target_in", "target_total")) %>%
+  separate(GeneRatio, into = c("target_in", "target_total"), remove = F) %>%
   separate(BgRatio, into = c("bg_in", "bg_total")) %>%
   mutate(target_frac = as.numeric(target_in)/as.numeric(target_total),
          bg_frac = as.numeric(bg_in)/as.numeric(bg_total),
@@ -116,10 +107,10 @@ bp.real.clean <- bp.real@result %>%
          enrich = log2(target_frac/bg_frac),
          newpval = ifelse(is.na(pvalue), 1, pvalue),
          logp = -log10(newpval)) %>%
-  dplyr::select(ID, logp, target_frac, bg_frac, enrich) %>%
+  dplyr::select(ID, logp, target_frac, target_total, bg_frac, enrich) %>%
   arrange(ID)
 mf.real.clean <- mf.real@result %>% 
-  separate(GeneRatio, into = c("target_in", "target_total")) %>%
+  separate(GeneRatio, into = c("target_in", "target_total"), remove = F) %>%
   separate(BgRatio, into = c("bg_in", "bg_total")) %>%
   mutate(target_frac = as.numeric(target_in)/as.numeric(target_total),
          bg_frac = as.numeric(bg_in)/as.numeric(bg_total),
@@ -127,7 +118,7 @@ mf.real.clean <- mf.real@result %>%
          enrich = log2(target_frac/bg_frac),
          newpval = ifelse(is.na(pvalue), 1, pvalue),
          logp = -log10(newpval)) %>%
-  dplyr::select(ID, logp, target_frac, bg_frac, enrich) %>%
+  dplyr::select(ID, logp, target_frac, target_total, bg_frac, enrich) %>%
   arrange(ID)
 cc.real.clean <- cc.real@result %>% 
   separate(GeneRatio, into = c("target_in", "target_total")) %>%
@@ -210,3 +201,45 @@ write_delim(cc.pval, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/
 filter(bp.pval, pVal_enrich <= 0.05) %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/sigGOterms_BP.tsv", delim = "\t", col_names = T)
 filter(mf.pval, pVal_enrich <= 0.05) %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/sigGOterms_MF.tsv", delim = "\t", col_names = T)
 filter(cc.pval, pVal_enrich <= 0.05) %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/sigGOterms_CC.tsv", delim = "\t", col_names = T)
+
+#### QC #### 
+# randomly sample IDs to make sure distributions of target_frac and and enrich look okay i.e. normal distribution (just with BP for starters)
+ids <- bp.perms.clean %>% group_by(ID) %>% distinct(ID)
+sample(1:1587, 15, replace=FALSE) 
+# 757 867 164 1138 981 662 133 231 846 95 892 1456 1458 694 1147
+ids[1147,]
+# GO:0034220 GO:0042886 GO:0006281 GO:0048762 GO:0045216 GO:0031396 GO:0003013 GO:0006939 GO:0042255 GO:0002429 GO:0043270 GO:0071383 GO:0071407 GO:0032332 GO:0048869
+test <- bp.perms.clean %>% group_by(ID) %>% filter(ID == 'GO:0048869')
+ggplot(data = test, aes(x = target_frac)) + geom_histogram()
+ggplot(data = test, aes(x = enrich)) + geom_histogram()
+
+# make sure real data is well represented by the permutations (i.e. does the real data fall within permutation or is it on the tails?)
+test <- bp.perms.clean %>% 
+  separate(GeneRatio, into = c("target_in", "target_total"), sep = '/', remove= F) %>%
+  mutate(target_total = as.numeric(target_total)) %>%
+  group_by(ID)
+filt <- test %>% filter(ID == 'GO:0048869')
+ggplot(data = filt, aes(x = target_total)) + 
+  geom_histogram() + 
+  geom_text(x = 85, y = 0, colour = "red", size = 8, label = '*')
+
+## now for MF, just to make sure it's consistent across subontologies
+ids <- mf.perms.clean %>% group_by(ID) %>% distinct(ID)
+sample(1:528, 15, replace=FALSE) 
+# 521 207 321  29  42 357  60 481 204 446 271 155 169 448  18
+ids[18,]
+# GO:0005549 GO:0043177 GO:0030594 GO:0003727 GO:0004675 GO:0098531 GO:0005126 GO:0034212 GO:0043167 GO:0034979 GO:0004721 GO:0019212 GO:0022804 GO:0042165 GO:0003674
+test <- mf.perms.clean %>% group_by(ID) %>% filter(ID == 'GO:0003674')
+ggplot(data = test, aes(x = target_frac)) + geom_histogram()
+ggplot(data = test, aes(x = enrich)) + geom_histogram()
+
+# make sure real data is well represented by the permutations (i.e. does the real data fall within permutation or is it on the tails?)
+test <- mf.perms.clean %>% 
+  separate(GeneRatio, into = c("target_in", "target_total"), sep = '/', remove= F) %>%
+  mutate(target_total = as.numeric(target_total)) %>%
+  group_by(ID)
+filt <- test %>% filter(ID == 'GO:0003674')
+ggplot(data = filt, aes(x = target_total)) + 
+  geom_histogram() + 
+  geom_text(x = 82, y = 0, colour = "red", size = 8, label = '*')
+
