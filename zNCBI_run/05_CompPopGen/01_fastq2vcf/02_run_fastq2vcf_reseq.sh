@@ -43,8 +43,7 @@ do
   gunzip $file/genome/*.gz
 done
 
-# concat fastqs (in same order!) for individuals 
-cd data/hetAtr/fastqs
+# concat fastqs (in same order!)
 ./concat_fastqs_reseq.sh 
 
 sbatch run_fastq2bam.sh
