@@ -1,4 +1,5 @@
-## in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/genomes/
+# in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/genomes/
+## from http://bioinf.uni-greifswald.de/augustus/binaries/tutorial-cgp/de_novo.html
 
 module load Anaconda/5.0.1-fasrc01 samtools/1.10-fasrc01
 #conda create -c conda-forge -c bioconda -n compAug augustus star
@@ -89,7 +90,7 @@ do
 done
 
 # run Comp Aug de novo without hints
-for ali in mafs/*.maf;
+for ali in *.maf;
 do
 id=${ali%.maf} 
 augustus \
@@ -102,3 +103,12 @@ augustus \
 --alternatives-from-evidence=0 \
 --/CompPred/outdir=pred$id > aug$id.out 2> err$id.out &
 done
+
+# combine predictions from parallel runs
+mkdir joined_pred
+while read line
+do
+  species=$(echo "$line" | cut -f 1)
+  find pred* -name "${species}.cgp.gff" >${species}_gtfs.lst;
+  joingenes -f ${species}_gtfs.lst -o joined_pred/$species.gff
+done < ../genomes.tbl
