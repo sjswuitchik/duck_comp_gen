@@ -18,7 +18,7 @@ mkdir -p data/hetAtr_v2/genome
 cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/BGI_duck_reseq/CNB0005/* /n/holylfs/LABS/informatics/swuitchik/ducks/raw_fastqs/01_stiNae/* data/stiNae/fastqs
 cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/BGI_duck_reseq/CNB0006/* /n/holylfs/LABS/informatics/swuitchik/ducks/raw_fastqs/03_netAur/* data/netAur/fastqs
 cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/BGI_duck_reseq/CNB0007/* /n/holylfs/LABS/informatics/swuitchik/ducks/raw_fastqs/02_oxyJam/* data/oxyJam/fastqs
-cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/hetAtr/fastqs/orig_fastqs/* /n/holylfs/LABS/informatics/swuitchik/ducks/raw_fastqs/04_hetAtr/* data/hetAtr_v2/fastqs
+cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/hetAtr/fastqs/hetAtr* /n/holylfs/LABS/informatics/swuitchik/ducks/raw_fastqs/04_hetAtr/* data/hetAtr_v2/fastqs
 
 # get reference genomes
 cd data/hetAtr/genome
