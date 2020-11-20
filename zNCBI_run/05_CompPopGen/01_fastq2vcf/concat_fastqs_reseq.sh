@@ -12,8 +12,8 @@ cat oxyJam_female_L001_R2_001.fastq.gz oxyJam_female_L004_R2_001.fastq.gz > oxyJ
 
 # stiNae
 cd ../../stiNae/fastqs
-cat _______ > stiNae_female_R1.fastq.gz
-cat _______ > stiNae_female_R2.fastq.gz
+cat stiNae_female_L001_R1_001.fastq.gz stiNae_female_L004_R1_001.fastq.gz > stiNae_female_R1.fastq.gz
+cat stiNae_female_L001_R2_001.fastq.gz stiNae_female_L004_R2_001.fastq.gz > stiNae_female_R2.fastq.gz
 
 # hetAtr
 cd ../../hetAtr_v2/fastqs
