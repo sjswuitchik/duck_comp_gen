@@ -45,9 +45,7 @@ done
 
 # concat fastqs (in same order!) for individuals 
 cd data/hetAtr/fastqs
-./concat_fastqs.sh 
-mkdir orig_fastqs/
-mv hetAtr*_L*.fastq.gz orig_fastqs/
+./concat_fastqs_reseq.sh 
 
 sbatch run_fastq2bam.sh
 sbatch run_intervals.sh
