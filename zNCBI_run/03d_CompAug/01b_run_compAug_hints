@@ -67,25 +67,26 @@ cat oxyJam.wig | ./wig2hints.pl --width=10 --margin=10 --minthresh=2 --minscore=
 
 # concat hints
 cat oxyJam.hints.gff oxyJam.hints.ep.gff > oxyJam.combohints.gff
+cd ..
 
 # create hints for galGal, anaPla, and oxyJam using NCBI GFFs
-grep -P "\t(CDS|intron)\t" gffs/oxyJam.gff | cut -f1-8 | perl -pe 's/$/\tsource=M/' >gffs/oxyJam.ncbihints.gff
-grep -P "\t(CDS|intron)\t" gffs/galGal.gff | cut -f1-8 | perl -pe 's/$/\tsource=M/' >gffs/galGal.hints.gff
-grep -P "\t(CDS|intron)\t" gffs/anaPla.gff | cut -f1-8 | perl -pe 's/$/\tsource=M/' >gffs/anaPla.hints.gff
+grep -P "\t(CDS|intron)\t" gffs/oxyJam.gff | cut -f1-8 | perl -pe 's/$/\tsource=M/' >hints/oxyJam.ncbihints.gff
+grep -P "\t(CDS|intron)\t" gffs/galGal.gff | cut -f1-8 | perl -pe 's/$/\tsource=M/' >hints/galGal.hints.gff
+grep -P "\t(CDS|intron)\t" gffs/anaPla.gff | cut -f1-8 | perl -pe 's/$/\tsource=M/' >hints/anaPla.hints.gff
 
-sort -n -k 4,4 gffs/oxyJam.ncbihints.gff | sort -s -n -k 5,5 | sort -s -n -k 3,3 | sort -s -k 1,1 | join_mult_hints.pl >temp
-mv temp gffs/oxyJam.ncbihints.gff
-sort -n -k 4,4 gffs/galGal.hints.gff | sort -s -n -k 5,5 | sort -s -n -k 3,3 | sort -s -k 1,1 | join_mult_hints.pl >temp
-mv temp gffs/galGal.hints.gff
-sort -n -k 4,4 gffs/anaPla.hints.gff | sort -s -n -k 5,5 | sort -s -n -k 3,3 | sort -s -k 1,1 | join_mult_hints.pl >temp
-mv temp gffs/anaPla.hints.gff
+sort -n -k 4,4 hints/oxyJam.ncbihints.gff | sort -s -n -k 5,5 | sort -s -n -k 3,3 | sort -s -k 1,1 | ./join_mult_hints.pl >temp
+mv temp hints/oxyJam.ncbihints.gff
+sort -n -k 4,4 hints/galGal.hints.gff | sort -s -n -k 5,5 | sort -s -n -k 3,3 | sort -s -k 1,1 | join_mult_hints.pl >temp
+mv temp hints/galGal.hints.gff
+sort -n -k 4,4 hints/anaPla.hints.gff | sort -s -n -k 5,5 | sort -s -n -k 3,3 | sort -s -k 1,1 | join_mult_hints.pl >temp
+mv temp hints/anaPla.hints.gff
 
 # load hints into SQL database
-cd ..
-for file in hints/oxyJam.combohints.gff; 
+for file in hints/*.gff; 
 do 
   echo -ne "$(basename $file .hints.gff)\t$file\n"; 
 done >hints.tbl
+# manually editing this file to correct small formatting issues, will return to this later
 
 # copy database from parent dir (created in 01a_run_CompAug_denovo.sh) 
 cp ../chicken.db .
