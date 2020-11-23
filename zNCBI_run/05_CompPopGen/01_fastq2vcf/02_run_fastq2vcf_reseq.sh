@@ -46,6 +46,22 @@ done
 # concat fastqs (in same order!)
 ./concat_fastqs_reseq.sh 
 
+# move original fastqs
+for file in hetAtr_v2 oxyJam netAur stiNae;
+do
+  cd $file/fastqs
+  mkdir orig_fastqs
+done
+
+cd stiNae/fastqs
+mv stiNae_female_L00* orig_fastqs/
+cd ../../oxyJam/fastqs
+mv oxyJam_female_L00* orig_fastqs/
+cd ../../netAur/fastqs
+mv netAur_female_L00* orig_fastqs/
+cd ../../hetAtr_v2/fastqs
+mv DGAB-CNB0004-CN4-lib1_S* orig_fastqs/
+
 sbatch run_fastq2bam.sh
 sbatch run_intervals.sh
 sbatch run_bam2vcf_gatk.sh
