@@ -14,3 +14,5 @@ For bam2vcf
 - bam_suffix: "_dedup.bam"
 
 ### hetAtr_v2 run ###
+Everything is the same as the above hetAtr parameters with the following exception for the fastq2bam pipeline
+- fastqDir: "data/hetAtr_v2/fastqs" 
