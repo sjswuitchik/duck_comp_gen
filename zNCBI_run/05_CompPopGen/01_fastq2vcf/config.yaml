@@ -5,7 +5,7 @@
 ref: "data/hetAtr/genome/hetAtr.fa"    # location of the reference genome
 
 # If using the fastq -> BAM workflow change these, otherwise ignore them
-fastqDir: "data/hetAtr/fastqs/"      # location of fastq files; must be followed by a "/"
+fastqDir: "data/hetAtr_v2/fastqs"      # location of fastq files; must be followed by a "/"
 fastq_suffix1: "_1.fastq.gz"            # the suffix for the forward reads that follows all the sample names, e.g. "_1.fastq.gz" for sample "sampleName_1.fastq.gz"
 fastq_suffix2: "_2.fastq.gz"            # the suffix for the reverse reads that follows all the sample names, e.g. "_2.fastq.gz" for sample "sampleName_2.fastq.gz"
 
