@@ -72,3 +72,46 @@ mv fastq2bam/ intervalFiles/ gatk/ ../hetAtr_stiNae_MK
 sbatch run_fastq2bam.sh
 sbatch run_intervals.sh
 sbatch run_bam2vcf_gatk.sh
+
+# move hetAtr_v2 run data 
+cd ..
+mkdir hetAtr_v2
+cd shortRead_mapping_variantCalling/
+mv fastq2bam/ intervalFiles/ gatk/ ../hetAtr_v2
+
+## manually edit config.yaml and resources.yaml as necessary for oxyJam
+# run oxyJam
+sbatch run_fastq2bam.sh
+sbatch run_intervals.sh
+sbatch run_bam2vcf_gatk.sh
+
+# move oxyJam run data 
+cd ..
+mkdir oxyJam
+cd shortRead_mapping_variantCalling/
+mv fastq2bam/ intervalFiles/ gatk/ ../oxyJam
+
+## manually edit config.yaml and resources.yaml as necessary for netAur
+# run netAur
+sbatch run_fastq2bam.sh
+sbatch run_intervals.sh
+sbatch run_bam2vcf_gatk.sh
+
+# move netAur run data 
+cd ..
+mkdir netAur
+cd shortRead_mapping_variantCalling/
+mv fastq2bam/ intervalFiles/ gatk/ ../netAur
+
+## manually edit config.yaml and resources.yaml as necessary for stiNae
+# run stiNae
+sbatch run_fastq2bam.sh
+sbatch run_intervals.sh
+sbatch run_bam2vcf_gatk.sh
+
+# move stiNae run data 
+cd ..
+mkdir stiNae
+cd shortRead_mapping_variantCalling/
+mv fastq2bam/ intervalFiles/ gatk/ ../stiNae
+
