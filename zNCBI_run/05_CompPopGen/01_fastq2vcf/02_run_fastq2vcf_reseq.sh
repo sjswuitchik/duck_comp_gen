@@ -46,7 +46,7 @@ done
 # concat fastqs (in same order!)
 ./concat_fastqs_reseq.sh 
 
-# move original fastqs
+# move original fastqs so only the prepped fastqs are called in the pipeline
 for file in hetAtr_v2 oxyJam netAur stiNae;
 do
   cd $file/fastqs
@@ -61,7 +61,14 @@ cd ../../netAur/fastqs
 mv netAur_female_L00* orig_fastqs/
 cd ../../hetAtr_v2/fastqs
 mv DGAB-CNB0004-CN4-lib1_S* orig_fastqs/
+cd ../../../..
 
+# move all previous run data for hetAtr& stiNae MK pipeline input so it doesn't get overwritten
+mkdir hetAtr_stiNae_MK
+cd shortRead_mapping_variantCalling/
+mv fastq2bam/ intervalFiles/ gatk/ ../hetAtr_stiNae_MK
+
+# run hetAtr_v2 
 sbatch run_fastq2bam.sh
 sbatch run_intervals.sh
 sbatch run_bam2vcf_gatk.sh
