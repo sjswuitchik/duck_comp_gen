@@ -21,7 +21,7 @@ cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/BGI_duck_reseq/CNB0007/* /n/ho
 cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/hetAtr/fastqs/hetAtr* /n/holylfs/LABS/informatics/swuitchik/ducks/raw_fastqs/04_hetAtr/* data/hetAtr_v2/fastqs
 
 # get reference genomes
-cd data/hetAtr/genome
+cd data/hetAtr_v2/genome
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna.gz
 mv GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna.gz hetAtr.fa.gz
 
