@@ -2,7 +2,7 @@
 # Variables you need to change
 ##############################
 
-ref: "data/hetAtr/genome/hetAtr.fa"    # location of the reference genome
+ref: "data/hetAtr_v2/genome/hetAtr.fa"    # location of the reference genome
 
 # If using the fastq -> BAM workflow change these, otherwise ignore them
 fastqDir: "data/hetAtr_v2/fastqs"      # location of fastq files; must be followed by a "/"
