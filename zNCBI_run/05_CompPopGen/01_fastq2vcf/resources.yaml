@@ -18,7 +18,7 @@ sort_bam:
     mem: 25000 
 # mark duplicates with picard's MarkDuplicates
 dedup: 
-    mem: 9000 
+    mem: 25000 
 # calculate BAM summaries with samtools and picard
 bam_sumstats: 
     mem: 9000 
