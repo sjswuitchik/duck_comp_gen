@@ -4,3 +4,4 @@ module load Anaconda/5.0.1-fasrc01
 #conda create -c bioconda -n sweepfinder sweepfinder2
 conda activate sweepfinder
 
+# run `SweepFinder2` to see usage
