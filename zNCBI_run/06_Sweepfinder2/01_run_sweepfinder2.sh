@@ -2,5 +2,5 @@
 
 module load Anaconda/5.0.1-fasrc01
 #conda create -c bioconda -n sweepfinder sweepfinder2
-source activate sweepfinder
+conda activate sweepfinder
 
