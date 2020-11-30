@@ -69,6 +69,10 @@ cat oxyJam.wig | ./wig2hints.pl --width=10 --margin=10 --minthresh=2 --minscore=
 cat oxyJam.hints.gff oxyJam.hints.ep.gff > oxyJam.combohints.gff
 cd ..
 
+# clean up interim GFFs
+mkdir temp_files
+mv oxyJam.hints.gff oxyJam.hints.ep.gff
+
 # create hints for galGal, anaPla, and oxyJam using NCBI GFFs
 grep -P "\t(CDS|intron)\t" gffs/oxyJam.gff | cut -f1-8 | perl -pe 's/$/\tsource=M/' >hints/oxyJam.ncbihints.gff
 grep -P "\t(CDS|intron)\t" gffs/galGal.gff | cut -f1-8 | perl -pe 's/$/\tsource=M/' >hints/galGal.hints.gff
