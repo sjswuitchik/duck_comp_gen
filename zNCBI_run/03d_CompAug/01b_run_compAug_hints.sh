@@ -3,7 +3,7 @@
 ## from http://bioinf.uni-greifswald.de/augustus/binaries/tutorial-cgp/rnaseq.html and http://bioinf.uni-greifswald.de/augustus/binaries/tutorial-cgp/cactus.html#runCactus
 
 module load Anaconda/5.0.1-fasrc01 samtools/1.10-fasrc01 perl/5.26.1-fasrc01
-#conda create -c conda-forge -c bioconda -n compAug augustus star
+#conda create -c conda-forge -c bioconda -n compAug augustus star gffread
 source activate compAug
 
 mkdir -p 03d_CompAug/augCGP_rnahints/
