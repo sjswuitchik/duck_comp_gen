@@ -133,21 +133,7 @@ do
 done
 
 # run comp Aug with hints
-for ali in mafs/*.maf;
-do
- id=${ali%.maf} # remove .maf suffix
- augustus \
-  --species=chicken \
-  --softmasking=1 \
-  --treefile=top1.nwk \
-  --alnfile=$ali \
-  --dbaccess=chicken_rnaseq.db \
-  --speciesfilenames=../genomes.tbl \
-  --alternatives-from-evidence=0 \
-  --dbhints=1 \
-  --UTR=1 \
-  --allow_hinted_splicesites=atac \
-  --extrinsicCfgFile=extrinsic-rnaseq.cfg \
-  --/CompPred/outdir=pred$id > aug$id.out 2> err$id.out &
-done
+sbatch run_compAug_hints.sh
+
+
 
