@@ -135,5 +135,12 @@ done
 # run comp Aug with hints
 sbatch run_compAug_hints.sh
 
-
+# combine predictions from parallel runs
+mkdir joined_pred
+while read line
+do
+  species=$(echo "$line" | cut -f 1)
+  find pred* -name "${species}.cgp.gff" >${species}_gtfs.lst;
+  joingenes -f ${species}_gtfs.lst -o joined_pred/$species.gff
+done < ../genomes.tbl
 
