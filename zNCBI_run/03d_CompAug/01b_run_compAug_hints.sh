@@ -3,7 +3,7 @@
 ## from http://bioinf.uni-greifswald.de/augustus/binaries/tutorial-cgp/rnaseq.html and http://bioinf.uni-greifswald.de/augustus/binaries/tutorial-cgp/cactus.html#runCactus
 
 module load Anaconda/5.0.1-fasrc01 samtools/1.10-fasrc01 perl/5.26.1-fasrc01
-#conda create -c conda-forge -c bioconda -n compAug augustus star gffread
+#conda create -c conda-forge -c bioconda -n compAug augustus star
 source activate compAug
 
 mkdir -p 03d_CompAug/augCGP_rnahints/
@@ -22,7 +22,7 @@ mv GCF_003850225.1_IASCAAS_PekingDuck_PBH1.5_genomic.gff.gz anaPla.gff.gz
 mkdir genome
 mv oxyJam.fa genome/
 mkdir gffs
-mv oxyJam.gff.gz galGal.gff.gz anaPla.gff.gz gffs
+mv oxyJam.gff.gz galGal.gff.gz anaPla.gff.gz gffs/
 gunzip genome/* gffs/*
 
 # get RNA seq fastqs from SRA (Ruddy Duck replicates 1-3 from bioProject PRJNA517454) 
@@ -44,7 +44,7 @@ sbatch run_starMap.sh
 # 2nd pass
 sbatch run_starMap_2pass.sh
 
-# sort output and convert o BAM
+# sort output and convert to BAM
 sort -k 1,1 oxyJamPass2Aligned.out.sam > oxyJam.input.sort.sam
 samtools view oxyJam.input.sort.sam -b -h > oxyJam.input.sort.bam
 
