@@ -124,7 +124,7 @@ sqlite3 -header -column chicken_rnaseq.db "\
 
 # copy over MAF and Newick tree from de novo dir for simplicity
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_denovo/top1.nwk .
-cp -rv /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_denovo/mafs
+cp -rv /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_denovo/mafs .
 
 num=1
 for f in mafs/*.maf; 
