@@ -68,9 +68,15 @@ cat oxyJam.wig | ./wig2hints.pl --width=10 --margin=10 --minthresh=2 --minscore=
 # concat hints
 cat oxyJam.hints.gff oxyJam.hints.ep.gff > oxyJam.combohints.gff
 
-# clean up interim GFFs
-mkdir temp_files
-mv oxyJam.hints.gff oxyJam.hints.ep.gff
+# replace chr names in oxyJam NCBI GFF to match database
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/011/077/185/GCF_011077185.1_BPBGC_Ojam_1.0/GCF_011077185.1_BPBGC_Ojam_1.0_assembly_report.txt
+sed 's/\r$//g' GCF_011077185.1_BPBGC_Ojam_1.0_assembly_report.txt | grep -v "^#" | cut -f1,5,7 > oxyJam_chr_key
+awk '{print $2, $3}' oxyJam_chr_key > acckey
+./replace_chrs.pl acckey oxyJam.combohints.gff > oxyJam.combohints.repl.gff
+
+# clean up intermediate files
+mkdir int_files
+mv oxyJam.hints.gff oxyJam.hints.ep.gff oxyJam.combohints.gff int_files/
 cd ..
 
 # create hints for galGal, anaPla, and oxyJam using NCBI GFFs
