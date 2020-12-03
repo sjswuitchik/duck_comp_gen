@@ -79,3 +79,9 @@ sbatch run_fastq2bam.sh
 sbatch run_intervals.sh
 sbatch run_bam2vcf_gatk.sh
 
+mkdir ../allDucks
+mv fastq2bam/ intervalFiles/ gatk/ ../allDucks
+
+#### also realign all species to their own genomes #### 
+
+
