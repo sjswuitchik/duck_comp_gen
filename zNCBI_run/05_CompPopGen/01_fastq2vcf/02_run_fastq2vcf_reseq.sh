@@ -65,11 +65,7 @@ cd ../../
 
 #### while working out the issues with 10x data memory & Picard MarkDuplicates, aligning all non-10x data to black-headed duck genome ####
 mkdir -p allDucks/fastqs
-cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/hetAtr/fastqs/hetAtr* allDucks/fastqs/
-for file in oxyJam netAur stiNae;
-do
-  cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/$file/fastqs/$file_male* allDucks/fastqs/
-done
+cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/hetAtr/fastqs/hetAtr* /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/oxyJam/fastqs/oxyJam_male* /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/netAur/fastqs/netAur_male* /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/stiNae/fastqs/stiNae_male* allDucks/fastqs/
 
 cd ../..
 
