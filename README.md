@@ -20,4 +20,4 @@ Tim Sackton (Director of Bioinformatics, Informatics Group, Harvard University; 
 
 Genome assembly and comparative genomics project with the freckled duck (Stictonetta naevosa; stiNae), ruddy duck (Oxyura jamaicensis; oxyJam), African pygmy-goose (Nettapus auritus; netAur), and black-headed duck (Heteronetta atricapilla; hetAtr) from 10x data using Supernova assembly.
 
-Code is being written and optimized, so will change frequently as analyses progress. Most up-to-date/optimized code will be in zNCBI_run as analyses are refined. 
+Code is being written and optimized, so will change frequently as analyses progress. Initial analyses are in chrOnly_run, done on data containing only chromosomes before NCBI submission was finalized. NCBI_run contains analyses/scripts/output from publically available genomes from NCBI. Most up-to-date/optimized code will be in NCBI_run as analyses are refined. 
