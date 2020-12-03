@@ -13,7 +13,8 @@ For bam2vcf
 - bamsForGatk: "fastq2bam/01_mappedReads/"
 - bam_suffix: "_dedup.bam"
 
-### hetAtr_v2 run ###
+### allDucks run ###
+10x data needs memory bump for Picard MarkDuplicates, so for now, aligning all ducks to hetAtr genome 
 Everything is the same as the above hetAtr parameters with the following exception for the fastq2bam pipeline
-- fastqDir: "data/hetAtr_v2/fastqs" 
-- 10x data seems to require a memory bump for Picard MarkDuplicates and GATK, so running with mem increase to 80000 for dedup: (currently testing mem limits, updated Nov 30)
+- fastqDir: "data/allDucks/fastqs" 
+
