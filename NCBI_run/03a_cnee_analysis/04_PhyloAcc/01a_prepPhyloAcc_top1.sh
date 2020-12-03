@@ -3,6 +3,7 @@
 
 module load gcc/7.1.0-fasrc01 armadillo/7.800.2-fasrc02 gsl/2.4-fasrc01
 git clone https://github.com/xyz111131/PhyloAcc.git
+cd PhyloAcc/
 make
 
 mkdir -p PhyloAcc/input_data
