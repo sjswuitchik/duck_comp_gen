@@ -6,7 +6,7 @@
 #SBATCH -o compAug_hints_%A.o
 #SBATCH -J compAug_hints
 #SBATCH --mem=64000
-#SBATCH -t 23:00:00
+#SBATCH -t 5-00:00:00
 
 module purge
 module load Anaconda/5.0.1-fasrc01
