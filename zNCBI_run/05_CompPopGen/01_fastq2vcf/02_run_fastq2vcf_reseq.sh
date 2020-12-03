@@ -61,57 +61,25 @@ cd ../../netAur/fastqs
 mv netAur_female_L00* orig_fastqs/
 cd ../../hetAtr_v2/fastqs
 mv DGAB-CNB0004-CN4-lib1_S* orig_fastqs/
-cd ../../../..
+cd ../../
+
+#### while working out the issues with 10x data memory & Picard MarkDuplicates, aligning all non-10x data to black-headed duck genome ####
+mkdir -p allDucks/fastqs
+cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/hetAtr/fastqs/hetAtr* allDucks/fastqs/
+for file in oxyJam netAur stiNae;
+do
+  cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/$file/fastqs/$file_male* allDucks/fastqs/
+done
+
+cd ../..
 
 # move all previous run data for hetAtr& stiNae MK pipeline input so it doesn't get overwritten
 mkdir hetAtr_stiNae_MK
 cd shortRead_mapping_variantCalling/
 mv fastq2bam/ intervalFiles/ gatk/ ../hetAtr_stiNae_MK
 
-# run hetAtr_v2 
+# run allDucks
 sbatch run_fastq2bam.sh
 sbatch run_intervals.sh
 sbatch run_bam2vcf_gatk.sh
-
-# move hetAtr_v2 run data 
-cd ..
-mkdir hetAtr_v2
-cd shortRead_mapping_variantCalling/
-mv fastq2bam/ intervalFiles/ gatk/ ../hetAtr_v2
-
-## manually edit config.yaml and resources.yaml as necessary for oxyJam
-# run oxyJam
-sbatch run_fastq2bam.sh
-sbatch run_intervals.sh
-sbatch run_bam2vcf_gatk.sh
-
-# move oxyJam run data 
-cd ..
-mkdir oxyJam
-cd shortRead_mapping_variantCalling/
-mv fastq2bam/ intervalFiles/ gatk/ ../oxyJam
-
-## manually edit config.yaml and resources.yaml as necessary for netAur
-# run netAur
-sbatch run_fastq2bam.sh
-sbatch run_intervals.sh
-sbatch run_bam2vcf_gatk.sh
-
-# move netAur run data 
-cd ..
-mkdir netAur
-cd shortRead_mapping_variantCalling/
-mv fastq2bam/ intervalFiles/ gatk/ ../netAur
-
-## manually edit config.yaml and resources.yaml as necessary for stiNae
-# run stiNae
-sbatch run_fastq2bam.sh
-sbatch run_intervals.sh
-sbatch run_bam2vcf_gatk.sh
-
-# move stiNae run data 
-cd ..
-mkdir stiNae
-cd shortRead_mapping_variantCalling/
-mv fastq2bam/ intervalFiles/ gatk/ ../stiNae
 
