@@ -16,5 +16,6 @@ For bam2vcf
 ### allDucks run ###
 10x data needs memory bump for Picard MarkDuplicates, so for now, aligning all ducks to hetAtr genome 
 Everything is the same as the above hetAtr parameters with the following exception for the fastq2bam pipeline
+- ref: "data/allDucks/genome/hetAtr.fa"
 - fastqDir: "data/allDucks/fastqs" 
 
