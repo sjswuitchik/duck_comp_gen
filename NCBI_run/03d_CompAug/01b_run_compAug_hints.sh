@@ -134,9 +134,6 @@ hal2maf_split.pl --halfile gallo_ncbi.hal --refGenome galGal --cpus 8 --chunksiz
 exit
 
 # assign numbers to alignment chunks
-mkdir maflinks
-cd maflinks/
-
 num=1
 for f in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_rnahints/mafs/*.maf; 
 do 
