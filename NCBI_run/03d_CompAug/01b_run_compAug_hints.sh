@@ -134,14 +134,14 @@ hal2maf_split.pl --halfile gallo_ncbi.hal --refGenome galGal --cpus 8 --chunksiz
 exit
 
 # assign numbers to alignment chunks
+mkdir maflinks
+cd maflinks/
+
 num=1
-for f in mafs/*.maf; 
+for f in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_rnahints/mafs/*.maf; 
 do 
  ln -s $f $num.maf; ((num++)); 
 done
-
-mkdir maflinks
-mv *.maf maflinks/
 
 # run comp Aug with hints
 sbatch run_compAug_hints.sh
