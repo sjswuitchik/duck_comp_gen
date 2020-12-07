@@ -20,14 +20,14 @@ do
  augustus \
   --species=chicken \
   --softmasking=1 \
-  --treefile=top1.nwk \
+  --treefile=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_rnahints/top1.nwk \
   --alnfile=$ali \
-  --dbaccess=chicken_rnaseq.db \
-  --speciesfilenames=../genomes.tbl \
+  --dbaccess=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_rnahints/chicken_rnaseq.db \
+  --speciesfilenames=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/genomes.tbl \
   --alternatives-from-evidence=0 \
   --dbhints=1 \
   --UTR=1 \
   --allow_hinted_splicesites=atac \
-  --extrinsicCfgFile=extrinsic-rnaseq.cfg \
+  --extrinsicCfgFile=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_rnahints/extrinsic-rnaseq.cfg \
   --/CompPred/outdir=pred$id > aug$id.out 2> err$id.out &
 done
