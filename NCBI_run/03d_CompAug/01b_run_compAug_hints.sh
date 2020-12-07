@@ -140,6 +140,9 @@ do
  ln -s $f $num.maf; ((num++)); 
 done
 
+mkdir maflinks
+mv *.maf maflinks/
+
 # run comp Aug with hints
 sbatch run_compAug_hints.sh
 
