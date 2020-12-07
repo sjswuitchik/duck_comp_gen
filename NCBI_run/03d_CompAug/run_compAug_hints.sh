@@ -14,6 +14,7 @@ source activate compAug
 
 for ali in *.maf;
 do
+id=${ali%.maf}
  augustus \
   --species=chicken \
   --softmasking=1 \
