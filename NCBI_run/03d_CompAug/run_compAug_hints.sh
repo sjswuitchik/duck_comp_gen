@@ -14,9 +14,9 @@ source activate compAug
 
 cd maflinks/
 
-for ali in $(seq 1 962);
+for ali in *.maf;
 do
- id=$ali # remove .maf suffix
+ id=${ali%.maf} # remove .maf suffix
  augustus \
   --species=chicken \
   --softmasking=1 \
