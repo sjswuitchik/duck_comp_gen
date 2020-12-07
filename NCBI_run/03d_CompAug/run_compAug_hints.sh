@@ -12,11 +12,9 @@ module purge
 module load Anaconda/5.0.1-fasrc01
 source activate compAug
 
-cd maflinks/
-
 for ali in *.maf;
 do
- id=${ali%.maf} # remove .maf suffix
+ id=$ali # remove .maf suffix
  augustus \
   --species=chicken \
   --softmasking=1 \
