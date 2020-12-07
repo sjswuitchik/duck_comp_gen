@@ -131,6 +131,7 @@ mkdir mafs
 # chunk size and overlap are recommendations for WGAs
 singularity shell --cleanenv /n/singularity_images/informatics/cat/cat:20200604.sif #NB could also use the augustus image augustus-2020-05-27-1b69b25ed001.sif
 hal2maf_split.pl --halfile gallo_ncbi.hal --refGenome galGal --cpus 8 --chunksize 2500000 --overlap 500000 --outdir mafs
+exit
 
 # assign numbers to alignment chunks
 num=1
