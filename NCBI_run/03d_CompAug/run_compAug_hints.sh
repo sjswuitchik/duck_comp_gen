@@ -24,7 +24,6 @@ id=${ali%.maf}
   --speciesfilenames=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/genomes.tbl \
   --alternatives-from-evidence=0 \
   --dbhints=1 \
-  --UTR=1 \
   --extrinsicCfgFile=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_rnahints/extrinsic-rnaseq.cfg \
   --/CompPred/outdir=pred$id > aug$id.out 2> err$id.out &
 done
