@@ -69,18 +69,15 @@ cat oxyJam.wig | ./wig2hints.pl --width=10 --margin=10 --minthresh=2 --minscore=
 cat oxyJam.hints.gff oxyJam.hints.ep.gff > oxyJam.combohints.gff
 
 # replace chr names in oxyJam NCBI GFF to match database
+cd ../gffs/
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/011/077/185/GCF_011077185.1_BPBGC_Ojam_1.0/GCF_011077185.1_BPBGC_Ojam_1.0_assembly_report.txt
 sed 's/\r$//g' GCF_011077185.1_BPBGC_Ojam_1.0_assembly_report.txt | grep -v "^#" | cut -f1,5,7 > oxyJam_chr_key
 awk '{print $3, $2}' oxyJam_chr_key > acckey
-./replace_chrs.pl acckey oxyJam.ncbihints.gff > oxyJam.ncbi.repl.gff
-
-# clean up intermediate files
-mkdir int_files
-mv oxyJam.hints.gff oxyJam.hints.ep.gff oxyJam.ncbihints.gff int_files/
+./replace_chrs.pl acckey oxyJam.gff > oxyJam.repl.gff
 cd ..
 
 # create hints for galGal, anaPla, and oxyJam using NCBI GFFs
-grep -P "\t(CDS|intron)\t" gffs/oxyJam.gff | cut -f1-8 | perl -pe 's/$/\tsource=M/' >hints/oxyJam.ncbihints.gff
+grep -P "\t(CDS|intron)\t" gffs/oxyJam.repl.gff | cut -f1-8 | perl -pe 's/$/\tsource=M/' >hints/oxyJam.ncbihints.gff
 grep -P "\t(CDS|intron)\t" gffs/galGal.gff | cut -f1-8 | perl -pe 's/$/\tsource=M/' >hints/galGal.hints.gff
 grep -P "\t(CDS|intron)\t" gffs/anaPla.gff | cut -f1-8 | perl -pe 's/$/\tsource=M/' >hints/anaPla.hints.gff
 
@@ -90,6 +87,16 @@ sort -n -k 4,4 hints/galGal.hints.gff | sort -s -n -k 5,5 | sort -s -n -k 3,3 | 
 mv temp hints/galGal.hints.gff
 sort -n -k 4,4 hints/anaPla.hints.gff | sort -s -n -k 5,5 | sort -s -n -k 3,3 | sort -s -k 1,1 | join_mult_hints.pl >temp
 mv temp hints/anaPla.hints.gff
+
+# concat hints
+cd  hints/
+cat oxyJam.hints.gff oxyJam.hints.ep.gff oxyJam.ncbihints.gff > oxyJam.combohints.gff
+cd ..
+
+# clean up intermediate GFFs
+mkdir int_files
+mv oxyJam.hints.* oxyJam.ncbihints.gff int_files/
+cd ..
 
 # load hints into SQL database
 for file in hints/*.gff; 
