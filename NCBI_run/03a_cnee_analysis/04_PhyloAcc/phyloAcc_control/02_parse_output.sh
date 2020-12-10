@@ -1,3 +1,5 @@
+# in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03a_cnee_analysis/PhyloAcc_control/PhyloAcc
+
 #*_elem_lik is the likelihood, needs to be parsed to remove 0s
 #*rate_postZ_M2.txt is posterior probs
 
