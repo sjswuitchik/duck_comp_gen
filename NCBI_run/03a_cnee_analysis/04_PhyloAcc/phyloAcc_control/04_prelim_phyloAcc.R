@@ -17,13 +17,13 @@ discretize <- function(x, cutoff = 0.90) {
 #### top 1 ####
 
 # read in and clean
-likTop1 <- read_tsv("top1_combined_elem_lik.txt", col_names = c("key", "cnee", "loglik.null", "loglik.target", "loglik.full", "logBF1", "logBF2", "loglik_Max_M0", "loglik_Max_M1", "loglik_Max_M2")) %>%
+likTop1 <- read_tsv("top1_combined_elem_lik.txt.gz", col_names = c("key", "cnee", "loglik.null", "loglik.target", "loglik.full", "logBF1", "logBF2", "loglik_Max_M0", "loglik_Max_M1", "loglik_Max_M2")) %>%
   arrange(loglik.full) %>%
   distinct(cnee, .keep_all = T) %>%
   mutate(bf1 = as.numeric(loglik.target) - as.numeric(loglik.null), bf2 = as.numeric(loglik.target) - as.numeric(loglik.full)) %>%
   mutate(key = as.numeric(key))
 
-zpostTop1 <- read_tsv("top1_combined_postZ_M2.txt", col_types = cols(.default = "d"))
+zpostTop1 <- read_tsv("top1_combined_postZ_M2.txt.gz", col_types = cols(.default = "d"))
 
 # posterior prob acceleration
 postaccTop1 <- zpostTop1 %>%
@@ -58,18 +58,18 @@ cneeTop1 <- cneeTop1 %>%
   mutate(Accel = bf1 > 10, Spec = bf1 > 10 & bf2 > 1)
 
 table(cneeTop1$Accel)["TRUE"] 
-# ___ accel
+# 4767 accel
 
 #### top 2 ####
 
 # read in and clean
-likTop2 <- read_tsv("top2_combined_elem_lik.txt", col_names = c("key", "cnee", "loglik.null", "loglik.target", "loglik.full", "logBF1", "logBF2", "loglik_Max_M0", "loglik_Max_M1", "loglik_Max_M2")) %>%
+likTop2 <- read_tsv("top2_combined_elem_lik.txt.gz", col_names = c("key", "cnee", "loglik.null", "loglik.target", "loglik.full", "logBF1", "logBF2", "loglik_Max_M0", "loglik_Max_M1", "loglik_Max_M2")) %>%
   arrange(loglik.full) %>%
   distinct(cnee, .keep_all = T) %>%
   mutate(bf1 = as.numeric(loglik.target) - as.numeric(loglik.null), bf2 = as.numeric(loglik.target) - as.numeric(loglik.full)) %>%
   mutate(key = as.numeric(key))
 
-zpostTop2 <- read_tsv("top2_combined_postZ_M2.txt", col_types = cols(.default = "d"))
+zpostTop2 <- read_tsv("top2_combined_postZ_M2.txt.gz", col_types = cols(.default = "d"))
 
 # posterior prob acceleration
 postaccTop2 <- zpostTop2 %>%
@@ -97,18 +97,18 @@ cneeTop2 <- cneeTop2 %>%
   mutate(Accel = bf1 > 10, Spec = bf1 > 10 & bf2 > 1)
 
 table(cneeTop2$Accel)["TRUE"]
-# ___ accel
+# 4992 accel
 
 #### top 3 ####
 
 # read in and clean
-likTop3 <- read_tsv("top3_combined_elem_lik.txt", col_names = c("key", "cnee", "loglik.null", "loglik.target", "loglik.full", "logBF1", "logBF2", "loglik_Max_M0", "loglik_Max_M1", "loglik_Max_M2")) %>%
+likTop3 <- read_tsv("top3_combined_elem_lik.txt.gz", col_names = c("key", "cnee", "loglik.null", "loglik.target", "loglik.full", "logBF1", "logBF2", "loglik_Max_M0", "loglik_Max_M1", "loglik_Max_M2")) %>%
   arrange(loglik.full) %>%
   distinct(cnee, .keep_all = T) %>%
   mutate(bf1 = as.numeric(loglik.target) - as.numeric(loglik.null), bf2 = as.numeric(loglik.target) - as.numeric(loglik.full)) %>%
   mutate(key = as.numeric(key))
 
-zpostTop3 <- read_tsv("top3_combined_postZ_M2.txt", col_types = cols(.default = "d"))
+zpostTop3 <- read_tsv("top3_combined_postZ_M2.txt.gz", col_types = cols(.default = "d"))
 
 # posterior prob acceleration
 postaccTop3 <- zpostTop3 %>%
@@ -136,7 +136,7 @@ cneeTop3 <- cneeTop3 %>%
   mutate(Accel = bf1 > 10, Spec = bf1 > 10 & bf2 > 1)
 
 table(cneeTop3$Accel)["TRUE"]
-# ___ accel
+# 5005 accel
 
 #### explorations #### 
 bf.1 <- cneeTop1 %>%
@@ -163,7 +163,7 @@ ggplot(all_bf, aes(x = bf1.1, y = bf1.2)) +
 
 accelerated <- all_bf %>%
   filter(acc.1 == T, acc.2 == T, acc.3 == T)
-# ___ CNEEs that are accel in all three tops
+# 4460 CNEEs that are accel in all three tops
 write_csv(accelerated, "acc_cnees.csv")
 
 bed <- accelerated %>%
