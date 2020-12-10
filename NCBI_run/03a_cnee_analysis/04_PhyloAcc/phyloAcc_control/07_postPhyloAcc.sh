@@ -66,8 +66,8 @@ bedtools annotate -i cnee_gene100kb.clean.bed -files cnee_perms/*.bed -counts > 
 
 ### input generation for GO permutations 
 # nb: could also write quick script (like replace_chr.pl) to replace the gene symbols with NCBI gene IDs in cnee_perms.counts.bed
-
 # pull out gene symbols & NCBI IDs
+mkdir go_perms
 cat galGal.gff.bed | python3 gene_ncbi_names.py > go_perms/galGal.ncbigenes.bed
 cd go_perms/
 
