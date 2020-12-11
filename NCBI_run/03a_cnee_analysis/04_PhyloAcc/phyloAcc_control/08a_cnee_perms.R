@@ -3,7 +3,7 @@ library(RColorBrewer)
 library(ggrepel)
 library(tidyverse)
 
-data <- read_delim("~/Desktop/PDF/CNEEs/PhyloAcc_control/cnee_perms.counts.bed", delim = "\t", col_names = F)
+data <- read_delim("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_control/cnee_perms.counts.bed", delim = "\t", col_names = F)
 data.convert <- str_replace_all(data$X4, regex("gene-"), "")
 data.clean <- bind_cols(data.convert, data) %>%
   select(-c(X4)) %>%
