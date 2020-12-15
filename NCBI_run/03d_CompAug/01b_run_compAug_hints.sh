@@ -148,7 +148,7 @@ do
 done
 
 # run comp Aug with hints
-sbatch run_compAug_singularity.sh
+sbatch --array=1-962 run_compAug_singularity.sh
 
 # combine predictions from parallel runs
 mkdir joined_pred
