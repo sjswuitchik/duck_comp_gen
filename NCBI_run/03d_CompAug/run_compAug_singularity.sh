@@ -22,4 +22,4 @@ srun -n 1 env time -v singularity exec \
   --alternatives-from-evidence=0 \
   --dbhints=1 \
   --extrinsicCfgFile=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_rnahints/extrinsic-rnaseq.cfg \
-  --/CompPred/outdir=pred$id
+  --/CompPred/outdir=pred${SLURM_ARRAY_TASK_ID}
