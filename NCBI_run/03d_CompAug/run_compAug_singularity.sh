@@ -12,19 +12,14 @@ srun -n 1 env time -v singularity exec \
                            --cleanenv \
                            --no-home \
                            "${SINGULARITY_IMAGE}" \
-for ali in *.maf;
-do
  augustus \
   --species=chicken \
   --softmasking=1 \
   --treefile=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_rnahints/top1.nwk \
-  --alnfile=$ali \
+  --alnfile=${SLURM_ARRAY_TASK_ID} \
   --dbaccess=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_rnahints/chicken_rnaseq.db \
   --speciesfilenames=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/genomes.tbl \
   --alternatives-from-evidence=0 \
   --dbhints=1 \
   --extrinsicCfgFile=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_rnahints/extrinsic-rnaseq.cfg \
   --/CompPred/outdir=pred$id
-done
-
-
