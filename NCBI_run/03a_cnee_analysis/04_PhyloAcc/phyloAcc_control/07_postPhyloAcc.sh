@@ -57,7 +57,7 @@ awk '$6 > 0 {print}' cnee_gene100kb.bed | sed 's/ /\t/g' - > cnee_gene100kb.clea
 mkdir cnee_perms/
 for i in {0001..1000}; 
 do
-  shuf -n 294 galGal6_final_merged_CNEEs_named_sorted.bed > cnee_perms/'shuffle'$i.bed
+  shuf -n 4376 galGal6_final_merged_CNEEs_named_sorted.bed > cnee_perms/'shuffle'$i.bed
 done
 
 # annotate 
@@ -85,7 +85,7 @@ awk '$8 > 0 {print}' cnee_ncbigene100kb.bed | sed 's/ //g' - > cnee_ncbigene100k
 mkdir perms/
 for i in {0001..1000}; 
 do
-  shuf -n 294 ../galGal6_final_merged_CNEEs_named_sorted.bed > perms/'shuffle'$i.bed
+  shuf -n 4376 ../galGal6_final_merged_CNEEs_named_sorted.bed > perms/'shuffle'$i.bed
 done
 
 # annotate 
