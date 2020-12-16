@@ -41,13 +41,20 @@ adjP <- bind_cols(tidyt, pv) %>%
 
 # one gene that has 190 acc'd CNEEs - check it out
 adjP %>% filter(obs == 190) %>% View() # CELF4 - 190 acc, 880 total
+# arrange to assist with labelling 
+adjP %>% arrange(desc(obs)) %>% View()
 
-ggplot(test, aes(x = obs, y = total, col = sig_class, label = gene)) +
+large_obs <- function(DF) {
+  DF %>% filter(obs >= 20)
+}
+
+ggplot(adjP, aes(x = obs, y = total, col = sig_class, label = gene)) +
   theme_classic() + 
   scale_y_log10() + 
   geom_jitter(shape = 16) +
   scale_colour_brewer(palette = "Dark2") +
   labs(x = "Number of accelerated CNEEs near gene", y = "Total number of CNEEs near gene", color = "Significance") + 
+  geom_text_repel(data=large_obs, show.legend = F, nudge_x = 0.1) +
   scale_x_continuous() 
 
 geneList <- adjP %>% filter(adjP < 0.05) %>% select(gene) %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_control/geneList.txt", delim = "\t", col_names = T)
