@@ -6,13 +6,13 @@ library(tidyverse)
 data <- read_delim("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_control/cnee_perms.counts.bed", delim = "\t", col_names = F)
 data.convert <- str_replace_all(data$X4, regex("gene-"), "")
 data.clean <- bind_cols(data.convert, data) %>%
-  select(-c(X4)) %>%
+  dplyr::select(-c(X4)) %>%
   rename(X4 = ...1) %>%
   select(X1:X3, X4, X5:X1006)
 
 # calculating pVals - set logical TRUE for count > obs, convert logical to numerical, then sum per gene 
 t <- data.clean %>% 
-  select(X4, X5, X6, X7:X1006) %>% 
+  dplyr::select(X4, X5, X6, X7:X1006) %>% 
   rename(gene = X4, obs = X5, total = X6) %>% 
   pivot_longer(cols = starts_with("X"), names_to = "perms", values_to = "count") %>%
   mutate(gt = count >= obs)
@@ -41,8 +41,11 @@ adjP <- bind_cols(tidyt, pv) %>%
 
 # one gene that has 190 acc'd CNEEs - check it out
 adjP %>% filter(obs == 190) %>% View() # CELF4 - 190 acc, 880 total
-# arrange to assist with labelling 
+# a few organization checks  
 adjP %>% arrange(desc(obs)) %>% View()
+adjP %>% arrange(gene) %>% View()
+adjP %>% filter(adjP <= 0.05) %>% count() # 407 genes
+
 
 large_obs <- function(DF) {
   DF %>% filter(obs >= 20)
@@ -54,16 +57,16 @@ ggplot(adjP, aes(x = obs, y = total, col = sig_class, label = gene)) +
   geom_jitter(shape = 16) +
   scale_colour_brewer(palette = "Dark2") +
   labs(x = "Number of accelerated CNEEs near gene", y = "Total number of CNEEs near gene", color = "Significance") + 
-  geom_text_repel(data=large_obs, show.legend = F, nudge_x = 0.1) +
+  geom_text_repel(data=large_obs, show.legend = F, nudge_x = 0.1) + 
   scale_x_continuous() 
 
-geneList <- adjP %>% filter(adjP < 0.05) %>% select(gene) %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_control/geneList.txt", delim = "\t", col_names = T)
+geneList <- adjP %>% filter(adjP <= 0.05) %>% select(gene) %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_control/geneList.txt", delim = "\t", col_names = T)
 
 
 
 library(biomaRt) # installed dev version with BiocManager::install('grimbough/biomaRt')
 mart <- useMart(biomart = 'ensembl', dataset = 'ggallus_gene_ensembl')
-geneList <- adjP %>% filter(adjP < 0.05) %>% dplyr::select(gene)
+geneList <- adjP %>% filter(adjP <= 0.05) %>% dplyr::select(gene)
 martList <- getBM(attributes = c("external_gene_name", "go_id", "name_1006"), values = geneList, bmHeader = T, mart = mart)
 
 collapse <- martList %>% 
