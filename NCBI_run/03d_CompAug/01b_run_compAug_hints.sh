@@ -160,4 +160,4 @@ do
 done < ../genomes.tbl
 
 mkdir slurm_outs/
-mv slurm- slurm_outs/
+mv slurm-* slurm_outs/
