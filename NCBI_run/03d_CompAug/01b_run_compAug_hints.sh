@@ -159,3 +159,5 @@ do
   joingenes -f ${species}_gtfs.lst -o joined_pred/$species.gff
 done < ../genomes.tbl
 
+mkdir slurm_outs/
+mv slurm- slurm_outs/
