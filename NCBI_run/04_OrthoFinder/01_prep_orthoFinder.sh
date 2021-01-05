@@ -17,4 +17,4 @@ do
 done
 
 # run OrthoFinder 
-sbatch 02_ncbi_ortho.sh
+sbatch run_orthoFinder.sh
