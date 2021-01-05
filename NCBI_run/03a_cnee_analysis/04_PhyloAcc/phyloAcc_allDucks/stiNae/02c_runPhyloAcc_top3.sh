@@ -1,4 +1,3 @@
-
 #!/bin/bash
 #SBATCH -p shared
 #SBATCH -n 8
