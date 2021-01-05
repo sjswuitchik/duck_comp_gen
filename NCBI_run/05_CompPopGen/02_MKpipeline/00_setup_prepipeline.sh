@@ -55,26 +55,30 @@ sed '1d' coverage_sites_high.bed | bedtools sort -i - | bedtools merge -i - > st
 cp -v hetAtr_coverage_sites_clean_merged.bed stiNae_coverage_sites_clean_merged.bed ..
 cd ..
 
-# using GTF from CESAR annotation for snpEff database build
+# using GFF from Comparative Augustus annotation for snpEff database build
 # in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline/snpEff/data/hetAtr
-cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03b_cesar/output_gtfs/cleaned_reordered_hetAtr.sorted.gtf .
+cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_rnahints/joined_pred/hetAtr.gff .
+cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/genomes/hetAtr.ncbi.fasta .
+mv hetAtr.gff genes.gff
+mv hetAtr.ncbi.fasta sequences.fa
+gzip genes.gff
+gzip sequences.fa
+
+
+
+
+
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt
 sed 's/\r$//g' GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt | grep -v "^#" | cut -f1,5 > hetAtr_key
 ./replace_chrs.pl hetAtr_key cleaned_reordered_hetAtr.sorted.gtf > genes.gtf
 python2 gtf2gff.py genes.gtf > genes.gff
 gzip genes.gff
 
-# try converting GP to GFF 
-module load Anaconda/5.0.1-fasrc02
-#conda create -c bioconda -n gp2gtf ucsc-genepredtogtf 
-source activate gp2gtf 
-cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03b_cesar/geneAnnotation/hetAtr.gp .
-
 
 
 
 cd ../..
-
+module load Anaconda3/2019.10
 source activate mk_v2
 java -jar snpEff.jar build -gff3 -v hetAtr
 
