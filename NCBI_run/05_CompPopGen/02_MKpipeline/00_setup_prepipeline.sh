@@ -76,7 +76,6 @@ gzip genes.gff
 
 
 
-
 cd ../..
 module load Anaconda3/2019.10
 source activate mk_v2
