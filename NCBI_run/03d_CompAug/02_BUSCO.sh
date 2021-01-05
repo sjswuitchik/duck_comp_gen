@@ -25,7 +25,6 @@ whereis augustus #this path can be pasted for remaining commands & Augustus scri
 
 # run BUSCO
 export BUSCO_CONFIG_FILE=/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/busco/config.ini
-mkdir busco_outs
 
 for file in hetAtr netAur stiNae oxyJam;
 do
