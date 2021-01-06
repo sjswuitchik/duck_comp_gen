@@ -12,7 +12,7 @@ cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/phyloAcc_all
 
 # run batches of 2000 elements each
 mkdir -p top1_batches
-# shuffle lines in random order with 0-(n-1) from wc -l above 
+# shuffle lines in random order with 0-(n-1) from elements
 shuf -i 0-375589 > top1_batches/full_list
 # make input files
 split -d -a 3 -l 2000 top1_batches/full_list top1_batches/batch
