@@ -1,4 +1,4 @@
-# in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03a_cnee_analysis/PhyloAcc_control
+# in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/phyloAcc_allDucks/stiNae/PhyloAcc
 
 module load bedtools2/2.26.0-fasrc01 Anaconda/5.0.1-fasrc01 R/4.0.2-fasrc01
 
@@ -24,11 +24,10 @@ gunzip GCF_000002315.6_GRCg6a_genomic.fna.gz
 bedtools makewindows -g galGal.chrom.sizes -w 100000 -s 50000 > galGal.windows.bed
 # bin total CNEEs list into windows
 bedtools intersect -a galGal.windows.bed -b galGal6_final_merged_CNEEs_named_sorted.bed -loj | cut -f1,2,3,7 | sed --expression='s/\.$/0/g' > window.cnees.bed
-# use output from 04_PhyloAcc/07_phyloP_cleanup_cnees.R to bin accelerated CNEEs list into windows
+# use output from phyloP_cleanup_cnees.R to bin accelerated CNEEs list into windows
 bedtools intersect -a galGal.windows.bed -b acc.cnees.final.bed -loj | cut -f1,2,3,7 | sed --expression='s/\.$/0/g' > window.acc.cnees.bed
 
 ### input generation for the assessment of genes with evidence for excess of nearby accelerated CNEEs
-
 # get galGal6 annotation
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_genomic.gff.gz
 gunzip GCF_000002315.6_GRCg6a_genomic.gff.gz
