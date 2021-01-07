@@ -24,7 +24,7 @@ gffread gffs/anaPla.gff -g /n/holyscratch01/informatics/swuitchik/ducks_project/
 # run OrthoFinder with only two outgroups to test
 sbatch run_orthoFinder.sh
 
-### results in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/04a_OrthoFinder_compAug/run_ortho/OrthoFinder/Results_Jan05
+### results in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/04a_OrthoFinder_compAug/run_ortho/Results_Jan05
 
 # grab other species from WGA and translate to protein FASTAs
 for file in ansBra ansCyg ansInd braCan colVir cotJap numMel syrMik tymCupPin;
