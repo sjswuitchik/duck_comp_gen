@@ -1,6 +1,6 @@
-######################
-## Prep OrthoFinder ##
-######################
+############################
+## Prep & run OrthoFinder ##
+############################
 
 module load Anaconda3/2019.10
 
@@ -16,9 +16,24 @@ do
   cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/busco/input_data/$file.translated.fa run_ortho/input_data/
 done
 # grab mallard GFF and translate to protein fasta
-cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_rnahints/joined_pred/anaPla.gff .
+mkdir gffs/
+cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_rnahints/joined_pred/anaPla.gff gffs/
 source activate busco
-gffread anaPla.gff -g /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/genomes/anaPla.ncbi.fasta -y run_ortho/input_data/anaPla.translated.fa -S
+gffread gffs/anaPla.gff -g /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/genomes/anaPla.ncbi.fasta -y run_ortho/input_data/anaPla.translated.fa -S
 
-# run OrthoFinder 
+# run OrthoFinder with only two outgroups to test
 sbatch run_orthoFinder.sh
+
+### results in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/04a_OrthoFinder_compAug/run_ortho/OrthoFinder/Results_Jan05
+
+# grab other species from WGA and translate to protein FASTAs
+for file in ansBra ansCyg ansInd braCan colVir cotJap numMel syrMik tymCupPin;
+do
+  cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_rnahints/joined_pred/$file.gff gffs/
+  gffread gffs/$file.gff -g /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/genomes/$file.ncbi.fasta -y run_ortho/input_data/$file.translated.fa -S 
+done 
+
+# run OrthoFinder with all species from WGA
+sbatch run_orthoFinder.sh
+
+#### results in 
