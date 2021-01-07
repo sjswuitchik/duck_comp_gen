@@ -43,7 +43,7 @@ cneeTop1 <- cneeTop1 %>%
   mutate(Accel = bf1 > 10, Spec = bf1 > 10 & bf2 > 1)
 
 table(cneeTop1$Accel)["TRUE"] 
-# _____ accel
+# 226 accel
 
 #### top 2 ####
 
@@ -82,7 +82,7 @@ cneeTop2 <- cneeTop2 %>%
   mutate(Accel = bf1 > 10, Spec = bf1 > 10 & bf2 > 1)
 
 table(cneeTop2$Accel)["TRUE"]
-# ____ accel
+# 228 accel
 
 #### top 3 ####
 
@@ -121,7 +121,7 @@ cneeTop3 <- cneeTop3 %>%
   mutate(Accel = bf1 > 10, Spec = bf1 > 10 & bf2 > 1)
 
 table(cneeTop3$Accel)["TRUE"]
-# ____ accel
+# 239 accel
 
 #### explorations #### 
 bf.1 <- cneeTop1 %>%
@@ -148,7 +148,7 @@ ggplot(all_bf, aes(x = bf1.1, y = bf1.2)) +
 
 accelerated <- all_bf %>%
   filter(acc.1 == T, acc.2 == T, acc.3 == T)
-# ____ CNEEs that are accel in all three tops
+# 188 CNEEs that are accel in all three tops
 write_csv(accelerated, "acc_cnees.csv")
 
 bed <- accelerated %>%
@@ -192,7 +192,7 @@ acc <- bed %>%
   select(cnee)
 
 # intersect acc cnees with excl cnees to see if any need to be removed 
-excl <- intersect(acc, cnee.excl.alltop) #84 total
+excl <- intersect(acc, cnee.excl.alltop) # 5 total
 # create vector of CNEE names to be removed
 excl.vec <- pull(excl, cnee) 
 
