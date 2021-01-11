@@ -1,4 +1,4 @@
-# in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/phyloAcc_allDucks/stiNae/PhyloAcc
+# in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/phyloAcc_allDucks/stiNae/
 
 module load bedtools2/2.26.0-fasrc01 Anaconda/5.0.1-fasrc01 R/4.0.2-fasrc01
 
