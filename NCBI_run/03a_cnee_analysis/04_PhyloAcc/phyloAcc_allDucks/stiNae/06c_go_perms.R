@@ -202,3 +202,24 @@ filter(bp.pval, pVal_enrich <= 0.05) %>% dplyr::select(-c(pVal_target)) %>% muta
 filter(mf.pval, pVal_enrich <= 0.05) %>% dplyr::select(-c(pVal_target)) %>% mutate(subontology = "MF") %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_allDucks/stiNae/sigGOterms_MF.tsv", delim = "\t", col_names = T)
 filter(cc.pval, pVal_enrich <= 0.05) %>% dplyr::select(-c(pVal_target)) %>% mutate(subontology = "CC") %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_allDucks/stiNae/sigGOterms_CC.tsv", delim = "\t", col_names = T)
 
+# annotate GO IDs with functional annotation
+library(biomaRt) # installed dev version with BiocManager::install('grimbough/biomaRt')
+goList <- read_delim("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_allDucks/stiNae/sigGOterms_combined.txt", delim = "\t", col_names = T) %>% 
+  dplyr::select(ID) %>%
+  rename(goID = ID)
+mart <- useMart(biomart = 'ensembl', dataset = 'ggallus_gene_ensembl')
+martList <- getBM(attributes = c("external_gene_name", "go_id", "name_1006"), values = goList, bmHeader = T, mart = mart)
+
+#### pull name, not gene 
+collapse <- martList %>% 
+  dplyr::rename(goID= `GO term accession`, goTerm = `GO term name`) %>%
+  group_by(goID) %>%
+  summarise(goTerm = paste(sort(unique(goTerm)), collapse = ", "))
+
+# remove genes without GO ids
+sub1 <- collapse[!(is.na(collapse$goID) | collapse$goID == ""), ] 
+clean.mart <- sub1[-1,]
+
+left_join(goList, clean.mart, by = "goID") %>% 
+  na.omit() %>% 
+  write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_allDucks/stiNae/martList.tsv", delim = "\t", col_names = T)
