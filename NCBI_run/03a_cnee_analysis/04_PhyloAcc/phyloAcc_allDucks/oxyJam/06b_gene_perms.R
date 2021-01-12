@@ -46,7 +46,7 @@ adjP %>% filter(adjP <= 0.05) %>% count() # 0 genes
 
 
 large_obs <- function(DF) {
-  DF %>% filter(obs >= 20)
+  DF %>% filter(obs >= 5)
 }
 
 ggplot(adjP, aes(x = obs, y = total, col = sig_class, label = gene)) +
