@@ -1,0 +1,22 @@
+goID	pVal_enrich	subontology	goTerm
+GO:0007155	0.007992008	BP	cell adhesion
+GO:0007608	0.035964036	BP	sensory perception of smell
+GO:0009887	0.007992008	BP	animal organ morphogenesis
+GO:0019538	0.018981019	BP	protein metabolic process
+GO:0022610	0.007992008	BP	biological adhesion
+GO:0034329	0.028971029	BP	cell junction assembly
+GO:0043604	0.037962038	BP	amide biosynthetic process
+GO:0044248	0.048951049	BP	cellular catabolic process
+GO:0044267	0.046953047	BP	cellular protein metabolic process
+GO:0050907	0.040959041	BP	detection of chemical stimulus involved in sensory perception
+GO:0050911	0.035964036	BP	detection of chemical stimulus involved in sensory perception of smell
+GO:0051301	0.031968032	BP	cell division
+GO:0055114	0.03996004	BP	oxidation-reduction process
+GO:1901564	0.012987013	BP	organonitrogen compound metabolic process
+GO:0005794	0.008991009	CC	Golgi apparatus
+GO:0016020	0.030969031	CC	membrane
+GO:0070161	0.045954046	CC	anchoring junction
+GO:0071944	0.044955045	CC	cell periphery
+GO:0004984	0.034965035	MF	olfactory receptor activity
+GO:0005549	0.034965035	MF	odorant binding
+GO:0140096	0.025974026	MF	"catalytic activity, acting on a protein"
