@@ -198,48 +198,29 @@ write_delim(mf.pval, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/
 write_delim(cc.pval, "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/GOterms_CC.tsv", delim = "\t", col_names = T)
 
 # write out sig GO terms
-filter(bp.pval, pVal_enrich <= 0.05) %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/sigGOterms_BP.tsv", delim = "\t", col_names = T)
-filter(mf.pval, pVal_enrich <= 0.05) %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/sigGOterms_MF.tsv", delim = "\t", col_names = T)
-filter(cc.pval, pVal_enrich <= 0.05) %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/sigGOterms_CC.tsv", delim = "\t", col_names = T)
+filter(bp.pval, pVal_enrich <= 0.05) %>% dplyr::select(-c(pVal_target)) %>% mutate(subontology = "BP") %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/sigGOterms_BP.tsv", delim = "\t", col_names = T)
+filter(mf.pval, pVal_enrich <= 0.05) %>% dplyr::select(-c(pVal_target)) %>% mutate(subontology = "MF") %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/sigGOterms_MF.tsv", delim = "\t", col_names = T)
+filter(cc.pval, pVal_enrich <= 0.05) %>% dplyr::select(-c(pVal_target)) %>% mutate(subontology = "CC") %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/sigGOterms_CC.tsv", delim = "\t", col_names = T)
 
-#### QC #### 
-# randomly sample IDs to make sure distributions of target_frac and and enrich look okay i.e. normal distribution (just with BP for starters)
-ids <- bp.perms.clean %>% group_by(ID) %>% distinct(ID)
-sample(1:1587, 15, replace=FALSE) 
-# 757 867 164 1138 981 662 133 231 846 95 892 1456 1458 694 1147
-ids[1147,]
-# GO:0034220 GO:0042886 GO:0006281 GO:0048762 GO:0045216 GO:0031396 GO:0003013 GO:0006939 GO:0042255 GO:0002429 GO:0043270 GO:0071383 GO:0071407 GO:0032332 GO:0048869
-test <- bp.perms.clean %>% group_by(ID) %>% filter(ID == 'GO:0048869')
-ggplot(data = test, aes(x = target_frac)) + geom_histogram()
-ggplot(data = test, aes(x = enrich)) + geom_histogram()
+# annotate GO IDs with functional annotation
+library(biomaRt) # installed dev version with BiocManager::install('grimbough/biomaRt')
+goList <- read_delim("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/sigGOterms_combined.tsv", delim = "\t", col_names = T) %>% 
+  dplyr::select(ID) %>%
+  rename(goID = ID)
+mart <- useMart(biomart = 'ensembl', dataset = 'ggallus_gene_ensembl')
+martList <- getBM(attributes = c("external_gene_name", "go_id", "name_1006"), values = goList, bmHeader = T, mart = mart)
 
-# make sure real data is well represented by the permutations (i.e. does the real data fall within permutation or is it on the tails?)
-test <- bp.perms.clean %>% 
-  separate(GeneRatio, into = c("target_in", "target_total"), sep = '/', remove= F) %>%
-  mutate(target_total = as.numeric(target_total)) %>%
-  group_by(ID)
-filt <- test %>% filter(ID == 'GO:0048869')
-ggplot(data = filt, aes(x = target_total)) + 
-  geom_histogram() + 
-  geom_text(x = 85, y = 0, colour = "red", size = 8, label = '*')
+#### pull name, not gene 
+collapse <- martList %>% 
+  dplyr::rename(goID= `GO term accession`, goTerm = `GO term name`) %>%
+  group_by(goID) %>%
+  summarise(goTerm = paste(sort(unique(goTerm)), collapse = ", "))
 
-## now for MF, just to make sure it's consistent across subontologies
-ids <- mf.perms.clean %>% group_by(ID) %>% distinct(ID)
-sample(1:528, 15, replace=FALSE) 
-# 521 207 321  29  42 357  60 481 204 446 271 155 169 448  18
-ids[18,]
-# GO:0005549 GO:0043177 GO:0030594 GO:0003727 GO:0004675 GO:0098531 GO:0005126 GO:0034212 GO:0043167 GO:0034979 GO:0004721 GO:0019212 GO:0022804 GO:0042165 GO:0003674
-test <- mf.perms.clean %>% group_by(ID) %>% filter(ID == 'GO:0003674')
-ggplot(data = test, aes(x = target_frac)) + geom_histogram()
-ggplot(data = test, aes(x = enrich)) + geom_histogram()
+# remove genes without GO ids
+sub1 <- collapse[!(is.na(collapse$goID) | collapse$goID == ""), ] 
+clean.mart <- sub1[-1,]
 
-# make sure real data is well represented by the permutations (i.e. does the real data fall within permutation or is it on the tails?)
-test <- mf.perms.clean %>% 
-  separate(GeneRatio, into = c("target_in", "target_total"), sep = '/', remove= F) %>%
-  mutate(target_total = as.numeric(target_total)) %>%
-  group_by(ID)
-filt <- test %>% filter(ID == 'GO:0003674')
-ggplot(data = filt, aes(x = target_total)) + 
-  geom_histogram() + 
-  geom_text(x = 82, y = 0, colour = "red", size = 8, label = '*')
+left_join(goList, clean.mart, by = "goID") %>% 
+  na.omit() %>% 
+  write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_out/NCBI_run/perms_GO/martList.tsv", delim = "\t", col_names = T)
 
