@@ -1,0 +1,196 @@
+goID	pVal_enrich	subontology	goTerm
+GO:0000226	0.028971029	BP	microtubule cytoskeleton organization
+GO:0000387	0.044955045	BP	spliceosomal snRNP assembly
+GO:0001732	0.046953047	BP	formation of cytoplasmic translation initiation complex
+GO:0001823	0.040959041	BP	mesonephros development
+GO:0001959	0.041958042	BP	regulation of cytokine-mediated signaling pathway
+GO:0002062	0.030969031	BP	chondrocyte differentiation
+GO:0002088	0.04995005	BP	lens development in camera-type eye
+GO:0002224	0.033966034	BP	toll-like receptor signaling pathway
+GO:0002279	0.048951049	BP	NA
+GO:0002448	0.048951049	BP	mast cell mediated immunity
+GO:0002755	0.017982018	BP	MyD88-dependent toll-like receptor signaling pathway
+GO:0002886	0.034965035	BP	NA
+GO:0003009	0.042957043	BP	skeletal muscle contraction
+GO:0005975	0.025974026	BP	carbohydrate metabolic process
+GO:0006368	0.046953047	BP	transcription elongation from RNA polymerase II promoter
+GO:0006417	0.047952048	BP	regulation of translation
+GO:0006418	0.036963037	BP	tRNA aminoacylation for protein translation
+GO:0006508	0.003996004	BP	proteolysis
+GO:0006511	0.043956044	BP	ubiquitin-dependent protein catabolic process
+GO:0006525	0.02997003	BP	arginine metabolic process
+GO:0006914	0.047952048	BP	autophagy
+GO:0007017	0.01998002	BP	microtubule-based process
+GO:0007602	0.047952048	BP	phototransduction
+GO:0008361	0.045954046	BP	regulation of cell size
+GO:0009084	0.025974026	BP	NA
+GO:0009583	0.04995005	BP	detection of light stimulus
+GO:0009584	0.045954046	BP	detection of visible light
+GO:0009620	0.030969031	BP	response to fungus
+GO:0010721	0.023976024	BP	negative regulation of cell development
+GO:0016055	0.047952048	BP	Wnt signaling pathway
+GO:0018205	0.033966034	BP	NA
+GO:0019405	0.036963037	BP	NA
+GO:0019941	0.042957043	BP	modification-dependent protein catabolic process
+GO:0022407	0.043956044	BP	regulation of cell-cell adhesion
+GO:0022616	0.036963037	BP	DNA strand elongation
+GO:0030111	0.036963037	BP	regulation of Wnt signaling pathway
+GO:0031329	0.027972028	BP	NA
+GO:0031397	0.047952048	BP	negative regulation of protein ubiquitination
+GO:0031440	0.046953047	BP	regulation of mRNA 3'-end processing
+GO:0032479	0.040959041	BP	regulation of type I interferon production
+GO:0032787	0.030969031	BP	NA
+GO:0034248	0.030969031	BP	NA
+GO:0034763	0.041958042	BP	negative regulation of transmembrane transport
+GO:0036473	0.047952048	BP	NA
+GO:0038061	0.042957043	BP	NIK/NF-kappaB signaling
+GO:0042060	0.047952048	BP	wound healing
+GO:0042558	0.046953047	BP	pteridine-containing compound metabolic process
+GO:0043038	0.036963037	BP	NA
+GO:0043039	0.036963037	BP	tRNA aminoacylation
+GO:0043123	0.031968032	BP	positive regulation of I-kappaB kinase/NF-kappaB signaling
+GO:0043299	0.048951049	BP	NA
+GO:0043303	0.048951049	BP	mast cell degranulation
+GO:0043618	0.041958042	BP	NA
+GO:0043620	0.041958042	BP	regulation of DNA-templated transcription in response to stress
+GO:0043632	0.042957043	BP	NA
+GO:0044257	0.027972028	BP	cellular protein catabolic process
+GO:0044275	0.036963037	BP	NA
+GO:0045576	0.048951049	BP	mast cell activation
+GO:0045665	0.043956044	BP	negative regulation of neuron differentiation
+GO:0045926	0.038961039	BP	negative regulation of growth
+GO:0046164	0.046953047	BP	NA
+GO:0046174	0.046953047	BP	NA
+GO:0048511	0.042957043	BP	rhythmic process
+GO:0048588	0.020979021	BP	developmental cell growth
+GO:0050768	0.027972028	BP	negative regulation of neurogenesis
+GO:0050770	0.030969031	BP	regulation of axonogenesis
+GO:0050808	0.013986014	BP	synapse organization
+GO:0050879	0.042957043	BP	NA
+GO:0050881	0.042957043	BP	musculoskeletal movement
+GO:0050892	0.04995005	BP	intestinal absorption
+GO:0051259	0.048951049	BP	protein complex oligomerization
+GO:0051603	0.02997003	BP	proteolysis involved in cellular protein catabolic process
+GO:0051865	0.044955045	BP	protein autoubiquitination
+GO:0051961	0.028971029	BP	NA
+GO:0060560	0.023976024	BP	developmental growth involved in morphogenesis
+GO:0060759	0.041958042	BP	NA
+GO:0060828	0.043956044	BP	regulation of canonical Wnt signaling pathway
+GO:0061387	0.046953047	BP	NA
+GO:0061919	0.047952048	BP	NA
+GO:0070206	0.043956044	BP	protein trimerization
+GO:0070207	0.03996004	BP	protein homotrimerization
+GO:0070371	0.03996004	BP	ERK1 and ERK2 cascade
+GO:0070372	0.04995005	BP	regulation of ERK1 and ERK2 cascade
+GO:0070897	0.041958042	BP	transcription preinitiation complex assembly
+GO:0071103	0.034965035	BP	DNA conformation change
+GO:0071407	0.031968032	BP	cellular response to organic cyclic compound
+GO:0072073	0.031968032	BP	NA
+GO:0072163	0.040959041	BP	mesonephric epithelium development
+GO:0072164	0.040959041	BP	mesonephric tubule development
+GO:0090287	0.034965035	BP	NA
+GO:0097503	0.046953047	BP	sialylation
+GO:0140115	0.034965035	BP	export across plasma membrane
+GO:0150076	0.025974026	BP	neuroinflammatory response
+GO:0198738	0.047952048	BP	cell-cell signaling by wnt
+GO:1900180	0.047952048	BP	regulation of protein localization to nucleus
+GO:1901652	0.045954046	BP	NA
+GO:1901701	0.005994006	BP	NA
+GO:1901881	0.047952048	BP	NA
+GO:1903321	0.047952048	BP	NA
+GO:1905114	0.034965035	BP	cell surface receptor signaling pathway involved in cell-cell signaling
+GO:1990138	0.043956044	BP	neuron projection extension
+GO:2001243	0.042957043	BP	negative regulation of intrinsic apoptotic signaling pathway
+GO:0000139	0.01998002	CC	Golgi membrane
+GO:0000815	0.04795205	CC	ESCRT III complex
+GO:0005794	0.04195804	CC	Golgi apparatus
+GO:0005815	0.02897103	CC	microtubule organizing center
+GO:0005861	0.04995005	CC	troponin complex
+GO:0005911	0.03296703	CC	cell-cell junction
+GO:0016020	0.04795205	CC	membrane
+GO:0030532	0.04595405	CC	small nuclear ribonucleoprotein complex
+GO:0036452	0.04795205	CC	NA
+GO:0042555	0.04295704	CC	MCM complex
+GO:0044297	0.04595405	CC	cell body
+GO:0097060	0.01198801	CC	synaptic membrane
+GO:0097525	0.04595405	CC	spliceosomal snRNP complex
+GO:0098590	0.03796204	CC	NA
+GO:0150034	0.04095904	CC	distal axon
+GO:0000049	0.03996004	MF	tRNA binding
+GO:0000979	0.047952048	MF	RNA polymerase II core promoter sequence-specific DNA binding
+GO:0001221	0.040959041	MF	transcription cofactor binding
+GO:0003684	0.041958042	MF	damaged DNA binding
+GO:0003714	0.048951049	MF	transcription corepressor activity
+GO:0003743	0.041958042	MF	translation initiation factor activity
+GO:0003887	0.032967033	MF	DNA-directed DNA polymerase activity
+GO:0004175	0.04995005	MF	endopeptidase activity
+GO:0004386	0.045954046	MF	helicase activity
+GO:0004497	0.048951049	MF	monooxygenase activity
+GO:0004620	0.025974026	MF	phospholipase activity
+GO:0004812	0.028971029	MF	aminoacyl-tRNA ligase activity
+GO:0004842	0.043956044	MF	ubiquitin-protein transferase activity
+GO:0004857	0.030969031	MF	enzyme inhibitor activity
+GO:0004860	0.045954046	MF	protein kinase inhibitor activity
+GO:0005104	0.022977023	MF	fibroblast growth factor receptor binding
+GO:0005179	0.032967033	MF	hormone activity
+GO:0005342	0.03996004	MF	organic acid transmembrane transporter activity
+GO:0005539	0.02997003	MF	glycosaminoglycan binding
+GO:0008017	0.047952048	MF	microtubule binding
+GO:0008081	0.030969031	MF	phosphoric diester hydrolase activity
+GO:0008094	0.045954046	MF	DNA-dependent ATPase activity
+GO:0008135	0.047952048	MF	translation factor activity, RNA binding
+GO:0008194	0.047952048	MF	UDP-glycosyltransferase activity
+GO:0008201	0.040959041	MF	heparin binding
+GO:0008276	0.047952048	MF	protein methyltransferase activity
+GO:0008373	0.031968032	MF	sialyltransferase activity
+GO:0008509	0.036963037	MF	anion transmembrane transporter activity
+GO:0009881	0.042957043	MF	photoreceptor activity
+GO:0015081	0.041958042	MF	sodium ion transmembrane transporter activity
+GO:0015085	0.044955045	MF	calcium ion transmembrane transporter activity
+GO:0015631	0.030969031	MF	tubulin binding
+GO:0015662	0.043956044	MF	NA
+GO:0016278	0.04995005	MF	NA
+GO:0016279	0.04995005	MF	protein-lysine N-methyltransferase activity
+GO:0016298	0.043956044	MF	lipase activity
+GO:0016407	0.04995005	MF	acetyltransferase activity
+GO:0016538	0.047952048	MF	cyclin-dependent protein serine/threonine kinase regulator activity
+GO:0016614	0.041958042	MF	oxidoreductase activity, acting on CH-OH group of donors
+GO:0016616	0.040959041	MF	oxidoreductase activity, acting on the CH-OH group of donors, NAD or NADP as acceptor
+GO:0016776	0.045954046	MF	phosphotransferase activity, phosphate group as acceptor
+GO:0016829	0.042957043	MF	lyase activity
+GO:0016830	0.045954046	MF	carbon-carbon lyase activity
+GO:0016875	0.028971029	MF	NA
+GO:0017124	0.037962038	MF	SH3 domain binding
+GO:0018024	0.046953047	MF	histone-lysine N-methyltransferase activity
+GO:0019210	0.045954046	MF	kinase inhibitor activity
+GO:0019239	0.035964036	MF	deaminase activity
+GO:0019787	0.044955045	MF	ubiquitin-like protein transferase activity
+GO:0019829	0.048951049	MF	ATPase-coupled cation transmembrane transporter activity
+GO:0020037	0.042957043	MF	heme binding
+GO:0032182	0.046953047	MF	ubiquitin-like protein binding
+GO:0034061	0.042957043	MF	DNA polymerase activity
+GO:0034713	0.046953047	MF	type I transforming growth factor beta receptor binding
+GO:0035198	0.030969031	MF	miRNA binding
+GO:0035257	0.046953047	MF	nuclear hormone receptor binding
+GO:0036002	0.041958042	MF	pre-mRNA binding
+GO:0042054	0.046953047	MF	histone methyltransferase activity
+GO:0042625	0.048951049	MF	NA
+GO:0042805	0.048951049	MF	actinin binding
+GO:0043169	0.016983017	MF	cation binding
+GO:0043425	0.041958042	MF	bHLH transcription factor binding
+GO:0043621	0.048951049	MF	protein self-association
+GO:0046872	0.017982018	MF	metal ion binding
+GO:0046906	0.043956044	MF	NA
+GO:0046943	0.03996004	MF	NA
+GO:0047485	0.028971029	MF	protein N-terminus binding
+GO:0048306	0.040959041	MF	calcium-dependent protein binding
+GO:0050661	0.025974026	MF	NADP binding
+GO:0051087	0.047952048	MF	chaperone binding
+GO:0051219	0.038961039	MF	phosphoprotein binding
+GO:0051393	0.046953047	MF	alpha-actinin binding
+GO:0051427	0.04995005	MF	hormone receptor binding
+GO:0051787	0.036963037	MF	misfolded protein binding
+GO:0052689	0.035964036	MF	carboxylic ester hydrolase activity
+GO:0060590	0.038961039	MF	ATPase regulator activity
+GO:0070888	0.042957043	MF	E-box binding
+GO:0140101	0.038961039	MF	NA
