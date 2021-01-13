@@ -13,7 +13,7 @@ mkdir -p busco/input_data
 for file in hetAtr netAur oxyJam stiNae;
 do
   cp -v /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_rnahints/joined_pred/$file.gff busco/
-  gffread busco/$file.gff -g genomes/$file.ncbi.fasta -y bucso/input_data/$file.translated.fa -S 
+  gffread busco/$file.gff -g genomes/$file.ncbi.fasta -y busco/input_data/$file.translated.fa -S 
 done
 
 # get config.ini from BUSCO git and set up 
