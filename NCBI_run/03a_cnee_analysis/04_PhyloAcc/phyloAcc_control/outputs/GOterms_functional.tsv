@@ -1,0 +1,164 @@
+goID	pVal_enrich	subontology	goTerm
+GO:0007519	9.99E-04	BP	skeletal muscle tissue development
+GO:0014902	9.99E-04	BP	myotube differentiation
+GO:0035567	9.99E-04	BP	non-canonical Wnt signaling pathway
+GO:0060538	9.99E-04	BP	skeletal muscle organ development
+GO:0010830	0.001998002	BP	regulation of myotube differentiation
+GO:0014904	0.001998002	BP	myotube cell development
+GO:0015980	0.001998002	BP	energy derivation by oxidation of organic compounds
+GO:0048641	0.001998002	BP	regulation of skeletal muscle tissue development
+GO:0048742	0.001998002	BP	regulation of skeletal muscle fiber development
+GO:0048747	0.001998002	BP	muscle fiber development
+GO:0051153	0.001998002	BP	regulation of striated muscle cell differentiation
+GO:0051588	0.001998002	BP	regulation of neurotransmitter transport
+GO:0098802	0.001998002	CC	plasma membrane signaling receptor complex
+GO:0030166	0.002997003	BP	proteoglycan biosynthetic process
+GO:0051147	0.002997003	BP	regulation of muscle cell differentiation
+GO:0048643	0.003996004	BP	positive regulation of skeletal muscle tissue development
+GO:0051149	0.003996004	BP	positive regulation of muscle cell differentiation
+GO:0055001	0.003996004	BP	muscle cell development
+GO:0055002	0.003996004	BP	striated muscle cell development
+GO:0042692	0.004995005	BP	muscle cell differentiation
+GO:0005815	0.004995005	CC	microtubule organizing center
+GO:0007041	0.005994006	BP	lysosomal transport
+GO:0035914	0.005994006	BP	skeletal muscle cell differentiation
+GO:0051155	0.005994006	BP	positive regulation of striated muscle cell differentiation
+GO:0099565	0.005994006	BP	"chemical synaptic transmission, postsynaptic"
+GO:0016614	0.006993007	MF	"oxidoreductase activity, acting on CH-OH group of donors"
+GO:0051146	0.007992008	BP	striated muscle cell differentiation
+GO:0031226	0.007992008	CC	intrinsic component of plasma membrane
+GO:0005887	0.008991009	CC	integral component of plasma membrane
+GO:0048741	0.00999001	BP	skeletal muscle fiber development
+GO:0043197	0.00999001	CC	dendritic spine
+GO:0044309	0.00999001	CC	neuron spine
+GO:0005024	0.00999001	MF	transforming growth factor beta-activated receptor activity
+GO:0051020	0.00999001	MF	GTPase binding
+GO:0009896	0.010989011	BP	positive regulation of catabolic process
+GO:0055114	0.010989011	BP	oxidation-reduction process
+GO:0046928	0.011988012	BP	regulation of neurotransmitter secretion
+GO:0044297	0.011988012	CC	cell body
+GO:0005794	0.012987013	CC	Golgi apparatus
+GO:0043025	0.012987013	CC	neuronal cell body
+GO:0003714	0.012987013	MF	transcription corepressor activity
+GO:0003281	0.013986014	BP	ventricular septum development
+GO:0006029	0.013986014	BP	proteoglycan metabolic process
+GO:0010831	0.014985015	BP	positive regulation of myotube differentiation
+GO:0051145	0.014985015	BP	smooth muscle cell differentiation
+GO:0061548	0.014985015	BP	ganglion development
+GO:0005911	0.014985015	CC	cell-cell junction
+GO:0016616	0.014985015	MF	"oxidoreductase activity, acting on the CH-OH group of donors, NAD or NADP as acceptor"
+GO:0098794	0.015984016	CC	postsynapse
+GO:0007274	0.016983017	BP	neuromuscular synaptic transmission
+GO:0034637	0.016983017	BP	cellular carbohydrate biosynthetic process
+GO:0016538	0.016983017	MF	cyclin-dependent protein serine/threonine kinase regulator activity
+GO:0042562	0.016983017	MF	hormone binding
+GO:0002063	0.017982018	BP	chondrocyte development
+GO:0007281	0.017982018	BP	germ cell development
+GO:0031331	0.017982018	BP	positive regulation of cellular catabolic process
+GO:0016782	0.017982018	MF	"transferase activity, transferring sulfur-containing groups"
+GO:1902554	0.018981019	CC	serine/threonine protein kinase complex
+GO:0006605	0.01998002	BP	protein targeting
+GO:0016925	0.01998002	BP	protein sumoylation
+GO:0042278	0.01998002	BP	purine nucleoside metabolic process
+GO:0046128	0.01998002	BP	purine ribonucleoside metabolic process
+GO:0042995	0.020979021	CC	cell projection
+GO:0060537	0.021978022	BP	muscle tissue development
+GO:0090257	0.021978022	BP	regulation of muscle system process
+GO:0005912	0.021978022	CC	adherens junction
+GO:0010389	0.022977023	BP	regulation of G2/M transition of mitotic cell cycle
+GO:0016079	0.022977023	BP	synaptic vesicle exocytosis
+GO:0016202	0.022977023	BP	regulation of striated muscle tissue development
+GO:0048634	0.022977023	BP	regulation of muscle organ development
+GO:0051298	0.022977023	BP	centrosome duplication
+GO:1901861	0.022977023	BP	regulation of muscle tissue development
+GO:0014706	0.024975025	BP	striated muscle tissue development
+GO:0021602	0.024975025	BP	cranial nerve morphogenesis
+GO:0045732	0.024975025	BP	positive regulation of protein catabolic process
+GO:0048477	0.024975025	BP	oogenesis
+GO:0055013	0.024975025	BP	cardiac muscle cell development
+GO:0003008	0.025974026	BP	system process
+GO:0045739	0.026973027	BP	positive regulation of DNA repair
+GO:2001022	0.026973027	BP	positive regulation of response to DNA damage stimulus
+GO:1902911	0.026973027	CC	protein kinase complex
+GO:0015931	0.027972028	BP	nucleobase-containing compound transport
+GO:0030509	0.027972028	BP	BMP signaling pathway
+GO:0008289	0.027972028	MF	lipid binding
+GO:0019722	0.028971029	BP	calcium-mediated signaling
+GO:0031674	0.028971029	CC	I band
+GO:0052689	0.028971029	MF	carboxylic ester hydrolase activity
+GO:0002244	0.02997003	BP	hematopoietic progenitor cell differentiation
+GO:0015464	0.02997003	MF	acetylcholine receptor activity
+GO:0030856	0.030969031	BP	regulation of epithelial cell differentiation
+GO:0030705	0.031968032	BP	cytoskeleton-dependent intracellular transport
+GO:0050806	0.031968032	BP	positive regulation of synaptic transmission
+GO:0060993	0.031968032	BP	kidney morphogenesis
+GO:0061326	0.031968032	BP	renal tubule development
+GO:0072080	0.031968032	BP	nephron tubule development
+GO:0030018	0.031968032	CC	Z disc
+GO:0007005	0.032967033	BP	mitochondrion organization
+GO:0007517	0.033966034	BP	muscle organ development
+GO:0099504	0.033966034	BP	synaptic vesicle cycle
+GO:2001014	0.033966034	BP	regulation of skeletal muscle cell differentiation
+GO:0098862	0.033966034	CC	cluster of actin-based cell projections
+GO:0099094	0.033966034	MF	ligand-gated cation channel activity
+GO:0019932	0.035964036	BP	second-messenger-mediated signaling
+GO:2000300	0.035964036	BP	regulation of synaptic vesicle exocytosis
+GO:0045182	0.035964036	MF	translation regulator activity
+GO:0006720	0.036963037	BP	isoprenoid metabolic process
+GO:0006721	0.036963037	BP	terpenoid metabolic process
+GO:0010508	0.036963037	BP	positive regulation of autophagy
+GO:2000677	0.036963037	BP	regulation of transcription regulatory region DNA binding
+GO:0030510	0.037962038	BP	regulation of BMP signaling pathway
+GO:0032922	0.037962038	BP	circadian regulation of gene expression
+GO:0060317	0.037962038	BP	cardiac epithelial to mesenchymal transition
+GO:0000079	0.03996004	BP	regulation of cyclin-dependent protein serine/threonine kinase activity
+GO:0046165	0.03996004	BP	alcohol biosynthetic process
+GO:0051054	0.03996004	BP	positive regulation of DNA metabolic process
+GO:1904029	0.03996004	BP	regulation of cyclin-dependent protein kinase activity
+GO:0036477	0.03996004	CC	somatodendritic compartment
+GO:0048471	0.03996004	CC	perinuclear region of cytoplasm
+GO:0031267	0.03996004	MF	small GTPase binding
+GO:0048538	0.040959041	BP	thymus development
+GO:0060536	0.040959041	BP	cartilage morphogenesis
+GO:0003729	0.040959041	MF	mRNA binding
+GO:0003012	0.041958042	BP	muscle system process
+GO:0003414	0.041958042	BP	chondrocyte morphogenesis involved in endochondral bone morphogenesis
+GO:0003422	0.041958042	BP	growth plate cartilage morphogenesis
+GO:0003429	0.041958042	BP	growth plate cartilage chondrocyte morphogenesis
+GO:0090171	0.041958042	BP	chondrocyte morphogenesis
+GO:0000428	0.041958042	CC	DNA-directed RNA polymerase complex
+GO:0030880	0.041958042	CC	RNA polymerase complex
+GO:0055029	0.041958042	CC	nuclear DNA-directed RNA polymerase complex
+GO:1905368	0.041958042	CC	peptidase complex
+GO:0035094	0.042957043	BP	response to nicotine
+GO:0090068	0.042957043	BP	positive regulation of cell cycle process
+GO:0005085	0.042957043	MF	guanyl-nucleotide exchange factor activity
+GO:0043005	0.043956044	CC	neuron projection
+GO:0008146	0.043956044	MF	sulfotransferase activity
+GO:0051536	0.043956044	MF	iron-sulfur cluster binding
+GO:0051540	0.043956044	MF	metal cluster binding
+GO:0001523	0.044955045	BP	retinoid metabolic process
+GO:0016101	0.044955045	BP	diterpenoid metabolic process
+GO:0046785	0.044955045	BP	microtubule polymerization
+GO:0099111	0.044955045	BP	microtubule-based transport
+GO:0010559	0.045954046	BP	regulation of glycoprotein biosynthetic process
+GO:0060048	0.045954046	BP	cardiac muscle contraction
+GO:1903018	0.045954046	BP	regulation of glycoprotein metabolic process
+GO:0005520	0.045954046	MF	insulin-like growth factor binding
+GO:0006936	0.046953047	BP	muscle contraction
+GO:0045844	0.046953047	BP	positive regulation of striated muscle tissue development
+GO:0048636	0.046953047	BP	positive regulation of muscle organ development
+GO:1900006	0.046953047	BP	positive regulation of dendrite development
+GO:1901863	0.046953047	BP	positive regulation of muscle tissue development
+GO:0014866	0.047952048	BP	skeletal myofibril assembly
+GO:0015837	0.048951049	BP	amine transport
+GO:0046173	0.048951049	BP	polyol biosynthetic process
+GO:0051028	0.048951049	BP	mRNA transport
+GO:0051952	0.048951049	BP	regulation of amine transport
+GO:0070925	0.048951049	BP	organelle assembly
+GO:1902749	0.048951049	BP	regulation of cell cycle G2/M phase transition
+GO:0004540	0.048951049	MF	ribonuclease activity
+GO:0043467	0.04995005	BP	regulation of generation of precursor metabolites and energy
+GO:0048846	0.04995005	BP	axon extension involved in axon guidance
+GO:1902284	0.04995005	BP	neuron projection extension involved in neuron projection guidance
+GO:0043235	0.04995005	CC	receptor complex
