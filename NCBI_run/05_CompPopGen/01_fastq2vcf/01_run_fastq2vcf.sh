@@ -1,7 +1,7 @@
 # in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/
 
 module load Anaconda/5.0.1-fasrc01 bcftools/1.5-fasrc02
-#conda create --name snakemake -c bioconda snakemake samtools picard
+#conda create --name snakemake -c bioconda snakemake samtools picard gatk4
 
 # clone pipeline & repo 
 git clone https://github.com/harvardinformatics/shortRead_mapping_variantCalling
