@@ -41,19 +41,19 @@ create_intervals:
 
 # gatk HaplotypeCaller
 bam2gvcf: 
-    mem: 80000
+    mem: 60000
 # gatk GenomicsDBImport
 gvcf2DB:
-    mem: 80000
+    mem: 30000
 # gatk GenotypeGVCFs 
 DB2vcf: 
-    mem: 80000 
+    mem: 30000 
 # gatk GatherVcfs
 gatherVcfs:
-    mem: 80000
+    mem: 30000
 # vcftools program
 vcftools:
-    mem: 80000
+    mem: 60000
 
 
 # freebayes workflow
@@ -63,7 +63,7 @@ bam2vcf:
     mem: 30000
 # gatk GatherVcfs, same as above!
 gatherVcfs:
-    mem: 80000
+    mem: 30000
 # vcftools program
 vcftools:
-    mem: 80000
+    mem: 60000
