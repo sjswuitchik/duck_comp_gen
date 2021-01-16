@@ -63,7 +63,7 @@ bam2vcf:
     mem: 30000
 # gatk GatherVcfs, same as above!
 gatherVcfs:
-    mem: 30000
+    mem: 80000
 # vcftools program
 vcftools:
-    mem: 30000
+    mem: 100000
