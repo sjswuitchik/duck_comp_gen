@@ -44,16 +44,16 @@ bam2gvcf:
     mem: 80000
 # gatk GenomicsDBImport
 gvcf2DB:
-    mem: 60000
+    mem: 80000
 # gatk GenotypeGVCFs 
 DB2vcf: 
-    mem: 60000 
+    mem: 80000 
 # gatk GatherVcfs
 gatherVcfs:
-    mem: 60000
+    mem: 80000
 # vcftools program
 vcftools:
-    mem: 60000
+    mem: 100000
 
 
 # freebayes workflow
