@@ -3,7 +3,7 @@
 
 # To run:
 
-#   python parser.py /path/to/egrGar.clean.ann.vcf output/test.bed -key missense_variant -key synonymous_variant
+#   python annot_parser.py $INSHORT.ann.vcf $INSHORT.ann.bed -key missense_variant -key synonymous_variant
 
 
 
