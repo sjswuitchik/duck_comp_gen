@@ -50,8 +50,8 @@ java -jar $PATHS/snpEff.jar $INSHORT $PATHW/$INSHORT.call.vcf > $PATHW/$INSHORT.
 java -jar $PATHS/snpEff.jar $INSHORT $PATHW/$OUTSHORT.call.vcf > $PATHW/$OUTSHORT.ann.vcf
 
 #parse out variants from annotated VCF and output an annotated BED file 
-python parser_nov.py $INSHORT.ann.vcf $INSHORT.ann.bed -key missense_variant -key synonymous_variant
-python parser_nov.py $OUTSHORT.ann.vcf $OUTSHORT.ann.bed -key missense_variant -key synonymous_variant
+python annot_parser.py $INSHORT.ann.vcf $INSHORT.ann.bed -key missense_variant -key synonymous_variant
+python annot_parser.py $OUTSHORT.ann.vcf $OUTSHORT.ann.bed -key missense_variant -key synonymous_variant
 
 # pull out only CDS regions
 column -s, -t < genes.gff | awk '$3 == "CDS"' > onlyCDS.gff
