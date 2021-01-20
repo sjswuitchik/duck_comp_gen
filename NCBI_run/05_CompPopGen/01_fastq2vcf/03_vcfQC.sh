@@ -18,3 +18,4 @@ vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.stats --het
 vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.stats --freq 
 vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.stats --window-pi 100000 
 vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.stats --012 
+vcftools --vcf Combined_hardFiltered.vcf --out allDucks.stats --012
