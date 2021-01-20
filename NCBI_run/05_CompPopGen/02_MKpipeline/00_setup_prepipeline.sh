@@ -22,11 +22,10 @@ cat temp >> stiNae_missing_data.txt
 rm temp
 
 # calculate coverage 
-cd /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/fastq2bam/01_mappedReads
-
+cd /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/fastq2bam/01_mappedReads/
 for file in *_dedup.bam;
 do
-  bedtools genomecov -bga -ibam $file -g /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/hetAtr/genome/hetAtr.fa > $file.statscov.bg
+  bedtools genomecov -bga -ibam $file -g ../../data/allDucks/genome/hetAtr.fa > $file.statscov.bg
 done
 
 wget https://github.com/shenwei356/brename/releases/download/v2.10.0/brename_linux_amd64.tar.gz
