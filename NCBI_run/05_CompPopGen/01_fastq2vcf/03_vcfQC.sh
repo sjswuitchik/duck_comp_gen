@@ -13,9 +13,9 @@ bcftools view -O z -s netAur_male Combined_hardFiltered.vcf > netAur.vcf.gz
 bcftools view -O z -s oxyJam_male Combined_hardFiltered.vcf > oxyJam.vcf.gz
 
 # output relevant stats - relatedness (unadjusted Ajk stat), heterozygosity on a per-individual basis, allele frequency at each site, nucleotide divergency on a per-site basis in 100kb windows, and a 012 genotype matrix 
-vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.stats --relatedness 
-vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.stats --het
-vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.stats --freq 
-vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.stats --window-pi 100000 
-vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.stats --012 
+vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.statsRel --relatedness 
+vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.statsHet --het
+vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.statsFreq --freq 
+vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.statsPi --window-pi 100000 
+vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.stats012 --012 
 vcftools --vcf Combined_hardFiltered.vcf --out allDucks.stats --012
