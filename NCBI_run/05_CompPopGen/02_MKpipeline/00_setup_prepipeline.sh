@@ -40,6 +40,15 @@ cd /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_
 
 gzip stiNae_male.statscov.bg
 
+wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/faToTwoBit
+chmod +x ./faToTwoBit
+wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/twoBitInfo
+chmod +x ./twoBitInfo
+cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/allDucks/genome/hetAtr.fa .
+
+./faToTwoBit hetAtr.fa hetAtr.2bit
+./twoBitInfo hetAtr.2bit stdout | sort -k2rn > hetAtr.chrom.sizes
+
 sbatch unioncov.sh
 
 gzip -dc hetAtr_union.bg.gz | ./sum_cov.awk
