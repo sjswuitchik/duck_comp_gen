@@ -39,8 +39,6 @@ cp *.statscov.bg /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/0
 cd /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline/coverage_stats
 
 gzip stiNae_male.statscov.bg
-gzip oxyJam_male.statscov.bg
-gzip netAur_male.statscov.bg
 
 sbatch unioncov.sh
 
