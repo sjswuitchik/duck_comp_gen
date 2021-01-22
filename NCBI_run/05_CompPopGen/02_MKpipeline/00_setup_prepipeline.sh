@@ -75,19 +75,7 @@ mv hetAtr.ncbi.fasta sequences.fa
 gzip genes.gff
 gzip sequences.fa
 
-
-
-
-
-wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt
-sed 's/\r$//g' GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt | grep -v "^#" | cut -f1,5 > hetAtr_key
-./replace_chrs.pl hetAtr_key cleaned_reordered_hetAtr.sorted.gtf > genes.gtf
-python2 gtf2gff.py genes.gtf > genes.gff
-gzip genes.gff
-
-
-
-cd ../..
+cd ../../..
 module load Anaconda3/2019.10
 source activate mk_v2
 java -jar snpEff.jar build -gff3 -v hetAtr
