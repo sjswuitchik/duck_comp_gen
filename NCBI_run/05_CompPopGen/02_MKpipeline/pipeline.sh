@@ -30,7 +30,7 @@ else
 fi
 
 export OUTINDV=`cat outgroup.remove.indv | wc -l`
-if [ $OUTINDV -gt 2 ]
+if [ $OUTINDV -gt 1 ]
 then
 	vcftools --vcf $OUTSHORT.clean.vcf --remove-indv outgroup.remove.indv --recode --recode-INFO-all --out $OUTSHORT.clean2
 	mv $OUTSHORT.clean2.recode.vcf $OUTSHORT.clean.vcf
