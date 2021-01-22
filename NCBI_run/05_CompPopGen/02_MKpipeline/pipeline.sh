@@ -1,42 +1,10 @@
 #!/usr/bin/bash
 
-# VCF concatenation - not needed for the snakemake output
-
-#cd $INSHORT.vcfs 
-#bcftools concat *.vcf.gz -O v -o $INSHORT.concat.vcf
-#mv $INSHORT.concat.vcf ..
-#cd ../$OUTSHORT.vcfs 
-#bcftools concat *.vcf.gz -O v -o $OUTSHORT.concat.vcf
-#mv $OUTSHORT.concat.vcf ..
-#cd ..
-
 # VCF filtering
-vcftools --gzvcf $INSHORT.vcf.gz --remove-filtered-all --remove-indels --min-alleles 2 --max-alleles 2 --mac 1 --max-missing 0.75 --recode --recode-INFO-all --out $INSHORT.clean
-mv $INSHORT.clean.recode.vcf $INSHORT.clean.vcf
-
-vcftools --gzvcf $OUTSHORT.vcf.gz --remove-filtered-all --remove-indels --min-alleles 2 --max-alleles 2 --maf 0 --max-missing 0.75 --recode --recode-INFO-all --out $OUTSHORT.clean
-mv $OUTSHORT.clean.recode.vcf $OUTSHORT.clean.vcf
-
 Rscript --vanilla missingness.R $INSHORT'_missing_data.txt' $OUTSHORT'_missing_data.txt'
 
-# remove individuals with high relative missingness, if any
-export ININDV=`cat ingroup.remove.indv | wc -l`
-if [ $ININDV -gt 1 ]
-then
-	vcftools --vcf $INSHORT.clean.vcf --remove-indv ingroup.remove.indv --recode --recode-INFO-all --out $INSHORT.clean2
-	mv $INSHORT.clean2.recode.vcf $INSHORT.clean.vcf
-else 
-	echo "No indv to remove from ingroup"
-fi
-
-export OUTINDV=`cat outgroup.remove.indv | wc -l`
-if [ $OUTINDV -gt 1 ]
-then
-	vcftools --vcf $OUTSHORT.clean.vcf --remove-indv outgroup.remove.indv --recode --recode-INFO-all --out $OUTSHORT.clean2
-	mv $OUTSHORT.clean2.recode.vcf $OUTSHORT.clean.vcf
-else 
-	echo "No indv to remove from outgroup"
-fi
+vcftools --gzvcf $INSHORT.vcf.gz --remove-filtered-all --remove-indels --min-alleles 2 --max-alleles 2 --mac 1 --remove ingroup.remove.indv --max-missing 0.5 --recode --recode-INFO-all --out $INSHORT.filter
+vcftools --gzvcf $OUTSHORT.vcf.gz --remove-filtered-all --remove-indels --min-alleles 2 --max-alleles 2 --maf 0 --remove outgroup.remove.indv --max-missing 0.5 --recode --recode-INFO-all --out $OUTSHORT.filter
 
 # create callable sites for in and outgroup
 bedtools intersect -a $INSHORT'_coverage_sites_clean_merged.bed' -b $OUTSHORT'_coverage_sites_clean_merged.bed' > callable.bed
@@ -62,7 +30,6 @@ cat onlyCDS.bed | python genenames.py > onlyCDS.genes.bed
 
 # associate gene regions with annotations
 bedtools intersect -a $INSHORT.ann.bed -b onlyCDS.genes.bed -wb | cut -f1,2,3,4,8 | bedtools merge -i - -d -1 -c 4,5 -o distinct > $INSHORT.final.bed
-
 bedtools intersect -a $OUTSHORT.ann.bed -b onlyCDS.genes.bed -wb | cut -f1,2,3,4,8 | bedtools merge -i - -d -1 -c 4,5 -o distinct > $OUTSHORT.final.bed
 
 # associate callable sites with genes
