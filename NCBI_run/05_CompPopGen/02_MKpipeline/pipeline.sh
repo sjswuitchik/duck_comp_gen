@@ -9,8 +9,8 @@ vcftools --gzvcf $OUTSHORT.vcf.gz --remove-filtered-all --remove-indels --min-al
 # create callable sites for in and outgroup
 bedtools intersect -a $INSHORT'_coverage_sites_clean_merged.bed' -b $OUTSHORT'_coverage_sites_clean_merged.bed' > callable.bed
 # intersect with in and out group to filter for callable sites only
-bedtools intersect -a $INSHORT.clean.vcf -b callable.bed -header > $INSHORT.call.vcf 
-bedtools intersect -a $OUTSHORT.clean.vcf -b callable.bed -header > $OUTSHORT.call.vcf
+bedtools intersect -a $INSHORT.filter.recode.vcf -b callable.bed -header > $INSHORT.call.vcf 
+bedtools intersect -a $OUTSHORT.filter.recode.vcf -b callable.bed -header > $OUTSHORT.call.vcf
 
 # annotates ingroup VCF
 java -jar $PATHS/snpEff.jar $INSHORT $PATHW/$INSHORT.call.vcf > $PATHW/$INSHORT.ann.vcf
