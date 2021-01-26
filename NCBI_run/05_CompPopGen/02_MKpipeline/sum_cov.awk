@@ -10,7 +10,7 @@ BEGIN {
 }
 {
     tot_cov = 0 
-    for (ind = 4; ind <= 14; ind++)
+    for (ind = 4; ind <= 17; ind++)
         tot_cov += $ind
     int_len = $3 - $2
     weighted_cov = tot_cov / int_len
