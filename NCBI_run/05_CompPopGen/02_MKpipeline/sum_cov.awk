@@ -15,9 +15,9 @@ BEGIN {
     int_len = $3 - $2
     weighted_cov = tot_cov / int_len
     if (weighted_cov < 0.5)
-        print $1, $2, $3, weighted_cov > coverage_sites_low.bed
+        print $1, $2, $3, weighted_cov > "coverage_sites_low.bed"
     else if (weighted_cov > 2.0)
-        print $1, $2, $3, weighted_cov > coverage_sites_high.bed
+        print $1, $2, $3, weighted_cov > "coverage_sites_high.bed"
     else
-        print $1, $2, $3, weighted_cov > coverage_sites_clean.bed
+        print $1, $2, $3, weighted_cov > "coverage_sites_clean.bed"
 }
