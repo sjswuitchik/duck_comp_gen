@@ -74,8 +74,8 @@ gzip genes.gff
 gzip sequences.fa
 
 cd ../../..
-module load Anaconda3/2019.10
-source activate mk_v2
+module load Anaconda/5.0.1-fasrc02
+source activate mk
 java -jar snpEff.jar build -gff3 -v hetAtr
 
 
