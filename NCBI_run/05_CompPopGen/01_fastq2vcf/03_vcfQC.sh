@@ -23,8 +23,8 @@ vcftools --vcf Combined_hardFiltered.vcf --out allDucks.stats --012
 mkdir qc
 mv *stats* qc/
 
-zgrep -v '\*' hetAtr.vcf.gz > hetAtr.clean.vcf.gz
-plink --vcf hetAtr.clean.vcf.gz --make-bed --out hetAtr --allow-extra-chr
+zgrep -v '\*' hetAtr.vcf.gz > hetAtr.clean.vcf
+plink --vcf hetAtr.clean.vcf --make-bed --out hetAtr --allow-extra-chr
 plink --bfile hetAtr --indep-pairwise 500 10 0.1 --out hetAtr --allow-extra-chr
 plink --bfile hetAtr --make-bed --extract hetAtr.prune.in --out hetAtr.ld_pruned --allow-extra-chr
 plink --bfile hetAtr.ld_pruned --ibc --out hetAtr --allow-extra-chr
