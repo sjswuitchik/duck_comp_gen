@@ -1,6 +1,8 @@
 # in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/vcfs/
 
-module load bcftools/1.5-fasrc02 vcftools/0.1.14-fasrc01 plink/1.90-fasrc01
+module load Anaconda/5.0.1-fasrc02
+#conda create -n vcfqc -c bioconda plink vcftools bcftools
+source activate vcfqc
 
 cp ../shortRead_mapping_variantCalling/gatk/Combined_hardFiltered.vcf .
 cp ~/github_repos/duck_comp_gen/NCBI_run/05_CompPopGen/02_MKpipeline/hetAtr_indvs .
@@ -23,7 +25,7 @@ vcftools --vcf Combined_hardFiltered.vcf --out allDucks.stats --012
 mkdir qc
 mv *stats* qc/
 
-# plink 
+# plink
 zgrep -v '\*' hetAtr.vcf.gz > hetAtr.clean.vcf
 plink --vcf hetAtr.clean.vcf --make-bed --out hetAtr --allow-extra-chr
 plink --bfile hetAtr --indep-pairwise 500 10 0.1 --out hetAtr --allow-extra-chr
