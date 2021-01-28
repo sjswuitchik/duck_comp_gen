@@ -58,6 +58,7 @@ sed 's/\r$//g' GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt | grep -v "^#"
 awk '{print $3, $2}' hetAtr_chr_key > acckey
 ./replace_chrs.pl acckey hetAtr.ld_pruned.bim > hetAtr.repl.ld_pruned.bim
 # manually editing the chrom names in acckey to include 'chr' for now, see if sed or something similar will work later
+# nb: chr 34 = W, chr 35 = Z
 
 for K in {2..5}
 do
