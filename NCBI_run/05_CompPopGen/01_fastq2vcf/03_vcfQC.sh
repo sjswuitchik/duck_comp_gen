@@ -56,7 +56,8 @@ Rscript hetAtr.pca.plot
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt
 sed 's/\r$//g' GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt | grep -v "^#" | cut -f1,3,5 > hetAtr_chr_key
 awk '{print $3, $2}' hetAtr_chr_key > acckey
-./replace_chrs.pl acckey hetAtr.bim > hetAtr.repl.bim
+./replace_chrs.pl acckey hetAtr.ld_pruned.bim > hetAtr.repl.ld_pruned.bim
+# manually editing the chrom names to include 'chr' for now, see if sed or something similar will work later
 
 for K in {2..5}
 do
