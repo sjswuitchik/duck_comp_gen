@@ -52,6 +52,12 @@ echo "dev.off()" >> hetAtr.pca.plot
 Rscript hetAtr.pca.plot
 
 # admixture
+
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BPBGC_Hatr_1.0/GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt
+sed 's/\r$//g' GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt | grep -v "^#" | cut -f1,3,5 > hetAtr_chr_key
+awk '{print $3, $2}' hetAtr_chr_key > acckey
+./replace_chrs.pl acckey hetAtr.bim > hetAtr.repl.bim
+
 for K in {2..5}
 do
 	admixture --cv hetAtr.ld_pruned.bed $K > hetAtr.${K}.admix.log 2> hetAtr.${K}.admix.err
