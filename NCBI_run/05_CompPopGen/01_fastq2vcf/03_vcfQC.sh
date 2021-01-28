@@ -1,7 +1,7 @@
 # in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/vcfs/
 
 module load Anaconda/5.0.1-fasrc02
-#conda create -n vcfqc -c bioconda plink vcftools bcftools
+#conda create -n vcfqc -c bioconda plink vcftools bcftools r-base r-tidyverse
 source activate vcfqc
 
 cp ../shortRead_mapping_variantCalling/gatk/Combined_hardFiltered.vcf .
