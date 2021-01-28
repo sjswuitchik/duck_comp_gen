@@ -4,9 +4,9 @@
 
 BEGIN { 
     FS = OFS = "\t"
-    print "chrom", "start", "end", "weighted.cov" > "coverage_sites_low.bed"
-    print "chrom", "start", "end", "weighted.cov" > "coverage_sites_high.bed"
-    print "chrom", "start", "end", "weighted.cov" > "coverage_sites_clean.bed"
+    print "chrom", "start", "end", "weighted.cov" > "stiNae_coverage_sites_low.bed"
+    print "chrom", "start", "end", "weighted.cov" > "stiNae_coverage_sites_high.bed"
+    print "chrom", "start", "end", "weighted.cov" > "stiNae_coverage_sites_clean.bed"
 }
 {
  
