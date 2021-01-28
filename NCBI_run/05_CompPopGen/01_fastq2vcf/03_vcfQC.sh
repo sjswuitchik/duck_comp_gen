@@ -54,7 +54,7 @@ Rscript hetAtr.pca.plot
 # admixture
 for K in {2..5}
 do
-	admixture --cv ${SPECIES}.ld_pruned.bed $K > ${SPECIES}.${K}.admix.log 2> ${SPECIES}.${K}.admix.err
+	admixture --cv hetAtr.ld_pruned.bed $K > hetAtr.${K}.admix.log 2> hetAtr.${K}.admix.err
 done
 
 cat hetAtr.*.admix.log | grep CV | perl -pi -e 's/.+=//' | perl -pi -e 's/\): /\t/' > hetAtr.CV
