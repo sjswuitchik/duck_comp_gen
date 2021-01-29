@@ -34,6 +34,6 @@ do
 done
 
 # run OrthoFinder with all spp from WGA using NCBI data where available and Comp Aug data where necessary
-sbatch run_ortherFinder_jan2021.sh
+sbatch run_ortherFinder_v2.sh
 
 
