@@ -8,6 +8,6 @@
 #SBATCH -o ortho-%j.out
 
 module purge
-module load Anaconda3/2019.10
+module load Anaconda/5.0.1-fasrc02
 source activate ortho
 orthofinder -o /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/OrthoFinder_jan2021/run_ortho/OrthoFinder -f run_ortho/input_data
