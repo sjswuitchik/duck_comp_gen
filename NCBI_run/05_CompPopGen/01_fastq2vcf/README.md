@@ -4,7 +4,6 @@ Each run requires changes to the config.yaml that are specific to the run. Below
 
 ### allDucks run ###
 10x data needs memory bump for Picard MarkDuplicates, so for now, aligning all ducks to hetAtr genome 
-Everything is the same as the above hetAtr parameters with the following exception for the fastq2bam pipeline
 - ref: "data/allDucks/genome/hetAtr.fa"
 - fastqDir: "data/allDucks/fastqs/" 
 - fastq_suffix1: "_1.fastq.gz"
@@ -13,3 +12,9 @@ Everything is the same as the above hetAtr parameters with the following excepti
 For bam2vcf
 - bamsForGatk: "fastq2bam/01_mappedReads/"
 - bam_suffix: "_dedup.bam"
+
+### netAur run ###
+10x data needs memory bump for Picard MarkDuplicates, so for now, aligning all ducks to hetAtr genome 
+Everything is the same as the above allDucks parameters with the following exception for the fastq2bam pipeline
+- ref: "data/netAur/genome/netAur.fa"
+- fastqDir: "data/netAur/fastqs/" 
