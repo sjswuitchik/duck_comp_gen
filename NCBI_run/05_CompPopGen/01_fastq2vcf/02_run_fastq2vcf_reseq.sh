@@ -79,9 +79,11 @@ sbatch run_fastq2bam.sh
 sbatch run_intervals.sh
 sbatch run_bam2vcf_gatk.sh
 
-mkdir ../allDucks
-mv fastq2bam/ intervalFiles/ gatk/ ../allDucks
+mkdir ../allDucks_run
+mv fastq2bam/ intervalFiles/ gatk/ ../allDucks_run
 
 #### also realign all species to their own genomes #### 
+
+# make changes to config as outlined in README for each run, then submit all scripts as outlined in line 77-80. Make sure to move all results of finished run before submitting next run
 
 
