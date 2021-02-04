@@ -19,4 +19,4 @@ Everything is the same as the above allDucks parameters with the following excep
 - ref: "data/netAur/genome/netAur.fa"
 - fastqDir: "data/netAur/fastqs/" 
 - minNmer: 1000
-- maxIntervalLen: 16100000 
+- maxIntervalLen: 16500000 
