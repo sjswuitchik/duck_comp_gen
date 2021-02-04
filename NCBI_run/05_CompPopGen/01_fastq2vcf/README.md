@@ -18,5 +18,5 @@ For bam2vcf
 Everything is the same as the above allDucks parameters with the following exception for the fastq2bam pipeline
 - ref: "data/netAur/genome/netAur.fa"
 - fastqDir: "data/netAur/fastqs/" 
-- minNmer: 1000
-- maxIntervalLen: 16500000 
+- minNmer: 85000
+- maxIntervalLen: 210000000 
