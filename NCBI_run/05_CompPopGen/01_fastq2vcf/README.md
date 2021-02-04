@@ -1,6 +1,6 @@
 ## Notes for running snakemake pipeline ##
 
-Each run requires changes to the config.yaml that are specific to the run. Below are notes about changes made for each particular run of the pipeline. 
+Each run requires changes to the config.yaml that are specific to the run. Below are notes about changes made for each particular run of the pipeline. If a parameter is not listed, it was run with the default setting.
 
 ### allDucks run ###
 10x data needs memory bump for Picard MarkDuplicates, so for now, aligning all ducks to hetAtr genome 
@@ -18,3 +18,5 @@ For bam2vcf
 Everything is the same as the above allDucks parameters with the following exception for the fastq2bam pipeline
 - ref: "data/netAur/genome/netAur.fa"
 - fastqDir: "data/netAur/fastqs/" 
+- minNmer: 1000
+- maxIntervalLen: 16100000 
