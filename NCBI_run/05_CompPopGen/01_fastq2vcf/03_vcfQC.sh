@@ -29,7 +29,7 @@ mv *stats* qc/
 zgrep -v '\*' hetAtr.vcf.gz > hetAtr.clean.vcf
 plink --vcf hetAtr.clean.vcf --make-bed --out hetAtr --allow-extra-chr
 plink --bfile hetAtr --indep-pairwise 500 50 0.1 --out hetAtr --allow-extra-chr
-plink --bfile hetAtr --make-bed --extract hetAtr.prune.in --out hetAtr.ld_pruned --allow-extra-chr
+plink --bfile hetAtr --make-bed --extract hetAtr.prune.in --out hetAtr.ld_pruned --allow-extra-chr --geno 0.05
 plink --bfile hetAtr.ld_pruned --ibc --out hetAtr --allow-extra-chr
 
 # plot of inbreeding coeficicients 
