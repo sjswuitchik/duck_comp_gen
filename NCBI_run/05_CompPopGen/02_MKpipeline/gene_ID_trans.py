@@ -12,7 +12,7 @@ def gene_abrvs(line):
 def id_abrvs(line):
     """Abbreviations imbedded as ;ID=rna"""
     parts = line.split(';')
-    numabrvs = [part.rsplit('=')[1] for part in parts if 'ID=' in part]
+    numabrvs = [part.rsplit('=')[1] for part in parts if 'ID=rna' in part]
     numabrvs = set(numabrvs)
     return numabrvs
 
