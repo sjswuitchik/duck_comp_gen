@@ -31,5 +31,6 @@ with fileinput.input() as intake:
         abrvset = ",".join(list(set(abrvset)))
         numabrvset = id_abrvs(line)
         numabrvset = ",".join(list(set(numabrvset)))
-        result = '\t'.join((abrvset, numabrvset))
+	loc = location(line)
+        result = '\t'.join((loc, abrvset, numabrvset))
         print(result, end='\n', file=sys.stdout)
