@@ -2,7 +2,7 @@
 
 # there is a little bit of prep that needs to be done before the output from the snakemake pipeline will be suitable to work in the MK pipeline
 
-module load bcftools/1.5-fasrc02 bedtools2/2.26.0-fasrc01 perl/5.26.1-fasrc01 
+module load bcftools/1.5-fasrc02 bedtools2/2.26.0-fasrc01 perl/5.26.1-fasrc01 Anaconda/5.0.1-fasrc02
 
 cp gatk/Combined_hardFiltered.vcf manual/missing_data_per_ind.txt ../../02_MK_pipeline 
 cd ../../02_MK_pipeline
@@ -66,12 +66,23 @@ cd ..
 
 # using GFF from Comparative Augustus annotation for snpEff database build
 # in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline/snpEff/data/hetAtr
-cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/augCGP_rnahints/joined_pred/hetAtr.gff .
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/03d_CompAug/genomes/hetAtr.ncbi.fasta .
-mv hetAtr.gff genes.gff
 mv hetAtr.ncbi.fasta sequences.fa
-gzip genes.gff
 gzip sequences.fa
+# CompAug GFF needs to be translated using OrthoFinder orthologue comparison of hetAtr v galGal
+cd ../../../
+mkdir hetAtr_translation
+cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/OrthoFinder_jan2021/run_ortho/OrthoFinder/Results_Feb01/Orthologues/Orthologues_hetAtr.translated/hetAtr.translated__v__galGal.translated.tsv hetAtr_translation
+cp /n/holylfs/LABS/informatics/swuitchik/ducks/ncbi_analyses/03_CompAugAnnotation/augCGP_rnahints/joined_pred/hetAtr.gff hetAtr_translation/
+cd hetAtr_translation
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_genomic.gff.gz
+gunzip GCF_000002315.6_GRCg6a_genomic.gff.gz
+
+
+mv hetAtr.gff genes.gff
+
+gzip genes.gff
+
 
 cd ../../..
 module load Anaconda/5.0.1-fasrc02
