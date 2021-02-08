@@ -77,10 +77,15 @@ cp /n/holylfs/LABS/informatics/swuitchik/ducks/ncbi_analyses/03_CompAugAnnotatio
 cd hetAtr_translation
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_genomic.gff.gz
 gunzip GCF_000002315.6_GRCg6a_genomic.gff.gz
+# create translation file for galGal transcript to gene
+grep -v '#' GCF_000002315.6_GRCg6a_genomic.gff | awk '{if ($3 == "mRNA") print $0;}' | python3 galGenes_trans.py > transGene.txt
+# create translation file for hetAtr to galGal transcripts
+sed '1d' hetAtr.translated__v__galGal.translated.tsv | cut -f2,3 > hetGal_trans.txt
+
+
 
 
 mv hetAtr.gff genes.gff
-
 gzip genes.gff
 
 
