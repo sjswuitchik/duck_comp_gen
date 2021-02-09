@@ -14,7 +14,7 @@ For bam2vcf
 - bam_suffix: "_dedup.bam"
 
 ### netAur run ###
-NB: 10X data crashes dedup, so for now, not dedup'ing BAMs
+NB: 10X data crashes dedup, so for now, not dedup'ing BAMs - manually renaming sorted BAM to dedup'd BAM, indexing, and going on with pipeline
 Everything is the same as the above allDucks parameters with the following exception for fastq2bam & intervals
 - ref: "data/netAur/genome/netAur.fa"
 - fastqDir: "data/netAur/fastqs/" 
