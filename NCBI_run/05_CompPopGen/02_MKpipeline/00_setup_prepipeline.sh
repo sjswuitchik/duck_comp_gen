@@ -80,7 +80,7 @@ gunzip GCF_000002315.6_GRCg6a_genomic.gff.gz
 # create translation file for galGal transcript to gene
 grep -v '#' GCF_000002315.6_GRCg6a_genomic.gff | awk '{if ($3 == "mRNA") print $0;}' | python3 galGenes_trans.py > transGene.txt
 # create translation file for hetAtr to galGal transcripts
-sed '1d' hetAtr.translated__v__galGal.translated.tsv | cut -f2,3 > hetGal_trans.txt
+sed '1d' hetAtr.translated__v__galGal.translated.tsv | cut -f2,3 > hetGal_trans.tsv
 
 
 
