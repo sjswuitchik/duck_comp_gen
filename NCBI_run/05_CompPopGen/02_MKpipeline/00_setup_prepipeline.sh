@@ -82,7 +82,7 @@ grep -v '#' GCF_000002315.6_GRCg6a_genomic.gff | awk '{if ($3 == "mRNA") print $
 # create translation file for hetAtr to galGal transcripts
 sed '1d' hetAtr.translated__v__galGal.translated.tsv | cut -f2,3 > hetGal_trans.tsv
 # quickly reformat transGene file
-# conda create -n agat -c conda-forge r-base r-tidyverse agat perl-sort-naturally
+# conda env create -f conda_env_agat.yml
 source activate agat
 Rscript reformat.R
 # replace using AGAT scripts 
