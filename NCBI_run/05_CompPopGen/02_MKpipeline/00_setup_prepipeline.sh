@@ -82,11 +82,11 @@ grep -v '#' GCF_000002315.6_GRCg6a_genomic.gff | awk '{if ($3 == "mRNA") print $
 # create translation file for hetAtr to galGal transcripts
 sed '1d' hetAtr.translated__v__galGal.translated.tsv | cut -f2,3 > hetGal_trans.tsv
 # quickly reformat transGene file
-# conda create -n agat -c conda-forge -c bioconda agat r-base r-tidyverse 
-source activate agat
+# conda create -n r -c bioconda r-base r-tidyverse 
+source activate r
 Rscript reformat.R
-# replace using AGAT scripts 
-agat_sp_manage_IDs.pl 
+# add an ID field to the GFF with chicken-based genes from translation files
+
 
 
 
