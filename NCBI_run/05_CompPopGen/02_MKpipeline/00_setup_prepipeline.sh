@@ -81,7 +81,12 @@ gunzip GCF_000002315.6_GRCg6a_genomic.gff.gz
 grep -v '#' GCF_000002315.6_GRCg6a_genomic.gff | awk '{if ($3 == "mRNA") print $0;}' | python3 galGenes_trans.py > transGene.txt
 # create translation file for hetAtr to galGal transcripts
 sed '1d' hetAtr.translated__v__galGal.translated.tsv | cut -f2,3 > hetGal_trans.tsv
-
+# quickly reformat transGene file
+# conda create -n agat -c conda-forge r-base r-tidyverse agat
+source activate agat
+Rscript reformat.R
+# replace using AGAT scripts 
+agat_sp_manage_IDs.pl 
 
 
 
