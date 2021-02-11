@@ -86,19 +86,17 @@ sed '1d' hetAtr.translated__v__galGal.translated.tsv | cut -f2,3 > hetGal_trans.
 source activate agat
 Rscript reformat.R
 # add an ID field to the GFF with chicken-based genes from translation files
-./duck2chick.sh hetAtr.gff > hetAtr_repl.gff
-# standardize output
-agat_convert_sp_gxf2gxf.pl -g hetAtr_repl.gff --ml --gvo 3 -o hetAtr_final.gff
+./duck2chick.sh hetAtr.gff > hetAtr_final.gff
+# rename for snpEff
+cp hetAtr_final.gff genes.gff
+cp genes.gff ..
+cd ..
+cp genes.gff snpEff/data/hetAtr
+gzip snpEff/data/hetAtr/genes.gff
 
-
-
-mv hetAtr.gff genes.gff
-gzip genes.gff
-
-
-cd ../../..
-module load Anaconda/5.0.1-fasrc02
+conda deactivate
 source activate mk
+cd snpEff
 java -jar snpEff.jar build -gff3 -v hetAtr
 
 
