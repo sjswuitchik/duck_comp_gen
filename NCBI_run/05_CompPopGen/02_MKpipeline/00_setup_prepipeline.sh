@@ -83,16 +83,26 @@ grep -v '#' GCF_000002315.6_GRCg6a_genomic.gff | awk '{if ($3 == "mRNA") print $
 sed '1d' hetAtr.translated__v__galGal.translated.tsv | cut -f2,3 > hetGal_trans.tsv
 # quickly reformat transGene file
 # conda create -n agat -c conda-forge -c bioconda agat r-base r-tidyverse 
-source activate agat
+# conda create -n r -c conda-forge -c bioconda r-base r-tidyverse 
+# conda create -n gffread -bioconda gffread 
+source activate r
 Rscript reformat.R
-# add an ID field to the GFF with chicken-based genes from translation files
-./duck2chick.sh hetAtr.gff > hetAtr_final.gff
+# convert CompAug output to GFF3
+gffread hetAtr.gff -T > hetAtr_convert.gff
 # rename for snpEff
 cp hetAtr_final.gff genes.gff
 cp genes.gff ..
 cd ..
 cp genes.gff snpEff/data/hetAtr
 gzip snpEff/data/hetAtr/genes.gff
+
+
+
+
+# add an ID field to the GFF with chicken-based genes from translation files
+./duck2chick.sh hetAtr.gff > hetAtr_final.gff
+
+
 
 conda deactivate
 source activate mk
