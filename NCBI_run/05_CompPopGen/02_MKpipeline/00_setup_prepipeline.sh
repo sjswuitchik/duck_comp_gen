@@ -88,6 +88,8 @@ sed '1d' hetAtr.translated__v__galGal.translated.tsv | cut -f2,3 > hetGal_trans.
 source activate r
 Rscript reformat.R
 # convert CompAug output to GFF3
+conda deactivate
+source activate gffread
 gffread hetAtr.gff -T > hetAtr_convert.gff
 # rename for snpEff
 cp hetAtr_final.gff genes.gff
