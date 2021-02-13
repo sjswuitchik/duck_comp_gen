@@ -3,7 +3,7 @@
 Each run requires changes to the config.yaml that are specific to the run. Below are notes about changes made for each particular run of the pipeline. If a parameter is not listed, it was run with the default setting.
 
 ### allDucks run ###
-10X data needs memory bump for dedup, so for now, aligning all ducks to hetAtr genome without 10X data from genome asssemblies
+10X data needs memory bump for dedup, so for now, aligning all ducks reseq data to hetAtr genome without 10X data from genome asssemblies
 - ref: "data/allDucks/genome/hetAtr.fa"
 - fastqDir: "data/allDucks/fastqs/" 
 - fastq_suffix1: "_1.fastq.gz"
@@ -19,4 +19,9 @@ Everything is the same as the above allDucks parameters with the following excep
 - ref: "data/netAur/genome/netAur.fa"
 - fastqDir: "data/netAur/fastqs/" 
 - minNmer: 85000
-- maxIntervalLen: 210000000 
+- maxIntervalLen: 210000000  
+
+### hetAtr + stiNae run for MK pipeline ###  
+data: non-dedup'd BAMs, hetAtr reseq data, hetAtr 10X genome data, stiNae male reseq data  
+- ref: "data/hetSti/genome/hetAtr.fa"  
+- fastqDir: "data/hetSti/fastqs/"
