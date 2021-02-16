@@ -24,6 +24,13 @@ vcftools --vcf Combined_hardFiltered.vcf --out allDucks.stats --012
 
 mkdir qc
 mv *stats* qc/
+cd qc
+
+# contstruct the 012 matrix with some unix wrangling for PCA, adegenet
+cat hetAtr.stats012.012.pos >> temp
+./transpose temp
+cat temp hetAtr.stats012.012 > matrix_noIndv
+paste -d'\t' hetAtr.stats012.012.indv matrix_noIndv > hetAtr.012matrix
 
 # plink
 zgrep -v '\*' hetAtr.vcf.gz > hetAtr.clean.vcf
