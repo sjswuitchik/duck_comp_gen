@@ -79,12 +79,14 @@ cat hetAtr.*.admix.log | grep CV | perl -pi -e 's/.+=//' | perl -pi -e 's/\): /\
 # plot admixture output
 echo "x <- read.table(\"hetAtr.CV\")" > hetAtr.admixture.plot.r
 echo "pdf(\"hetAtr.admix.pdf\",height=10,width=5)" >> hetAtr.admixture.plot.r
-echo "par(mfrow=c(5,1),mar=c(4,4,2,2))" >> hetAtr.admixture.plot.r
+echo "par(mfrow=c(6,1),mar=c(4,4,2,2))" >> hetAtr.admixture.plot.r
 echo "plot(x\$V1,x\$V2,xlab=\"K\",ylab=\"CV\")" >> hetAtr.admixture.plot.r
+echo "Q1 <- as.matrix(read.table(\"hetAtr.ld_pruned.1.Q\"))" >> hetAtr.admixture.plot.r
 echo "Q2 <- as.matrix(read.table(\"hetAtr.ld_pruned.2.Q\"))" >> hetAtr.admixture.plot.r
 echo "Q3 <- as.matrix(read.table(\"hetAtr.ld_pruned.3.Q\"))" >> hetAtr.admixture.plot.r
 echo "Q4 <- as.matrix(read.table(\"hetAtr.ld_pruned.4.Q\"))" >> hetAtr.admixture.plot.r
 echo "Q5 <- as.matrix(read.table(\"hetAtr.ld_pruned.5.Q\"))" >> hetAtr.admixture.plot.r
+echo "barplot(t(Q1),col=rainbow(6))" >> hetAtr.admixture.plot.r
 echo "barplot(t(Q2),col=rainbow(2))" >> hetAtr.admixture.plot.r
 echo "barplot(t(Q3),col=rainbow(3))" >>	hetAtr.admixture.plot.r
 echo "barplot(t(Q4),col=rainbow(4))" >>	hetAtr.admixture.plot.r
