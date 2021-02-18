@@ -10,7 +10,7 @@ BEGIN {
 }
 {
     tot_cov = 0 
-    mean = 17.41332937
+    mean = 15.75267386
     for (ind = 4; ind <= NF; ind++)
         tot_cov += $ind
     int_len = $3 - $2
