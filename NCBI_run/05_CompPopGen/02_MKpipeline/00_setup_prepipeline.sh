@@ -22,6 +22,7 @@ cat temp >> stiNae_missing_data.txt
 rm temp
 
 # calculate coverage 
+# calculate weighted mean coverage from bam_sumstats.txt produced by fastq2bam pipeline (/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/hetAtr/fastq2bam/bam_sumstats.txt) to use in sum_cov.awk 
 cd /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/fastq2bam/01_mappedReads/
 for file in *_dedup.bam;
 do
