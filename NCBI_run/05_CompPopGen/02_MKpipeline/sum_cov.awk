@@ -10,13 +10,14 @@ BEGIN {
 }
 {
     tot_cov = 0 
+    mean = 17.41332937
     for (ind = 4; ind <= NF; ind++)
         tot_cov += $ind
     int_len = $3 - $2
     weighted_cov = tot_cov / int_len
-    if (weighted_cov < 0.5)
+    if (weighted_cov < 0.5*mean)
         print $1, $2, $3, weighted_cov > "hetAtr_coverage_sites_low.bed"
-    else if (weighted_cov > 2.0)
+    else if (weighted_cov > 2.0*mean)
         print $1, $2, $3, weighted_cov > "hetAtr_coverage_sites_high.bed"
     else
         print $1, $2, $3, weighted_cov > "hetAtr_coverage_sites_clean.bed"
