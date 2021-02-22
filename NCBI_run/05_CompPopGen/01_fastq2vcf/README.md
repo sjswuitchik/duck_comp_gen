@@ -22,6 +22,16 @@ Everything is the same as the above allDucks parameters with the following excep
 - maxIntervalLen: 210000000  
 
 ### hetAtr + stiNae run for MK pipeline ###  
-data: non-dedup'd BAMs, hetAtr reseq data, hetAtr 10X genome data, stiNae male reseq data  
+data: non-dedup'd 10X BAMs, hetAtr reseq data, hetAtr 10X genome data, stiNae male reseq data  
 - ref: "data/hetSti/genome/hetAtr.fa"  
 - fastqDir: "data/hetSti/fastqs/"
+
+### stiNae run ###
+data: non-dedup'd BAMs, female 10X genome data, male reseq data  
+- ref: "data/stiNae/genome/stiNae.fa"
+- fastqDir: "data/stiNae/fastqs/"  
+
+### oxyJam run ###
+data: non-dedup'd BAMs, female 10X genome data, male reseq data  
+- ref: "data/oxyJam/genome/oxyJam.fa"
+- fastqDir: "data/oxyJam/fastqs/"
