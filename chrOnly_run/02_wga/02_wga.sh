@@ -29,7 +29,7 @@ mv GCF_000971095.1_AnsCyg_PRJNA183603_v1.0_genomic.fna ansCyg.ncbi.fasta
 mv GCA_006229135.1_ASM622913v1_genomic.fna ansInd.ncbi.fasta
 mv GCA_006130075.1_GSC_cangoose_1.0_genomic.fna braCan.ncbi.fasta
 mv GCA_008692595.1_Cv_LA_1.0_genomic.fna colVir.ncbi.fasta
-mv GCF_001577835.2_Coturnix_japonica_2.1_genomic.fna gotJap.ncbi.fasta
+mv GCF_001577835.2_Coturnix_japonica_2.1_genomic.fna cotJap.ncbi.fasta
 mv GCF_000002315.6_GRCg6a_genomic.fna galGal.ncbi.fasta
 mv GCA_011075105.1_BPBGC_Hatr_1.0_genomic.fna hetAtr.ncbi.fasta
 mv GCA_011076525.1_BPBGC_Naur_1.0_genomic.fna netAur.ncbi.fasta
