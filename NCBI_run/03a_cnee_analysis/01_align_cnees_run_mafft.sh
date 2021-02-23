@@ -11,7 +11,7 @@ cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/02_wga/gallo_nc
 # CNEE set was already made from earlier analysis, so copy over (from duck_comp_gen/03a_cnee_analysis/01_assemble_cnees.sh)
 cp /n/holyscratch01/informatics/swuitchik/ducks_project/post_cactus/cnees/galGal6_final_merged_CNEEs_named.bed .
 
-singularity shell --cleanenv /n/singularity_images/informatics/cat/cat:20200116.sif
+singularity shell --cleanenv /n/singularity_images/informatics/cat/cat:20200604.sif
 for SP in anaPla ansBra ansCyg ansInd braCan colVir cotJap galGal hetAtr netAur numMel oxyJam stiNae syrMik tymCupPin;
 do
 	halLiftover --outPSLWithName gallo_ncbi.hal galGal galGal6_final_merged_CNEEs_named.bed $SP $SP.psl &
