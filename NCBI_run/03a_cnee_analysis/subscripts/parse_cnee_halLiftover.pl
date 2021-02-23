@@ -11,7 +11,7 @@ print LOG "Locus\tTaxon\tNote\n";
 open(LOG2, ">cnee_parsing_log2") || die "Cannot open logfile2 for writing: $!\n";
 
 #store lengths of all galGal reference cnees
-my $dataset= 'final_cnees_long.bed';
+my $dataset= 'galGal6_final_merged_CNEEs_named.bed';
 my %cnees;
 open(CNEES, "<$dataset") || die "Cannot open $dataset for reading: $1\n";
 while(<CNEES>){
@@ -36,7 +36,7 @@ my $tot= scalar(keys %cnees);
 print "\nFinished storing info. for: $tot cnees\n\n";
 
 #list of all taxa (except reference chicken galGal & moa anoDid)
-my @taxa= qw( allMis allSin anaPla anoCar aptFor aptHaa aptOwe aptRow balReg calAnn casCas chaPel chaVoc cheMyd chrPic colLiv corBra croPor cryCin cucCan droNov eudEle falPer ficAlb fulGla gavGan halLeu lepDis melGal melUnd mesUni nipNip notPer picPub pseHum pygAde rheAme rhePen strCam taeGut tinGut );
+my @taxa= qw( anaPla ansBra ansCyg ansInd braCan colVir cotJap galGal hetAtr netAur numMel oxyJam stiNae syrMik tymCupPin );
 
 for my $spp (@taxa){
 	print "\nParsing liftover for: $spp\n";
