@@ -5,7 +5,7 @@ import yaml
 from collections import defaultdict
 import helperFun
 
-configfile: "config.yaml"
+configfile: "config_oxyJam.yaml"
 res_config = yaml.load(open("resources.yaml"))
 
 # rename variables from config file for clarity downstream
