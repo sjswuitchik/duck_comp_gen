@@ -15,8 +15,8 @@ fastq_suffix2: "_2.fastq.gz"            # the suffix for the reverse reads that 
 ##############################
 
 # if using the BAM -> VCF workflows
-bamsForGatk: "fastq2bam/01_mappedReads/" # directory containing BAMs for GATK. If you used the fastq -> bam workflow above, simply keep the default value; must be followed by a "/"
-bamsForFB: "fastq2bam/01_mappedReads/"   # directory containing BAMs for Freebayes. If you used the fastq -> bam workflow above, simply keep the default value; must be followed by a "/"
+bamsForGatk: "fastq2bam_oxyJam/01_mappedReads/" # directory containing BAMs for GATK. If you used the fastq -> bam workflow above, simply keep the default value; must be followed by a "/"
+bamsForFB: "fastq2bam_oxyJam/01_mappedReads/"   # directory containing BAMs for Freebayes. If you used the fastq -> bam workflow above, simply keep the default value; must be followed by a "/"
 bam_suffix: "_dedup.bam"                 # the suffix for your BAM files that follow all the sample names. If you use the fastq->BAM workflow above, simply keep the default value 
 
 # These parameters control how the genome gets split into intervals according to Nmers in the reference genome
@@ -33,17 +33,17 @@ maxDP_fb: 200 # this is the maximum depth parameter used for freebayes, site wit
 ##############################
 
 # These variables control the output of the fastq2bam workflow. You don't need to change these, but if you do please have a forward slash follow name!
-fastq2bamDir: "fastq2bam/"              # this is the name of the directory for all the output
+fastq2bamDir: "fastq2bam_oxyJam/"              # this is the name of the directory for all the output
 fastqFilterDir: "00_fastqFiltered/"     # new directory created for filtered fastq reads
 bamDir: "01_mappedReads/"               # new directory created for BAM files
 sumstatDir: "02_bamSumstats/"           # new directory created for BAM summary statistics
 
 # These variables control the output of the GATK4 workflow (please have forward slash follow name!)
-gatkDir: "gatk/"
+gatkDir: "gatk_oxyJam/"
 gvcfDir: "01_gvcfs/"
 dbDir: "02_genomicsDB/"
 vcfDir_gatk: "03_vcfs/"
-intDir: "intervalFiles/"
+intDir: "intervalFiles_oxyJam/"
 
 # These variables control the output of the FreeBayes workflow (please have forward slash follow name!)   
 fbDir: "freebayes/"
