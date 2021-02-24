@@ -1,12 +1,12 @@
 #!/bin/bash
-#SBATCH -J sm
-#SBATCH -o out
-#SBATCH -e err
+#SBATCH -J sm_stiNae
+#SBATCH -o out_stiNae
+#SBATCH -e err_stiNae
 #SBATCH -p holy-info
 #SBATCH -n 1
 #SBATCH -t 9000
 #SBATCH --mem=10000
 
-module load Anaconda/5.0.1-fasrc01
+module load Anaconda3/2020.11
 source activate snakemake
-snakemake --snakefile Snakefile_fastq2bam --profile ./profiles/slurm
+snakemake --snakefile Snakefile_fastq2bam_stiNae --profile ./profiles/slurm
