@@ -14,5 +14,6 @@ NB: 10X data crashes dedup, so for now, not dedup'ing BAMs in netAur, oxyJam, an
 - ```cp sample_sorted.bam to sample_dedup.bam```  
 - ```samtools index sample_dedup.bam```  
 - ```mv sample_dedup.bam.bai sample_dedup.bai```  
-- ```touch ../02_bamSumstats/sample_dedupMetrics.txt```
+- ```touch ../02_bamSumstats/sample_dedupMetrics.txt```  
 
+Then re-submit run_fastq2bam_spp.sh to complete the pipeline.
