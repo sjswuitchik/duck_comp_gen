@@ -7,6 +7,6 @@
 #SBATCH -t 9000
 #SBATCH --mem=10000
 
-module load Anaconda/5.0.1-fasrc01
+
 source activate snakemake
 snakemake --snakefile Snakefile_fastq2bam_netAur --profile ./profiles/slurm
