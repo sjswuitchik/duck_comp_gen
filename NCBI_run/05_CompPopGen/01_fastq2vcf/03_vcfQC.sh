@@ -26,11 +26,9 @@ mkdir qc
 mv *stats* qc/
 cd qc
 
-# contstruct the 012 matrix with some unix wrangling for PCA, adegenet
-cat hetAtr.stats012.012.pos >> temp
-./transpose temp
-cat temp hetAtr.stats012.012 > matrix_noIndv
-paste -d'\t' hetAtr.stats012.012.indv matrix_noIndv > hetAtr.012matrix
+# contstruct the 012 matrix with some wrangling for PCA, adegenet
+cut -f2- hetAtr.stats012.012 > hetAtr.clean.012
+paste hetAtr.stats012.012.indv hetAtr.clean.012 > hetAtr.matrix
 
 # plink
 zgrep -v '\*' hetAtr.vcf.gz > hetAtr.clean.vcf
