@@ -95,16 +95,9 @@ cd ..
 cp genes.gtf snpEff/data/hetAtr
 gzip snpEff/data/hetAtr/genes.gtf
 conda deactivate
-# convert to GFF for MK pipeline - not sure if this is necessary yet 
-#conda create -n gffread -c bioconda gffread
-source activate gffread
 
 
 
-
-
-
-conda deactivate
 source activate mk
 cd snpEff
 java -jar snpEff.jar build -gff3 -v hetAtr
