@@ -4,7 +4,7 @@
 
 module load bcftools/1.5-fasrc02 bedtools2/2.26.0-fasrc01 perl/5.26.1-fasrc01 Anaconda3/2020.11
 
-cp gatk/Combined_hardFiltered.vcf manual/missing_data_per_ind.txt ../../02_MK_pipeline 
+cp gatk/Combined_hardFiltered.vcf gatk/missing_data_per_ind.txt ../../02_MK_pipeline 
 cd ../../02_MK_pipeline
 
 # separate hetAtr and stiNae VCFs
