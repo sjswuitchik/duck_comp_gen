@@ -44,8 +44,12 @@ cd coverage/
 # nb: to download binaries: http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64.v385/
 sbatch run_bedg2bw.sh 
 
-
-
+ls hetAtr*.bw > hetAtr_list
+/n/holylfs/LABS/informatics/ashultz/CompPopGen/SPECIES_DATASETS/gatherVCFs_dir/coverage/./bigWigMerge -inList hetAtr_list hetAtr.merge.bg
+/n/holylfs/LABS/informatics/ashultz/CompPopGen/SPECIES_DATASETS/gatherVCFs_dir/coverage/./bedGraphToBigWig hetAtr.merge.bg ../hetAtr.chrom.sizes hetAtr.merge.bw
+awk 'BEGIN{FS=OFS="\t"}{print $1, 0, $2, $1}' ../hetAtr.chrom.sizes > ../hetAtr.genome.bed
+/n/holylfs/LABS/informatics/ashultz/CompPopGen/SPECIES_DATASETS/gatherVCFs_dir/coverage/./bigWigAverageOverBed hetAtr.merge.bw ../hetAtr.genome.bed hetAtr.summary.tab 
+/n/holylfs/LABS/informatics/ashultz/CompPopGen/SPECIES_DATASETS/gatherVCFs_dir/coverage/./bigWigAverageOverBed stiNae_male.bw ../hetAtr.genome.bed stiNae.summary.tab
 
 
 
