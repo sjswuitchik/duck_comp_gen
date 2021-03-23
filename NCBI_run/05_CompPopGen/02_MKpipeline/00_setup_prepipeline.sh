@@ -51,6 +51,7 @@ awk 'BEGIN{FS=OFS="\t"}{print $1, 0, $2, $1}' ../hetAtr.chrom.sizes > ../hetAtr.
 /n/holylfs/LABS/informatics/ashultz/CompPopGen/SPECIES_DATASETS/gatherVCFs_dir/coverage/./bigWigAverageOverBed hetAtr.merge.bw ../hetAtr.genome.bed hetAtr.summary.tab 
 /n/holylfs/LABS/informatics/ashultz/CompPopGen/SPECIES_DATASETS/gatherVCFs_dir/coverage/./bigWigAverageOverBed stiNae_male.bw ../hetAtr.genome.bed stiNae.summary.tab
 
+gzip hetAtr.merge.bg
 sbatch write_coverage_beds.sh hetAtr
 mean=$(awk '{sum = sum+$4}{size=size+$2}{avg=sum/size}END{print avg}' stiNae.summary.tab)
 gzip -dc stiNae_male_dedup.bam.bg.sorted.gz | awk -v avg="$mean" -v spp=stiNae -f ../sum_cov.awk
