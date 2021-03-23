@@ -8,8 +8,8 @@ sbatch run_gatkUpdate.sh Combined_hardFiltered hetAtr
 ./vcfHeaderCleanup 
 
 # separate hetAtr and stiNae VCFs
-bcftools view -O z -s stiNae_male Combined_hardFiltered.vcf > stiNae.vcf.gz
-bcftools view -O z -S hetAtr_indvs Combined_hardFiltered.vcf > hetAtr.vcf.gz
+bcftools view -O z -s stiNae_male Combined_hardFiltered_updatedFilter.vcf.gz > stiNae.vcf.gz
+bcftools view -O z -S hetAtr_indvs Combined_hardFiltered_updatedFilter.vcf.gz > hetAtr.vcf.gz
 
 # separate hetAtr and stiNae missingness data
 sed -n 1p missing_data_per_ind.txt > hetAtr_missing_data.txt
