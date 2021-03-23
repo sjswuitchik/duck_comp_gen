@@ -54,7 +54,6 @@ awk 'BEGIN{FS=OFS="\t"}{print $1, 0, $2, $1}' ../hetAtr.chrom.sizes > ../hetAtr.
 
 
 
-
 gzip -dc hetAtr_union.bg.gz | ./sum_cov.awk
 sed '1d' hetAtr_coverage_sites_clean.bed | bedtools sort -i - | bedtools merge -i - > hetAtr_coverage_sites_clean_merged.bed
 sed '1d' hetAtr_coverage_sites_low.bed | bedtools sort -i - | bedtools merge -i - > hetAtr_coverage_sites_low_merged.bed
