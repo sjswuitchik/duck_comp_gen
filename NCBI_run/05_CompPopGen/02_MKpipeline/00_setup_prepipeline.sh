@@ -41,6 +41,8 @@ chmod +x ./twoBitInfo
 ./twoBitInfo hetAtr.2bit stdout | sort -k2rn > hetAtr.chrom.sizes
 
 cd coverage/
+# nb: to download binaries: http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64.v385/
+sbatch run_bedg2bw.sh 
 
 
 
