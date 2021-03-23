@@ -1,11 +1,11 @@
-# in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling
-
-# there is a little bit of prep that needs to be done before the output from the snakemake pipeline will be suitable to work in the MK pipeline
+# in /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_run
+# there is a little bit of prep that needs to be done before the output from the snakemake pipeline will be suitable to work in the MK pipeline. Copy or move over the VCF and the missing data files from the snakemake pipeline output
 
 module load bcftools/1.5-fasrc02 bedtools2/2.26.0-fasrc01 perl/5.26.1-fasrc01 Anaconda3/2020.11
 
-cp gatk/Combined_hardFiltered.vcf gatk/missing_data_per_ind.txt ../../02_MK_pipeline 
-cd ../../02_MK_pipeline
+# update filtering of VCF and clean up header
+sbatch run_gatkUpdate.sh Combined_hardFiltered hetAtr
+./vcfHeaderCleanup 
 
 # separate hetAtr and stiNae VCFs
 bcftools view -O z -s stiNae_male Combined_hardFiltered.vcf > stiNae.vcf.gz
