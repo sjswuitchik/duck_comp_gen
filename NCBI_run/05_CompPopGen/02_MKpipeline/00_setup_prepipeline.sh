@@ -120,8 +120,7 @@ gzip snpEff/data/hetAtr/sequences.fa
 # build snpEff database 
 source activate mk
 cd snpEff
-java -jar snpEff.jar build -gff3 -v hetAtr
-
+snpEff -Xmx8g build -c snpEff.config -gtf22 -v hetAtr
 
 
 
