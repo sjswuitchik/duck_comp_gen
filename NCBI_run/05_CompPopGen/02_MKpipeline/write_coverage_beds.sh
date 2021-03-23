@@ -7,7 +7,7 @@
 #SBATCH -t 24:00:00
 #SBATCH --mem=8000
 
-# run from /n/holylfs/LABS/informatics/ashultz/CompPopGen/SPECIES_DATASETS/gatherVCFs_dir/coverage
+# run from /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_run/coverage
 # sbatch write_coverage_beds.sh spp_name
 
 set -o errexit
