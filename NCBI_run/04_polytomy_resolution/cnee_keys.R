@@ -1,4 +1,4 @@
-#!/bin/R
+#!/usr/bin/Rscript
 
 data <- read_delim("galGal6_final_merged_CNEEs_named.bed", delim = '\t', col_names = F) %>%
 rename(chr = X1, start = X2, end = X3, cnee = X4) %>%
