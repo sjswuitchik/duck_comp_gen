@@ -1,7 +1,7 @@
 # in /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_run
 # there is a little bit of prep that needs to be done before the output from the snakemake pipeline will be suitable to work in the MK pipeline. Copy or move over the VCF and the missing data files from the snakemake pipeline output and copy genome dir from fastq2bam as well 
 
-module load bcftools/1.5-fasrc02 bedtools2/2.26.0-fasrc01 perl/5.26.1-fasrc01 Anaconda3/2020.11
+module load bcftools/1.5-fasrc02 bedtools2/2.26.0-fasrc01 perl/5.26.1-fasrc01
 
 # update filtering of VCF and clean up header
 sbatch run_gatkUpdate.sh Combined_hardFiltered hetAtr
