@@ -12,6 +12,6 @@
 
 for file in *.bg.sorted.bg;
 do
-  #sort -k1,1 -k2,2n $file > $file.sorted.bg
+  sort -k1,1 -k2,2n $file > $file.sorted.bg
   /n/holylfs/LABS/informatics/ashultz/CompPopGen/SPECIES_DATASETS/gatherVCFs_dir/coverage/./bedGraphToBigWig $file ../../hetAtr.chrom.sizes $file.bw
 done
