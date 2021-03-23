@@ -121,11 +121,3 @@ gzip snpEff/data/hetAtr/sequences.fa
 source activate mk
 cd snpEff
 snpEff -Xmx8g build -c snpEff.config -gtf22 -v hetAtr
-
-
-
-
-
-
-
-
