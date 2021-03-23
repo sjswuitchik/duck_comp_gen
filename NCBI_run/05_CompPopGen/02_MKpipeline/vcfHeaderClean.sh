@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# run from /n/holyscratch01/informatics/swuitchik/snakemake/hetAtr_run
-
-# ./vcfHeaderClean.sh
-
 module load htslib/1.5-fasrc02 bcftools/1.5-fasrc02
 
 zcat Combined_hardFiltered_updatedFilter.vcf.gz | \
