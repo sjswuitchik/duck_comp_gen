@@ -63,8 +63,8 @@ sed '1d' stiNae_coverage_sites_clean.bed | bedtools sort -i - | bedtools merge -
 sed '1d' stiNae_coverage_sites_low.bed | bedtools sort -i - | bedtools merge -i - > stiNae_coverage_sites_low_merged.bed
 sed '1d' stiNae_coverage_sites_high.bed | bedtools sort -i - | bedtools merge -i - > stiNae_coverage_sites_high_merged.bed
 
-cp -v hetAtr_coverage_sites_clean_merged.bed stiNae_coverage_sites_clean_merged.bed ..
-cd ..
+cp -v hetAtr_coverage_sites_clean_merged.bed stiNae_coverage_sites_clean_merged.bed /n/holyscratch01/informatics/swuitchik/ducks/MKpipeline
+cd /n/holyscratch01/informatics/swuitchik/ducks/MKpipeline
 
 # using GFF from Comparative Augustus annotation for snpEff database build
 # in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline/snpEff/data/hetAtr
