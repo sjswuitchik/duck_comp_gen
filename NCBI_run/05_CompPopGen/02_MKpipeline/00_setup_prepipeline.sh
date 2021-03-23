@@ -53,15 +53,12 @@ awk 'BEGIN{FS=OFS="\t"}{print $1, 0, $2, $1}' ../hetAtr.chrom.sizes > ../hetAtr.
 
 sbatch write_coverage_beds.sh hetAtr
 mean=$(awk '{sum = sum+$4}{size=size+$2}{avg=sum/size}END{print avg}' stiNae.summary.tab)
-gzip -dc stiNae_male_dedup.bam.bg.sorted.gz | awk -v avg="$mean" -v spp=stiNae -f sum_cov.awk
+gzip -dc stiNae_male_dedup.bam.bg.sorted.gz | awk -v avg="$mean" -v spp=stiNae -f ../sum_cov.awk
 
-
-gzip -dc hetAtr_union.bg.gz | ./sum_cov.awk
 sed '1d' hetAtr_coverage_sites_clean.bed | bedtools sort -i - | bedtools merge -i - > hetAtr_coverage_sites_clean_merged.bed
 sed '1d' hetAtr_coverage_sites_low.bed | bedtools sort -i - | bedtools merge -i - > hetAtr_coverage_sites_low_merged.bed
 sed '1d' hetAtr_coverage_sites_high.bed | bedtools sort -i - | bedtools merge -i - > hetAtr_coverage_sites_high_merged.bed
 
-gzip -dc stiNae_male.statscov.bg.gz | ./stiNae_sum_cov.awk
 sed '1d' stiNae_coverage_sites_clean.bed | bedtools sort -i - | bedtools merge -i - > stiNae_coverage_sites_clean_merged.bed
 sed '1d' stiNae_coverage_sites_low.bed | bedtools sort -i - | bedtools merge -i - > stiNae_coverage_sites_low_merged.bed
 sed '1d' stiNae_coverage_sites_high.bed | bedtools sort -i - | bedtools merge -i - > stiNae_coverage_sites_high_merged.bed
