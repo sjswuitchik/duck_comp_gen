@@ -1,15 +1,24 @@
-# in /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_run
+# in /n/holyscratch01/informatics/swuitchik/ducks/
 # there is a little bit of prep that needs to be done before the output from the snakemake pipeline will be suitable to work in the MK pipeline. Copy or move over the VCF and the missing data files from the snakemake pipeline output and copy genome dir from fastq2bam as well 
 
 module load bcftools/1.5-fasrc02 bedtools2/2.26.0-fasrc01 perl/5.26.1-fasrc01
 
+# clone MK repo 
+git clone https://github.com/sjswuitchik/compPopGen_ms.git
+mv compPopGen_ms/MKpipline .
+rm -rf compPopGen_ms
+
 # update filtering of VCF and clean up header
+cd /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_run
 sbatch run_gatkUpdate.sh Combined_hardFiltered hetAtr
 ./vcfHeaderCleanup 
 
 # separate hetAtr and stiNae VCFs
 bcftools view -O z -s stiNae_male Combined_hardFiltered_updatedFilter.vcf.gz > stiNae.vcf.gz
 bcftools view -O z -S hetAtr_indvs Combined_hardFiltered_updatedFilter.vcf.gz > hetAtr.vcf.gz
+
+# copy VCFs to MK working dir
+cp -v stiNae.vcf.gz hetAtr.vcf.gz /n/holyscratch01/informatics/swuitchik/ducks/MKpipeline
 
 # separate hetAtr and stiNae missingness data
 sed -n 1p missing_data_per_ind.txt > hetAtr_missing_data.txt
@@ -20,6 +29,9 @@ sed -n 1p missing_data_per_ind.txt > stiNae_missing_data.txt
 grep stiNae_male missing_data_per_ind.txt > temp
 cat temp >> stiNae_missing_data.txt
 rm temp
+
+# copy missing data files to MK working dir
+cp -v stiNae_missing_data.txt hetAtr_missing_data.txt /n/holyscratch01/informatics/swuitchik/ducks/MKpipeline
 
 # calculate coverage 
 # in /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_run/fastq2bam_hetAtr/01_mappedReads
