@@ -1,5 +1,5 @@
 # in /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_run
-# there is a little bit of prep that needs to be done before the output from the snakemake pipeline will be suitable to work in the MK pipeline. Copy or move over the VCF and the missing data files from the snakemake pipeline output
+# there is a little bit of prep that needs to be done before the output from the snakemake pipeline will be suitable to work in the MK pipeline. Copy or move over the VCF and the missing data files from the snakemake pipeline output and copy genome dir from fastq2bam as well 
 
 module load bcftools/1.5-fasrc02 bedtools2/2.26.0-fasrc01 perl/5.26.1-fasrc01 Anaconda3/2020.11
 
@@ -22,35 +22,32 @@ cat temp >> stiNae_missing_data.txt
 rm temp
 
 # calculate coverage 
-# calculate weighted mean coverage from bam_sumstats.txt produced by fastq2bam pipeline (/n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/hetAtr/fastq2bam/bam_sumstats.txt) to use in sum_cov.awk 
-cd /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/fastq2bam/01_mappedReads/
+# in /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_run/fastq2bam_hetAtr/01_mappedReads
 for file in *_dedup.bam;
 do
-  bedtools genomecov -bga -ibam $file -g ../../data/allDucks/genome/hetAtr.fa > $file.statscov.bg
+  bedtools genomecov -bga -ibam $file -g ../../genome/hetAtr.fa > $file.bg
 done
 
-wget https://github.com/shenwei356/brename/releases/download/v2.10.0/brename_linux_amd64.tar.gz
-tar zxvf brename_linux_amd64.tar.gz 
-rm brename_linux_amd64.tar.gz 
-chmod +x ./brename
+mkdir /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_run/coverage
+mv *.bg /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_run/coverage
 
-./brename -p "_dedup.bam." -r "." -R 
-
-cp *.statscov.bg /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline/coverage_stats
-cd /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/02_MK_pipeline/coverage_stats
-
-gzip stiNae_male.statscov.bg
-
+cd ../..
 wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/faToTwoBit
 chmod +x ./faToTwoBit
 wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/twoBitInfo
 chmod +x ./twoBitInfo
-cp /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/shortRead_mapping_variantCalling/data/allDucks/genome/hetAtr.fa .
 
-./faToTwoBit hetAtr.fa hetAtr.2bit
+./faToTwoBit genome/hetAtr.fa hetAtr.2bit
 ./twoBitInfo hetAtr.2bit stdout | sort -k2rn > hetAtr.chrom.sizes
 
-sbatch unioncov.sh
+cd coverage/
+
+
+
+
+
+
+
 
 gzip -dc hetAtr_union.bg.gz | ./sum_cov.awk
 sed '1d' hetAtr_coverage_sites_clean.bed | bedtools sort -i - | bedtools merge -i - > hetAtr_coverage_sites_clean_merged.bed
