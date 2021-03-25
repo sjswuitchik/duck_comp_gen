@@ -1,7 +1,7 @@
 # in /n/holyscratch01/informatics/swuitchik/ducks/
 # there is a little bit of prep that needs to be done before the output from the snakemake pipeline will be suitable to work in the MK pipeline. Copy or move over the VCF and the missing data files from the snakemake pipeline output and copy genome dir from fastq2bam as well 
 
-module load bcftools/1.5-fasrc02 bedtools2/2.26.0-fasrc01 perl/5.26.1-fasrc01
+module load bcftools/1.5-fasrc02
 
 # clone MK repo 
 git clone https://github.com/sjswuitchik/compPopGen_ms.git
@@ -35,6 +35,7 @@ cp -v stiNae_missing_data.txt hetAtr_missing_data.txt /n/holyscratch01/informati
 
 # calculate coverage 
 # in /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_run/fastq2bam_hetAtr/01_mappedReads
+source activate qc
 # create bedgraphs
 for file in *_dedup.bam;
 do
@@ -46,13 +47,8 @@ mv *.bg /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_run/covera
 
 # create chromosome sizes file
 cd ../..
-wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/faToTwoBit
-chmod +x ./faToTwoBit
-wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/twoBitInfo
-chmod +x ./twoBitInfo
-
-./faToTwoBit genome/hetAtr.fa hetAtr.2bit
-./twoBitInfo hetAtr.2bit stdout | sort -k2rn > hetAtr.chrom.sizes
+faToTwoBit genome/hetAtr.fa hetAtr.2bit
+twoBitInfo hetAtr.2bit stdout | sort -k2rn > hetAtr.chrom.sizes
 
 cd coverage/
 # nb: to download binaries: http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64.v385/
@@ -61,17 +57,17 @@ sbatch run_bedg2bw.sh
 
 # merge bigwigs
 ls hetAtr*.bw > hetAtr_list
-/n/holylfs/LABS/informatics/ashultz/CompPopGen/SPECIES_DATASETS/gatherVCFs_dir/coverage/./bigWigMerge -inList hetAtr_list hetAtr.merge.bg
+bigWigMerge -inList hetAtr_list hetAtr.merge.bg
 
 # convert merged bedgraph back to bigwig
-/n/holylfs/LABS/informatics/ashultz/CompPopGen/SPECIES_DATASETS/gatherVCFs_dir/coverage/./bedGraphToBigWig hetAtr.merge.bg ../hetAtr.chrom.sizes hetAtr.merge.bw
+bedGraphToBigWig hetAtr.merge.bg ../hetAtr.chrom.sizes hetAtr.merge.bw
 
 # create chrom sizes bed file
 awk 'BEGIN{FS=OFS="\t"}{print $1, 0, $2, $1}' ../hetAtr.chrom.sizes > ../hetAtr.genome.bed
 
 # summarize merged bigwigs
-/n/holylfs/LABS/informatics/ashultz/CompPopGen/SPECIES_DATASETS/gatherVCFs_dir/coverage/./bigWigAverageOverBed hetAtr.merge.bw ../hetAtr.genome.bed hetAtr.summary.tab 
-/n/holylfs/LABS/informatics/ashultz/CompPopGen/SPECIES_DATASETS/gatherVCFs_dir/coverage/./bigWigAverageOverBed stiNae_male.bw ../hetAtr.genome.bed stiNae.summary.tab
+bigWigAverageOverBed hetAtr.merge.bw ../hetAtr.genome.bed hetAtr.summary.tab 
+bigWigAverageOverBed stiNae_male.bw ../hetAtr.genome.bed stiNae.summary.tab
 
 # write out coverage bed files (low, high, clean sites)
 gzip hetAtr.merge.bg
@@ -88,6 +84,8 @@ sed '1d' hetAtr_coverage_sites_high.bed | bedtools sort -i - | bedtools merge -i
 sed '1d' stiNae_coverage_sites_clean.bed | bedtools sort -i - | bedtools merge -i - > stiNae_coverage_sites_clean_merged.bed
 sed '1d' stiNae_coverage_sites_low.bed | bedtools sort -i - | bedtools merge -i - > stiNae_coverage_sites_low_merged.bed
 sed '1d' stiNae_coverage_sites_high.bed | bedtools sort -i - | bedtools merge -i - > stiNae_coverage_sites_high_merged.bed
+
+conda deactivate 
 
 # copy files to working dir for MK pipeline
 cp -v hetAtr_coverage_sites_clean_merged.bed stiNae_coverage_sites_clean_merged.bed /n/holyscratch01/informatics/swuitchik/ducks/MKpipeline
