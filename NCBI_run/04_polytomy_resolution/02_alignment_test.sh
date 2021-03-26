@@ -7,6 +7,7 @@ rm muscle3.8.31_i86linux64.tar.gz
 mv muscle3.8.31_i86linux64 muscle
 
 # run subset of 50 FASTAs through MUSCLE & MAFFT
+module load mafft/7.407-fasrc01
 mkdir subset
 cd fastas/
 for file in $(ls -p | grep -v / | tail -50)
@@ -19,3 +20,8 @@ for file in subset/*.fa;
 do
   ./muscle -in $file -quiet -out $file.afa
 done 
+
+for file in subset/*.fa;
+do
+  mafft --quiet $file > $file.mafft
+done
