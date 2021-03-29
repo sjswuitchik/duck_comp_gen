@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J cneeAlign
+#SBATCH -J muscleAlign
 #SBATCH -o logs/slurm-%j
 #SBATCH -e logs/slurm-%j
 #SBATCH -p shared
@@ -9,7 +9,7 @@
 
 # submit from /n/holyscratch01/informatics/swuitchik/ducks/polytomy_cnee
 
-conda activate muscle
+conda activate align
 
 for file in fastas/*.fa;
 do
