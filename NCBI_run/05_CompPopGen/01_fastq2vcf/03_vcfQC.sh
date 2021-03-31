@@ -100,6 +100,12 @@ module load jdk/10.0.1-fasrc01 htslib/1.5-fasrc02 bcftools/1.5-fasrc02
 cd /n/holyscratch01/informatics/swuitchik/ducks/snakemake/reseq_vcfs
 cp hetAtr.vcf.gz stiNae.vcf.gz ../hetAtr_run/genome/hetAtr.*  ../hetAtr_stiNae_qc
 cd ../hetAtr_stiNae_qc
+
+# sort
+source activate gatk
+picard SortVcf -Xmx8g -I hetAtr.vcf.gz -O hetAtr.sorted.vcf.gz
+picard SortVcf -Xmx8g -I stiNae.vcf.gz -O stiNae.sorted.vcf.gz
+
 # unzip, then recompress with block compression and index
 gunzip *.gz
 for file in *.vcf;
