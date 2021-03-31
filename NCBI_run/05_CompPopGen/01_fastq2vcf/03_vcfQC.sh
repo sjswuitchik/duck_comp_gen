@@ -100,6 +100,7 @@ module load jdk/10.0.1-fasrc01 htslib/1.5-fasrc02 bcftools/1.5-fasrc02
 cd /n/holyscratch01/informatics/swuitchik/ducks/snakemake/reseq_vcfs
 cp hetAtr.vcf.gz stiNae.vcf.gz ../hetAtr_run/genome/hetAtr.*  ../hetAtr_stiNae_qc
 cd ../hetAtr_stiNae_qc
+# unzip, then recompress with block compression and index
 gunzip *.gz
 for file in *.vcf;
 do
@@ -107,9 +108,10 @@ do
   bcftools index -t $file.gz
 done
 
+# get VariantQC tool & run
 wget https://github.com/BimberLab/DISCVRSeq/releases/download/1.24/DISCVRSeq-1.24.jar
 mv DISCVRSeq-1.24.jar DISCVRSeq.jar
 java -jar DISCVRSeq.jar VariantQC -R hetAtr.fa -V hetAtr.vcf.gz -O hetAtr.html
-
+java -jar DISCVRSeq.jar VariantQC -R hetAtr.fa -V stiNae.vcf.gz -O hetAtr.html
 
 
