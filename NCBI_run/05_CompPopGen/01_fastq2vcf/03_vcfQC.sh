@@ -95,7 +95,7 @@ Rscript hetAtr.admixture.plot.r
 
 
 
-# VariantQC
+## VariantQC
 module load jdk/10.0.1-fasrc01 htslib/1.5-fasrc02 bcftools/1.5-fasrc02
 cd /n/holyscratch01/informatics/swuitchik/ducks/snakemake/reseq_vcfs
 cp hetAtr.vcf.gz stiNae.vcf.gz ../hetAtr_run/genome/hetAtr.*  ../hetAtr_stiNae_qc
@@ -115,6 +115,23 @@ wget https://github.com/BimberLab/DISCVRSeq/releases/download/1.24/DISCVRSeq-1.2
 mv DISCVRSeq-1.24.jar DISCVRSeq.jar
 java -jar DISCVRSeq.jar VariantQC -R hetAtr.fa -V hetAtr.sorted.vcf.gz -O hetAtr.html
 java -jar DISCVRSeq.jar VariantQC -R hetAtr.fa -V stiNae.sorted.vcf.gz -O stiNae.html
+
+## try VariantQC with updated Filter VCF 
+cp ../hetAtr_run/Combined_hardFiltered_updatedFilter.vcf.gz* ../hetAtr_run/hetAtr_indvs .
+bcftools view -O z -S hetAtr_indvs -G -a Combined_hardFiltered_updatedFilter.vcf.gz > hetAtr.filtered.vcf.gz
+bcftools view -O z -s stiNae_male -G -a Combined_hardFiltered_updatedFilter.vcf.gz > stiNae.filtered.vcf.gz
+
+# sort
+picard SortVcf -Xmx8g -I hetAtr.filtered.vcf.gz -O hetAtr.filtered.sorted.vcf.gz
+picard SortVcf -Xmx8g -I stiNae.filtered.vcf.gz -O stiNae.filtered.sorted.vcf.gz
+
+# index
+gatk IndexFeatureFile -I hetAtr.filtered.sorted.vcf.gz
+gatk IndexFeatureFile -I stiNae.filtered.sorted.vcf.gz
+
+# run VariantQC
+java -jar DISCVRSeq.jar VariantQC -R hetAtr.fa -V hetAtr.filtered.sorted.vcf.gz -O hetAtr.filtered.html
+java -jar DISCVRSeq.jar VariantQC -R hetAtr.fa -V stiNae.filtered.sorted.vcf.gz -O stiNae.filtered.html
 
 # output relatedness2 & TajD 
 vcftools --gzvcf hetAtr.sorted.vcf.gz --out hetAtr --relatedness2
