@@ -110,15 +110,6 @@ picard SortVcf -Xmx8g -I stiNae.vcf.gz -O stiNae.sorted.vcf.gz
 gatk IndexFeatureFile -I hetAtr.sorted.vcf.gz
 gatk IndexFeatureFile -I stiNae.sorted.vcf.gz
 
-
-## unzip, then recompress with block compression and index
-#gunzip *.gz
-#for file in *.vcf;
-#do
-#  bgzip -c $file > $file.gz
-#  bcftools index -t $file.gz
-#done
-
 # get VariantQC tool & run
 wget https://github.com/BimberLab/DISCVRSeq/releases/download/1.24/DISCVRSeq-1.24.jar
 mv DISCVRSeq-1.24.jar DISCVRSeq.jar
