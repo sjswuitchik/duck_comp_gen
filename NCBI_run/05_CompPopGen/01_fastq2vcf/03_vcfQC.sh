@@ -133,6 +133,20 @@ gatk IndexFeatureFile -I stiNae.filtered.sorted.vcf.gz
 java -jar DISCVRSeq.jar VariantQC -R hetAtr.fa -V hetAtr.filtered.sorted.vcf.gz -O hetAtr.filtered.html
 java -jar DISCVRSeq.jar VariantQC -R hetAtr.fa -V stiNae.filtered.sorted.vcf.gz -O stiNae.filtered.html
 
-# output relatedness2 & TajD 
-vcftools --gzvcf hetAtr.sorted.vcf.gz --out hetAtr --relatedness2
-vcftools --gzvcf hetAtr.sorted.vcf.gz --out hetAtr.10kb --TajimaD 10000
+# output stats
+vcftools --gzvcf hetAtr.filtered.sorted.vcf.gz --out hetAtr.rel --relatedness2
+vcftools --gzvcf hetAtr.filtered.sorted.vcf.gz --out hetAtr.10kb --TajimaD 10000
+vcftools --gzvcf hetAtr.filtered.sorted.vcf.gz --out hetAtr.statsPi --window-pi 100000 
+
+zgrep -v '\*' hetAtr.filtered.sorted.vcf.gz > hetAtr.filtered.sorted.clean.vcf
+plink --vcf hetAtr.filtered.sorted.clean.vcf --make-bed --out hetAtr --allow-extra-chr
+plink --bfile hetAtr --indep-pairwise 500 50 0.1 --out hetAtr --allow-extra-chr
+plink --bfile hetAtr --make-bed --extract hetAtr.prune.in --out hetAtr.ld_pruned --allow-extra-chr
+plink --bfile hetAtr.ld_pruned --ibc --out hetAtr --allow-extra-chr
+
+
+
+
+
+
+
