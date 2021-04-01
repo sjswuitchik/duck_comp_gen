@@ -152,8 +152,9 @@ do
 done
 cat hetAtr.*.admix.log | grep CV | perl -pi -e 's/.+=//' | perl -pi -e 's/\): /\t/' > hetAtr.CV
 
-
-
+Rscript hetAtr.plot.r
+Rscript hetAtr.pca.plot
+Rscript hetAtr.admixture.plot.r
 
 
 
