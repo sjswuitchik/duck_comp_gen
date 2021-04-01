@@ -143,6 +143,14 @@ plink --vcf hetAtr.filtered.sorted.clean.vcf --make-bed --out hetAtr --allow-ext
 plink --bfile hetAtr --indep-pairwise 500 50 0.1 --out hetAtr --allow-extra-chr
 plink --bfile hetAtr --make-bed --extract hetAtr.prune.in --out hetAtr.ld_pruned --allow-extra-chr
 plink --bfile hetAtr.ld_pruned --ibc --out hetAtr --allow-extra-chr
+plink --bfile hetAtr.ld_pruned --pca --out hetAtr --allow-extra-chr
+
+cp ../reseq_vcfs/hetAtr.ld_pruned.bim .
+for K in {2..5}
+do
+	admixture --cv hetAtr.ld_pruned.bed $K > hetAtr.${K}.admix.log 2> hetAtr.${K}.admix.err
+done
+cat hetAtr.*.admix.log | grep CV | perl -pi -e 's/.+=//' | perl -pi -e 's/\): /\t/' > hetAtr.CV
 
 
 
