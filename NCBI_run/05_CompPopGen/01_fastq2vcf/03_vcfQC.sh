@@ -116,4 +116,6 @@ mv DISCVRSeq-1.24.jar DISCVRSeq.jar
 java -jar DISCVRSeq.jar VariantQC -R hetAtr.fa -V hetAtr.sorted.vcf.gz -O hetAtr.html
 java -jar DISCVRSeq.jar VariantQC -R hetAtr.fa -V stiNae.sorted.vcf.gz -O stiNae.html
 
-
+# output relatedness 
+vcftools --gzvcf hetAtr.sorted.vcf.gz --out hetAtr --relatedness2
+vcftools --gzvcf hetAtr.sorted.vcf.gz --out hetAtr.10kb --TajimaD 10000
