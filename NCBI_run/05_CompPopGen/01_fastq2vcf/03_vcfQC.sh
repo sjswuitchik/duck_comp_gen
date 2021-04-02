@@ -130,7 +130,7 @@ gatk IndexFeatureFile -I hetAtr.filtered.sorted.vcf.gz
 gatk IndexFeatureFile -I stiNae.filtered.sorted.vcf.gz
 
 # run VariantQC
-java -jar DISCVRSeq.jar VariantQC -R hetAtr.fa -V hetAtr.filtered.sorted.vcf.gz -O hetAtr.filtered.html
+java -jar DISCVRSeq.jar VariantQC --maxContigs 26704 -R hetAtr.fa -V hetAtr.filtered.sorted.vcf.gz -O hetAtr.filtered.html
 java -jar DISCVRSeq.jar VariantQC -R hetAtr.fa -V stiNae.filtered.sorted.vcf.gz -O stiNae.filtered.html
 
 # output stats
