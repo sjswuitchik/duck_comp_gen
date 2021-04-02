@@ -9,4 +9,4 @@ source activate r
 Rscript cnee_keys.R
 
 # write one FASTA per CNEE
-awk 'NR == FNR { cnee[$1] } NR != FNR && $2 in cnee { printf(">%s %s\n%s\n", $1, $2, $3) >> $2 ".fa"; close($2 ".fa"); }' spp_by_cnee_allSpp.tsv  all_cnees.tab
+awk 'NR == FNR { cnee[$1] } NR != FNR && $2 in cnee { printf(">%s\n%s\n", $1, $3) >> $2 ".fa"; close($2 ".fa"); }' spp_by_cnee_allSpp.tsv  all_cnees.tab
