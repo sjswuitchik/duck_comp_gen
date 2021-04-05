@@ -18,4 +18,14 @@ do
 done
 
 # model selection for RAxML-NG
-modeltest-ng -d nt -i fastas/muscle/zfCNEE247578.fa.afa -o CNEE275031 -T raxml -v 
+mkdir -p fastas/muscle/subset
+cd fastas/muscle/
+for file in $(ls -p | grep -v / | tail -50)
+do
+  cp $file subset/
+done
+
+for file in subset/*.fa.afa
+do
+  modeltest-ng -d nt -i $file -o $file -T raxml
+done
