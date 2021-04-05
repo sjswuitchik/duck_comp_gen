@@ -32,5 +32,5 @@ done
 
 for file in subset/*.afa;
 do
-  raxml-ng --check --msa $file --model HKY+G4 --prefix T_$file
+  raxml-ng --check --msa $file --model HKY+G4 --prefix tcheck_$file
 done
