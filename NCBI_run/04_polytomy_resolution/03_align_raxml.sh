@@ -25,7 +25,12 @@ do
   cp $file subset/
 done
 
-for file in subset/*.fa.afa
+for file in subset/*.fa.afa;
 do
   modeltest-ng -d nt -i $file -o $file -T raxml
+done
+
+for file in subset/*.afa;
+do
+  raxml-ng --check --msa $file --model HKY+G4 --prefix T_$file
 done
