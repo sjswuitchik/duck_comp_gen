@@ -9,6 +9,8 @@
 
 # submit from /n/holyscratch01/informatics/swuitchik/ducks/polytomy_cnee
 
+source activate raxml
+
 for file in trimmed/subset/*.fa;
 do
   raxml-ng --redo --msa $file --model HKY+G4 --prefix $file
