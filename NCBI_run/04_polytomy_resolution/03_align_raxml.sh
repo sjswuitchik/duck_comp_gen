@@ -31,3 +31,6 @@ for file in subset/*.fa;
 do
   raxml-ng --check --msa $file --model HKY+G4 --prefix tcheck_$file
 done
+
+cd ../
+sbatch run_raxml.sh
