@@ -49,7 +49,6 @@ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/075/105/GCA_011075105.1_BP
 sed 's/\r$//g' GCA_011075105.1_BPBGC_Hatr_1.0_assembly_report.txt | grep -v "^#" | cut -f1,3,5 > hetAtr_chr_key
 awk '{print $3, $2}' hetAtr_chr_key > acckey
 # manually editing the chrom names in acckey for now, see if sed or something similar will work later; chr 34 = W, chr 35 = Z, chr 36 = MT
-# nb: manually editing that file sucked, figure out a better way to do this
 sed -i 's/na/\d0/g' acckey 
 ./replace_chrs.pl acckey hetAtr.ld_pruned.bim > hetAtr.repl.ld_pruned.bim
 mv hetAtr.repl.ld_pruned.bim hetAtr.ld_pruned.bim
