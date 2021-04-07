@@ -65,13 +65,6 @@ Rscript hetAtr.pca.plot
 # plot ADMIXTURE results
 Rscript hetAtr.admixture.plot.r
 
-echo "pdf(\"hetAtr.pca.pdf\",height=8,width=5)" > hetAtr.pca.plot
-echo "par(mfrow=c(2,1),mar=c(4,4,2,2))" >> hetAtr.pca.plot
-echo "d <- read.table(\"hetAtr.eigenval\")" >> hetAtr.pca.plot
-echo "plot(c(seq(1,length(d\$V1),by=1)),d\$V1/sum(d\$V1)*100,xlab=\"PC\",ylab=\"Percent Variance Explained\")" >> hetAtr.pca.plot
-echo "d <- read.table(\"hetAtr.eigenvec\")" >> hetAtr.pca.plot
-echo "plot(d\$V3,d\$V4,cex=0.5,xlab=\"PC 1\",ylab = \"PC 2\")" >> hetAtr.pca.plot
-echo "dev.off()" >> hetAtr.pca.plot
 
 
 
@@ -79,24 +72,6 @@ echo "dev.off()" >> hetAtr.pca.plot
 
 
 
-
-
-
-
-
-# in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/reseq_vcfs/
-
-# output relevant stats - relatedness (unadjusted Ajk stat), heterozygosity on a per-individual basis, allele frequency at each site, nucleotide divergency on a per-site basis in 100kb windows, and a 012 genotype matrix 
-vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.statsRel --relatedness 
-vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.statsHet --het
-vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.statsFreq --freq 
-vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.statsPi --window-pi 100000 
-vcftools --gzvcf hetAtr.vcf.gz --out hetAtr.stats012 --012 
-vcftools --vcf Combined_hardFiltered.vcf --out allDucks.stats --012
-
-mkdir qc
-mv *stats* qc/
-cd qc
 
 ## contstruct the 012 matrix with some wrangling for PCA, adegenet
 #cut -f2- hetAtr.stats012.012 > hetAtr.clean.012
