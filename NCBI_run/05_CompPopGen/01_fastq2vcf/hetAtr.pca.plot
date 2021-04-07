@@ -1,0 +1,7 @@
+pdf("hetAtr.pca.pdf",height=8,width=5)
+par(mfrow=c(2,1),mar=c(4,4,2,2))
+d <- read.table("hetAtr.eigenval")
+plot(c(seq(1,length(d$V1),by=1)),d$V1/sum(d$V1)*100,xlab="PC",ylab="Percent Variance Explained")
+d <- read.table("hetAtr.eigenvec")
+plot(d$V3,d$V4,cex=0.5,xlab="PC 1",ylab = "PC 2")
+dev.off()
