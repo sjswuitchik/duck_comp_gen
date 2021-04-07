@@ -38,7 +38,7 @@ vcftools --vcf hetAtr.callable.vcf --out hetAtr.10kb --TajimaD 10000
 vcftools --vcf hetAtr.callable.vcf --out hetAtr.statsPi --window-pi 100000 
 
 grep -v '\*' hetAtr.filtered.vcf > hetAtr.filtered.clean.vcf
-plink --vcf hetAtr.filtered.clean.vcf --make-bed --out hetAtr --allow-extra-chr
+plink --vcf hetAtr.filtered.clean.vcf --make-bed --geno 0.999 --out hetAtr --allow-extra-chr
 plink --bfile hetAtr --indep-pairwise 500 50 0.1 --out hetAtr --allow-extra-chr
 plink --bfile hetAtr --make-bed --extract hetAtr.prune.in --out hetAtr.ld_pruned --allow-extra-chr
 plink --bfile hetAtr.ld_pruned --ibc --out hetAtr --allow-extra-chr
