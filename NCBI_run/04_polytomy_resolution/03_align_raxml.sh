@@ -35,6 +35,3 @@ done
 cd ../
 sbatch run_raxml.sh
 
-# combine best trees into ASTRAL input file
-cd subset/
-cat *.bestTree > test.tree
