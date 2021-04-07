@@ -1,7 +1,71 @@
-# in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/reseq_vcfs/
+# in /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_stiNae_qc
+## VariantQC
+module load jdk/10.0.1-fasrc01 bcftools/1.5-fasrc02
+# get VariantQC tool 
+wget https://github.com/BimberLab/DISCVRSeq/releases/download/1.24/DISCVRSeq-1.24.jar
+mv DISCVRSeq-1.24.jar DISCVRSeq.jar
+
+# copy over VCF with updated filtering and indv list of hetAtr samples
+cp ../hetAtr_run/Combined_hardFiltered_updatedFilter.vcf.gz* ../hetAtr_run/hetAtr_indvs .
+# extract indvs and clean up VCFs
+bcftools view -O z -S hetAtr_indvs -U -a Combined_hardFiltered_updatedFilter.vcf.gz > hetAtr.filtered.vcf.gz
+bcftools view -O z -s stiNae_male -U -a Combined_hardFiltered_updatedFilter.vcf.gz > stiNae.filtered.vcf.gz
+
+# sort
+source activate gatk 
+picard SortVcf -Xmx8g -I hetAtr.filtered.vcf.gz -O hetAtr.filtered.sorted.vcf.gz
+picard SortVcf -Xmx8g -I stiNae.filtered.vcf.gz -O stiNae.filtered.sorted.vcf.gz
+
+# index
+gatk IndexFeatureFile -I hetAtr.filtered.sorted.vcf.gz
+gatk IndexFeatureFile -I stiNae.filtered.sorted.vcf.gz
+
+# run VariantQC
+java -jar DISCVRSeq.jar VariantQC --maxContigs 26704 -R hetAtr.fa -V hetAtr.filtered.sorted.vcf.gz -O hetAtr.filtered.html
+java -jar DISCVRSeq.jar VariantQC --maxContigs 26704 -R hetAtr.fa -V stiNae.filtered.sorted.vcf.gz -O stiNae.filtered.html
+
+conda deactivate 
 
 #conda create -n vcfqc -c bioconda plink vcftools bcftools r-base r-tidyverse admixture perl
 source activate vcfqc
+# output stats
+vcftools --gzvcf hetAtr.filtered.sorted.vcf.gz --out hetAtr.rel --relatedness2
+vcftools --gzvcf hetAtr.filtered.sorted.vcf.gz --out hetAtr.10kb --TajimaD 10000
+vcftools --gzvcf hetAtr.filtered.sorted.vcf.gz --out hetAtr.statsPi --window-pi 100000 
+
+zgrep -v '\*' hetAtr.filtered.sorted.vcf.gz > hetAtr.filtered.sorted.clean.vcf
+plink --vcf hetAtr.filtered.sorted.vcf.gz --make-bed --out hetAtr --allow-extra-chr
+plink --bfile hetAtr --indep-pairwise 500 50 0.1 --out hetAtr --allow-extra-chr
+plink --bfile hetAtr --make-bed --extract hetAtr.prune.in --out hetAtr.ld_pruned --allow-extra-chr
+plink --bfile hetAtr.ld_pruned --ibc --out hetAtr --allow-extra-chr
+plink --bfile hetAtr.ld_pruned --pca --out hetAtr --allow-extra-chr
+
+cp ../reseq_vcfs/hetAtr.ld_pruned.bim .
+for K in {2..5}
+do
+	admixture --cv hetAtr.ld_pruned.bed $K > hetAtr.${K}.admix.log 2> hetAtr.${K}.admix.err
+done
+cat hetAtr.*.admix.log | grep CV | perl -pi -e 's/.+=//' | perl -pi -e 's/\): /\t/' > hetAtr.CV
+
+Rscript hetAtr.plot.r
+Rscript hetAtr.pca.plot
+Rscript hetAtr.admixture.plot.r
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# in /n/holyscratch01/informatics/swuitchik/ducks_project/ncbi_run/05b_comppopgen_snakemake/01_fastq2vcf/reseq_vcfs/
+
 
 cp ../shortRead_mapping_variantCalling/gatk/Combined_hardFiltered.vcf .
 cp ~/github_repos/duck_comp_gen/NCBI_run/05_CompPopGen/02_MKpipeline/hetAtr_indvs .
@@ -91,71 +155,6 @@ echo "barplot(t(Q5),col=rainbow(5))" >> hetAtr.admixture.plot.r
 echo "dev.off()" >> hetAtr.admixture.plot.r
 
 Rscript hetAtr.admixture.plot.r
-
-
-
-
-## VariantQC
-module load jdk/10.0.1-fasrc01 htslib/1.5-fasrc02 bcftools/1.5-fasrc02
-cd /n/holyscratch01/informatics/swuitchik/ducks/snakemake/reseq_vcfs
-cp hetAtr.vcf.gz stiNae.vcf.gz ../hetAtr_run/genome/hetAtr.*  ../hetAtr_stiNae_qc
-cd ../hetAtr_stiNae_qc
-
-# sort
-source activate gatk
-picard SortVcf -Xmx8g -I hetAtr.vcf.gz -O hetAtr.sorted.vcf.gz
-picard SortVcf -Xmx8g -I stiNae.vcf.gz -O stiNae.sorted.vcf.gz
-
-# index
-gatk IndexFeatureFile -I hetAtr.sorted.vcf.gz
-gatk IndexFeatureFile -I stiNae.sorted.vcf.gz
-
-# get VariantQC tool & run
-wget https://github.com/BimberLab/DISCVRSeq/releases/download/1.24/DISCVRSeq-1.24.jar
-mv DISCVRSeq-1.24.jar DISCVRSeq.jar
-java -jar DISCVRSeq.jar VariantQC -R hetAtr.fa -V hetAtr.sorted.vcf.gz -O hetAtr.html
-java -jar DISCVRSeq.jar VariantQC -R hetAtr.fa -V stiNae.sorted.vcf.gz -O stiNae.html
-
-## try VariantQC with updated Filter VCF 
-cp ../hetAtr_run/Combined_hardFiltered_updatedFilter.vcf.gz* ../hetAtr_run/hetAtr_indvs .
-bcftools view -O z -S hetAtr_indvs -G -a Combined_hardFiltered_updatedFilter.vcf.gz > hetAtr.filtered.vcf.gz
-bcftools view -O z -s stiNae_male -G -a Combined_hardFiltered_updatedFilter.vcf.gz > stiNae.filtered.vcf.gz
-
-# sort
-picard SortVcf -Xmx8g -I hetAtr.filtered.vcf.gz -O hetAtr.filtered.sorted.vcf.gz
-picard SortVcf -Xmx8g -I stiNae.filtered.vcf.gz -O stiNae.filtered.sorted.vcf.gz
-
-# index
-gatk IndexFeatureFile -I hetAtr.filtered.sorted.vcf.gz
-gatk IndexFeatureFile -I stiNae.filtered.sorted.vcf.gz
-
-# run VariantQC
-java -jar DISCVRSeq.jar VariantQC --maxContigs 26704 -R hetAtr.fa -V hetAtr.filtered.sorted.vcf.gz -O hetAtr.filtered.html
-java -jar DISCVRSeq.jar VariantQC --maxContigs 26704 -R hetAtr.fa -V stiNae.filtered.sorted.vcf.gz -O stiNae.filtered.html
-
-# output stats
-vcftools --gzvcf hetAtr.filtered.sorted.vcf.gz --out hetAtr.rel --relatedness2
-vcftools --gzvcf hetAtr.filtered.sorted.vcf.gz --out hetAtr.10kb --TajimaD 10000
-vcftools --gzvcf hetAtr.filtered.sorted.vcf.gz --out hetAtr.statsPi --window-pi 100000 
-
-zgrep -v '\*' hetAtr.filtered.sorted.vcf.gz > hetAtr.filtered.sorted.clean.vcf
-plink --vcf hetAtr.filtered.sorted.clean.vcf --make-bed --out hetAtr --allow-extra-chr
-plink --bfile hetAtr --indep-pairwise 500 50 0.1 --out hetAtr --allow-extra-chr
-plink --bfile hetAtr --make-bed --extract hetAtr.prune.in --out hetAtr.ld_pruned --allow-extra-chr
-plink --bfile hetAtr.ld_pruned --ibc --out hetAtr --allow-extra-chr
-plink --bfile hetAtr.ld_pruned --pca --out hetAtr --allow-extra-chr
-
-cp ../reseq_vcfs/hetAtr.ld_pruned.bim .
-for K in {2..5}
-do
-	admixture --cv hetAtr.ld_pruned.bed $K > hetAtr.${K}.admix.log 2> hetAtr.${K}.admix.err
-done
-cat hetAtr.*.admix.log | grep CV | perl -pi -e 's/.+=//' | perl -pi -e 's/\): /\t/' > hetAtr.CV
-
-Rscript hetAtr.plot.r
-Rscript hetAtr.pca.plot
-Rscript hetAtr.admixture.plot.r
-
 
 
 
