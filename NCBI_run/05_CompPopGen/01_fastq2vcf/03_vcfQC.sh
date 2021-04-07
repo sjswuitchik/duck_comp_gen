@@ -33,7 +33,7 @@ vcftools --gzvcf hetAtr.filtered.vcf.gz --out hetAtr.rel --relatedness2
 vcftools --gzvcf hetAtr.filtered.vcf.gz --out hetAtr.10kb --TajimaD 10000
 vcftools --gzvcf hetAtr.filtered.vcf.gz --out hetAtr.statsPi --window-pi 100000 
 
-zgrep -v '\*' hetAtr.filtered.sorted.vcf.gz > hetAtr.filtered.sorted.clean.vcf
+zgrep -v '\*' hetAtr.filtered.vcf.gz > hetAtr.filtered.clean.vcf
 plink --vcf hetAtr.filtered.vcf.gz --make-bed --out hetAtr --allow-extra-chr
 plink --bfile hetAtr --indep-pairwise 500 50 0.1 --out hetAtr --allow-extra-chr
 plink --bfile hetAtr --make-bed --extract hetAtr.prune.in --out hetAtr.ld_pruned --allow-extra-chr
