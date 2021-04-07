@@ -11,7 +11,5 @@
 
 for file in fastas/muscle/subset/*.afa;
 do
-  raxml-ng --msa $file --model HKY+G4 --prefix $file --seed 2
+  raxml-ng --msa $file --model HKY+G4 --prefix $file
 done
-
-cat *.bestTree > final.tree
