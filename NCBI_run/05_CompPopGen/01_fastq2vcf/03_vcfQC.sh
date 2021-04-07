@@ -33,7 +33,7 @@ vcftools --gzvcf hetAtr.filtered.vcf.gz --out hetAtr.rel --relatedness2
 # copy callable sites from MK pipeline prep to standardize pi & TajD
 cp ../../MKpipeline/hetAtr_coverage_sites_clean_merged.bed .
 gunzip hetAtr.filtered.vcf.gz
-bedtools intersect -a hetAtr.filtered.vcf -b hetAtr_coverage_sites_clean_merged.bed > hetAtr.callable.vcf
+bedtools intersect -a hetAtr.filtered.vcf -b hetAtr_coverage_sites_clean_merged.bed -header > hetAtr.callable.vcf
 vcftools --vcf hetAtr.callable.vcf --out hetAtr.10kb --TajimaD 10000
 vcftools --vcf hetAtr.callable.vcf --out hetAtr.statsPi --window-pi 100000 
 
