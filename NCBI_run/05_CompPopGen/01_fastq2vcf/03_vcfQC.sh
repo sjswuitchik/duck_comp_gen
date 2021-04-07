@@ -37,8 +37,8 @@ bedtools intersect -a hetAtr.filtered.vcf -b hetAtr_coverage_sites_clean_merged.
 vcftools --vcf hetAtr.callable.vcf --out hetAtr.10kb --TajimaD 10000
 vcftools --vcf hetAtr.callable.vcf --out hetAtr.statsPi --window-pi 100000 
 
-zgrep -v '\*' hetAtr.filtered.vcf.gz > hetAtr.filtered.clean.vcf
-plink --vcf hetAtr.filtered.vcf.gz --make-bed --out hetAtr --allow-extra-chr
+grep -v '\*' hetAtr.filtered.vcf > hetAtr.filtered.clean.vcf
+plink --vcf hetAtr.filtered.clean.vcf --make-bed --out hetAtr --allow-extra-chr
 plink --bfile hetAtr --indep-pairwise 500 50 0.1 --out hetAtr --allow-extra-chr
 plink --bfile hetAtr --make-bed --extract hetAtr.prune.in --out hetAtr.ld_pruned --allow-extra-chr
 plink --bfile hetAtr.ld_pruned --ibc --out hetAtr --allow-extra-chr
