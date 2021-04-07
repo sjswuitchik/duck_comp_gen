@@ -64,3 +64,16 @@ Rscript hetAtr.plot.r
 Rscript hetAtr.pca.plot
 # plot ADMIXTURE results
 Rscript hetAtr.admixture.plot.r
+
+
+
+
+
+
+
+
+
+# try out a Stairway plot
+git clone https://github.com/xiaoming-liu/stairway-plot-v2.git
+cd stairway-plot-v2
+unzip stairway_plot_v2.1.1.zip
