@@ -26,7 +26,7 @@ java -jar DISCVRSeq.jar VariantQC --maxContigs 26704 -R hetAtr.fa -V stiNae.filt
 
 conda deactivate 
 
-#conda create -n vcfqc -c bioconda plink vcftools bcftools r-base r-tidyverse admixture perl
+#conda create -n vcfqc -c bioconda plink vcftools bcftools r-base r-tidyverse admixture perl bedtools
 source activate vcfqc
 # output stats
 vcftools --gzvcf hetAtr.filtered.vcf.gz --out hetAtr.rel --relatedness2
