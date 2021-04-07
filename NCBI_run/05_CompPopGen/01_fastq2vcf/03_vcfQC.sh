@@ -64,15 +64,3 @@ Rscript hetAtr.plot.r
 Rscript hetAtr.pca.plot
 # plot ADMIXTURE results
 Rscript hetAtr.admixture.plot.r
-
-
-
-
-
-
-
-
-
-## contstruct the 012 matrix with some wrangling for PCA, adegenet
-#cut -f2- hetAtr.stats012.012 > hetAtr.clean.012
-#paste hetAtr.stats012.012.indv hetAtr.clean.012 > hetAtr.matrix
