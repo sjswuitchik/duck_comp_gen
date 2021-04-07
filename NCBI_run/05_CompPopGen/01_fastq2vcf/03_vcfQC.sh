@@ -30,7 +30,7 @@ conda deactivate
 source activate vcfqc
 # output stats
 vcftools --gzvcf hetAtr.filtered.vcf.gz --out hetAtr.rel --relatedness2
-# copy callable sites from MK pipeline prep to standardize 
+# copy callable sites from MK pipeline prep to standardize pi & TajD
 cp ../../MKpipeline/hetAtr_coverage_sites_clean_merged.bed .
 gunzip hetAtr.filtered.vcf.gz
 bedtools intersect -a hetAtr.filtered.vcf -b hetAtr_coverage_sites_clean_merged.bed > hetAtr.callable.vcf
