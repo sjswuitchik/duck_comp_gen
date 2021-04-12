@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -J RAxML
-#SBATCH -o logs/slurm-%j
-#SBATCH -e logs/slurm-%j
+#SBATCH -o logs/slurm-%j.out
+#SBATCH -e logs/slurm-%j.err
 #SBATCH -p shared
 #SBATCH -n 1
 #SBATCH -t 00-24:00:00
