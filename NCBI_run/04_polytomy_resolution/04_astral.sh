@@ -8,7 +8,7 @@ rm Astral.5.7.7.zip
 cd Astral
 
 # copy data over 
-cp ../trimmed/subset/final.tree .
+cp ../trimmed/final.tree .
 
 # run ASTRAL 
 java -jar astral.5.7.7.jar -i final.tree -o final.astral.tree
