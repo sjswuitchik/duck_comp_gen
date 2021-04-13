@@ -72,10 +72,13 @@ rm stairway_plot_v2.1.1.zip
 mv stairway-plot-v2/ stairway/
 cp ../hetAtr.filtered.vcf .
 cp ../hetAtr_indvs .
-#conda install -c jaredgk -c bioconda py-popgen
+#conda install -c jaredgk -c bioconda -c conda-forge py-popgen scipy pysam biopython cython rpy2
 git clone https://github.com/jaredgk/PPP
 cd PPP
 python setup.py install 
+chmod +x build/lib/pgpipe/model_creator.py
+chmod +x build/lib/pgpipe/vcf_to_sfs.py
+chmod +x build/lib/pgpipe/misc.py
 cd .. 
 vcftools --vcf hetAtr.filtered.vcf --max-missing 1 --out hetAtr.ppp --recode --recode-INFO-all
 PPP/build/lib/pgpipe/model_creator.py --model 1pop --model-pop 1pop hetAtr --pop-ind-file hetAtr hetAtr_indvs
