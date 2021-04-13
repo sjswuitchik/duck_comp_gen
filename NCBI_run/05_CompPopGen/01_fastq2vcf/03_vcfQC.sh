@@ -71,29 +71,13 @@ unzip stairway_plot_v2.1.1.zip
 rm stairway_plot_v2.1.1.zip
 mv stairway-plot-v2/ stairway/
 cp ../hetAtr.filtered.vcf .
-vcftools --vcf hetAtr.filtered.vcf --max-missing 1 --out hetAtr.stair --counts
+vcftools --vcf hetAtr.filtered.vcf --max-missing 1 --out hetAtr.stair --counts2
 sed '1d' hetAtr.stair.frq.count > hetAtr.stair.count
 Rscript
 
 
 
 ## BUSTED and aBSREL analyses
-# download MASCEv2 
-# in /scratch/swuitchik
-#git clone https://github.com/ranwez/MACSE_V2_PIPELINES.git
-#cd MACSE_V2_PIPELINES/OMM_MACSE
-#sudo singularity build --disable-cache OMM_MACSE_V10.02.sif OMM_MACSE_V10.02_sing_3.3.def
-#mkdir -p /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_stiNae_qc/mascev2
-#cp OMM_MACSE_V10.02.sif /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_stiNae_qc/mascev2
-#cd /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_stiNae_qc/mascev2
-## for help & options, run singularity run-help OMM_MACSE_V10.02.sif
-#singularity run --cleanenv OMM_MACSE_V10.02.sif
-
-
-
-
-wget https://bioweb.supagro.inra.fr/macse/releases/macse_v2.05.jar
-java -jar macse_v2.05.jar -prog alignSequences -out_AA galloAA -out_NT galloNT -seq 
 
 
 
