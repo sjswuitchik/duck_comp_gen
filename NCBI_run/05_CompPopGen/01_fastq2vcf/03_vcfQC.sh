@@ -82,7 +82,7 @@ PPP/build/lib/pgpipe/model_creator.py --model 1pop --model-pop 1pop hetAtr --pop
 PPP/build/lib/pgpipe/vcf_to_sfs.py --vcf hetAtr.ppp.recode.vcf --model-file 1pop --modelname hetAtr --folded True --out hetAtr.ppp
 
 
-
+plink --vcf hetAtr.ppp.recode.vcf --freq 'counts'???
 
 vcftools --vcf hetAtr.filtered.vcf --max-missing 1 --out hetAtr.stair --counts2
 sed '1d' hetAtr.stair.frq.count > hetAtr.stair.count
