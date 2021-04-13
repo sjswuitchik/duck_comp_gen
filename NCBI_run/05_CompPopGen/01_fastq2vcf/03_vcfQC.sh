@@ -72,7 +72,8 @@ rm stairway_plot_v2.1.1.zip
 mv stairway-plot-v2/ stairway/
 cp ../hetAtr.filtered.vcf .
 vcftools --vcf hetAtr.filtered.vcf --max-missing 1 --out hetAtr.stair --counts
-
+sed '1d' hetAtr.stair.frq.count > hetAtr.stair.count
+Rscript
 
 
 
