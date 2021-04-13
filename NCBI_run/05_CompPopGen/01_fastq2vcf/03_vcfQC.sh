@@ -91,6 +91,19 @@ Rscript
 
 
 ## BUSTED and aBSREL analyses
-
-
+mkdir busted
+cd busted
+# download PRANK
+wget http://wasabiapp.org/download/prank/prank.linux64.170427.tgz
+tar zxvf http://wasabiapp.org/download/prank/prank.linux64.170427.tgz
+rm prank.linux64.170427.tgz 
+# grab waterfowl FASTAs
+mdkir fastas
+cd /n/holylfs/LABS/informatics/swuitchik/ducks/ncbi_analyses/03_CompAugAnnotation/genomes
+for file in anaPla ansBra ansCyg andInd braCan hetAtr netAur oxyJam stiNae;
+do
+  cp $file.ncbi.fasta* /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_stiNae_qc/busted/fastas/
+done
+cd /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_stiNae_qc/busted/
+prank/bin/prank
 
