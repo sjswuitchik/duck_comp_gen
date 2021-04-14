@@ -81,6 +81,14 @@ realSFS hetAtr.saf.idx -fold 1 > hetAtr.folded # try folding here?
 
 
 
+for file in /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_run/fastq2bam_hetAtr/01_mappedReads/*.bam;
+do
+ samtools sort $file -o $file.sorted -O sam 
+done
+
+angsd -b bams -GL 2 -out hetAtr -doMajorMinor -doMaf -remove_bads 1 -uniqueOnly -checkBamHeaders 0
+angsd -b bams -GL 2 -doSaf 1 -doMajorMinor -doMaf 1 -anc hetAtr.ncbi.fasta -ref hetAtr.ncbi.fasta
+realSFS hetAtr.saf.idx > hetAtr.sfs
 
 
 
