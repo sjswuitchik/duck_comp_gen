@@ -75,8 +75,8 @@ cp ../hetAtr_indvs .
 cp /n/holylfs/LABS/informatics/swuitchik/ducks/ncbi_analyses/03_CompAugAnnotation/genomes/hetAtr.ncbi.fasta .
 samtools faidx hetAtr.ncbi.fasta -o hetAtr.ncbi.fasta.fai
 vcftools --vcf hetAtr.filtered.vcf --max-missing 1 --min-alleles 2 --max-alleles 2 --remove-indels --out hetAtr.stair --recode --recode-INFO-all
-angsd -vcf-gl hetAtr.stair.recode.vcf -doSaf 1 -fold 1 -out hetAtr -anc hetAtr.ncbi.fasta # try folding here
-realSFS hetAtr.saf.idx -fold 1 > hetAtr.folded # or here
+angsd -vcf-gl hetAtr.stair.recode.vcf -doSaf 1 -out hetAtr -anc hetAtr.ncbi.fasta 
+realSFS hetAtr.saf.idx -fold 1 > hetAtr.folded # try folding here? 
 
 
 
