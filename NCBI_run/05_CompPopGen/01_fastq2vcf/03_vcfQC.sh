@@ -35,7 +35,7 @@ cp ../../MKpipeline/hetAtr_coverage_sites_clean_merged.bed .
 gunzip hetAtr.filtered.vcf.gz
 bedtools intersect -a hetAtr.filtered.vcf -b hetAtr_coverage_sites_clean_merged.bed -header > hetAtr.callable.vcf
 vcftools --vcf hetAtr.callable.vcf --out hetAtr.10kb --TajimaD 10000
-vcftools --vcf hetAtr.callable.vcf --out hetAtr.statsPi --window-pi 100000 
+vcftools --vcf hetAtr.callable.vcf --out hetAtr.statsPi --window-pi 100000 --min-alleles 2 --max-alleles 2
 
 grep -v '\*' hetAtr.filtered.vcf > hetAtr.filtered.clean.vcf
 plink --vcf hetAtr.filtered.clean.vcf --make-bed --geno 0.999 --out hetAtr --allow-extra-chr
