@@ -87,7 +87,7 @@ realSFS hetAtr.saf.idx -fold 1 > hetAtr.folded # try folding here?
 #done
 
 angsd -b bams -GL 2 -out hetAtr -doMajorMinor -doMaf -remove_bads 1 -checkBamHeaders 0
-angsd -b bams -GL 2 -doSaf 1 -doMajorMinor -doMaf 1 -anc hetAtr.ncbi.fasta -ref hetAtr.ncbi.fasta
+angsd -b bams -GL 2 -doSaf 1 -doMajorMinor 1 -doMaf 1 -anc hetAtr.ncbi.fasta -ref hetAtr.ncbi.fasta -out hetAtr
 realSFS hetAtr.saf.idx > hetAtr.sfs
 
 
