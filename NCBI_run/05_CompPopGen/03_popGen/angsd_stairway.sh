@@ -1,4 +1,4 @@
-# in /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_stiNae_qc
+# in /n/holyscratch01/informatics/swuitchik/ducks/compGen
 
 source activate vcfqc
 # get Stairway
