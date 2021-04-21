@@ -17,6 +17,8 @@ sbatch run_angsd.sh
 mkdir plots
 cd stairway_plot_v2.1.1
 java -cp stairway_plot_es Stairbuilder hetAtr.blueprint
+chmod +x hetAtr.blueprint.sh
+./hetAtr.blueprint.sh
 
 
 
