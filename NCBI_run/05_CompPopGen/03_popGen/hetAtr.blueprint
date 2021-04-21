@@ -1,0 +1,26 @@
+#hetAtr blueprint file
+#input setting
+popid: hetAtr # id of the population (no white space)
+nseq: 30 # number of sequences
+L: 1123991325 # total number of observed nucleic sites, including polymorphic and monomorphic
+whether_folded: true # whethr the SFS is folded (true or false)
+SFS: 1114716849.797314 3166474.100477 1308919.340708 868269.221637 630027.726370 492784.303204 406723.708691 357191.232066 319074.037877 285486.974099 267500.303766 254133.289479 245609.264419 239505.553827 234860.810537 197915.335443 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 
+# snp frequency spectrum: number of singleton, number of doubleton, etc. (separated by white space)
+#smallest_size_of_SFS_bin_used_for_estimation: 1 # default is 1; to ignore singletons, uncomment this line and change this number to 2
+#largest_size_of_SFS_bin_used_for_estimation: 15 # default is nseq/2 for folded SFS
+pct_training: 0.67 # percentage of sites for training
+nrand: 7	15	22	28 # number of random break points for each try (separated by white space)
+project_dir: stairway # project directory
+stairway_plot_dir: plots # directory to the stairway plot files
+ninput: 200 # number of input files to be created for each estimation
+#random_seed: 6
+#output setting
+mu: 1.2e-8 # assumed mutation rate per site per generation
+year_per_generation: 2 # assumed generation time (in years)
+#plot setting
+plot_title: hetAtr # title of the plot
+xrange: 0.1,10000 # Time (1k year) range; format: xmin,xmax; "0,0" for default
+yrange: 0,0 # Ne (1k individual) range; format: xmin,xmax; "0,0" for default
+xspacing: 2 # X axis spacing
+yspacing: 2 # Y axis spacing
+fontsize: 12 # Font size
