@@ -21,8 +21,11 @@ chmod +x hetAtr.blueprint.sh
 ./hetAtr.blueprint.sh
 
 
+# make ANGSD VCF from BAMs to filter then create SFS from that? 
+angsd -b bams -dobcf 1 -gl 2 -domajorminor 1 -domaf 1 -dopost 1 -out hetAtr.angsdVCF
 
-vcftools --vcf hetAtr.filtered.vcf --max-missing 1 --min-alleles 2 --max-alleles 2 --remove-indels --out hetAtr.stair --recode --recode-INFO-all
+#possible bcf conversion
+vcftools --vcf _____ --max-missing 1 --min-alleles 2 --max-alleles 2 --remove-indels --out hetAtr.angsdVCF.stair --recode --recode-INFO-all
 
 
 
