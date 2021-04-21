@@ -8,6 +8,9 @@ rm stairway_plot_v2.1.1.zip
 mv stairway-plot-v2/ stairway/
 
 
+# run angsd
+sbatch run_angsd.sh
+
 
 cp ../hetAtr.filtered.vcf .
 cp ../hetAtr_indvs .
