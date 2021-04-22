@@ -18,7 +18,7 @@ mu: 1.2e-8 # assumed mutation rate per site per generation
 year_per_generation: 1 # assumed generation time (in years)
 #plot setting
 plot_title: hetAtr # title of the plot
-xrange: 0.1,10000 # Time (1k year) range; format: xmin,xmax; "0,0" for default
+xrange: 0,0 # Time (1k year) range; format: xmin,xmax; "0,0" for default
 yrange: 0,0 # Ne (1k individual) range; format: xmin,xmax; "0,0" for default
 xspacing: 2 # X axis spacing
 yspacing: 2 # Y axis spacing
