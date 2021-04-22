@@ -5,7 +5,7 @@ source activate vcfqc
 
 # download PRANK
 wget http://wasabiapp.org/download/prank/prank.linux64.170427.tgz
-tar zxvf http://wasabiapp.org/download/prank/prank.linux64.170427.tgz
+tar zxvf prank.linux64.170427.tgz
 rm prank.linux64.170427.tgz 
 
 # grab gallo HAL from WGA
