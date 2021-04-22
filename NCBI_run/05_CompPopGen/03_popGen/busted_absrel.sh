@@ -1,6 +1,7 @@
 # in /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted
 
 source activate vcfqc
+#conda install libgcc
 
 # download PRANK
 wget http://wasabiapp.org/download/prank/prank.linux64.170427.tgz
