@@ -15,7 +15,6 @@ vcftools --vcf hetAtr.filtered.vcf --max-missing 1 --min-alleles 2 --max-alleles
 Rscript calc_sfs.R
 
 # run Stairbuilder
-mkdir plots
 cd stairway_plot_v2.1.1
 java -cp stairway_plot_es Stairbuilder hetAtr.blueprint
 chmod +x hetAtr.blueprint.sh
