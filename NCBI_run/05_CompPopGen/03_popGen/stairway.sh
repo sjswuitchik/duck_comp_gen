@@ -1,6 +1,6 @@
 # in /n/holyscratch01/informatics/swuitchik/ducks/compGen
 
-source activate vcfqc
+module load jdk/10.0.1-fasrc01
 # get Stairway
 git clone https://github.com/xiaoming-liu/stairway-plot-v2.git
 unzip stairway_plot_v2.1.1.zip
