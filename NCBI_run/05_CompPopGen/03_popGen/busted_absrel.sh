@@ -22,3 +22,4 @@ done < SpeciesIDs.txt
 # tidy
 mkdir orig_fastas
 mv Species*.fa orig_fastas
+
