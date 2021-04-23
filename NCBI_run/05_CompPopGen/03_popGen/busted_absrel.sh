@@ -3,7 +3,9 @@
 #conda create -n busted -c bioconda prank hyphy emboss
 source activate busted
 
-# bring over protein alignments from OrthoFinder
+# bring over protein FASTAs and SeqIDs from OrthoFinder
+mkdir fastas
+cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/ncbi_analyses/04_OrthoFinder/run_ortho/Results_Feb01/WorkingDirectory/Species*.fa SequenceIDs.txt fastas/
 
 
 # download PRANK
