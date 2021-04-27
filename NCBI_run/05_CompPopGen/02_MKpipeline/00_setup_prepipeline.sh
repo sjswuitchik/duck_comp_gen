@@ -35,7 +35,8 @@ cp -v stiNae_missing_data.txt hetAtr_missing_data.txt /n/holyscratch01/informati
 
 # calculate coverage 
 # in /n/holyscratch01/informatics/swuitchik/ducks/snakemake/hetAtr_run/fastq2bam_hetAtr/01_mappedReads
-source activate qc
+#conda create -n coverage -c bioconda ucsc-fatotwobit ucsc-twobitinfo bedtools ucsc-bedgraphtobigwig ucsc-bigwigmerge ucsc-bigwigaverageoverbed 
+source activate coverage
 # create bedgraphs
 for file in *_dedup.bam;
 do
