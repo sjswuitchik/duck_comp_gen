@@ -36,7 +36,4 @@ cd ../
 sbatch run_raxml.sh
 
 # test --all against simple inference in /n/holyscratch01/informatics/swuitchik/ducks/polytomy_cnee/trimmed/finished_fastas
-for file in *.fa;
-do
-  raxml-ng --msa $file --model HKY+G4 --all --prefix $file --seed 2 --redo > log 2> err
-done
+sbatch run_raxml_all.sh
