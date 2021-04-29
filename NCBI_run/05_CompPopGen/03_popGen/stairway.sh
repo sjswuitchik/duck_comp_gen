@@ -13,6 +13,12 @@ cp ../hetAtr_stiNae_qc/hetAtr.filtered.vcf .
 vcftools --vcf hetAtr.filtered.vcf --max-missing 1 --min-alleles 2 --max-alleles 2 --remove-filtered-all --remove-indels --out hetAtr --counts2
 # edit frq.counts header to be CHROM  POS N_ALLELES N_CHR MAJOR MINOR
 Rscript calc_sfs.R
+# manually copy SFS into hetAtr.blueprint
+
+# calc L for hetAtr.blueprint
+cp /n/holyscratch01/informatics/swuitchik/ducks/MKpipeline/hetAtr_coverage_sites_clean_merged.bed .
+Rscript calcL.R
+# manually add value for L in hetAtr.blueprint
 
 # run Stairbuilder
 cd stairway_plot_v2.1.1
