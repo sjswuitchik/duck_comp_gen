@@ -2,7 +2,7 @@
 #input setting
 popid: hetAtr # id of the population (no white space)
 nseq: 30 # number of sequences
-L: 6689744 # total number of observed nucleic sites, including polymorphic and monomorphic
+L: 1123991325 # total number of observed nucleic sites, including polymorphic and monomorphic
 whether_folded: true # whethr the SFS is folded (true or false)
 SFS: 2339664 966648 606444 440283 347124 289744 256718 229648 210293 197226 188124 181679 176805 174131 85213 # snp frequency spectrum: number of singleton, number of doubleton, etc. (separated by white space)
 smallest_size_of_SFS_bin_used_for_estimation: 1 # default is 1; to ignore singletons, uncomment this line and change this number to 2
