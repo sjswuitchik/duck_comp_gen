@@ -1,0 +1,19 @@
+gene	goID	goTerm
+ACCSL	NA	NA
+ASAP2	GO:0005096, GO:0005515, GO:0043547, GO:0046872	GTPase activator activity, metal ion binding, positive regulation of GTPase activity, protein binding
+CD4	GO:0006955, GO:0015026, GO:0016020	coreceptor activity, immune response, membrane
+DNAJB13	GO:0005737, GO:0005930, GO:0006457, GO:0031514, GO:0036126, GO:0051082, GO:0097224, GO:1904158	axonemal central apparatus assembly, axoneme, cytoplasm, motile cilium, protein folding, sperm connecting piece, sperm flagellum, unfolded protein binding
+ESCO2	GO:0000785, GO:0001741, GO:0002244, GO:0004468, GO:0005654, GO:0005694, GO:0005721, GO:0005794, GO:0006275, GO:0006302, GO:0007059, GO:0010369, GO:0016407, GO:0030054, GO:0034421, GO:0035861, GO:0071168	acetyltransferase activity, cell junction, chromatin, chromocenter, chromosome, chromosome segregation, double-strand break repair, Golgi apparatus, hematopoietic progenitor cell differentiation, lysine N-acetyltransferase activity, acting on acetyl phosphate as donor, nucleoplasm, pericentric heterochromatin, post-translational protein acetylation, protein localization to chromatin, regulation of DNA replication, site of double-strand break, XY body
+FKBP14	GO:0003755, GO:0005509	calcium ion binding, peptidyl-prolyl cis-trans isomerase activity
+LAG3	NA	NA
+LOC100857421-LOC107049109-LOC107053040-LOC107053041-LOC112532176-LOC112532200	NA	NA
+LOC101747255	NA	NA
+LOC101748650-THRSP-THRSPB	NA	NA
+MX1	GO:0003924, GO:0005525	GTP binding, GTPase activity
+NUGGC	NA	NA
+OVSTL	NA	NA
+PPP1R14C	GO:0004865, GO:0005737, GO:0042325	cytoplasm, protein serine/threonine phosphatase inhibitor activity, regulation of phosphorylation
+RBM11	GO:0000381, GO:0003676, GO:0003723, GO:0005634, GO:0005654, GO:0008266, GO:0016607, GO:0034599, GO:0042803	cellular response to oxidative stress, nuclear speck, nucleic acid binding, nucleoplasm, nucleus, poly(U) RNA binding, protein homodimerization activity, regulation of alternative mRNA splicing, via spliceosome, RNA binding
+RSPH1	GO:0000794, GO:0001520, GO:0005737, GO:0005929, GO:0007286, GO:0031514, GO:0035082, GO:0036126, GO:0072687	axoneme assembly, cilium, condensed nuclear chromosome, cytoplasm, meiotic spindle, motile cilium, outer dense fiber, sperm flagellum, spermatid development
+SLC22A2	NA	NA
+TGM4	GO:0003810, GO:0005737, GO:0005794, GO:0018149, GO:0062023	collagen-containing extracellular matrix, cytoplasm, Golgi apparatus, peptide cross-linking, protein-glutamine gamma-glutamyltransferase activity
