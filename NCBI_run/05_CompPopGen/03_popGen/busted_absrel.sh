@@ -3,9 +3,10 @@
 #conda create -n busted -c bioconda prank hyphy emboss
 source activate busted
 
-# bring over protein FASTAs and SeqIDs from OrthoFinder
-mkdir fastas
-cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/ncbi_analyses/04_OrthoFinder/run_ortho/Results_Feb01/WorkingDirectory/Species*.fa /n/holylfs/LABS/informatics/swuitchik/ducks/ncbi_analyses/04_OrthoFinder/run_ortho/Results_Feb01/WorkingDirectory/SequenceIDs.txt fastas/
+# bring over protein alignments from OrthoFinder
+mkdir align
+# arg too long, work in OrthoFinder working dir for initial translation stuff - come back to this after meeting
+cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/02_ncbi_analyses/04_OrthoFinder/run_ortho/Results_Feb01/Orthogroup_Sequences/*.fa align/
 
 # translate the def lines from OrthoFinder to actual seq IDs
 for file in fastas/*.fa;
