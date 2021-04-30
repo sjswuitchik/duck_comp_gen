@@ -11,16 +11,21 @@ for file in *.fa;
 do
   cp -v $file /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/align/
 done
-cp -v __________ /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/align/
+#cp -v __________ /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/align/
 cd /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/align/
 
+# backtranslate protein seq to DNA
+for file in *.fa;
+do
+  backtranseq -sequence $file -sprotein1 -auto -cfile Echick.cut -outfile $file.dna
+done
 
 
 
 
 
 
-
+############# 
 
 # translate the def lines from OrthoFinder to actual seq IDs
 for file in fastas/*.fa;
