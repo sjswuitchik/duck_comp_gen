@@ -11,7 +11,6 @@ for file in *.fa;
 do
   cp -v $file /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/align/
 done
-#cp -v __________ /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/align/
 cd /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/align/
 
 # backtranslate protein seq to DNA
@@ -21,10 +20,7 @@ do
 done
 
 # align with PRANK
-for file in *.dna;
-do
-  prank -d=$file -o=$file.ali -f=fasta -support -DNA
-done
+sbatch run_prank.sh
 
 
 
@@ -32,19 +28,18 @@ done
 
 ############# 
 
-# translate the def lines from OrthoFinder to actual seq IDs
-for file in fastas/*.fa;
-do
-  awk 'NR == FNR {seqid[">"substr($1, 1, length($1)-1)] = $2; next} /^>/ { print ">" seqid[$1]; next} {print}' fastas/SequenceIDs.txt $file > $file.named
-done
-
-# rename the species FASTAs to the actual species codes
-while read id file; 
-do
-  mv Species${id%:}.fa.named ${file%%.translated.fa}.fa;
-done < SpeciesIDs.txt
-
-# tidy
-mkdir orig_fastas
-mv Species*.fa orig_fastas
-
+## translate the def lines from OrthoFinder to actual seq IDs
+#for file in fastas/*.fa;
+#do
+#  awk 'NR == FNR {seqid[">"substr($1, 1, length($1)-1)] = $2; next} /^>/ { print ">" seqid[$1]; next} {print}' fastas/SequenceIDs.txt $file > $file.named
+#done
+#
+## rename the species FASTAs to the actual species codes
+#while read id file; 
+#do
+#  mv Species${id%:}.fa.named ${file%%.translated.fa}.fa;
+#done < SpeciesIDs.txt
+#
+## tidy
+#mkdir orig_fastas
+#mv Species*.fa orig_fastas
