@@ -20,6 +20,11 @@ do
   backtranseq -sequence $file -sprotein1 -auto -cfile Echick.cut -outfile $file.dna
 done
 
+# align with PRANK
+for file in *.dna;
+do
+  prank -d=$file -o=$file.ali -f=fasta -support -DNA
+done
 
 
 
