@@ -5,8 +5,22 @@ source activate busted
 
 # bring over protein alignments from OrthoFinder
 mkdir align
-# arg too long, work in OrthoFinder working dir for initial translation stuff - come back to this after meeting
-cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/02_ncbi_analyses/04_OrthoFinder/run_ortho/Results_Feb01/Orthogroup_Sequences/*.fa align/
+# arg list too long to do a regular cp & working on holylfs is a nightmare, so do this instead to get things over to holyscratch
+cd /n/holylfs/LABS/informatics/swuitchik/ducks/02_ncbi_analyses/04_OrthoFinder/run_ortho/Results_Feb01/Orthogroup_Sequences
+for file in *.fa;
+do
+  cp -v $file /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/align/
+done
+cp -v __________ /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/align/
+cd /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/align/
+
+
+
+
+
+
+
+
 
 # translate the def lines from OrthoFinder to actual seq IDs
 for file in fastas/*.fa;
