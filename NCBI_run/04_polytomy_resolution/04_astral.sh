@@ -23,3 +23,5 @@ java -jar astral.5.7.7.jar -i gene_trees.txt -o ortho.tree 2> ortho.log
 # run ASTRAL on raxml-all run
 cp ../trimmed/finished_fastas/final.all.tree .
 java -jar astral.5.7.7.jar -i final.all.tree -o final.all.astral.tree 2> all.log
+# run polytomy test
+java -jar astral.5.7.7.jar -i final.all.tree -o final.all.poly.tree -t 10 2> all.poly.log
