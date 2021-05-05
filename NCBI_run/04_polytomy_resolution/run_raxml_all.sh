@@ -13,7 +13,7 @@ source activate raxml
 
 for file in *.fa;
 do
-  raxml-ng --msa $file --model HKY+G4 --prefix $file --all --seed 2 --redo
+  raxml-ng --msa $file --model HKY+G4 --prefix $file --all --seed 2 --redo --bs-metric fbp
 done
 
 cat *.bestTree > final.all.tree
