@@ -23,7 +23,7 @@ done
 sbatch run_prank.sh
 
 # install HMMCleaner with CPANM
-cpanm Bio::MUST::Apps::HmmCleaner
+cpanm -S Bio::MUST::Apps::HmmCleaner
 
 # run HMMCleaner on PRANK alignments
 ls *.fas > inList
