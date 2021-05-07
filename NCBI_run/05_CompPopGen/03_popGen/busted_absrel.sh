@@ -1,6 +1,6 @@
 # in /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted
 
-#conda create -n busted -c bioconda prank hyphy emboss
+#conda create -n busted -c bioconda prank hyphy emboss perl perl-app-cpanminus
 source activate busted
 
 # bring over protein alignments from OrthoFinder
@@ -22,8 +22,12 @@ done
 # align with PRANK
 sbatch run_prank.sh
 
+# install HMMCleaner with CPANM
+cpanm Bio::MUST::Apps::HmmCleaner
 
-
+# run HMMCleaner on PRANK alignments
+ls *.fas > inList
+HmmCleaner.pl inList 2> hmm.err
 
 
 ############# 
