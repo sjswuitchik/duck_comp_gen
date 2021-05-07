@@ -1,6 +1,6 @@
 # in /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted
 
-#conda create -n busted -c bioconda prank hyphy emboss perl perl-app-cpanminus
+#conda create -n busted -c bioconda prank hyphy emboss
 source activate busted
 
 # bring over protein alignments from OrthoFinder
