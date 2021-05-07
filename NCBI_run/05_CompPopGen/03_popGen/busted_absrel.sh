@@ -22,10 +22,9 @@ done
 # align with PRANK
 sbatch run_prank.sh
 
-# install HMMCleaner with CPANM
-cpanm -S Bio::MUST::Apps::HmmCleaner
+# need to containerize HmmCleaner - nasty list of perl dependencies
 
-# run HMMCleaner on PRANK alignments
+# run HmmCleaner on PRANK alignments
 ls *.fas > inList
 HmmCleaner.pl inList 2> hmm.err
 
