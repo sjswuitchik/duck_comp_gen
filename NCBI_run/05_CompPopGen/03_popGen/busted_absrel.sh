@@ -22,11 +22,11 @@ done
 # align with PRANK
 sbatch run_prank.sh
 
-# need to containerize HmmCleaner - nasty list of perl dependencies
-
 # run HmmCleaner on PRANK alignments
 ls *.fas > inList
-HmmCleaner.pl inList 2> hmm.err
+singularity exec --cleanenv /n/singularity_images/informatics/hmmcleaner/hmmcleaner_0.180750.sif HmmCleaner.pl inList 2> hmm.err
+
+
 
 
 ############# 
