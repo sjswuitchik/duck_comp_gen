@@ -23,9 +23,10 @@ done
 sbatch run_prank.sh
 
 # run HmmCleaner on PRANK alignments
-ls *.fas > inList
-singularity exec --cleanenv /n/singularity_images/informatics/hmmcleaner/hmmcleaner_0.180750.sif HmmCleaner.pl inList
-
+for file in *.fas;
+do
+  singularity exec --cleanenv /n/singularity_images/informatics/hmmcleaner/hmmcleaner_0.180750.sif HmmCleaner.pl $file
+done
 
 
 
