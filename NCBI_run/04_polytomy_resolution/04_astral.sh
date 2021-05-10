@@ -26,8 +26,6 @@ java -jar astral.5.7.7.jar -i final.all.tree -o final.all.astral.tree 2> all.log
 # and on BS tree
 cp ../trimmed/finished_fastas/final.support.tree .
 java -jar astral.5.7.7.jar -i final.support.tree -o final.support.astral.tree 2> support.log
-## still not getting BS values on final ASTRAL tree, trying MLBS as well
-realpath ../trimmed/finished_fastas/*.bootstraps > bootList
-java -jar astral.5.7.7.jar -i final.all.tree -b bootList --reps 96 -o final.all.bs.tree 2> all.bs.log
+## still not getting BS values on final ASTRAL tree?
 # run polytomy test
 java -jar astral.5.7.7.jar -i final.all.tree -o final.all.poly.tree -t 10 2> all.poly.log
