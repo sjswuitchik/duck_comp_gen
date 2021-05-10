@@ -44,23 +44,3 @@ for file in *.fas;
 do
   singularity exec --cleanenv /n/singularity_images/informatics/hmmcleaner/hmmcleaner_0.180750.sif HmmCleaner.pl $file
 done
-
-
-
-############# 
-
-## translate the def lines from OrthoFinder to actual seq IDs
-#for file in fastas/*.fa;
-#do
-#  awk 'NR == FNR {seqid[">"substr($1, 1, length($1)-1)] = $2; next} /^>/ { print ">" seqid[$1]; next} {print}' fastas/SequenceIDs.txt $file > $file.named
-#done
-#
-## rename the species FASTAs to the actual species codes
-#while read id file; 
-#do
-#  mv Species${id%:}.fa.named ${file%%.translated.fa}.fa;
-#done < SpeciesIDs.txt
-#
-## tidy
-#mkdir orig_fastas
-#mv Species*.fa orig_fastas
