@@ -5,4 +5,3 @@ cp final.all.tree final.support.tree densitree_input/
 cd densitree_input/
 
 python3 newick2nexus.py -i final.all.tree -o final.all.tree.nex
-python3 newick2nexus.py -i final.support.tree -o final.support.tree.nex
