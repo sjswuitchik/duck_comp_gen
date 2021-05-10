@@ -17,3 +17,5 @@ do
 done
 
 cat *.bestTree > final.all.tree
+
+cat *.support > final.support.tree
