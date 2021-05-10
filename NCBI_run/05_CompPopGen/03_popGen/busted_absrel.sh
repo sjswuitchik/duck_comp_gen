@@ -3,15 +3,30 @@
 #conda create -n busted -c bioconda prank hyphy emboss
 source activate busted
 
-# bring over protein alignments from OrthoFinder
-mkdir align
+mkdir single_orthos
+mkdir gene_trees
+mkdir translated
+# bring over protein alignments and gene trees from OrthoFinder
 # arg list too long to do a regular cp & working on holylfs is a nightmare, so do this instead to get things over to holyscratch
 cd /n/holylfs/LABS/informatics/swuitchik/ducks/02_ncbi_analyses/04_OrthoFinder/run_ortho/Results_Feb01/Single_Copy_Orthologue_Sequences
 for file in *.fa;
 do
-  cp -v $file /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/align/
+  cp -v $file /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/single_orthos/
 done
-cd /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/align/
+
+cd ../Gene_Trees
+for file in *.txt;
+do
+  cp -v $file /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/gene_trees
+done
+
+# translate gene names to species names
+cd /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/
+./translate.sh
+
+
+
+
 
 # backtranslate protein seq to DNA
 for file in *.fa;
