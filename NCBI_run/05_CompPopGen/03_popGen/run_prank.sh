@@ -7,7 +7,7 @@
 #SBATCH -t 06-23:00:00
 #SBATCH --mem=12000
 
-# submit from /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/align/
+# submit from /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/translated/
 
 source activate busted
 
