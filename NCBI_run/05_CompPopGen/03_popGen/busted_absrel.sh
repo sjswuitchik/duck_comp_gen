@@ -14,8 +14,13 @@ do
   cp -v $file /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/single_orthos/
 done
 
-cd ../Gene_Trees
-for file in *.txt;
+cd ../
+cp Orthogroups/Orthogroups_SingleCopyOrthologues.txt Gene_Trees/
+cd Gene_Trees
+
+sed 's/$/_tree.txt/' Orthogroups_SingleCopyOrthologues.txt > tmp && mv tmp Orthogroups_SingleCopyOrthologues.txt
+
+for file in `cat Orthogroups_SingleCopyOrthologues.txt`;
 do
   cp -v $file /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/gene_trees
 done
@@ -24,11 +29,8 @@ done
 cd /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/
 ./translate.sh
 
-
-
-
-
 # backtranslate protein seq to DNA
+cd translate/
 for file in *.fa;
 do
   backtranseq -sequence $file -sprotein1 -auto -cfile Echick.cut -outfile $file.dna
