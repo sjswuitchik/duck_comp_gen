@@ -48,3 +48,8 @@ for file in galGal ansCyg cotJap numMel anaPla;
 do
   bedtools getfasta -fi fastas/$file.ncbi.fasta -bed gffs/$file.cds.gff -name -s > $file.out.fa
 done
+
+for file in anaPla ansBra ansCyg ansInd braCan colVir cotJap galGal hetAtr netAur numMel oxyJam stiNae syrMik tymCupPin;
+do
+  bioawk -c fastx '{gsub(/::.*$/,"",$name); print "'"$file"'", $name, $seq}' $file.out.fa >> all_cds.fa
+done
