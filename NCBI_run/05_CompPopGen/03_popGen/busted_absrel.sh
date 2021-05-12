@@ -37,7 +37,7 @@ do
   echo -e '##gff-version 3' | cat - $file.cds.gff > tmp && mv tmp $file.cds.gff
 done
 
-# extract nucleotide sequences associated with 
+# extract nucleotide sequences associated with CDS
 cd ..
 for file in ansBra ansInd braCan colVir hetAtr netAur oxyJam stiNae syrMik tymCupPin;
 do
@@ -49,7 +49,29 @@ do
   bedtools getfasta -fi fastas/$file.ncbi.fasta -bed gffs/$file.cds.gff -name -s > $file.out.fa
 done
 
+# fix up with bioawk
 for file in anaPla ansBra ansCyg ansInd braCan colVir cotJap galGal hetAtr netAur numMel oxyJam stiNae syrMik tymCupPin;
 do
   bioawk -c fastx '{gsub(/::.*$/,"",$name); print "'"$file"'", $name, $seq}' $file.out.fa >> all_cds.fa
 done
+
+# check 
+cut -f1,1 all_cds.fa | sort | uniq -c 
+#607700 anaPla
+#225126 ansBra
+#391902 ansCyg
+#223647 ansInd
+#229390 braCan
+#187930 colVir
+#566194 cotJap
+#669824 galGal
+#231898 hetAtr
+#231254 netAur
+#569903 numMel
+#240390 oxyJam
+#216192 stiNae
+#225650 syrMik
+#205651 tymCupPin
+
+mkdir unaligned
+awk '{print ">"$1 >> "unaligned/"$2".fa"; print $3 >> "unaligned/"$2".fa"; close("unaligned/"$2".fa")}' all_cds.fa 
