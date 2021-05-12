@@ -73,5 +73,6 @@ cut -f1,1 all_cds.fa | sort | uniq -c
 #225650 syrMik
 #205651 tymCupPin
 
+# convert back to a FASTA 
 mkdir unaligned
 awk '{print ">"$1 >> "unaligned/"$2".fa"; print $3 >> "unaligned/"$2".fa"; close("unaligned/"$2".fa")}' all_cds.fa 
