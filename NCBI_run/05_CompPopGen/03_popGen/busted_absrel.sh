@@ -41,10 +41,10 @@ done
 cd ..
 for file in ansBra ansInd braCan colVir hetAtr netAur oxyJam stiNae syrMik tymCupPin;
 do
-  bedtools getfasta -fi fastas/$file.ncbi.fasta -bed gffs/$file.gff -name -s _____add output tag
+  bedtools getfasta -fi fastas/$file.ncbi.fasta -bed gffs/$file.gff -name -s > $file.out.fa
 done
 
 for file in galGal ansCyg cotJap numMel anaPla;
 do
-  bedtools getfasta -fi fastas/$file.ncbi.fasta -bed gffs/$file.cds.gff -name -s
+  bedtools getfasta -fi fastas/$file.ncbi.fasta -bed gffs/$file.cds.gff -name -s > $file.out.fa
 done
