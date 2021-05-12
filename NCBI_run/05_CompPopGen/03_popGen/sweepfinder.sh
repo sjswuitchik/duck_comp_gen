@@ -33,7 +33,4 @@ do
 done
 
 # run SweepFinder on each main chromosome 
-
-
-
-SweepFinder2 -lg 1000 CM021731.1.sweep hetAtr.spect CM021731.1.sweep.out
+sbatch run_sweepfinder.sh
