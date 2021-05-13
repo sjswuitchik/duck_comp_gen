@@ -55,24 +55,3 @@ do
   bioawk -c fastx '{gsub(/::.*$/,"",$name); print "'"$file"'", $name, $seq}' $file.out.fa >> all_cds.fa
 done
 
-# check 
-cut -f1,1 all_cds.fa | sort | uniq -c 
-#607700 anaPla
-#225126 ansBra
-#391902 ansCyg
-#223647 ansInd
-#229390 braCan
-#187930 colVir
-#566194 cotJap
-#669824 galGal
-#231898 hetAtr
-#231254 netAur
-#569903 numMel
-#240390 oxyJam
-#216192 stiNae
-#225650 syrMik
-#205651 tymCupPin
-
-# convert back to a FASTA 
-mkdir unaligned
-awk '{print ">"$1 >> "unaligned/"$2".fa"; print $3 >> "unaligned/"$2".fa"; close("unaligned/"$2".fa")}' all_cds.fa 
