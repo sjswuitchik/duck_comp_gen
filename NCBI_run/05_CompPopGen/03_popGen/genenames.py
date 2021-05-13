@@ -2,11 +2,12 @@ import fileinput
 import sys
 
 def gene_abrvs(line):
-    """Abbreviations imbedded as gene_id "CONTENT"; """
-    parts = line.split()
-    abrv = parts[parts.index("gene_id")+1][1:-2] if "gene_id" in parts else "";
-    abrv = set([] if abrv == "" else [abrv])
-    return abrv
+    """Abbreviations imbedded as ;gene=CONTENT"""
+    parts = line.split(';')
+    abrvs = [part.rsplit('=')[1] for part in parts if 'gene=' in part]
+    abrvs = set(abrvs) # uniq, arbitrary order
+    return abrvs
+
 
 def location(line):
     """Extracts chrom, chromStart, chromStop (columns 1-3 in a .bed file)
