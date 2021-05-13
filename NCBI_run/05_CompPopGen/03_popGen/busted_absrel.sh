@@ -61,30 +61,30 @@ do
   cat $file.cds.bed | python3 genenames.py > $file.cds.genes.bed
 done
 
-cd ..
-
-
-
-
-
-
-
-
-
-
-
-
-# extract nucleotide sequences associated with CDS
-cd ..
+# for Comp Aug annotations, create BEDs with gene names
 for file in ansBra ansInd braCan colVir hetAtr netAur oxyJam stiNae syrMik tymCupPin;
 do
-  bedtools getfasta -fi fastas/$file.ncbi.fasta -bed gffs/$file.gff -name -s > $file.out.fa
+  cat $file_final.gtf | python3 genenames_compaug.py > $file.cds.genes.bed
 done
 
-for file in galGal ansCyg cotJap numMel anaPla;
+cd ..
+
+# extract nucleotide sequences associated with genes
+cd ..
+for file in ansBra ansInd braCan colVir hetAtr netAur oxyJam stiNae syrMik tymCupPin galGal ansCyg cotJap numMel anaPla;
 do
-  bedtools getfasta -fi fastas/$file.ncbi.fasta -bed gffs/$file.cds.gff -name -s > $file.out.fa
+  bedtools getfasta -fi fastas/$file.ncbi.fasta -bed gffs/$file.cds.genes.bed -name -s > $file.out.fa
 done
+
+###### make sure -names is doing what you want it to do here i.e., gene names are in def lines
+
+
+
+
+
+
+
+
 
 # fix up with bioawk
 for file in anaPla ansBra ansCyg ansInd braCan colVir cotJap galGal hetAtr netAur numMel oxyJam stiNae syrMik tymCupPin;
