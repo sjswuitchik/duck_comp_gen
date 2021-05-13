@@ -45,18 +45,34 @@ do
   sed '1d' galGal.translated__v__$file.translated.tsv | cut -f2,3 > $file_trans.tsv
 done
 
+cd ../gffs/
+
 # add a gene ID to the GTF with chicken-based genes from the translation files
 for file in ansBra ansInd braCan colVir hetAtr netAur oxyJam stiNae syrMik tymCupPin;
 do
-  ./gallo2chick-gtf.sh gffs/$file.gff > gffs/$file_final.gtf
+  ./gallo2chick-gtf.sh $file.gff > $file_final.gtf
 done
 
-# for NCBI annotations, create CDS-only GFFs
+# for NCBI annotations, create CDS-only BEDs
 for file in galGal ansCyg cotJap numMel anaPla;
 do
   column -s, -t < $file.gff | awk '$3 == "CDS"' > $file.cds.gff
-  echo -e '##gff-version 3' | cat - $file.cds.gff > tmp && mv tmp $file.cds.gff
+  awk -f gff2bed.awk $file.cds.gff > $file.cds.bed
+  cat $file.cds.bed | python3 genenames.py > $file.cds.genes.bed
 done
+
+cd ..
+
+
+
+
+
+
+
+
+
+
+
 
 # extract nucleotide sequences associated with CDS
 cd ..
