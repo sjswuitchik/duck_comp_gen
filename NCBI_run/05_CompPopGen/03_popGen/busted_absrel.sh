@@ -48,9 +48,9 @@ done
 cd ../gffs/
 
 # add a gene ID to the GTF with chicken-based genes from the translation files
-for file in ansBra ansInd braCan colVir hetAtr netAur oxyJam stiNae syrMik tymCupPin;
+for sp in ansBra ansInd braCan colVir hetAtr netAur oxyJam stiNae syrMik tymCupPin;
 do
-  ./augustus-gtf-transcript-to-gene.sh gffs/$file.gff transGene_final.tsv trans_files/$file_trans.tsv > gffs/$file_final.gtf
+  ./augustus-gtf-transcript-to-gene.sh gffs/$sp.gff transGene_final.tsv trans_files/$sp\_trans.tsv > gffs/$sp\_final.gtf
 done
 
 # for NCBI annotations, create CDS-only BEDs
