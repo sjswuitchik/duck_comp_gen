@@ -73,16 +73,6 @@ do
   bedtools getfasta -fi fastas/$file.ncbi.fasta -bed gffs/$file.cds.genes.bed -name -s > $file.out.fa
 done
 
-###### make sure -names is doing what you want it to do here i.e., gene names are in def lines
-
-
-
-
-
-
-
-
-
 # fix up with bioawk
 for file in anaPla ansBra ansCyg ansInd braCan colVir cotJap galGal hetAtr netAur numMel oxyJam stiNae syrMik tymCupPin;
 do
