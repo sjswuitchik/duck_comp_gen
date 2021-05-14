@@ -79,3 +79,23 @@ do
   bioawk -c fastx '{gsub(/::.*$/,"",$name); print "'"$file"'", $name, $seq}' $file.out.fa >> all_cds.fa
 done
 
+# check 
+cut -f1,1 all_cds.fa | sort | uniq -c
+#607700 anaPla
+#164833 ansBra
+#391902 ansCyg
+#162112 ansInd
+#165052 braCan
+#144353 colVir
+#566194 cotJap
+#669824 galGal
+#165003 hetAtr
+#165121 netAur
+#569903 numMel
+#171181 oxyJam
+#159217 stiNae
+#168009 syrMik
+#156676 tymCupPin
+
+
+
