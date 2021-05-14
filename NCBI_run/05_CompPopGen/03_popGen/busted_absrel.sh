@@ -64,8 +64,7 @@ done
 # for Comp Aug annotations, create BEDs with gene names
 for file in ansBra ansInd braCan colVir hetAtr netAur oxyJam stiNae syrMik tymCupPin;
 do
-  cat gffs/$file\_final.gtf | python3 gffs/genenames_compaug.py > gffs/$file.cds.genes.bed
-  grep -v '^#' gffs/$file.cds.genes.bed | grep 'CDS' > gffs/$file.cg.final.bed
+  cat gffs/$file\_final.gtf | python3 gffs/genenames_compaug.py | grep -v '^#' | grep 'CDS' | cut -f1,4,5,6 > gffs/$file.cds.genes.bed
 done
 
 # extract nucleotide sequences associated with genes
