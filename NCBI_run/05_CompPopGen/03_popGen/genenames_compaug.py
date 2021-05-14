@@ -11,7 +11,7 @@ def gene_abrvs(line):
 def location(line):
     """Extracts chrom, chromStart, chromStop (columns 1-3 in a .bed file)
 		returns as a tab seperated string"""
-    poss = line.split()[0:3]
+    poss = line.split()[0,4:5]
     poss = "\t".join(poss)
     return poss
 
