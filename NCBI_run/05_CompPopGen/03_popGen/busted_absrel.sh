@@ -45,7 +45,7 @@ do
   sed '1d' galGal.translated__v__$file.translated.tsv | cut -f2,3 > $file_trans.tsv
 done
 
-cd ../gffs/
+cd ../
 
 # add a gene ID to the GTF with chicken-based genes from the translation files
 for sp in ansBra ansInd braCan colVir hetAtr netAur oxyJam stiNae syrMik tymCupPin;
@@ -56,21 +56,18 @@ done
 # for NCBI annotations, create CDS-only BEDs
 for file in galGal ansCyg cotJap numMel anaPla;
 do
-  column -s, -t < $file.gff | awk '$3 == "CDS"' > $file.cds.gff
-  awk -f gff2bed.awk $file.cds.gff > $file.cds.bed
-  cat $file.cds.bed | python3 genenames.py > $file.cds.genes.bed
+  column -s, -t < gffs/$file.gff | awk '$3 == "CDS"' > gffs/$file.cds.gff
+  awk -f gff2bed.awk gffs/$file.cds.gff > gffs/$file.cds.bed
+  cat gffs/$file.cds.bed | python3 genenames.py > gffs/$file.cds.genes.bed
 done
 
 # for Comp Aug annotations, create BEDs with gene names
 for file in ansBra ansInd braCan colVir hetAtr netAur oxyJam stiNae syrMik tymCupPin;
 do
-  cat $file_final.gtf | python3 genenames_compaug.py > $file.cds.genes.bed
+  cat gffs/$file\_final.gtf | python3 gffs/genenames_compaug.py > gffs/$file.cds.genes.bed
 done
 
-cd ..
-
 # extract nucleotide sequences associated with genes
-cd ..
 for file in ansBra ansInd braCan colVir hetAtr netAur oxyJam stiNae syrMik tymCupPin galGal ansCyg cotJap numMel anaPla;
 do
   bedtools getfasta -fi fastas/$file.ncbi.fasta -bed gffs/$file.cds.genes.bed -name -s > $file.out.fa
