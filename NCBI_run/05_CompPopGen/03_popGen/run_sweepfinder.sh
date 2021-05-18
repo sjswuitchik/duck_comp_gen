@@ -2,10 +2,10 @@
 #SBATCH -J sweep
 #SBATCH -o out
 #SBATCH -e err
-#SBATCH -p shared
+#SBATCH -p bigmem
 #SBATCH -n 1
-#SBATCH -t 06-23:00:00
-#SBATCH --mem=12000
+#SBATCH -t 12-00:00:00
+#SBATCH --mem=190G
 
 # submit from /n/holyscratch01/informatics/swuitchik/ducks/compGen/sweepfinder
 
