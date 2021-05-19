@@ -105,6 +105,7 @@ mkdir -p unaligned
 awk '{print ">"$1 >> "unaligned/"$2".fa"; print $3 >> "unaligned/"$2".fa"; close("unaligned/"$2".fa")}' all_cds_final.tab
 
 mkdir -p aligned
+cd unaligned/
 sbatch run_prank.sh
-mv *.____ aligned/
+mv *.____ ../aligned/
 
