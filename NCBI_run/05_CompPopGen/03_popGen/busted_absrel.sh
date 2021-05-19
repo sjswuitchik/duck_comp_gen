@@ -108,8 +108,8 @@ awk '{print ">"$1 >> "unaligned/"$2".fa"; print $3 >> "unaligned/"$2".fa"; close
 cd unaligned/all_spp
 for file in *.fa;
 do
-  echo $file > geneName
-  grep -c '^>' $file > geneCounts
+  echo $file >> geneName
+  grep -c '^>' $file >> geneCounts
 done
 paste -d'\t' geneName geneCounts > sppCounts
 Rscript ____ 
