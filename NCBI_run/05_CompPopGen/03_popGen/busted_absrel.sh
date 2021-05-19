@@ -76,11 +76,11 @@ done
 # fix up with bioawk
 for file in anaPla ansBra ansCyg ansInd braCan colVir cotJap galGal hetAtr netAur numMel oxyJam stiNae syrMik tymCupPin;
 do
-  bioawk -c fastx '{gsub(/::.*$/,"",$name); print "'"$file"'", $name, $seq}' $file.out.fa >> all_cds.fa
+  bioawk -c fastx '{gsub(/::.*$/,"",$name); print "'"$file"'", $name, $seq}' $file.out.fa >> all_cds.tab
 done
 
 # check 
-cut -f1,1 all_cds.fa | sort | uniq -c
+cut -f1,1 all_cds.tab | sort | uniq -c
 #607700 anaPla
 #164833 ansBra
 #391902 ansCyg
@@ -97,7 +97,14 @@ cut -f1,1 all_cds.fa | sort | uniq -c
 #168009 syrMik
 #156676 tymCupPin
 
-awk '{seq[$1 "\t" $2] = seq[$1 "\t" $2] $3} END {for (i in seq) {print i "\t" seq[i]}}' all_cds.fa
+# combine cds seqs per gene
+awk '{seq[$1 "\t" $2] = seq[$1 "\t" $2] $3} END {for (i in seq) {print i "\t" seq[i]}}' all_cds.tab > all_cds_final.tab
 
+# convert back to FASTA by second field
+mkdir unaligned
+awk '{print ">"$1 >> "unaligned/"$2".fa"; print $3 >> "unaligned/"$2".fa"; close("unaligned/"$2".fa")}' all_cds_final.tab
+
+mkdir -p aligned
+sbatch run_prank.sh
 
 
