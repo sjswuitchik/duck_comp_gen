@@ -97,5 +97,7 @@ cut -f1,1 all_cds.fa | sort | uniq -c
 #168009 syrMik
 #156676 tymCupPin
 
+awk '{seq[$1 "\t" $2] = seq[$1 "\t" $2] $3} END {for (i in seq) {print i "\t" seq[i]}}' all_cds.fa
+
 
 
