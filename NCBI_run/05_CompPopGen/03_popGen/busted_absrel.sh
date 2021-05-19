@@ -101,18 +101,8 @@ cut -f1,1 all_cds.tab | sort | uniq -c
 awk '{seq[$1 "\t" $2] = seq[$1 "\t" $2] $3} END {for (i in seq) {print i "\t" seq[i]}}' all_cds.tab > all_cds_final.tab
 
 # convert back to FASTA by second field
-mkdir -p unaligned/all_spp
+mkdir -p unaligned
 awk '{print ">"$1 >> "unaligned/"$2".fa"; print $3 >> "unaligned/"$2".fa"; close("unaligned/"$2".fa")}' all_cds_final.tab
-
-# separate out genes where all species are represented
-cd unaligned/all_spp
-for file in *.fa;
-do
-  echo $file >> geneName
-  grep -c '^>' $file >> geneCounts
-done
-paste -d'\t' geneName geneCounts > sppCounts
-Rscript ____ 
 
 mkdir -p aligned
 sbatch run_prank.sh
