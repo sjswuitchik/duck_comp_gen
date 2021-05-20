@@ -26,6 +26,5 @@ java -jar astral.5.7.7.jar -i final.all.tree -o final.all.astral.tree 2> all.log
 # and on BS tree
 cp ../trimmed/finished_fastas/final.support.tree .
 java -jar astral.5.7.7.jar -i final.support.tree -o final.support.astral.tree 2> support.log
-## still not getting BS values on final ASTRAL tree?
 # run polytomy test
 java -jar astral.5.7.7.jar -i final.all.tree -o final.all.poly.tree -t 10 2> all.poly.log
