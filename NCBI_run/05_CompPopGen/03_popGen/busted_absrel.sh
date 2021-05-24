@@ -111,7 +111,7 @@ mv *.fas ../aligned/
 cd ../aligned
 
 # run HmmCleaner on PRANK alignments
-for file in *.fas;
+for file in *.ali.fas;
 do
   singularity exec --cleanenv /n/singularity_images/informatics/hmmcleaner/hmmcleaner_0.180750.sif HmmCleaner.pl $file
 done
