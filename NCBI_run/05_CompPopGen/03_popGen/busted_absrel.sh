@@ -100,9 +100,9 @@ cut -f1,1 all_cds.tab | sort | uniq -c
 # combine cds seqs per gene
 awk '{seq[$1 "\t" $2] = seq[$1 "\t" $2] $3} END {for (i in seq) {print i "\t" seq[i]}}' all_cds.tab > all_cds_final.tab
 
-# convert back to FASTA by second field - this currently isn't writing out properly ... 
+# convert back to FASTA by second field
 mkdir -p unaligned
-awk '{FS = OFS = "\t"}{print ">"$1 >> $2".fasta"; print $3 >> $2".fasta"; close($2".fasta")}' all_cds_final.tab
+awk 'length($2) <= 252 {sub("/", "\\", $2); print ">"$1 >> "unaligned/"$2".fa"; print $3 >> "unaligned/"$2".fa"; close("unaligned/"$2".fa")}' all_cds_final.tab
 mv *.fasta unaligned/
 
 mkdir -p aligned
