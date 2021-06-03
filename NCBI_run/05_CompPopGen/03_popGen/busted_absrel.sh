@@ -109,7 +109,8 @@ mkdir -p aligned
 cd unaligned/
 ls *.fa > seqs.txt
 
-sbatch run_prank.sh
+sbatch --array=1-54999
+run_prank.sh
 mv *.fas ../aligned/
 cd ../aligned
 
