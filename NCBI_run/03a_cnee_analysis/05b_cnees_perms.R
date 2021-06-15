@@ -52,7 +52,7 @@ adjP <- bind_cols(tidyt, pv) %>%
 ggplot(adjP, aes(x = obs, y = total, col = sig_class, label = gene)) +
   theme_classic() + 
   scale_y_log10() + 
-  geom_jitter(shape = 16, width = 0.2) +
+  geom_jitter(shape = 16, width = 0.2, show.legend = F, size = 2) +
   scale_colour_brewer(palette = "Dark2") +
   scale_alpha_discrete(range = c(0.9, 0.5)) + 
   labs(x = "Number of accelerated CNEEs near gene", y = "Total number of CNEEs near gene", color = "Significance") + 
