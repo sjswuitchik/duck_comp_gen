@@ -73,7 +73,7 @@ testrep <- read_delim("test.rep.txt", delim = "\t", col_names = F, col_types = "
 
 qq(testrep$pAdj)
 
-manhattan(testrep, chr="chr", bp = "start", snp = "acc", p = "pVal", col = c("grey", "skyblue")) # note: W = 34, Z = 35
+manhattan(testrep, chr="chr", bp = "start", snp = "acc", p = "pVal", col = c("grey", "skyblue"), ylim = c(0,8)) # note: W = 34, Z = 35
 
 # check dist of p values
 ggplot(adjP, aes(x= pVal)) + 
