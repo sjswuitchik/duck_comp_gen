@@ -76,7 +76,7 @@ testrep <- read_delim("~/Desktop/test.rep.txt", delim = "\t", col_names = F, col
 
 qq(testrep$pAdj)
 
-manhattan(testrep, chr="chr", bp = "start", snp = "acc", p = "pVal", col = c("grey", "skyblue"), annotatePval = 0.05) # note: W = 34, Z = 35
+manhattan(testrep, chr="chr", bp = "start", snp = "acc", p = "pVal", col = c("grey", "skyblue"), ylim = c(0,8)) # note: W = 34, Z = 35
 
 # test if pbinom and qbinom give same results as binom.test above - they do
 accel_n = 1
