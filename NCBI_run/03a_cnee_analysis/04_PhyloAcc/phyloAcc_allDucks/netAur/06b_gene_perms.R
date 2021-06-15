@@ -44,18 +44,17 @@ adjP %>% arrange(desc(obs)) %>% View()
 adjP %>% arrange(gene) %>% View()
 adjP %>% filter(adjP <= 0.05) %>% count() # 162 genes
 
+# add in 0 data to make plotting x axis consistent between spp
+zero <- read_delim("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_allDucks/netAur/dummy_data_cnee_acc.csv", delim = ',', col_names = T)
+plotdf <- bind_rows(adjP, zero)
 
-large_obs <- function(DF) {
-  DF %>% filter(obs >= 5)
-}
-
-ggplot(adjP, aes(x = obs, y = total, col = sig_class, label = gene)) +
+ggplot(adjP, aes(x = obs, y = total, col = sig_class, label = gene, alpha = sig_class)) +
   theme_classic() + 
   scale_y_log10() + 
-  geom_jitter(shape = 16) +
+  geom_jitter(shape = 16, width = 0.2, size = 2, show.legend = F) +
   scale_colour_brewer(palette = "Dark2") +
+  scale_alpha_discrete(range = c(1, 0.5)) + 
   labs(x = "Number of accelerated CNEEs near gene", y = "Total number of CNEEs near gene", color = "Significance") + 
-  geom_text_repel(data=large_obs, show.legend = F, nudge_x = 0.1) + 
-  scale_x_continuous() 
+  scale_x_continuous(breaks = c(1,2,3,4,5,6,7))
 
 geneList <- adjP %>% filter(adjP <= 0.05) %>% select(gene) %>% write_delim(., "~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_allDucks/netAur/geneList.txt", delim = "\t", col_names = T)
