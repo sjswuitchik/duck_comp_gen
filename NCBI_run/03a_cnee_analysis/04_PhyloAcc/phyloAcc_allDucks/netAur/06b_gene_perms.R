@@ -48,7 +48,7 @@ adjP %>% filter(adjP <= 0.05) %>% count() # 162 genes
 zero <- read_delim("~/Desktop/PDF/duck_assemblies/CNEEs/PhyloAcc_allDucks/netAur/dummy_data_cnee_acc.csv", delim = ',', col_names = T)
 plotdf <- bind_rows(adjP, zero)
 
-ggplot(adjP, aes(x = obs, y = total, col = sig_class, label = gene, alpha = sig_class)) +
+ggplot(plotdf, aes(x = obs, y = total, col = sig_class, label = gene, alpha = sig_class)) +
   theme_classic() + 
   scale_y_log10() + 
   geom_jitter(shape = 16, width = 0.2, size = 2, show.legend = F) +
