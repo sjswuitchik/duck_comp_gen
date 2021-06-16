@@ -2,7 +2,7 @@
 
 # netAur
 cd netAur/fastqs/
-cat netAur_female_L001_R1_001.fastq.gz netAur_female_L004_R1_001.fastq.gz > netAur_female_R.fastq.gz
+cat netAur_female_L001_R1_001.fastq.gz netAur_female_L004_R1_001.fastq.gz > netAur_female_1.fastq.gz
 cat netAur_female_L001_R2_001.fastq.gz netAur_female_L004_R2_001.fastq.gz > netAur_female_2.fastq.gz
 
 # oxyJam
