@@ -11,6 +11,8 @@
 
 source activate busted
 
+file=$(awk 'NR==ENVIRON["SLURM_ARRAY_TASK_ID"]' seqs.txt)
+
 for file in *.fa;
 do
   prank -d=$file -o=$file -f=fasta -support -DNA
