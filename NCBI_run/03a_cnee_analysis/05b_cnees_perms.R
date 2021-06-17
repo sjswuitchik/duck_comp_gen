@@ -1,6 +1,3 @@
-## updated Oct 22 
-
-
 #### new perms using shuf #### 
 library(RColorBrewer)
 library(ggrepel)
@@ -48,22 +45,30 @@ adjP <- bind_cols(tidyt, pv) %>%
     adjP <= 0.05 ~ "Enriched for accelerated regions (5% FDR)",
     adjP > 0.05 ~ "Not enriched"))
 
-
-ggplot(adjP, aes(x = obs, y = total, col = sig_class, label = gene)) +
+ggplot(adjP, aes(x = obs, y = total, col = sig_class, label = gene, alpha = sig_class)) +
   theme_classic() + 
   scale_y_log10() + 
-  geom_jitter(shape = 16, width = 0.2, show.legend = F, size = 2) +
+  geom_jitter(shape = 16, width = 0.2, size = 2, show.legend = F) +
   scale_colour_brewer(palette = "Dark2") +
   scale_alpha_discrete(range = c(0.9, 0.5)) + 
-  labs(x = "Number of accelerated CNEEs near gene", y = "Total number of CNEEs near gene", color = "Significance") + 
-  scale_x_continuous(breaks = c(1,2,3,4,5)) #+
-  geom_label_repel(data = subset(adjP, adjP <= 0.05),
-                   aes(label = gene),
-                   box.padding = 1.5,
-                   point.padding = 0.5,
-                   segment.size = 0.2,
-                   force = 100,
-                   segment.colour = 'grey50')
+  labs(x = "Number of accelerated CNEEs near gene", y = "Total number of CNEEs near gene", color = "Significance") 
+
+
+#ggplot(adjP, aes(x = obs, y = total, col = sig_class, label = gene)) +
+#  theme_classic() + 
+#  scale_y_log10() + 
+#  geom_jitter(shape = 16, width = 0.2, show.legend = F, size = 2) +
+#  scale_colour_brewer(palette = "Dark2") +
+#  scale_alpha_discrete(range = c(0.9, 0.5)) + 
+#  labs(x = "Number of accelerated CNEEs near gene", y = "Total number of CNEEs near gene", color = "Significance") + 
+#  scale_x_continuous(breaks = c(1,2,3,4,5)) +
+#  geom_label_repel(data = subset(adjP, adjP <= 0.05),
+#                   aes(label = gene),
+#                   box.padding = 1.5,
+#                   point.padding = 0.5,
+#                   segment.size = 0.2,
+#                   force = 100,
+#                   segment.colour = 'grey50')
 
   
 geneList <- adjP %>% filter(adjP < 0.05) %>% select(gene) %>% write_delim(., "~/Desktop/geneList.txt", delim = "\t", col_names = T)
