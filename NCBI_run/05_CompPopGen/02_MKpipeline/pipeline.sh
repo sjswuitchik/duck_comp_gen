@@ -22,9 +22,9 @@ python annot_parser.py $INSHORT.ann.vcf $INSHORT.ann.bed -key missense_variant -
 python annot_parser.py $OUTSHORT.ann.vcf $OUTSHORT.ann.bed -key missense_variant -key synonymous_variant
 
 # pull out only CDS regions
-column -s, -t < genes.gff | awk '$3 == "CDS"' > onlyCDS.gff
+awk '$3 == "CDS"' genes.gtf > onlyCDS.gff
 # convert to bed
-awk -f gff2bed.awk onlyCDS.gff > onlyCDS.bed
+awk -f gff2bed.awk onlyCDS.gtf > onlyCDS.bed
 # pull out gene names
 cat onlyCDS.bed | python genenames.py > onlyCDS.genes.bed
 
