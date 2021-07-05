@@ -103,15 +103,14 @@ awk '{seq[$1 "\t" $2] = seq[$1 "\t" $2] $3} END {for (i in seq) {print i "\t" se
 # convert back to FASTA by second field
 mkdir -p unaligned
 awk 'length($2) <= 252 {sub("/", "\\", $2); print ">"$1 >> "unaligned/"$2".fa"; print $3 >> "unaligned/"$2".fa"; close("unaligned/"$2".fa")}' all_cds_final.tab
-mv *.fasta unaligned/
 
 mkdir -p aligned
 cd unaligned/
-ls *.fa > seqs.txt
+#ls *.fa > seqs.txt
 
-sbatch --array=1-54999 run_prank.sh
-mv *.fas ../aligned/
-cd ../aligned
+#sbatch --array=1-54999 run_prank.sh
+#mv *.fas ../aligned/
+#cd ../aligned
 
 # run HmmCleaner on PRANK alignments
 for file in *.ali.fas;
