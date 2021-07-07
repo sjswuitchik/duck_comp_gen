@@ -106,14 +106,11 @@ awk 'length($2) <= 252 {sub("/", "\\", $2); print ">"$1 >> "unaligned/"$2".fa"; 
 
 mkdir -p aligned
 cd unaligned/
-#ls *.fa > seqs.txt
 
-#sbatch --array=1-54999 run_prank.sh
-#mv *.fas ../aligned/
-#cd ../aligned
+sbatch run_muscle.sh
 
 # run HmmCleaner on PRANK alignments
-for file in *.ali.fas;
+for file in *.afa;
 do
   singularity exec --cleanenv /n/singularity_images/informatics/hmmcleaner/hmmcleaner_0.180750.sif HmmCleaner.pl $file
 done
