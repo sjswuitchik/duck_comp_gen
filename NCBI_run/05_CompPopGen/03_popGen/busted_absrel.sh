@@ -109,6 +109,13 @@ cd unaligned/
 
 sbatch run_muscle.sh
 
+# if all seqs don't finish with first run, easiest thing to do is to move finished FASTAs to a temp dir and re-run MUSCLE
+# ls *.afa > finished.txt
+# sed 's/\.afa//g' finished.txt > finished_seq.txt
+# mkdir finished_seq/
+# cat finished_seq.txt | xargs mv -t finished_seq/
+# sbatch run_muscle.sh
+
 # run HmmCleaner on PRANK alignments
 for file in *.afa;
 do
