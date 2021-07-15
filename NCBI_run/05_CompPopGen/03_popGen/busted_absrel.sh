@@ -116,6 +116,10 @@ sbatch run_muscle.sh
 # cat finished_seq.txt | xargs mv -t finished_seq/
 # sbatch run_muscle.sh
 
+mkdir ../aligned
+mv *.afa ../aligned
+cd ../aligned 
+
 # run HmmCleaner on PRANK alignments
 for file in *.afa;
 do
