@@ -107,8 +107,12 @@ awk 'length($2) <= 252 {sub("/", "_", $2); print ">"$1 >> "unaligned/"$2".fa"; p
 mkdir -p aligned
 cd unaligned/
 
-sbatch run_muscle.sh
 
+
+
+
+#sbatch run_muscle.sh
+#
 # if all seqs don't finish with first run, easiest thing to do is to move finished FASTAs to a temp dir and re-run MUSCLE
 # ls *.afa > finished.txt
 # sed 's/\.afa//g' finished.txt > finished_seq.txt
@@ -117,7 +121,7 @@ sbatch run_muscle.sh
 # sbatch run_muscle.sh
 
 mkdir ../aligned
-mv *.afa ../aligned
+#mv *.afa ../aligned
 cd ../aligned 
 
 # run HmmCleaner on PRANK alignments
