@@ -102,7 +102,7 @@ awk '{seq[$1 "\t" $2] = seq[$1 "\t" $2] $3} END {for (i in seq) {print i "\t" se
 
 # convert back to FASTA by second field
 mkdir -p unaligned
-awk 'length($2) <= 252 {sub("/", "\\", $2); print ">"$1 >> "unaligned/"$2".fa"; print $3 >> "unaligned/"$2".fa"; close("unaligned/"$2".fa")}' all_cds_final.tab
+awk 'length($2) <= 252 {sub("/", "_", $2); print ">"$1 >> "unaligned/"$2".fa"; print $3 >> "unaligned/"$2".fa"; close("unaligned/"$2".fa")}' all_cds_final.tab
 
 mkdir -p aligned
 cd unaligned/
