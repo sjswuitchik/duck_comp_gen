@@ -107,7 +107,7 @@ awk 'length($2) <= 252 {sub("/", "_", $2); print ">"$1 >> "unaligned/"$2".fa"; p
 mkdir -p aligned
 cd unaligned/
 
-
+sbatch run_mafft.sh
 
 
 
@@ -120,8 +120,10 @@ cd unaligned/
 # cat finished_seq.txt | xargs mv -t finished_seq/
 # sbatch run_muscle.sh
 
-mkdir ../aligned
-#mv *.afa ../aligned
+mkdir ../aligned/muscle
+mkdir ../aligned/mafft
+#mv *.afa ../aligned/muscle
+mv *.mafft ../aligned/muscle
 cd ../aligned 
 
 # run HmmCleaner on PRANK alignments
