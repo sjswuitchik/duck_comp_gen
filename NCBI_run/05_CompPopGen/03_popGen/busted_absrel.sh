@@ -109,8 +109,6 @@ cd unaligned/
 
 sbatch run_mafft.sh
 
-
-
 #sbatch run_muscle.sh
 #
 # if all seqs don't finish with first run, easiest thing to do is to move finished FASTAs to a temp dir and re-run MUSCLE
@@ -123,11 +121,11 @@ sbatch run_mafft.sh
 mkdir ../aligned/muscle
 mkdir ../aligned/mafft
 #mv *.afa ../aligned/muscle
-mv *.mafft ../aligned/muscle
+mv *.mafft ../aligned/mafft
 cd ../aligned 
 
 # run HmmCleaner on PRANK alignments
-for file in *.afa;
+for file in *.mafft;
 do
   singularity exec --cleanenv /n/singularity_images/informatics/hmmcleaner/hmmcleaner_0.180750.sif HmmCleaner.pl $file
 done
