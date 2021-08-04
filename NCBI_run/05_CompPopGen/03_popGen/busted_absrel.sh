@@ -122,7 +122,7 @@ sbatch run_mafft.sh
 mkdir ../aligned/mafft
 #mv *.afa ../aligned/muscle
 mv *.mafft ../aligned/mafft
-cd ../aligned 
+cd ../aligned/mafft 
 
 # run HmmCleaner on PRANK alignments
 for file in *.mafft;
