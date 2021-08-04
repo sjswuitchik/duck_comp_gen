@@ -118,7 +118,7 @@ sbatch run_mafft.sh
 # cat finished_seq.txt | xargs mv -t finished_seq/
 # sbatch run_muscle.sh
 
-mkdir ../aligned/muscle
+#mkdir ../aligned/muscle
 mkdir ../aligned/mafft
 #mv *.afa ../aligned/muscle
 mv *.mafft ../aligned/mafft
