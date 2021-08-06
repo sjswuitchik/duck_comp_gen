@@ -124,9 +124,6 @@ mkdir ../aligned/mafft
 mv *.mafft ../aligned/mafft
 cd ../aligned/mafft 
 
-# run HmmCleaner on PRANK alignments
-for file in *.mafft;
-do
-  singularity exec --cleanenv /n/singularity_images/informatics/hmmcleaner/hmmcleaner_0.180750.sif HmmCleaner.pl $file
-done
+# run HmmCleaner on MAFFT alignments
+sbatch run_hmmcleaner.sh
 
