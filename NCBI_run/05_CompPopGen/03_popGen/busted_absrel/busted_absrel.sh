@@ -127,3 +127,8 @@ cd ../aligned/mafft
 # run HmmCleaner on MAFFT alignments
 sbatch run_hmmcleaner.sh
 
+# ls *_hmm.fasta > finished.txt
+# sed 's/\_hmm\.fasta/\.mafft/g' finished.txt > finished_seq.txt
+# mkdir finished_seq/
+# cat finished_seq.txt | xargs mv -t finished_seq/
+# sbatch run_hmmcleaner.sh
