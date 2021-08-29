@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -J busted
-#SBATCH -o out
-#SBATCH -e err
+#SBATCH -o out_bus
+#SBATCH -e err_bus
 #SBATCH -p shared
 #SBATCH -n 1
 #SBATCH -t 06-23:00:00
