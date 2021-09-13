@@ -132,3 +132,4 @@ sbatch run_hmmcleaner.sh
 # mkdir finished_seq/
 # cat finished_seq.txt | xargs mv -t finished_seq/
 # sbatch run_hmmcleaner.sh
+# nb: screen 46214 on bioinf02
