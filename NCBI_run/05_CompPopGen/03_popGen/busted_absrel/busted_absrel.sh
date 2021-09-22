@@ -132,7 +132,10 @@ sbatch run_hmmcleaner.sh
 # mkdir finished_seq/
 # cat finished_seq.txt | xargs mv -t finished_seq/
 # sbatch run_hmmcleaner.sh
-# nb: screen ______ on bioinf02
+# nb: screen 20816 on bioinf02
+
+mkdir clean_align/
+mv *hmm.fasta clean_align
 
 # remove (likely seq error) stop codons from alignments 
 sbatch stopCodon_clean.sh
