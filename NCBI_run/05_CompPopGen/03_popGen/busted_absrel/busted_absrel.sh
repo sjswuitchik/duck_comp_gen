@@ -138,4 +138,4 @@ mkdir clean_align/
 mv *hmm.fasta clean_align
 
 # remove (likely seq error) stop codons from alignments 
-sbatch stopCodon_clean.sh
+sbatch run_stopCodon_clean.sh
