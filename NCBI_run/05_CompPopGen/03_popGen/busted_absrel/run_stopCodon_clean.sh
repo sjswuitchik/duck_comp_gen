@@ -7,7 +7,7 @@
 #SBATCH -t 06-23:00:00
 #SBATCH --mem=15000
 
-# submit from /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/aligned/mafft
+# submit from /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/aligned/mafft/clean_align/
 
 for file in *hmm.fasta;
 do
