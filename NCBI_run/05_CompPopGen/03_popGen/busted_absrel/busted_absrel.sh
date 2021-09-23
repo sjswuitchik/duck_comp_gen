@@ -136,6 +136,17 @@ sbatch run_hmmcleaner.sh
 
 mkdir clean_align/
 mv *hmm.fasta clean_align
+cd clean_align/
 
 # remove (likely seq error) stop codons from alignments 
-sbatch run_stopCodon_clean.sh # running on bioinf02 screen 13790
+sbatch run_stopCodon_clean.sh 
+
+# filter for alignments with all spp present (should've done this earlier...) 
+mkdir all_spp/
+for file in *.filtered
+do
+  if [ $(grep -c '^>' $file) -eq 15 ]
+  then
+    mv $file all_spp/
+  fi
+done
