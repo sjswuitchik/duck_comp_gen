@@ -150,3 +150,9 @@ do
     mv $file all_spp/
   fi
 done
+
+# this is more efficient but untested ... (two greps instead of tens of thousands)
+#grep -c '^>' *.filtered |
+#  grep ':15' |
+#    sed 's/:15//' |
+#     while read file; do mv $file all_spp/; done
