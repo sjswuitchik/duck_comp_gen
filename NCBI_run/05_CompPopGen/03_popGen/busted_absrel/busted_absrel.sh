@@ -151,7 +151,7 @@ do
   fi
 done
 
-# this is more efficient but untested ... (two greps instead of tens of thousands)
+# this is more efficient ... (two greps instead of tens of thousands)
 #grep -c '^>' *.filtered |
 #  grep ':15' |
 #    sed 's/:15//' |
