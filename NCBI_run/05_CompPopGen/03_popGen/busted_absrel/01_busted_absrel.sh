@@ -132,7 +132,7 @@ sbatch run_hmmcleaner.sh
 # mkdir finished_seq/
 # cat finished_seq.txt | xargs mv -t finished_seq/
 # sbatch run_hmmcleaner.sh
-# nb: running hmmClean in mafft/last2hmmClean for final approx. 1000 genes
+# nb: running hmmClean in mafft/last2hmmClean for final 480 genes
 
 mkdir clean_align/
 mv *hmm.fasta clean_align
