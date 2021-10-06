@@ -156,3 +156,14 @@ done
 #  grep ':15' |
 #    sed 's/:15//' |
 #     while read file; do mv $file all_spp/; done
+
+sbatch run_busted.sh
+sbatch run_absrel.sh
+
+# ls *.ABSREL.json > finished_abs.txt
+# sed 's/\.ABSREL\.json//g' finished_abs.txt > finished_abs_seq.txt
+# ls *.BUSTED.json > finished_bus.txt
+# sed 's/\.BUSTED\.json//g' finished_bus.txt > finished_bus_seq.txt
+# mkdir finished_seq/
+# cat finished_abs_seq.txt | xargs mv -t finished_seq/
+# cat finished_bus_seq.txt | xargs mv -t finished_seq/
