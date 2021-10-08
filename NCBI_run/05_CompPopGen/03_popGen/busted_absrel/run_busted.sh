@@ -17,13 +17,13 @@ hyphy busted --alignment $file --tree gallo.newick
 done
 
 
-#for file in *.filtered;
-#do
-#if [ -f $file.BUSTED.json ]; then
-#continue;
-#fi
-#hyphy busted --alignment $file --tree gallo.newick
-#done
+for file in *.filtered;
+do
+if [ -f $file.BUSTED.json ]; then
+continue;
+fi
+hyphy busted --alignment $file --tree gallo.newick
+done
 
 
 #if [ -f $file.clean ]; then continue; fi
