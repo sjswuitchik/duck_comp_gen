@@ -13,5 +13,8 @@ source activate align
 
 for file in *.filtered;
 do
-hyphy absrel --alignment $file --tree gallo.newick
+if [ -f $file.ABSREL.json ]; then
+continue;
+fi
+hyphy busted --alignment $file --tree gallo.newick
 done
