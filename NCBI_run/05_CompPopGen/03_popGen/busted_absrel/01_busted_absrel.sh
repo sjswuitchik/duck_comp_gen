@@ -132,7 +132,6 @@ sbatch run_hmmcleaner.sh
 # mkdir finished_seq/
 # cat finished_seq.txt | xargs mv -t finished_seq/
 # sbatch run_hmmcleaner.sh
-# nb: running hmmClean in mafft/last2hmmClean for final 480 genes (where all spp are rep'd in alignments e.g., have already filtered for spp = 15 in this batch) 
 
 mkdir clean_align/
 mv *hmm.fasta clean_align
