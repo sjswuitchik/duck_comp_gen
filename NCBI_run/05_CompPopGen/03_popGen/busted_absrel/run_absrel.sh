@@ -16,5 +16,5 @@ do
 if [ -f $file.ABSREL.json ]; then
 continue;
 fi
-hyphy busted --alignment $file --tree gallo.newick
+hyphy absrel --alignment $file --tree gallo.newick
 done
