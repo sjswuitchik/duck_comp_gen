@@ -28,3 +28,8 @@ cp ../trimmed/finished_fastas/final.support.tree .
 java -jar astral.5.7.7.jar -i final.support.tree -o final.support.astral.tree 2> support.log
 # run polytomy test
 java -jar astral.5.7.7.jar -i final.all.tree -o final.all.poly.tree -t 10 2> all.poly.log
+
+
+## running ASTRAL on protein coding alignments
+# in /n/holyscratch01/informatics/swuitchik/ducks/polytomy_cnee
+cp 
