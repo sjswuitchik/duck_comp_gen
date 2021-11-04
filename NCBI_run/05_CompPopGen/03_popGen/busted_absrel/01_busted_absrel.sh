@@ -39,10 +39,11 @@ Rscript reformat.R
 # create translation file for Comp Aug spp to galGal transcripts
 mkdir trans_files
 cd trans_files/
+
 for file in ansBra ansInd braCan colVir hetAtr netAur oxyJam stiNae syrMik tymCupPin;
 do
-  cp -v /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/04_OrthoFinder/run_ortho/Results_Feb01/Orthologues/Orthologues_galGal.translated/galGal.translated__v__.translated.tsv .
-  sed '1d' galGal.translated__v__$file.translated.tsv | cut -f2,3 > $file_trans.tsv
+    cp -v /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/04_OrthoFinder/run_ortho/Results_Feb01/Orthologues/Orthologues_galGal.translated/galGal.translated__v__$file.translated.tsv .
+    sed '1d' galGal.translated__v__$file.translated.tsv | cut -f2,3 > $file_trans.tsv
 done
 
 cd ../
