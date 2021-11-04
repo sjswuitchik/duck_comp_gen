@@ -7,7 +7,7 @@ mkdir fastas
 mkdir gffs
 
 # bring over genomes
-cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/genomes/* fastas/
+cp -v /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/genomes/* fastas/
 
 # get annotations from NCBI
 cd gffs/
@@ -27,7 +27,7 @@ mv GCF_015476345.1_ZJU1.0_genomic.gff anaPla.gff
 # bring over annotations from Comp Aug
 for file in ansBra ansInd braCan colVir hetAtr netAur oxyJam stiNae syrMik tymCupPin;
 do
-  cp -v /n/holylfs/LABS/informatics/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/augCGP_rnahints/joined_pred/$file.gff .
+  cp -v /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/augCGP_rnahints/joined_pred$file.gff .
 done
 
 ## translate Comp Aug annotations to include gene information based on galGal
