@@ -1,6 +1,6 @@
 # in /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted
 
-#conda create -n busted -c bioconda hyphy bedtools r-base r-tidyverse mafft
+#conda create -n busted -c bioconda hyphy bedtools r-base r-tidyverse mafft bioawk
 source activate busted
 
 mkdir fastas
