@@ -13,5 +13,8 @@ source activate align
 
 for file in *.fa;
 do
+if [ -f $file.mafft ]; then
+continue;
+fi
 mafft --quiet $file > $file.mafft
 done
