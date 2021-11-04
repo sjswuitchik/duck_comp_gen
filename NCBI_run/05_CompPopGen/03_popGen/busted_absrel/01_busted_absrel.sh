@@ -111,29 +111,12 @@ cd unaligned/
 
 sbatch run_mafft.sh
 
-#sbatch run_muscle.sh
-#
-# if all seqs don't finish with first run, easiest thing to do is to move finished FASTAs to a temp dir and re-run MUSCLE
-# ls *.afa > finished.txt
-# sed 's/\.afa//g' finished.txt > finished_seq.txt
-# mkdir finished_seq/
-# cat finished_seq.txt | xargs mv -t finished_seq/
-# sbatch run_muscle.sh
-
-#mkdir ../aligned/muscle
 mkdir ../aligned/mafft
-#mv *.afa ../aligned/muscle
 mv *.mafft ../aligned/mafft
 cd ../aligned/mafft 
 
 # run HmmCleaner on MAFFT alignments
 sbatch run_hmmcleaner.sh
-
-# ls *_hmm.fasta > finished.txt
-# sed 's/\_hmm\.fasta/\.mafft/g' finished.txt > finished_seq.txt
-# mkdir finished_seq/
-# cat finished_seq.txt | xargs mv -t finished_seq/
-# sbatch run_hmmcleaner.sh
 
 mkdir clean_align/
 mv *hmm.fasta clean_align
