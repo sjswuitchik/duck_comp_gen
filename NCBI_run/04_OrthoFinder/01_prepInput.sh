@@ -24,6 +24,9 @@ do
   gffread gffs/$file.gff -g /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/genomes/$file.ncbi.fasta -y run_ortho/input_data/$file.translated.fa -S 
 done 
 
+# run primary_transcript.py
+
+
 # run OrthoFinder with all species from WGA
 sbatch run_orthoFinder.sh
 
