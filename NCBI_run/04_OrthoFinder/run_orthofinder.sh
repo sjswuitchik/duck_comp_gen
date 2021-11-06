@@ -5,8 +5,8 @@
 #SBATCH -t 3-00:00
 #SBATCH -p shared
 #SBATCH --mem=8000
-#SBATCH -e ortho-%j.err
-#SBATCH -o ortho-%j.out
+#SBATCH -e err
+#SBATCH -o out
 
 #submit from /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021
 
