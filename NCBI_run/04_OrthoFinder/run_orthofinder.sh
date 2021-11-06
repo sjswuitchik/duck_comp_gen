@@ -11,4 +11,4 @@
 #submit from /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021
 
 source activate ortho
-orthofinder -o run_ortho/ -f run_ortho/input_data
+orthofinder -o run_ortho/results -f run_ortho/input_data
