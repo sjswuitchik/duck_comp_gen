@@ -17,17 +17,17 @@ do
   cp ncbi_data/$file/${file}_protein.fa run_ortho/prot_fastas
 done
 
-# get duck protein fastas
-#for file in hetAtr stiNae oxyJam netAur;
-#do
-#  cp -v /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/busco/input_data/$file.translated.fa run_ortho/prot_fastas/
-#done
+ get duck protein fastas
+for file in hetAtr stiNae oxyJam netAur;
+do
+  cp -v /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/busco/input_data/$file.translated.fa run_ortho/prot_fastas/
+done
 
 # get GFFs from Comp Aug annotations for species not available on NCBI & translated to protein FASTA (incl ducks here to re-do gffread with -x arg)
-for file in braCan tymCupPin syrMik ansInd ansBra hetAtr netAur stiNae oxyJam;
+for file in braCan tymCupPin syrMik ansInd ansBra;
 do
   cp -v /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/augCGP_rnahints/joined_pred/$file.gff gffs/
-  gffread gffs/$file.gff -g /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/genomes/$file.ncbi.fasta -y run_ortho/prot_fastas/$file.translated.fa -S -x cds 
+  gffread gffs/$file.gff -g /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/genomes/$file.ncbi.fasta -y run_ortho/prot_fastas/$file.translated.fa -S 
 done 
 
 # run primary_transcript.py
