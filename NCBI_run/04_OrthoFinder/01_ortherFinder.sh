@@ -41,4 +41,4 @@ cp -vr run_ortho/prot_fastas/primary_transcripts/*.fa run_ortho/input_data/
 # run OrthoFinder with all species from WGA
 sbatch run_orthoFinder.sh
 
-#### results in 
+#### results in /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021/run_ortho/results/Results_Nov09
