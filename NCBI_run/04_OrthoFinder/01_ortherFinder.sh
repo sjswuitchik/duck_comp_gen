@@ -27,7 +27,7 @@ done
 for file in braCan tymCupPin syrMik ansInd ansBra hetAtr netAur stiNae oxyJam;
 do
   cp -v /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/augCGP_rnahints/joined_pred/$file.gff gffs/
-  gffread -x gffs/$file.gff -g /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/genomes/$file.ncbi.fasta -y run_ortho/prot_fastas/$file.translated.fa -S 
+  gffread gffs/$file.gff -g /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/genomes/$file.ncbi.fasta -y run_ortho/prot_fastas/$file.translated.fa -S -x cds 
 done 
 
 # run primary_transcript.py
