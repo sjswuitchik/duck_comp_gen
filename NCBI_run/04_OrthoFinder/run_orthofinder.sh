@@ -4,7 +4,7 @@
 #SBATCH -N 1
 #SBATCH -t 3-00:00
 #SBATCH -p shared
-#SBATCH --mem=8000
+#SBATCH --mem=815000
 #SBATCH -e err
 #SBATCH -o out
 
