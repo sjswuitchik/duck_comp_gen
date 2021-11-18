@@ -37,3 +37,8 @@ singularity exec --cleanenv /n/singularity_images/informatics/maftools/maftools:
 singularity exec --cleanenv /n/singularity_images/informatics/maftools/maftools:20170913.sif mafExtractor --maf gallo_ncbi.maf --seq galGal.NC_006127.5 --start 43252453 --stop 43253246 > SPIN.maf
 singularity exec --cleanenv /n/singularity_images/informatics/maftools/maftools:20170913.sif mafExtractor --maf gallo_ncbi.maf --seq galGal.NC_006090.5 --start 19454853 --stop 19455427 > TGFB2.maf
 singularity exec --cleanenv /n/singularity_images/informatics/maftools/maftools:20170913.sif mafExtractor --maf gallo_ncbi.maf --seq galGal.NC_006097.5 --start 4626689 --stop 4627147 > TPM1.maf
+
+# get coordinates and write into BED files
+
+
+# 
