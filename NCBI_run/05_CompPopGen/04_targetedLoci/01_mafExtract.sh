@@ -41,5 +41,14 @@ singularity exec --cleanenv /n/singularity_images/informatics/maftools/maftools:
 # get coordinates and write into BED files
 python3 GetCoordinates.py
 
+# copy over reference genomes for FASTA creation
+cp -v /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/genomes/*.fasta .
+
 # using ref genomes and BEDs, write out FASTAs for each gene 
+for file in anaPla ansBra ansCyg ansInd braCan colVir cotJap galGal hetAtr netAur numMel oxyJam stiNae syrMik tymCupPin;
+do
+  ./get_fasta.sh $file.ncbi.fasta bed_files/$file.bed
+done
+
+
 
