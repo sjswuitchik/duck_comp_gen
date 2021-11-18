@@ -1,6 +1,6 @@
 library(tidyverse)
 
-data <- read_delim("Orthogroups.GeneCount.tsv", delim = '\t')
+data <- read_delim("run_ortho/results/Results_Nov09/Orthogroups/Orthogroups.GeneCount.tsv", delim = '\t')
 
 data %>%
   filter(Total <= 25) %>%
