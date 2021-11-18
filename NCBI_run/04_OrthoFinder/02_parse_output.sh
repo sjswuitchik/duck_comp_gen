@@ -6,3 +6,4 @@ do
   echo $file'_'$n >> seq_counts.txt
 done
 
+Rscript clean_ogs.R
