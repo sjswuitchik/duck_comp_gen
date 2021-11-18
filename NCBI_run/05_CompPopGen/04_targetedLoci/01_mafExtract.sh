@@ -39,6 +39,7 @@ singularity exec --cleanenv /n/singularity_images/informatics/maftools/maftools:
 singularity exec --cleanenv /n/singularity_images/informatics/maftools/maftools:20170913.sif mafExtractor --maf gallo_ncbi.maf --seq galGal.NC_006097.5 --start 4626689 --stop 4627147 > TPM1.maf
 
 # get coordinates and write into BED files
+python3 GetCoordinates.py
 
+# using ref genomes and BEDs, write out FASTAs for each gene 
 
-# 
