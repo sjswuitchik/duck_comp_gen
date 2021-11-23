@@ -1,1 +1,0 @@
-Initial analyses were performed on chromosomal ordered and oriented fastas before NCBI submission had been completed. This directory contains the exact same analyses (but arguably more streamlined) on the publicly available assemblies from NCBI.
