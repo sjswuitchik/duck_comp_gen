@@ -9,7 +9,7 @@ done
 Rscript clean_ogs.R
 
 cd /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021/ncbi_data/
-for file in file/file_cds_from_genomic.fna;
+for file in anaPla ansCyg colVir cotJap galGal numMel
 do
-  grep -o 'protein_id=XP_[0-9]*.[0-9]' $file > $file.tsv
+  grep -o 'protein_id=.._[0-9]*.[0-9]' $file/${file}_cds_from_genomic.fna > ${file}_protID.tsv
 done
