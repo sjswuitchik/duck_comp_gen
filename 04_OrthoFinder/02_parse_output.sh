@@ -43,7 +43,7 @@ wc -l colVir_protID.tsv
 
 for spp in anaPla ansCyg colVir cotJap galGal numMel;
 do
-  Rscript ncbi_data/clean_prots.R ${spp}_protID.tsv ${spp}_cleanID.tsv
+  Rscript clean_prots.R ncbi_data/${spp}_protID.tsv ${spp}_cleanID.tsv
 done
 
 
