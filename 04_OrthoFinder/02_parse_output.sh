@@ -46,4 +46,5 @@ do
   Rscript clean_prots.R ncbi_data/${spp}_protID.tsv ${spp}_cleanID.tsv
 done
 
-
+mkdir clean_ids
+mv *_cleanID.tsv clean_ids
