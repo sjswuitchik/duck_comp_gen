@@ -11,4 +11,4 @@ if (length(args)==0) {
 
 spp <- read_delim(args[1], delim = '\t', col_names = F) %>%
   separate(X1, into = c(NA, "X1"), sep = '=') %>%
-  write_delim(., args[2], delim = '\t')
+  write_delim(., args[2], delim = '\t', col_names = F)
