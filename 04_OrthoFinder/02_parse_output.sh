@@ -41,4 +41,9 @@ grep -o 'protein_id=OXB[0-9]*.[0-9]' colVir/colVir_cds_from_genomic.fna > colVir
 wc -l colVir_protID.tsv 
 # 17165 colVir_protID.tsv
 
-Rscript clean_prots.R
+for spp in anaPla ansCyg colVir cotJap galGal numMel;
+do
+  Rscript clean_prots.R ${spp}__protID.tsv ${spp}_cleanID.tsv
+done
+
+
