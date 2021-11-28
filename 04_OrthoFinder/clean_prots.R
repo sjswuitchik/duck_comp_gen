@@ -9,6 +9,6 @@ if (length(args)==0) {
   stop("At least one argument must be supplied (input file).\n", call.=FALSE)
 } 
 
-spp <- read_delim(args[1], delim = '\t', col_names = F) %>%
+spp <- read_delim(ncbi_data/args[1], delim = '\t', col_names = F) %>%
   separate(X1, into = c(NA, "X1"), sep = '=') %>%
   write_delim(., args[2], delim = '\t')
