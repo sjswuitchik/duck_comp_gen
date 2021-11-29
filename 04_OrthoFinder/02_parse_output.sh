@@ -55,6 +55,7 @@ do
   samtools faidx compAug_data/${spp}.ncbi.fasta 
   awk '$3 == "CDS"' compAug_data/${spp}.gff > compAug_data/${spp}.cds.gff
   Rscript clean_gff.R compAug_data/${spp}.cds.gff compAug_data/${spp}.id
+  sed -i 's/\"\"\"//g' ${spp}.id
 done
 
 
