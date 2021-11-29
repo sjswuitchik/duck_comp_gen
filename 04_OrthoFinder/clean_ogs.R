@@ -23,11 +23,11 @@ clean_orthos %>%
   write_delim(., "ansBra_ogs.tsv", delim = '\t')
 
 clean_orthos %>%
-  select(Orthogroup, anaPla = ansCyg_protein) %>%
+  select(Orthogroup, ansCyg = ansCyg_protein) %>%
   write_delim(., "ansCyg_ogs.tsv", delim = '\t')
 
 clean_orthos %>%
-  select(Orthogroup, ansInd = ansInd.translated %>%
+  select(Orthogroup, ansInd = ansInd.translated) %>%
   write_delim(., "ansInd_ogs.tsv", delim = '\t')
 
 clean_orthos %>%
