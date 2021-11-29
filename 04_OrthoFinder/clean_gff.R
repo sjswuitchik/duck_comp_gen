@@ -13,4 +13,4 @@ read_delim(args[1], col_names = F) %>%
   select(X9) %>%
   separate(X9, into = c("trans", NA), sep = ';') %>%
   separate(trans, into = c(NA, "id"), sep = ' ') %>%
-  write_delim(args[2], col_names = F)
+  write_delim(args[2], col_names = F, quote = NULL)
