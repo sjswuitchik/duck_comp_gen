@@ -51,4 +51,12 @@ mkdir compAug_data
 for spp in ansBra ansInd braCan hetAtr netAur oxyJam stiNae syrMik tymCupPin;
 do
   cp -v /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/augCGP_rnahints/joined_pred/${spp}.gff compAug_data/
+  cp -v /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/genomes/${spp}.ncbi.fasta compAug_data/
+  samtools faidx compAug_data/${spp}.ncbi.fasta 
+  awk '$3 == "CDS"' compAug_data/${spp}.gff > compAug_data/${spp}.cds.gff
+  Rscript 
 done
+
+
+
+
