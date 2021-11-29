@@ -53,7 +53,6 @@ do
   sed -i 's/\"\"\"//g' compAug_data/${spp}.id 
   cat compAug_data/${spp}.id | sort | uniq > compAug_data/${spp}.clean.id
   gffread -w compAug_data/${spp}.cds.fa -g compAug_data/${spp}.ncbi.fasta compAug_data/${spp}.cds.gff 
-  samtools faidx compAug_data/${spp}.cds.fa _____
 done
 
 
