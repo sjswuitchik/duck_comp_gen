@@ -53,7 +53,7 @@ do
   Rscript clean_gff.R compAug_data/${spp}.cds.gff compAug_data/${spp}.id
   sed -i 's/\"\"\"//g' compAug_data/${spp}.id 
   cat compAug_data/${spp}.id | sort | uniq > compAug_data/${spp}.clean.id
-  bedtools getfasta -fi compAug_data/${spp}.ncbi.fasta -bed compAug_data/${spp}.cds.gff > compAug_data/${spp}.cds.fa
+  gffread -w compAug_data/${spp}.cds.fa -g compAug_data/${spp}.ncbi.fasta compAug_data/${spp}.cds.gff 
 done
 
 
