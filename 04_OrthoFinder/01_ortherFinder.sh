@@ -4,7 +4,7 @@
 
 # in /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021
 
-#conda create -c bioconda conda-forge -n ortho orthofinder diamond perl gffread samtools
+#conda create -c bioconda conda-forge -n ortho orthofinder diamond perl gffread samtools r-base r-tidyverse
 
 mkdir -p run_ortho/input_data
 mkdir -p gffs/
