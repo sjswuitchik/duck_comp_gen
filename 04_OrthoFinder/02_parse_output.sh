@@ -39,12 +39,8 @@ wc -l colVir_protID.tsv
 cd ..
 for spp in anaPla ansCyg colVir cotJap galGal numMel;
 do
-  Rscript clean_prots.R ncbi_data/${spp}_protID.tsv ${spp}_cleanID.tsv
+  Rscript clean_prots.R ncbi_data/${spp}_protID.tsv ncbi_data/${spp}_cleanID.tsv
 done
-
-mkdir clean_ids
-mv *_cleanID.tsv clean_ids
-
 
 ## Comp Aug spp
 mkdir compAug_data
