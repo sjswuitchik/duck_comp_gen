@@ -54,7 +54,7 @@ do
   cp -v /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/genomes/${spp}.ncbi.fasta compAug_data/
   samtools faidx compAug_data/${spp}.ncbi.fasta 
   awk '$3 == "CDS"' compAug_data/${spp}.gff > compAug_data/${spp}.cds.gff
-  Rscript 
+  Rscript clean_gff.R compAug_data/${spp}.cds.gff compAug_data/${spp}.id
 done
 
 
