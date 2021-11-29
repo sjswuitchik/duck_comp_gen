@@ -48,12 +48,12 @@ for spp in ansBra ansInd braCan hetAtr netAur oxyJam stiNae syrMik tymCupPin;
 do
   cp -v /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/augCGP_rnahints/joined_pred/${spp}.gff compAug_data/
   cp -v /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/genomes/${spp}.ncbi.fasta compAug_data/
-  samtools faidx compAug_data/${spp}.ncbi.fasta 
   awk '$3 == "CDS"' compAug_data/${spp}.gff > compAug_data/${spp}.cds.gff
   Rscript clean_gff.R compAug_data/${spp}.cds.gff compAug_data/${spp}.id
   sed -i 's/\"\"\"//g' compAug_data/${spp}.id 
   cat compAug_data/${spp}.id | sort | uniq > compAug_data/${spp}.clean.id
   gffread -w compAug_data/${spp}.cds.fa -g compAug_data/${spp}.ncbi.fasta compAug_data/${spp}.cds.gff 
+  samtools faidx compAug_data/${spp}.cds.fa _____
 done
 
 
