@@ -1,16 +1,11 @@
-# in /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021/run_ortho/
-
-for file in results/Results_Nov09/Orthogroup_Sequences/*.fa;
-do
-  export n=$(grep -c '^>' $file)
-  echo $file'_'$n >> seq_counts.txt
-done
+##  in /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021/
 
 # get OGs that are in hetAtr, in at least 50% of spp, and capped at 25 seq
 Rscript clean_ogs.R
 
+## NCBI spp
 # get protein IDs for each species on NCBI
-cd /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021/ncbi_data/
+cd ncbi_data/
 for file in anaPla ansCyg colVir cotJap galGal numMel;
 do
   grep -o 'protein_id=.._[0-9]*.[0-9]' $file/${file}_cds_from_genomic.fna > ${file}_protID.tsv
@@ -41,6 +36,7 @@ grep -o 'protein_id=OXB[0-9]*.[0-9]' colVir/colVir_cds_from_genomic.fna > colVir
 wc -l colVir_protID.tsv 
 # 17165 colVir_protID.tsv
 
+cd ..
 for spp in anaPla ansCyg colVir cotJap galGal numMel;
 do
   Rscript clean_prots.R ncbi_data/${spp}_protID.tsv ${spp}_cleanID.tsv
@@ -48,3 +44,11 @@ done
 
 mkdir clean_ids
 mv *_cleanID.tsv clean_ids
+
+
+## Comp Aug spp
+mkdir compAug_data
+for spp in ansBra ansInd braCan hetAtr netAur oxyJam stiNae syrMik tymCupPin;
+do
+  cp -v /n/holylfs05/LABS/informatics/Lab/holylfs/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation/augCGP_rnahints/joined_pred/${spp}.gff compAug_data/
+done
