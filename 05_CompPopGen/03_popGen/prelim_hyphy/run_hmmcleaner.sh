@@ -12,7 +12,7 @@
 for file in *.mafft;
 do
 if [ -f $file_hmm.fasta]; then
-continue;
+  continue;
 fi
   singularity exec --cleanenv /n/singularity_images/informatics/hmmcleaner/hmmcleaner_0.180750.sif HmmCleaner.pl $file
 done
