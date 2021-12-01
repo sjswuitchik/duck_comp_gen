@@ -55,6 +55,9 @@ do
   gffread -w compAug_data/${spp}.cds.fa -g compAug_data/${spp}.ncbi.fasta compAug_data/${spp}.cds.gff 
 done
 
-
+## make orthogroup-specific FASTAs
+mkdir og_fastas
+cd og_fastas
+.././generate_orthogroup_fastas.sh
 
 
