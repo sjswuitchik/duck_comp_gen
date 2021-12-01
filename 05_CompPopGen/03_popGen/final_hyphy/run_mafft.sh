@@ -7,14 +7,14 @@
 #SBATCH -t 06-23:00:00
 #SBATCH --mem=15000
 
-# submit from /n/holyscratch01/informatics/swuitchik/ducks/compGen/final_hyphy/
+# submit from /n/holyscratch01/informatics/swuitchik/ducks/compGen/final_hyphy/og_fastas
 
 source activate align
 
 for file in *.fa;
 do
-if [ -f $file.mafft ]; then
+if [ -f ../aligned/${file}.mafft ]; then
   continue;
 fi
-  mafft --quiet og_fastas/${file} > aligned/${file}.mafft
+  mafft --quiet $file > ../aligned/${file}.mafft
 done
