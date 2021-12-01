@@ -59,5 +59,5 @@ done
 mkdir og_fastas
 cd og_fastas
 .././generate_orthogroup_fastas.sh
-
+# nb: when archived, or for re-use, hardcoded path names need to be changed in generate_orthogroup_fastas.sh
 
