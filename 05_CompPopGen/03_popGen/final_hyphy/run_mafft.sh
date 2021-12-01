@@ -11,10 +11,10 @@
 
 source activate align
 
-for file in go_fastas/*.fa;
+for file in *.fa;
 do
 if [ -f $file.mafft ]; then
-continue;
+  continue;
 fi
-mafft --quiet $file > aligned/$file.mafft
+  mafft --quiet og_fastas/${file} > aligned/${file}.mafft
 done
