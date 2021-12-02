@@ -51,9 +51,7 @@ do
 done
 
 # nb: get_fasta.sh wrote all FGB_[0-9]* to a singular FGB.fa, but easy to pull out separately
-for gene in FGB_45 FGB_56 FGB_68;
-do
-  grep '${gene}' -A 1 --no-group-separator FGB.fa > ${gene}.fa
-done
-
+grep 'FGB_45' -A 1 --no-group-separator FGB.fa > FGB_45.fa
+grep 'FGB_56' -A 1 --no-group-separator FGB.fa > FGB_56.fa
+grep 'FGB_68' -A 1 --no-group-separator FGB.fa > FGB_68.fa
 
