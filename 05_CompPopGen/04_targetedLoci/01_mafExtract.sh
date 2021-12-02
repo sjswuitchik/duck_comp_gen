@@ -50,5 +50,10 @@ do
   ./get_fasta.sh $file.ncbi.fasta bed_files/$file.bed
 done
 
+# nb: get_fasta.sh wrote all FGB_[0-9]* to a singular FGB.fa, but easy to pull out separately
+for gene in FGB_45 FGB_56 FGB_68;
+do
+  grep '${gene}' -A 1 --no-group-separator FGB.fa > ${gene}.fa
+done
 
 
