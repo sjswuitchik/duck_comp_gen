@@ -5,7 +5,7 @@ cp -vr /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021/og_fasta
 
 # align FASTAs
 mkdir aligned
-sbatch run_mafft.sh
+sbatch og_fastas/run_mafft.sh
 
 # clean alignments 
-sbatch run_hmmcleaner.sh
+sbatch aligned/run_hmmcleaner.sh
