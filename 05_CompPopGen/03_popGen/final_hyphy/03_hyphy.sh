@@ -17,10 +17,24 @@ do
   sed -i 's/\_translated//g' $file
 done
 
-# 
+# make job scripts
+mkdir job_scripts
+mkdir logs
+
+while IFS= read -r file
+do
+  echo -e "#!/bin/bash" > job_scripts/run_${file}.sh
+  echo -e "#SBATCH -o logs/%j.out" >> job_scripts/run_${file}.sh
+  echo -e "#SBATCH -e logs/%j.err" >> job_scripts/run_${file}.sh
+  echo -e "#SBATCH -p shared" >> job_scripts/run_${file}.sh
+  echo -e "#SBATCH -n 1" >> job_scripts/run_${file}.sh
+  echo -e "#SBATCH -t 48:00:00" >> job_scripts/run_${file}.sh
+  echo -e "#SBATCH --mem=9000" >> job_scripts/run_${file}.sh
+  echo -e "source activate align\n" >> job_scripts/run_${file}.sh
+  echo -e "hyphy busted --alignment aligned/${file}_nuc.fa_hmm.fasta --tree gene_trees/${file}_tree.txt" >> job_scripts/run_${file}.sh
+done < "clean_ogs.tsv"
 
 
 
-sbatch run_busted.sh
-sbatch run_absrel.sh
+
 
