@@ -36,7 +36,7 @@ done < "clean_ogs.tsv"
 
 # create batches
 ls job_scripts/*.sh > job_scripts/scripts
-split -l 4000 job_scripts/scripts job_scripts/batch
+split -d -l 4000 job_scripts/scripts job_scripts/batch
 
 for file in job_scripts/batch*;
 do
