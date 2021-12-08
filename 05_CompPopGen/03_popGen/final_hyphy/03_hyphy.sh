@@ -9,6 +9,7 @@ do
   cp -vr /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021/run_ortho/results/Results_Nov09/Gene_Trees/${file}_tree.txt gene_trees/
 done < "clean_ogs.tsv"
 
+# edit gene trees to match alignments
 cd gene_trees
 for file in *.txt;
 do
@@ -16,5 +17,6 @@ do
   sed -i 's/\_translated//g' $file
 done
 
-
+sbatch run_busted.sh
+sbatch run_absrel.sh
 
