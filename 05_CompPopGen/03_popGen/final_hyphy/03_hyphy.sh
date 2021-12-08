@@ -34,7 +34,14 @@ do
   echo -e "hyphy busted --alignment aligned/${file}_nuc.fa_hmm.fasta --tree gene_trees/${file}_tree.txt" >> job_scripts/run_${file}.sh
 done < "clean_ogs.tsv"
 
+# create batches
+ls job_scripts/*.sh > job_scripts/scripts
+split -l 4000 job_scripts/scripts job_scripts/batch
 
+for file in job_scripts/batch*;
+do
+  sed -i 's/run/sbatch\ run/g' $file
+done
 
 
 
