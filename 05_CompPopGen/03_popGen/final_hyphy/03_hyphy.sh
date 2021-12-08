@@ -23,7 +23,7 @@ mkdir logs
 
 while IFS= read -r file
 do
-  echo -e "#!/bin/bash" > job_scripts/run_${file}.sh
+  echo -e '#!/bin/bash' >> job_scripts/run_${file}.sh
   echo -e "#SBATCH -o logs/%j.out" >> job_scripts/run_${file}.sh
   echo -e "#SBATCH -e logs/%j.err" >> job_scripts/run_${file}.sh
   echo -e "#SBATCH -p shared" >> job_scripts/run_${file}.sh
