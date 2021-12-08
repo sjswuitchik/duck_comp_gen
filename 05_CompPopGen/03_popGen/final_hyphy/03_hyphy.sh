@@ -35,13 +35,21 @@ do
 done < "clean_ogs.tsv"
 
 # create batches
-ls job_scripts/*.sh > job_scripts/scripts
-split -d -l 4000 job_scripts/scripts job_scripts/batch
+cd job_scripts
+ls *.sh > scripts
+split --numeric-suffixes=1 -l 4000 scripts batch
 
-for file in job_scripts/batch*;
+while IFS= read -r file
 do
-  sed -i 's/run/sbatch\ run/g' $file
-done
+  sbatch $file
+done < "batch01"
 
+while IFS= read -r file
+do
+  sbatch $file
+done < "batch02"
 
-
+while IFS= read -r file
+do
+  sbatch $file
+done < "batch03"
