@@ -12,4 +12,5 @@ cd single_copies
 # write species-specific clean OG files
 Rscript singleCopy_clean_ogs.R
 
-# 
+# copy over protein ID files
+cp -vr /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021/ncbi_data/*_cleanID.tsv .
