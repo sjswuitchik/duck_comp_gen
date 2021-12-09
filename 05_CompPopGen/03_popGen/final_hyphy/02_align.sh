@@ -12,6 +12,3 @@ sbatch aligned/run_hmmcleaner.sh
 
 # clean alignments for stop codons
 sbatch aligned/run_stopCodon_clean.sh
-
-# clean up alignment file names
-rename 's/\_nuc\.fa\_hmm\.fasta\.filtered/\.clean\.fa/' *.filtered
