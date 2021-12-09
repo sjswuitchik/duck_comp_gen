@@ -17,7 +17,7 @@ do
   sed -i 's/\_translated//g' $file
 done
 
-# make job scripts
+# make BUSTED job scripts
 mkdir -p job_scripts_busted/logs
 
 while IFS= read -r file
@@ -30,7 +30,7 @@ do
   echo -e "#SBATCH -t 48:00:00" >> job_scripts_busted/run_${file}.sh
   echo -e "#SBATCH --mem=9000" >> job_scripts_busted/run_${file}.sh
   echo -e "source activate align\n" >> job_scripts_busted/run_${file}.sh
-  echo -e "hyphy busted --alignment ../aligned/${file}_nuc.fa_hmm.fasta --tree ../gene_trees/${file}_tree.txt" >> job_scripts/run_${file}.sh
+  echo -e "hyphy busted --alignment ../aligned/${file}_nuc.fa_hmm.fasta --tree ../gene_trees/${file}_tree.txt" >> job_scripts_busted/run_${file}.sh
 done < "clean_ogs.tsv"
 
 # create BUSTED batches
@@ -52,3 +52,39 @@ while IFS= read -r file
 do
   sbatch $file
 done < "batch03"
+
+# make aBSREL job scripts
+mkdir -p job_scripts_absrel/logs
+
+while IFS= read -r file
+do
+  echo -e '#!/bin/bash' >> job_scripts_absrel/run_${file}.sh
+  echo -e "#SBATCH -o logs/%j.out" >> job_scripts_absrel/run_${file}.sh
+  echo -e "#SBATCH -e logs/%j.err" >> job_scripts_absrel/run_${file}.sh
+  echo -e "#SBATCH -p shared" >> job_scripts_absrel/run_${file}.sh
+  echo -e "#SBATCH -n 1" >> job_scripts_absrel/run_${file}.sh
+  echo -e "#SBATCH -t 48:00:00" >> job_scripts_absrel/run_${file}.sh
+  echo -e "#SBATCH --mem=9000" >> job_scripts_absrel/run_${file}.sh
+  echo -e "source activate align\n" >> job_scripts_absrel/run_${file}.sh
+  echo -e "hyphy busted --alignment ../aligned/${file}_nuc.fa_hmm.fasta --tree ../gene_trees/${file}_tree.txt" >> job_scripts_absrel/run_${file}.sh
+done < "clean_ogs.tsv"
+
+# create aBSREL batches
+cd job_scripts_absrel
+ls *.sh > scripts
+split --numeric-suffixes=4 -l 4000 scripts batch
+
+while IFS= read -r file
+do
+  sbatch $file
+done < "batch04"
+
+while IFS= read -r file
+do
+  sbatch $file
+done < "batch05"
+
+while IFS= read -r file
+do
+  sbatch $file
+done < "batch06"
