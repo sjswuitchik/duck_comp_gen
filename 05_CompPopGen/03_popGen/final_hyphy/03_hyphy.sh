@@ -17,6 +17,9 @@ do
   sed -i 's/\_translated//g' $file
 done
 
+# clean alignments for stop codons
+sbatch run_stopCodon_clean.sh
+
 # make BUSTED job scripts
 mkdir -p job_scripts_busted/logs
 
