@@ -1,8 +1,7 @@
 library(tidyverse)
 
 single_orthos <- read_delim("Orthogroups_SingleCopyOrthologues.txt", delim = '\t', col_names = c("Orthogroup"))
-all_orthos <- read_delim("Orthogroups.tsv", delim = '\t') %>%
-  select(-c(...2))
+all_orthos <- read_delim("Orthogroups.tsv", delim = '\t')
 
 clean_orthos <- left_join(single_orthos, all_orthos, by = "Orthogroup")
 
