@@ -9,3 +9,9 @@ sbatch og_fastas/run_mafft.sh
 
 # clean alignments 
 sbatch aligned/run_hmmcleaner.sh
+
+# clean alignments for stop codons
+sbatch aligned/run_stopCodon_clean.sh
+
+# re-clean alignments 
+sbatch aligned/run_hmmCleanv2.sh
