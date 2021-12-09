@@ -6,3 +6,9 @@ cp -vr /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021/run_orth
 cp -vr /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021/run_ortho/results/Results_Nov09/Orthogroups/Orthogroups_SingleCopyOrthologues.txt single_copies
 cp -vr /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021/run_ortho/results/Results_Nov09/Orthogroups/Orthogroups.tsv single_copies
 
+cd single_copies
+
+# write species-specific clean OG files
+Rscript singleCopy_clean_ogs.R
+
+# 
