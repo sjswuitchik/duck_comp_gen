@@ -13,5 +13,5 @@ source activate align
 
 while IFS= read -r file
 do
-  hyphy remove-duplicates.bf --msa aligned/${file}.clean.fa --tree gene_trees/${file}_tree.txt --output clean_aligned/${file}_uniq.nh
+  hyphy remove-duplicates.bf --msa aligned/${file}_nuc.fa_hmm.fasta.filtered --tree gene_trees/${file}_tree.txt --output clean_aligned/${file}_uniq.nh
 done < "clean_ogs.tsv" 
