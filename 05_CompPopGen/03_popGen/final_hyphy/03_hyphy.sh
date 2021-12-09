@@ -18,8 +18,7 @@ do
 done
 
 # make job scripts
-mkdir job_scripts
-mkdir logs
+mkdir -p job_scripts/logs
 
 while IFS= read -r file
 do
