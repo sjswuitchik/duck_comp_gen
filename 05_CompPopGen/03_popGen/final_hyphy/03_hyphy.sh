@@ -18,23 +18,23 @@ do
 done
 
 # make job scripts
-mkdir -p job_scripts/logs
+mkdir -p job_scripts_busted/logs
 
 while IFS= read -r file
 do
-  echo -e '#!/bin/bash' >> job_scripts/run_${file}.sh
-  echo -e "#SBATCH -o logs/%j.out" >> job_scripts/run_${file}.sh
-  echo -e "#SBATCH -e logs/%j.err" >> job_scripts/run_${file}.sh
-  echo -e "#SBATCH -p shared" >> job_scripts/run_${file}.sh
-  echo -e "#SBATCH -n 1" >> job_scripts/run_${file}.sh
-  echo -e "#SBATCH -t 48:00:00" >> job_scripts/run_${file}.sh
-  echo -e "#SBATCH --mem=9000" >> job_scripts/run_${file}.sh
-  echo -e "source activate align\n" >> job_scripts/run_${file}.sh
+  echo -e '#!/bin/bash' >> job_scripts_busted/run_${file}.sh
+  echo -e "#SBATCH -o logs/%j.out" >> job_scripts_busted/run_${file}.sh
+  echo -e "#SBATCH -e logs/%j.err" >> job_scripts_busted/run_${file}.sh
+  echo -e "#SBATCH -p shared" >> job_scripts_busted/run_${file}.sh
+  echo -e "#SBATCH -n 1" >> job_scripts_busted/run_${file}.sh
+  echo -e "#SBATCH -t 48:00:00" >> job_scripts_busted/run_${file}.sh
+  echo -e "#SBATCH --mem=9000" >> job_scripts_busted/run_${file}.sh
+  echo -e "source activate align\n" >> job_scripts_busted/run_${file}.sh
   echo -e "hyphy busted --alignment ../aligned/${file}_nuc.fa_hmm.fasta --tree ../gene_trees/${file}_tree.txt" >> job_scripts/run_${file}.sh
 done < "clean_ogs.tsv"
 
-# create batches
-cd job_scripts
+# create BUSTED batches
+cd job_scripts_busted
 ls *.sh > scripts
 split --numeric-suffixes=1 -l 4000 scripts batch
 
