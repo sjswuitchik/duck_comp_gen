@@ -18,6 +18,7 @@ do
 done
 
 # make BUSTED job scripts
+cd ..
 mkdir -p job_scripts_busted/logs
 
 while IFS= read -r file
