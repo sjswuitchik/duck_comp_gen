@@ -58,6 +58,7 @@ do
 done < "batch03"
 
 # make aBSREL job scripts
+cd ..
 mkdir -p job_scripts_absrel/logs
 
 while IFS= read -r file
