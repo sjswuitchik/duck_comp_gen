@@ -11,7 +11,7 @@
 
 for file in *.filtered;
 do
-if [ -f ${file}.filtered]; then
+if [ -f ${file}.filtered_hmm.fasta]; then
   continue;
 fi
   singularity exec --cleanenv /n/singularity_images/informatics/hmmcleaner/hmmcleaner_0.180750.sif HmmCleaner.pl $file
