@@ -17,8 +17,10 @@ do
   sed -i 's/\_translated//g' $file
 done
 
+# remove duplicate sequences and produce combined alignment + tree for HYPHY input
+sbatch run_removeDups.sh
+
 # make BUSTED job scripts
-cd ..
 mkdir -p job_scripts_busted/logs
 
 while IFS= read -r file
