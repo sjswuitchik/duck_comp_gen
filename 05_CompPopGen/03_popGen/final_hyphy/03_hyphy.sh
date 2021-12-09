@@ -18,6 +18,7 @@ do
 done
 
 # remove duplicate sequences and produce combined alignment + tree for HYPHY input
+cd ..
 sbatch run_removeDups.sh
 
 # make BUSTED job scripts
