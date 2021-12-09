@@ -30,7 +30,7 @@ do
   echo -e "#SBATCH -t 48:00:00" >> job_scripts/run_${file}.sh
   echo -e "#SBATCH --mem=9000" >> job_scripts/run_${file}.sh
   echo -e "source activate align\n" >> job_scripts/run_${file}.sh
-  echo -e "hyphy busted --alignment aligned/${file}_nuc.fa_hmm.fasta --tree gene_trees/${file}_tree.txt" >> job_scripts/run_${file}.sh
+  echo -e "hyphy busted --alignment ../aligned/${file}_nuc.fa_hmm.fasta --tree ../gene_trees/${file}_tree.txt" >> job_scripts/run_${file}.sh
 done < "clean_ogs.tsv"
 
 # create batches
