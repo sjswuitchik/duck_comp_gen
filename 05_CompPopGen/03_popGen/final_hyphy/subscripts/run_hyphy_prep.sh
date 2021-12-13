@@ -5,7 +5,7 @@
 #SBATCH -p shared
 #SBATCH -n 1
 #SBATCH -t 03-00:00
-#SBATCH --mem=15000
+#SBATCH --mem=9000
 
 # submit from /n/holyscratch01/informatics/swuitchik/ducks/compGen/og_fastas
 
