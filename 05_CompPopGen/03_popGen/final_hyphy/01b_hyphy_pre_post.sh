@@ -18,4 +18,4 @@ done
 while IFS= read -r file
 do
   hyphy remove-duplicates.bf --msa ${file}_codon.msa --tree hyphy-analyses/remove-duplicates/${file}_tree.txt --output ${file}_uniq.nh
-done < "clean_ogs.tsv"
+done < "../clean_ogs.tsv"
