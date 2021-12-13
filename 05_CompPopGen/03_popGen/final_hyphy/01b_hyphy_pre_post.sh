@@ -12,7 +12,7 @@ cp -vr ../gene_trees/*.txt .
 for file in *.txt;
 do
   sed -i 's/_\([[:alnum:]]*\)\./_\1_/g' $file
-  cp $file hyphy-analyses/remove-duplicates/
+  cp -v $file hyphy-analyses/remove-duplicates/
 done
 
 while IFS= read -r file
