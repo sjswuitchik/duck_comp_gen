@@ -18,6 +18,20 @@ conda activate align
 cd og_fastas/
 sbatch run_hyphy_prep.sh
 
+# check for missed alignments
+ls *_codon.msa | sort > uniq_aligns
+ls *_nuc.fa | sort > og_aligns
+sed -i 's/\_nuc\.fa\_codon\.msa//g' uniq_aligns
+sed -i 's/\_nuc\.fa//g' og_aligns
+comm -3 uniq_aligns og_aligns 
+#OG0003606
+#OG0008416
+#OG0009185
+#OG0010355
+#OG0013409
+#OG0013485
+# redo run_hyphy_prep.sh for missed groups
+
 # fix gene trees to match alignment outputs
 cp -vr ../gene_trees/*.txt .
 
