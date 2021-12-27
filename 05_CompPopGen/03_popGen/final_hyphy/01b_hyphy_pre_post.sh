@@ -46,3 +46,9 @@ while IFS= read -r file
 do
   hyphy hyphy-analyses/remove-duplicates/remove-duplicates.bf --msa ${file}_nuc.fa_codon.msa --tree ${file}_tree.txt --output ${file}_uniq.nh
 done < "../clean_ogs.tsv"
+
+# check for uniq vs dup
+ls *_uniq.nh > uniq
+sed -i 's/\_uniq\.nh//g' uniq
+comm -3 uniq_aligns uniq > split_aligns
+
