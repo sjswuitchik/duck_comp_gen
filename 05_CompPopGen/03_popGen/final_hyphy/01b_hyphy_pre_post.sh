@@ -44,5 +44,5 @@ done
 # remove duplicate sequences and trim tree accordingly
 while IFS= read -r file
 do
-  hyphy remove-duplicates.bf --msa ${file}_codon.msa --tree hyphy-analyses/remove-duplicates/${file}_tree.txt --output ${file}_uniq.nh
+  hyphy remove-duplicates.bf --msa ${file}_nuc.fa_codon.msa --tree hyphy-analyses/remove-duplicates/${file}_tree.txt --output ${file}_uniq.nh
 done < "../clean_ogs.tsv"
