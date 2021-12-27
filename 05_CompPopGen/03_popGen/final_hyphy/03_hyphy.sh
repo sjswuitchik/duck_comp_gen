@@ -3,6 +3,7 @@
 ## make BUSTED job scripts
 mkdir -p job_scripts_busted/logs
 
+
 # make scripts for runs without duplicate seqs
 while IFS= read -r file
 do
@@ -14,8 +15,8 @@ do
   echo -e "#SBATCH -t 48:00:00" >> job_scripts_busted/run_${file}.sh
   echo -e "#SBATCH --mem=9000" >> job_scripts_busted/run_${file}.sh
   echo -e "source activate align\n" >> job_scripts_busted/run_${file}.sh
-  echo -e "hyphy busted --alignment ../aligned/${file}_nuc.fa_hmm.fasta.filtered --tree ../gene_trees/${file}_tree.txt" >> job_scripts_busted/run_${file}.sh
-done < "split"
+  echo -e "hyphy busted --alignment og_fastas/${file}_nuc.fa_codon.msa --tree og_fastas/${file}_tree.txt" >> job_scripts_busted/run_${file}.sh
+done < "og_fastas/split_aligns"
 
 # make scripts for runs with duplicate seqs 
 while IFS= read -r file
@@ -28,8 +29,8 @@ do
   echo -e "#SBATCH -t 48:00:00" >> job_scripts_busted/run_${file}.sh
   echo -e "#SBATCH --mem=9000" >> job_scripts_busted/run_${file}.sh
   echo -e "source activate align\n" >> job_scripts_busted/run_${file}.sh
-  echo -e "hyphy busted --alignment ../clean_aligned/${file}_uniq.nh" >> job_scripts_busted/run_${file}.sh
-done < "uniq"
+  echo -e "hyphy busted --alignment og_fastas/${file}_uniq.nh" >> job_scripts_busted/run_${file}.sh
+done < "og_fastas/uniq"
 
 # create BUSTED batches
 cd job_scripts_busted
@@ -66,8 +67,8 @@ do
   echo -e "#SBATCH -t 48:00:00" >> job_scripts_absrel/run_${file}.sh
   echo -e "#SBATCH --mem=9000" >> job_scripts_absrel/run_${file}.sh
   echo -e "source activate align\n" >> job_scripts_absrel/run_${file}.sh
-  echo -e "hyphy absrel --alignment ../aligned/${file}_nuc.fa_hmm.fasta.filtered --tree ../gene_trees/${file}_tree.txt" >> job_scripts_absrel/run_${file}.sh
-done < "split"
+  echo -e "hyphy absrel --alignment og_fastas/${file}_nuc.fa_codon.msa --tree og_fastas/${file}_tree.txt" >> job_scripts_absrel/run_${file}.sh
+done < "og_fastas/split"
 
 # make scripts for runs with duplicate seqs 
 while IFS= read -r file
@@ -80,8 +81,8 @@ do
   echo -e "#SBATCH -t 48:00:00" >> job_scripts_absrel/run_${file}.sh
   echo -e "#SBATCH --mem=9000" >> job_scripts_absrel/run_${file}.sh
   echo -e "source activate align\n" >> job_scripts_absrel/run_${file}.sh
-  echo -e "hyphy absrel --alignment ../clean_aligned/${file}_uniq.nh" >> job_scripts_absrel/run_${file}.sh
-done < "uniq"
+  echo -e "hyphy absrel --alignment og_fastas/${file}_uniq.nh" >> job_scripts_absrel/run_${file}.sh
+done < "og_fastas/uniq"
 
 # create aBSREL batches
 cd job_scripts_absrel
