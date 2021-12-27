@@ -14,7 +14,7 @@ do
   echo -e "#SBATCH -n 1" >> job_scripts_busted/run_${file}.sh
   echo -e "#SBATCH -t 48:00:00" >> job_scripts_busted/run_${file}.sh
   echo -e "#SBATCH --mem=9000\n" >> job_scripts_busted/run_${file}.sh
-  echo -e "source activate align\n" >> job_scripts_busted/run_${file}.sh
+  echo -e "conda activate align\n" >> job_scripts_busted/run_${file}.sh
   echo -e "hyphy busted --alignment og_fastas/${file}_nuc.fa_codon.msa --tree og_fastas/${file}_tree.txt" >> job_scripts_busted/run_${file}.sh
 done < "og_fastas/split_aligns"
 
@@ -22,13 +22,13 @@ done < "og_fastas/split_aligns"
 while IFS= read -r file
 do
   echo -e '#!/bin/bash' >> job_scripts_busted/run_${file}.sh
-  echo -e "#SBATCH -o logs/%j.out" >> job_scripts_busted/run_${file}.sh
-  echo -e "#SBATCH -e logs/%j.err" >> job_scripts_busted/run_${file}.sh
+  echo -e "#SBATCH -o logs/${file}.out" >> job_scripts_busted/run_${file}.sh
+  echo -e "#SBATCH -e logs/${file}.err" >> job_scripts_busted/run_${file}.sh
   echo -e "#SBATCH -p shared" >> job_scripts_busted/run_${file}.sh
   echo -e "#SBATCH -n 1" >> job_scripts_busted/run_${file}.sh
   echo -e "#SBATCH -t 48:00:00" >> job_scripts_busted/run_${file}.sh
-  echo -e "#SBATCH --mem=9000" >> job_scripts_busted/run_${file}.sh
-  echo -e "source activate align\n" >> job_scripts_busted/run_${file}.sh
+  echo -e "#SBATCH --mem=9000\n" >> job_scripts_busted/run_${file}.sh
+  echo -e "conda activate align\n" >> job_scripts_busted/run_${file}.sh
   echo -e "hyphy busted --alignment og_fastas/${file}_uniq.nh" >> job_scripts_busted/run_${file}.sh
 done < "og_fastas/uniq"
 
