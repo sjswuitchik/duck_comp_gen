@@ -13,7 +13,7 @@ do
   echo -e "#SBATCH -p shared" >> job_scripts_busted/run_${file}.sh
   echo -e "#SBATCH -n 1" >> job_scripts_busted/run_${file}.sh
   echo -e "#SBATCH -t 48:00:00" >> job_scripts_busted/run_${file}.sh
-  echo -e "#SBATCH --mem=9000" >> job_scripts_busted/run_${file}.sh
+  echo -e "#SBATCH --mem=9000\n" >> job_scripts_busted/run_${file}.sh
   echo -e "source activate align\n" >> job_scripts_busted/run_${file}.sh
   echo -e "hyphy busted --alignment og_fastas/${file}_nuc.fa_codon.msa --tree og_fastas/${file}_tree.txt" >> job_scripts_busted/run_${file}.sh
 done < "og_fastas/split_aligns"
