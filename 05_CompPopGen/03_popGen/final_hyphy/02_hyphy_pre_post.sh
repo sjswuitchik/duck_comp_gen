@@ -49,5 +49,5 @@ done < "../clean_ogs.tsv"
 
 # check for uniq vs dup
 ls *_uniq.fas > uniq
-sed -i 's/\_uniq\.nh//g' uniq
+sed -i 's/\_uniq\.fas//g' uniq
 comm -3 codon_aligns uniq > split_aligns
