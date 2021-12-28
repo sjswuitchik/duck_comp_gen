@@ -27,7 +27,7 @@ do
   echo -e "#SBATCH -n 1" >> job_scripts_busted/run_${file}.sh
   echo -e "#SBATCH -t 48:00:00" >> job_scripts_busted/run_${file}.sh
   echo -e "#SBATCH --mem=9000\n" >> job_scripts_busted/run_${file}.sh
-  echo -e "conda activate align\n" >> job_scripts_busted/run_${file}.sh
+  echo -e "source activate align\n" >> job_scripts_busted/run_${file}.sh
   echo -e "hyphy busted --alignment ../og_fastas/${file}_uniq.nh" >> job_scripts_busted/run_${file}.sh
 done < "og_fastas/uniq"
 
