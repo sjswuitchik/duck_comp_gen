@@ -19,11 +19,11 @@ cd og_fastas/
 sbatch run_hyphy_prep.sh
 
 # check for missed alignments
-ls *_codon.msa | sort > uniq_aligns
+ls *_codon.msa | sort > codon_aligns
 ls *_nuc.fa | sort > og_aligns
-sed -i 's/\_nuc\.fa\_codon\.msa//g' uniq_aligns
+sed -i 's/\_nuc\.fa\_codon\.msa//g' codon_aligns
 sed -i 's/\_nuc\.fa//g' og_aligns
-comm -3 uniq_aligns og_aligns 
+comm -3 codon_aligns og_aligns 
 #OG0003606
 #OG0008416
 #OG0009185
@@ -44,11 +44,10 @@ done
 # remove duplicate sequences and trim tree accordingly
 while IFS= read -r file
 do
-  hyphy hyphy-analyses/remove-duplicates/remove-duplicates.bf --msa ${file}_nuc.fa_codon.msa --tree ${file}_tree.txt --output ${file}_uniq.nh
+  hyphy hyphy-analyses/remove-duplicates/remove-duplicates.bf --msa ${file}_nuc.fa_codon.msa --tree ${file}_tree.txt --output ${file}_uniq.fas ENV="DATA_FILE_PRINT_FORMAT=9
 done < "../clean_ogs.tsv"
 
 # check for uniq vs dup
-ls *_uniq.nh > uniq
+ls *_uniq.fas > uniq
 sed -i 's/\_uniq\.nh//g' uniq
-comm -3 uniq_aligns uniq > split_aligns
-
+comm -3 codon_aligns uniq > split_aligns
