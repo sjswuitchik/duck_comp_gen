@@ -8,7 +8,7 @@ while IFS= read -r file
 do
   echo -e '#!/bin/bash' >> run_busted_${file}.sh
   echo -e "#SBATCH -o logs/${file}_busted.out" >> run_busted_${file}.sh
-  echo -e "#SBATCH -e logs/${file}_busted.err" >> job_scripts_busted/run_${file}.sh
+  echo -e "#SBATCH -e logs/${file}_busted.err" >> run_busted_${file}.sh
   echo -e "#SBATCH -p shared" >> run_busted_${file}.sh
   echo -e "#SBATCH -n 1" >> run_busted_${file}.sh
   echo -e "#SBATCH -t 48:00:00" >> run_busted_${file}.sh
