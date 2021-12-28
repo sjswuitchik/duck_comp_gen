@@ -32,9 +32,8 @@ do
 done < "uniq"
 
 # create BUSTED batches
-cd job_scripts_busted
-ls *.sh > scripts
-split --numeric-suffixes=1 -l 4000 scripts batch
+ls *busted*.sh > busted_scripts
+split --numeric-suffixes=1 -l 4000 busted_scripts busted_batch
 
 while IFS= read -r file
 do
