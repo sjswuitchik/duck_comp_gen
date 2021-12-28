@@ -41,10 +41,10 @@ do
   cp -v $file hyphy-analyses/remove-duplicates/
 done
 
-# remove duplicate sequences and trim tree accordingly
+# remove duplicate sequences and trim tree accordingly, outputting FASTA rather than NH
 while IFS= read -r file
 do
-  hyphy hyphy-analyses/remove-duplicates/remove-duplicates.bf --msa ${file}_nuc.fa_codon.msa --tree ${file}_tree.txt --output ${file}_uniq.fas ENV="DATA_FILE_PRINT_FORMAT=9
+  hyphy hyphy-analyses/remove-duplicates/remove-duplicates.bf --msa ${file}_nuc.fa_codon.msa --tree ${file}_tree.txt --output ${file}_uniq.fas ENV="DATA_FILE_PRINT_FORMAT=9"
 done < "../clean_ogs.tsv"
 
 # check for uniq vs dup
