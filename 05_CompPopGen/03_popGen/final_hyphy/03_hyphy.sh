@@ -38,17 +38,17 @@ split --numeric-suffixes=1 -l 4000 busted_scripts busted_batch
 while IFS= read -r file
 do
   sbatch $file
-done < "batch01"
+done < "busted_batch01"
 
 while IFS= read -r file
 do
   sbatch $file
-done < "batch02"
+done < "busted_batch02"
 
 while IFS= read -r file
 do
   sbatch $file
-done < "batch03"
+done < "busted_batch03"
 
 
 ###### EDIT ONCE BUSTED IS RUNNING PROPERLY
