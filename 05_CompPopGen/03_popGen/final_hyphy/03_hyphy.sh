@@ -28,7 +28,7 @@ do
   echo -e "#SBATCH -t 48:00:00" >> run_busted_${file}.sh
   echo -e "#SBATCH --mem=9000\n" >> run_busted_${file}.sh
   echo -e "source activate align\n" >> run_busted_${file}.sh
-  echo -e "hyphy busted --alignment ${file}_uniq.fas" >> run_busted_${file}.sh
+  echo -e "hyphy busted --alignment ${file}_uniq.fas --tree ${file}_tree.txt" >> run_busted_${file}.sh
 done < "uniq"
 
 # create BUSTED batches
