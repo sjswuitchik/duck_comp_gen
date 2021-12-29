@@ -50,56 +50,51 @@ do
   sbatch $file
 done < "busted_batch03"
 
-
-###### EDIT ONCE BUSTED IS RUNNING PROPERLY
 ## make aBSREL job scripts
-cd ..
-mkdir -p job_scripts_absrel/logs
 
 # make scripts for runs without duplicate seqs
 while IFS= read -r file
 do
-  echo -e '#!/bin/bash' >> job_scripts_absrel/run_${file}.sh
-  echo -e "#SBATCH -o logs/${file}.out" >> job_scripts_absrel/run_${file}.sh
-  echo -e "#SBATCH -e logs/${file}.err" >> job_scripts_absrel/run_${file}.sh
-  echo -e "#SBATCH -p shared" >> job_scripts_absrel/run_${file}.sh
-  echo -e "#SBATCH -n 1" >> job_scripts_absrel/run_${file}.sh
-  echo -e "#SBATCH -t 48:00:00" >> job_scripts_absrel/run_${file}.sh
-  echo -e "#SBATCH --mem=9000\n" >> job_scripts_absrel/run_${file}.sh
-  echo -e "source activate align\n" >> job_scripts_absrel/run_${file}.sh
-  echo -e "hyphy absrel --alignment ../og_fastas/${file}_nuc.fa_codon.msa --tree ../og_fastas/${file}_tree.txt" >> job_scripts_absrel/run_${file}.sh
-done < "og_fastas/split_aligns"
+  echo -e '#!/bin/bash' >> run_absrel_${file}.sh
+  echo -e "#SBATCH -o logs/${file}_absrel.out" >> run_absrel_${file}.sh
+  echo -e "#SBATCH -e logs/${file}_absrel.err" >> run_absrel_${file}.sh
+  echo -e "#SBATCH -p shared" >> run_absrel_${file}.sh
+  echo -e "#SBATCH -n 1" >> run_absrel_${file}.sh
+  echo -e "#SBATCH -t 48:00:00" >> run_absrel_${file}.sh
+  echo -e "#SBATCH --mem=9000\n" >> run_absrel_${file}.sh
+  echo -e "source activate align\n" >> run_absrel_${file}.sh
+  echo -e "hyphy absrel --alignment ${file}_nuc.fa_codon.msa --tree ${file}_tree.txt" >> run_absrel_${file}.sh
+done < "split_aligns"
 
 # make scripts for runs with duplicate seqs 
 while IFS= read -r file
 do
-  echo -e '#!/bin/bash' >> job_scripts_absrel/run_${file}.sh
-  echo -e "#SBATCH -o logs/${file}.out" >> job_scripts_absrel/run_${file}.sh
-  echo -e "#SBATCH -e logs/${file}.err" >> job_scripts_absrel/run_${file}.sh
-  echo -e "#SBATCH -p shared" >> job_scripts_absrel/run_${file}.sh
-  echo -e "#SBATCH -n 1" >> job_scripts_absrel/run_${file}.sh
-  echo -e "#SBATCH -t 48:00:00" >> job_scripts_absrel/run_${file}.sh
-  echo -e "#SBATCH --mem=9000\n" >> job_scripts_absrel/run_${file}.sh
-  echo -e "source activate align\n" >> job_scripts_absrel/run_${file}.sh
-  echo -e "hyphy absrel --alignment ../og_fastas/${file}_uniq.nh" >> job_scripts_absrel/run_${file}.sh
-done < "og_fastas/uniq"
+  echo -e '#!/bin/bash' >> run_absrel_${file}.sh
+  echo -e "#SBATCH -o logs/${file}_absrel.out" >> run_absrel_${file}.sh
+  echo -e "#SBATCH -e logs/${file}_absrel.err" >> run_absrel_${file}.sh
+  echo -e "#SBATCH -p shared" >> run_absrel_${file}.sh
+  echo -e "#SBATCH -n 1" >> run_absrel_${file}.sh
+  echo -e "#SBATCH -t 48:00:00" >> run_absrel_${file}.sh
+  echo -e "#SBATCH --mem=9000\n" >> run_absrel_${file}.sh
+  echo -e "source activate align\n" >> run_absrel_${file}.sh
+  echo -e "hyphy absrel --alignment ${file}_uniq.fas --tree ${file}_tree.txt" >> run_absrel_${file}.sh
+done < "uniq"
 
 # create aBSREL batches
-cd job_scripts_absrel
-ls *.sh > scripts
-split --numeric-suffixes=4 -l 4000 scripts batch
+ls *absrel*.sh > absrel_scripts
+split --numeric-suffixes=1 -l 4000 absrel_scripts absrel_batch
 
 while IFS= read -r file
 do
   sbatch $file
-done < "batch04"
+done < "absrel_batch01"
 
 while IFS= read -r file
 do
   sbatch $file
-done < "batch05"
+done < "absrel_batch02"
 
 while IFS= read -r file
 do
   sbatch $file
-done < "batch06"
+done < "absrel_batch03"
