@@ -105,4 +105,4 @@ ls -lh *ABSREL.json | cut -c 24- | sort -nr | awk '$2 == 0 {print $6}' | sort > 
 sed -i 's/\.BUSTED\.json//g' failed_busted 
 sed -i 's/\.ABSREL\.json//g' failed_absrel
 # check if they're all the same files (or not)
-uniq -u failed_busted failed_absrel > failed_uniqs # empty file, therefore all alignments failed both BUSTED and aBSREL runs
+uniq -u failed_busted failed_absrel > failed_uniqs # empty file, therefore all alignments that failed, failed both BUSTED and aBSREL runs
