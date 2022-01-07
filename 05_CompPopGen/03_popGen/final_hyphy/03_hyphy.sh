@@ -65,7 +65,7 @@ do
   echo -e "#SBATCH -t 48:00:00" >> run_absrel_${file}.sh
   echo -e "#SBATCH --mem=9000\n" >> run_absrel_${file}.sh
   echo -e "source activate align\n" >> run_absrel_${file}.sh
-  echo -e "hyphy absrel --alignment ${file}_nuc.fa_codon.msa --tree ${file}_tree.txt" >> run_absrel_${file}.sh
+  echo -e "hyphy absrel --alignment ${file}_nuc.fa_codon.msa --tree ${file}_prunedTree.txt" >> run_absrel_${file}.sh
 done < "split_aligns"
 
 # make scripts for runs with duplicate seqs 
