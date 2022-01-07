@@ -98,3 +98,11 @@ while IFS= read -r file
 do
   sbatch $file
 done < "absrel_batch03"
+
+# check for failed runs (HYPHY outputs an empty JSON on a failed run, so no way to check for just missing output)
+ls -lh *BUSTED.json | cut -c 24- | sort -nr | awk '$2 == 0 {print $6}' | sort > failed_busted
+ls -lh *ABSREL.json | cut -c 24- | sort -nr | awk '$2 == 0 {print $6}' | sort > failed_absrel
+sed -i 's/\.BUSTED\.json//g' failed_busted 
+sed -i 's/\.ABSREL\.json//g' failed_absrel
+# check if they're all the same files (or not)
+uniq -u failed_busted failed_absrel > failed_uniqs # empty file, therefore all alignments failed both BUSTED and aBSREL runs
