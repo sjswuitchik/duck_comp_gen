@@ -14,7 +14,7 @@ do
   echo -e "#SBATCH -t 48:00:00" >> run_busted_${file}.sh
   echo -e "#SBATCH --mem=9000\n" >> run_busted_${file}.sh
   echo -e "source activate align\n" >> run_busted_${file}.sh
-  echo -e "grep '^>' ${file}_nuc.fa_codon.msa | sed -e 's/>//g' > ${file}_tips\n" >> run_busted_${file}.sh
+  echo -e "grep '^>' ${file}_nuc.fa_codon.msa | sed -e 's/>//g' > ${file}_tips" >> run_busted_${file}.sh
   echo -e "nw_prune -v -f ${file}_tree.txt ${file}_tips > ${file}_prunedTree.txt\n" >> run_busted_${file}.sh
   echo -e "hyphy busted --alignment ${file}_nuc.fa_codon.msa --tree ${file}_prunedTree.txt" >> run_busted_${file}.sh
 done < "split_aligns"
