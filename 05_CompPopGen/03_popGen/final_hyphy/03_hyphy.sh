@@ -108,3 +108,14 @@ sed -i 's/\.BUSTED\.json//g' failed_busted
 sed -i 's/\.ABSREL\.json//g' failed_absrel
 # check if they're all the same files (or not)
 uniq -u failed_busted failed_absrel > failed_uniqs # empty file, therefore all alignments that failed, failed both BUSTED and aBSREL runs
+# failed runs are because codon-aware processing removed enough sequences for comparison, so remove outputs and don't include these alignments in final output
+while IFS= read -r file
+do
+  rm ${file}.BUSTED.json
+  rm ${file}.ABSREL.json
+done < "failed_busted"
+
+
+
+
+
