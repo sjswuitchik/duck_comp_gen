@@ -11,8 +11,8 @@ python3 hyphy-interface/hyphy_to_csv.py -i busted_out -m busted --overwrite -o b
 python3 hyphy-interface/hyphy_to_csv.py -i absrel_out -m absrel --overwrite -o absrel_output.csv
 
 # clean up output (keep run meta data but write out file without header for easier analysis)
-grep -v '^#' busted_output.csv > busted_output_clean.csv
-grep -v '^#' absrel_output.csv > absrel_output_clean.csv
+grep -v '^#' busted_output.csv | sed 's/\_nuc\.fa\_codon\.msa\.BUSTED\.json//g' | sed 's/\_uniq\.fas\.BUSTED\.json//g' > busted_output_clean.csv
+grep -v '^#' absrel_output.csv | sed 's/\_nuc\.fa\_codon\.msa\.BUSTED\.json//g' | sed 's/\_uniq\.fas\.BUSTED\.json//g' > absrel_output_clean.csv
 
 # filter aBSREL results for OGs with hetAtr 
 grep 'hetAtr' absrel_output_clean.csv > absrel_output_clean_hetAtr.csv
