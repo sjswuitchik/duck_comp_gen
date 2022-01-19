@@ -1,6 +1,6 @@
 ##  in /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021/
 
-#conda create -n align -c bioconda r-base r-tidyverse gffread hyphy muscle mafft 
+#conda create -n align -c bioconda r-base r-tidyverse gffread hyphy muscle mafft newick_utils
 
 # get OGs that are in hetAtr, in at least 50% of spp, and capped at 25 seq
 Rscript clean_ogs.R
