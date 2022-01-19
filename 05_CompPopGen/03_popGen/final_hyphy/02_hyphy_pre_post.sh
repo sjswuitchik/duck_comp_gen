@@ -51,3 +51,15 @@ done < "../clean_ogs.tsv"
 ls *_uniq.fas > uniq
 sed -i 's/\_uniq\.fas//g' uniq
 comm -3 codon_aligns uniq > split_aligns
+
+# prune trees for alignments that didn't have duplicated sequences 
+while IFS= read -r file
+do
+  grep '^>' ${file}_nuc.fa_codon.msa > ${file}_tips
+  sed -i 's/>//g' ${file}_tips 
+  nw_prune -v -f ${file}_tree.txt ${file}_tips > ${file}_prunedTree.txt
+done < "split_aligns"
+  
+  
+  
+  
