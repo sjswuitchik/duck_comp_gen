@@ -15,15 +15,4 @@ grep -v '^#' busted_output.csv | sed 's/\_nuc\.fa\_codon\.msa\.BUSTED\.json//g' 
 grep -v '^#' absrel_output.csv | sed 's/\_nuc\.fa\_codon\.msa\.ABSREL\.json//g' | sed 's/\_uniq\.fas\.ABSREL\.json//g' > absrel_output_clean.csv
 
 # filter aBSREL results for OGs with hetAtr 
-grep 'hetAtr' absrel_output_clean.csv > absrel_output_clean_hetAtr.csv
-sed -i '1s/^/file\,branches\,num\_ps\_branches\,ps\_pvals\n/' absrel_output_clean_hetAtr.csv
-
-
-
-cd ..
-mkdir hetAtr_ogs
-while IFS= read -r file
-do
-  cp -v og_fastas/${file}_nuc.fa_codon.msa hetAtr_ogs/
-  cp -v og_fastas/${file}_uniq.fas hetAtr_ogs/
-done < "hetAtr_sig_ogs"
+awk -F , '$2 ~ /hetAtr/ { nf = split($2, branches, ";"); for (i = 1; i <= nf; i++) if (branches[i] ~ /hetAtr/) break; split($4, ps_values, ";"); print $1, branches[i], ps_values[i] } ' absrel_output_clean.csv > absrel_output_clean_hetAtr.csv
