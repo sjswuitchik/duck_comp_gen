@@ -16,6 +16,6 @@ do
   raxml-ng --msa $file --model HKY+G4 --prefix $file --all --seed 2 --redo --bs-metric fbp
 done
 
-cat *.bestTree > prot.tree
+cat orthos/*.bestTree > prot.tree
 
-cat *.support > prot.support.tree
+cat orthos/*.support > prot.support.tree
