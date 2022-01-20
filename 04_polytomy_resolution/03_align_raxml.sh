@@ -37,9 +37,3 @@ sbatch run_raxml.sh
 
 # test --all against simple inference in /n/holyscratch01/informatics/swuitchik/ducks/polytomy_cnee/trimmed/finished_fastas
 sbatch run_raxml_all.sh
-
-
-# protein coding alignments in /n/holyscratch01/informatics/swuitchik/ducks/polytomy_cnee/raxml_prot_code
-# copy over alignments from /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/aligned/mafft/clean_align/all_spp & /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/aligned/mafft/last2hmmClean
-cp -vr /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/aligned/mafft/clean_align/all_spp/*.filtered .
-cp -vr /n/holyscratch01/informatics/swuitchik/ducks/compGen/busted/aligned/mafft/last2hmmClean/*.filtered .
