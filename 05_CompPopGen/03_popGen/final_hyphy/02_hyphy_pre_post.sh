@@ -31,7 +31,7 @@ mkdir inter_files
 mv *_copies.json *_filtered.json *_nuc.fa_nuc.fas *_nuc.fa_protein.fas *_protein.msa *_hmm.score *_hmm.log inter_files/
 
 # fix gene trees to match alignment outputs
-#cp -vr ../gene_trees/*.txt .
+cp -vr ../gene_trees/*.txt .
 
 cd ../gene_trees/
 for file in *.txt;
@@ -58,7 +58,3 @@ do
   sed -i 's/>//g' ${file}_tips 
   nw_prune -v -f ${file}_tree.txt ${file}_tips > ${file}_prunedTree.txt
 done < "../clean_ogs"
-  
-  
-  
-  
