@@ -38,7 +38,7 @@ cp -vr ../gene_trees/*.txt .
 for file in *.txt;
 do
   sed -i 's/_\([[:alnum:]]*\)\./_\1_/g' $file
-  cp -v $file hyphy-analyses/remove-duplicates/
+#  cp -v $file hyphy-analyses/remove-duplicates/
 done
 
 # remove duplicate sequences and trim tree accordingly, outputting FASTA rather than NH
