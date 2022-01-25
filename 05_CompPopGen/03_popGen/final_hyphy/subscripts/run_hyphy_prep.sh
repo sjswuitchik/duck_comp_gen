@@ -14,6 +14,6 @@ conda activate align
 for file in *.fa;
 do
   hyphy hyphy-analyses/codon-msa/pre-msa.bf --input $file
-  muscle -in ${file}_protein.fas -out ${file}_protein.msa
+  mafft --quiet ${file}_protein.fas > ${file}_protein.msa
   hyphy hyphy-analyses/codon-msa/post-msa.bf --protein-msa ${file}_protein.msa --nucleotide-sequences ${file}_nuc.fas --output ${file}_codon.msa --compress No
 done
