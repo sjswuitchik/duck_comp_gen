@@ -9,7 +9,7 @@
 
 # submit from /n/holyscratch01/informatics/swuitchik/ducks/compGen/final_hyphy/aligned
 
-for file in *.mafft;
+for file in *_codon.msa;
 do
 if [ -f ${file}_hmm.fasta]; then
   continue;
