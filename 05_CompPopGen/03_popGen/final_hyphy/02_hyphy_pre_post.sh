@@ -1,7 +1,5 @@
 ## in /n/holyscratch01/informatics/swuitchik/ducks/compGen/
 
-git clone https://github.com/veg/hyphy-analyses.git
-
 # copy over gene trees
 mkdir gene_trees
 cut -f1 /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021/clean_orthos.tsv | sed -e "1d" > clean_ogs
@@ -11,9 +9,9 @@ do
   cp -vr /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021/run_ortho/results/Results_Nov09/Gene_Trees/${file}_tree.txt gene_trees/
 done < "clean_ogs"
 
-conda activate align
-
 # prep hyphy and align
+cd og_fastas/
+git clone https://github.com/veg/hyphy-analyses.git
 sbatch run_hyphy_prep.sh
 
 # check for missed alignments
@@ -22,12 +20,7 @@ ls *_nuc.fa | sort > og_aligns
 sed -i 's/\_nuc\.fa\_codon\.msa//g' codon_aligns
 sed -i 's/\_nuc\.fa//g' og_aligns
 comm -3 codon_aligns og_aligns 
-#OG0003606
-#OG0008416
-#OG0009185
-#OG0010355
-#OG0013409
-#OG0013485
+
 # redo run_hyphy_prep.sh for missed groups
 
 # clean alignments
