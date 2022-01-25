@@ -24,7 +24,7 @@ comm -3 codon_aligns og_aligns
 # redo run_hyphy_prep.sh for missed groups
 
 # clean alignments
-sbatch run_hmmcleaner.sh
+sbatch run_hmmCleaner.sh
 
 # reorg dir
 mkdir inter_files
