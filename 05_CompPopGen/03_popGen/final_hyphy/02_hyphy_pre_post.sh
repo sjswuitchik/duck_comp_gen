@@ -1,8 +1,5 @@
 ## in /n/holyscratch01/informatics/swuitchik/ducks/compGen/
 
-#git clone https://github.com/veg/hyphy-analyses.git
-#chmod +x hyphy-analyses/remove-duplicates/remove-duplicates.bf 
-
 # copy over gene trees
 mkdir gene_trees
 cut -f1 /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021/clean_orthos.tsv | sed -e "1d" > clean_ogs.tsv
@@ -16,6 +13,7 @@ conda activate align
 
 # prep hyphy and align
 cd og_fastas/
+git clone https://github.com/veg/hyphy-analyses.git
 sbatch run_hyphy_prep.sh
 
 # check for missed alignments
