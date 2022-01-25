@@ -47,17 +47,17 @@ done
 #done < "../clean_ogs.tsv"
 
 # check for uniq vs dup
-ls *_uniq.fas > uniq
-sed -i 's/\_uniq\.fas//g' uniq
-comm -3 codon_aligns uniq > split_aligns
+#ls *_uniq.fas > uniq
+#sed -i 's/\_uniq\.fas//g' uniq
+#comm -3 codon_aligns uniq > split_aligns
 
-# prune trees for alignments that didn't have duplicated sequences 
+# prune trees 
 while IFS= read -r file
 do
-  grep '^>' ${file}_nuc.fa_codon.msa > ${file}_tips
+  grep '^>' ${file}_codon.msa > ${file}_tips
   sed -i 's/>//g' ${file}_tips 
   nw_prune -v -f ${file}_tree.txt ${file}_tips > ${file}_prunedTree.txt
-done < "split_aligns"
+done < "../clean_ogs"
   
   
   
