@@ -13,7 +13,7 @@ conda activate align
 
 while IFS= read -r file
 do
-  hyphy ../hyphy-analyses/codon-msa/pre-msa.bf --input ${file}_nuc.fa
+  hyphy hyphy-analyses/codon-msa/pre-msa.bf --input ${file}_nuc.fa
   mafft ${file}_nuc.fa_protein.fas > ${file}_protein.msa
-  hyphy ../hyphy-analyses/codon-msa/post-msa.bf --protein-msa ${file}_protein.msa --nucleotide-sequences ${file}_nuc.fa_nuc.fas --output ${file}_codon.msa --compress No
+  hyphy hyphy-analyses/codon-msa/post-msa.bf --protein-msa ${file}_protein.msa --nucleotide-sequences ${file}_nuc.fa_nuc.fas --output ${file}_codon.msa --compress No
 done < "clean_ogs"
