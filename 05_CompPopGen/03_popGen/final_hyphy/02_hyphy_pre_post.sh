@@ -32,6 +32,9 @@ comm -3 codon_aligns og_aligns
 #OG0013485
 # redo run_hyphy_prep.sh for missed groups
 
+# clean alignments
+sbatch run_hmmcleaner.sh
+
 # fix gene trees to match alignment outputs
 cp -vr ../gene_trees/*.txt .
 
