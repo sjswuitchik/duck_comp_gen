@@ -17,7 +17,7 @@ sbatch run_hyphy_prep.sh
 # check for missed alignments
 ls *_codon.msa | sort > codon_aligns
 ls *_nuc.fa | sort > og_aligns
-sed -i 's/\_nuc\.fa\_codon\.msa//g' codon_aligns
+sed -i 's/\_codon\.msa//g' codon_aligns
 sed -i 's/\_nuc\.fa//g' og_aligns
 comm -3 codon_aligns og_aligns 
 
