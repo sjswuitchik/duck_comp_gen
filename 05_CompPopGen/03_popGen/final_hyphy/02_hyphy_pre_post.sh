@@ -20,6 +20,12 @@ ls *_nuc.fa | sort > og_aligns
 sed -i 's/\_codon\.msa//g' codon_aligns
 sed -i 's/\_nuc\.fa//g' og_aligns
 comm -3 codon_aligns og_aligns 
+#OG0003606
+#OG0008416
+#OG0009185
+#OG0010355
+#OG0013409
+#OG0013485
 
 # redo run_hyphy_prep.sh for missed groups
 
