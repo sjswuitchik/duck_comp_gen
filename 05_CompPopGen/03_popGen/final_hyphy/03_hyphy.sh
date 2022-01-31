@@ -3,7 +3,7 @@
 ## make BUSTED job scripts
 mkdir logs
 
-# make scripts for runs without duplicate seqs
+# make scripts 
 while IFS= read -r file
 do
   echo -e '#!/bin/bash' >> run_busted_${file}.sh
@@ -14,23 +14,22 @@ do
   echo -e "#SBATCH -t 48:00:00" >> run_busted_${file}.sh
   echo -e "#SBATCH --mem=9000\n" >> run_busted_${file}.sh
   echo -e "source activate align\n" >> run_busted_${file}.sh
-  echo -e "grep '^>' ${file}_nuc.fa_codon.msa | sed -e 's/>//g' > ${file}_tips" >> run_busted_${file}.sh
-  echo -e "hyphy busted --alignment ${file}_nuc.fa_codon.msa --tree ${file}_prunedTree.txt" >> run_busted_${file}.sh
-done < "split_aligns"
+  echo -e "hyphy busted --alignment ${file}_codon_hmm.fasta --tree ${file}_prunedTree.txt" >> run_busted_${file}.sh
+done < "clean_aligns"
 
 # make scripts for runs with duplicate seqs 
-while IFS= read -r file
-do
-  echo -e '#!/bin/bash' >> run_busted_${file}.sh
-  echo -e "#SBATCH -o logs/${file}_busted.out" >> run_busted_${file}.sh
-  echo -e "#SBATCH -e logs/${file}_busted.err" >> run_busted_${file}.sh
-  echo -e "#SBATCH -p shared" >> run_busted_${file}.sh
-  echo -e "#SBATCH -n 1" >> run_busted_${file}.sh
-  echo -e "#SBATCH -t 48:00:00" >> run_busted_${file}.sh
-  echo -e "#SBATCH --mem=9000\n" >> run_busted_${file}.sh
-  echo -e "source activate align\n" >> run_busted_${file}.sh
-  echo -e "hyphy busted --alignment ${file}_uniq.fas --tree ${file}_tree.txt" >> run_busted_${file}.sh
-done < "uniq"
+#while IFS= read -r file
+#do
+#  echo -e '#!/bin/bash' >> run_busted_${file}.sh
+#  echo -e "#SBATCH -o logs/${file}_busted.out" >> run_busted_${file}.sh
+#  echo -e "#SBATCH -e logs/${file}_busted.err" >> run_busted_${file}.sh
+#  echo -e "#SBATCH -p shared" >> run_busted_${file}.sh
+#  echo -e "#SBATCH -n 1" >> run_busted_${file}.sh
+#  echo -e "#SBATCH -t 48:00:00" >> run_busted_${file}.sh
+#  echo -e "#SBATCH --mem=9000\n" >> run_busted_${file}.sh
+#  echo -e "source activate align\n" >> run_busted_${file}.sh
+#  echo -e "hyphy busted --alignment ${file}_uniq.fas --tree ${file}_tree.txt" >> run_busted_${file}.sh
+#done < "uniq"
 
 # create BUSTED batches
 ls *busted*.sh > busted_scripts
