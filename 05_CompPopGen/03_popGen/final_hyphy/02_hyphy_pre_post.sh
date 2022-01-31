@@ -56,6 +56,11 @@ done
 #sed -i 's/\_uniq\.fas//g' uniq
 #comm -3 codon_aligns uniq > split_aligns
 
+ls *_hmm.fasta | sort > clean_aligns
+sed -i 's/\_codon\_hmm\.fasta//g' clean_aligns
+comm -3 codon_aligns clean_aligns
+# missing OG0003786 from clean_aligns, re-run hmmCleaner on it
+
 # prune trees 
 while IFS= read -r file
 do
