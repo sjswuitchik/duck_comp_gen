@@ -27,7 +27,7 @@ comm -3 codon_aligns og_aligns
 #OG0013409
 #OG0013485
 
-# redo run_hyphy_prep.sh for missed groups
+# redo run_hyphy_prep.sh for missed groups - screen 10549
 
 # clean alignments
 sbatch run_hmmCleaner.sh
@@ -39,7 +39,6 @@ mv *_copies.json *_filtered.json *_nuc.fa_nuc.fas *_nuc.fa_protein.fas *_protein
 # fix gene trees to match alignment outputs
 cp -vr ../gene_trees/*.txt .
 
-cd ../gene_trees/
 for file in *.txt;
 do
   sed -i 's/_\([[:alnum:]]*\)\./_\1_/g' $file
@@ -63,4 +62,4 @@ do
   grep '^>' ${file}_codon.msa > ${file}_tips
   sed -i 's/>//g' ${file}_tips 
   nw_prune -v -f ${file}_tree.txt ${file}_tips > ${file}_prunedTree.txt
-done < "../clean_ogs"
+done < "../codon_aligns"
