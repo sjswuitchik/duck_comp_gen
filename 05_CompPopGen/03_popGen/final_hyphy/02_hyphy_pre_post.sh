@@ -59,7 +59,9 @@ done
 ls *_hmm.fasta | sort > clean_aligns
 sed -i 's/\_codon\_hmm\.fasta//g' clean_aligns
 comm -3 codon_aligns clean_aligns
-# missing OG0003786 from clean_aligns, re-run hmmCleaner on it
+# missing OG0003786 from clean_aligns, re-run hmmCleaner on it, rm clean_aligns and re-make
+ls *_hmm.fasta | sort > clean_aligns
+sed -i 's/\_codon\_hmm\.fasta//g' clean_aligns
 
 # prune trees 
 while IFS= read -r file
@@ -67,4 +69,4 @@ do
   grep '^>' ${file}_codon.msa > ${file}_tips
   sed -i 's/>//g' ${file}_tips 
   nw_prune -v -f ${file}_tree.txt ${file}_tips > ${file}_prunedTree.txt
-done < "../codon_aligns"
+done < "../clean_aligns"
