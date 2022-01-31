@@ -1,5 +1,7 @@
 ## in /n/holyscratch01/informatics/swuitchik/ducks/compGen/
 
+conda activate align
+
 # copy over gene trees
 mkdir gene_trees
 cut -f1 /n/holyscratch01/informatics/swuitchik/ducks/orthofinder_nov2021/clean_orthos.tsv | sed -e "1d" > clean_ogs
@@ -69,4 +71,4 @@ do
   grep '^>' ${file}_codon.msa > ${file}_tips
   sed -i 's/>//g' ${file}_tips 
   nw_prune -v -f ${file}_tree.txt ${file}_tips > ${file}_prunedTree.txt
-done < "../clean_aligns"
+done < "clean_aligns"
