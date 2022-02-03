@@ -68,25 +68,32 @@ do
   sbatch $file
 done < "absrel_batch03"
 
-## missing approx 500 BUSTED outputs, so resubmit only if json isn't found
-while IFS= read -r file
-do
-if [ -f ${file}_codon_hmm.fasta.BUSTED.json]; then
-  continue;
-fi
-  sbatch run_busted_${file}.sh
-done < "clean_aligns"
-
-# check for failed runs (HYPHY outputs an empty JSON on a failed run, so no way to check for just missing output)
+## missing some BUSTED outputs, so resubmit 
 ls -lh *BUSTED.json | cut -c 24- | sort -nr | awk '$2 == 0 {print $6}' | sort > failed_busted
-ls -lh *ABSREL.json | cut -c 24- | sort -nr | awk '$2 == 0 {print $6}' | sort > failed_absrel
-sed -i 's/\.BUSTED\.json//g' failed_busted 
-sed -i 's/\.ABSREL\.json//g' failed_absrel
-# check if they're all the same files (or not)
-uniq -u failed_busted failed_absrel > failed_uniqs # empty file, therefore all alignments that failed, failed both BUSTED and aBSREL runs
-# failed runs are because codon-aware processing removed enough sequences for comparison, so remove outputs and don't include these alignments in final output
+sed -i 's/\_codon\_hmm\.fasta\.BUSTED\.json//g' failed_busted 
+ls *BUSTED.json > all_bust
+sed -i 's/\_codon\_hmm\.fasta\.BUSTED\.json//g' all_bust
+comm -3 clean_aligns all_bust > rerun_busted 
+
 while IFS= read -r file
 do
-  rm ${file}.BUSTED.json
-  rm ${file}.ABSREL.json
+  sbatch run_busted_${file}.sh
+done < "rerun_busted"
+
+while IFS= read -r file
+do
+  sbatch run_busted_${file}.sh
 done < "failed_busted"
+
+## check for failed runs (HYPHY outputs an empty JSON on a failed run, so no way to check for just missing output)
+#ls -lh *ABSREL.json | cut -c 24- | sort -nr | awk '$2 == 0 {print $6}' | sort > failed_absrel
+#sed -i 's/\.ABSREL\.json//g' failed_absrel
+## check if they're all the same files (or not)
+#uniq -u failed_busted failed_absrel > failed_uniqs # empty file, therefore all alignments that failed, failed both BUSTED and aBSREL runs
+## failed runs are because codon-aware processing removed enough sequences for comparison, so remove outputs and don't include these alignments in final output
+#while IFS= read -r file
+#do
+#  rm ${file}.BUSTED.json
+#  rm ${file}.ABSREL.json
+#done < "failed_busted"
+#
