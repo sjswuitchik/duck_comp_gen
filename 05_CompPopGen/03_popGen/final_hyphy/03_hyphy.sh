@@ -68,6 +68,15 @@ do
   sbatch $file
 done < "absrel_batch03"
 
+## missing approx 500 BUSTED outputs, so resubmit only if json isn't found
+while IFS= read -r file
+do
+if [ -f ${file}_codon_hmm.fasta.BUSTED.json]; then
+  continue;
+fi
+  sbatch run_busted_${file}.sh
+done < "clean_aligns"
+
 # check for failed runs (HYPHY outputs an empty JSON on a failed run, so no way to check for just missing output)
 ls -lh *BUSTED.json | cut -c 24- | sort -nr | awk '$2 == 0 {print $6}' | sort > failed_busted
 ls -lh *ABSREL.json | cut -c 24- | sort -nr | awk '$2 == 0 {print $6}' | sort > failed_absrel
