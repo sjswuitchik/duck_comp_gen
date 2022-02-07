@@ -80,11 +80,6 @@ do
   sbatch run_busted_${file}.sh
 done < "rerun_busted"
 
-while IFS= read -r file
-do
-  sbatch run_busted_${file}.sh
-done < "failed_busted"
-
 ## check for failed runs (HYPHY outputs an empty JSON on a failed run, so no way to check for just missing output)
 #ls -lh *ABSREL.json | cut -c 24- | sort -nr | awk '$2 == 0 {print $6}' | sort > failed_absrel
 #sed -i 's/\.ABSREL\.json//g' failed_absrel
