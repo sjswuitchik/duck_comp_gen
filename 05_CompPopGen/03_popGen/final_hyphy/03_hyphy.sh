@@ -80,15 +80,13 @@ do
   sbatch run_busted_${file}.sh
 done < "rerun_busted"
 
-## check for failed runs (HYPHY outputs an empty JSON on a failed run, so no way to check for just missing output)
-#ls -lh *ABSREL.json | cut -c 24- | sort -nr | awk '$2 == 0 {print $6}' | sort > failed_absrel
-#sed -i 's/\.ABSREL\.json//g' failed_absrel
-## check if they're all the same files (or not)
-#uniq -u failed_busted failed_absrel > failed_uniqs # empty file, therefore all alignments that failed, failed both BUSTED and aBSREL runs
-## failed runs are because codon-aware processing removed enough sequences for comparison, so remove outputs and don't include these alignments in final output
-#while IFS= read -r file
-#do
-#  rm ${file}.BUSTED.json
-#  rm ${file}.ABSREL.json
-#done < "failed_busted"
-#
+## some aBSREL submissions were interrupted, resub
+ls *ABSREL.json > all_abs
+sed -i 's/\_codon\_hmm\.fasta\.ABSREL\.json//g' all_abs
+comm -3 clean_aligns all_abs > rerun_abs
+
+while IFS= read -r file
+do
+  sbatch run_absrel_${file}.sh
+done < "rerun_abs"
+
