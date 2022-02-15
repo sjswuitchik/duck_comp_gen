@@ -96,6 +96,24 @@ done < "rerun_busted"
 
 while IFS= read -r file
 do
+  hyphy hyphy-analyses/remove-duplicates/remove-duplicates.bf --msa ${file}_codon.msa --output ${file}_uniq.fa ENV="DATA_FILE_PRINT_FORMAT=9"
+done < "rerun_busted"
+
+ls *_uniq.fa > removed_dups
+sed -i 's/\_uniq\.fa//g' removed_dups
+comm -3 rerun_busted removed_dups 
+# every entry the same
+
+while IFS= read -r file
+do
+  singularity exec --cleanenv /n/singularity_images/informatics/hmmcleaner/hmmcleaner_0.180750.sif HmmCleaner.pl ${file}_uniq.fa
+  grep '^>' ${file}_uniq_hmm.fasta > ${file}_tips
+  sed -i 's/>//g' ${file}_tips
+  nw_prune -v -f ${file}_tree.txt ${file}_tips > ${file}_prunedTree.txt
+done < "removed_dups"
+
+while IFS= read -r file
+do
   echo -e '#!/bin/bash' >> run_busted_${file}.sh
   echo -e "#SBATCH -o logs/${file}_busted.out" >> run_busted_${file}.sh
   echo -e "#SBATCH -e logs/${file}_busted.err" >> run_busted_${file}.sh
@@ -104,13 +122,6 @@ do
   echo -e "#SBATCH -t 48:00:00" >> run_busted_${file}.sh
   echo -e "#SBATCH --mem=9000\n" >> run_busted_${file}.sh
   echo -e "source activate align\n" >> run_busted_${file}.sh
-  echo -e "hyphy hyphy-analyses/remove-duplicates/remove-duplicates.bf --msa ${file}_codon.msa --output ${file}_uniq.fa ENV="DATA_FILE_PRINT_FORMAT=9"\n" >> run_busted_${file}.sh
-  echo -e "conda deactivate\n" >> run_busted_${file}.sh
-  echo -e "singularity exec --cleanenv /n/singularity_images/informatics/hmmcleaner/hmmcleaner_0.180750.sif HmmCleaner.pl ${file}_uniq.fa\n" >> run_busted_${file}.sh
-  echo -e "grep '^>' ${file}_uniq_hmm.fasta > ${file}_tips\n" >> run_busted_${file}.sh
-  echo -e "sed -i 's/>//g' ${file}_tips\n" >> run_busted_${file}.sh
-  echo -e "source activate align\n" >> run_busted_${file}.sh
-  echo -e "nw_prune -v -f ${file}_tree.txt ${file}_tips > ${file}_prunedTree.txt" >> run_busted_${file}.sh
   echo -e "hyphy busted --alignment ${file}_uniq_hmm.fasta --tree ${file}_prunedTree.txt" >> run_busted_${file}.sh
 done < "rerun_busted"
 
