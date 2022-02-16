@@ -125,11 +125,11 @@ do
   echo -e "hyphy busted --alignment ${file}_uniq_hmm.fasta --tree ${file}_prunedTree.txt" >> run_busted_${file}.sh
 done < "rerun_busted"
 
-
-
-
-
-
+while IFS= read -r file
+do
+  sbatch run_busted_${file}.sh
+  sleep 2
+done < "rerun_busted"
 
 while IFS= read -r file
 do
@@ -141,6 +141,11 @@ do
   echo -e "#SBATCH -t 48:00:00" >> run_absrel_${file}.sh
   echo -e "#SBATCH --mem=9000\n" >> run_absrel_${file}.sh
   echo -e "source activate align\n" >> run_absrel_${file}.sh
-  echo -e "hyphy absrel --alignment ${file}_codon_hmm.fasta --tree ${file}_prunedTree.txt" >> run_absrel_${file}.sh
-done < "clean_aligns"
+  echo -e "hyphy absrel --alignment ${file}_uniq_hmm.fasta --tree ${file}_prunedTree.txt" >> run_absrel_${file}.sh
+done < "rerun_absrel"
 
+while IFS= read -r file
+do
+  sbatch run_absrel_${file}.sh
+  sleep 2
+done < "rerun_absrel"
