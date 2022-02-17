@@ -131,6 +131,14 @@ do
   sleep 2
 done < "rerun_busted"
 
+ls *BUSTED.json > all_bus
+sed -i 's/\_codon\_hmm\.fasta\.BUSTED\.json//g' all_bus
+sed -i 's/\_uniq\_hmm\.fasta\.BUSTED\.json//g' all_bus
+comm -3 clean_aligns all_bus > rerun_bus
+
+
+
+
 while IFS= read -r file
 do
   echo -e '#!/bin/bash' >> run_absrel_${file}.sh
