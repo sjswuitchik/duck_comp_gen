@@ -99,6 +99,11 @@ do
   hyphy hyphy-analyses/remove-duplicates/remove-duplicates.bf --msa ${file}_codon.msa --output ${file}_uniq.fa ENV="DATA_FILE_PRINT_FORMAT=9"
 done < "rerun_busted"
 
+while IFS= read -r file
+do
+  hyphy hyphy-analyses/remove-duplicates/remove-duplicates.bf --msa ${file}_codon.msa --output ${file}_uniq.fa ENV="DATA_FILE_PRINT_FORMAT=9"
+done < "rerun_abs"
+
 ls *_uniq.fa > removed_dups
 sed -i 's/\_uniq\.fa//g' removed_dups
 comm -3 rerun_busted removed_dups 
@@ -111,6 +116,14 @@ do
   sed -i 's/>//g' ${file}_tips
   nw_prune -v -f ${file}_tree.txt ${file}_tips > ${file}_prunedTree.txt
 done < "removed_dups"
+
+while IFS= read -r file
+do
+  singularity exec --cleanenv /n/singularity_images/informatics/hmmcleaner/hmmcleaner_0.180750.sif HmmCleaner.pl ${file}_uniq.fa
+  grep '^>' ${file}_uniq_hmm.fasta > ${file}_tips
+  sed -i 's/>//g' ${file}_tips
+  nw_prune -v -f ${file}_tree.txt ${file}_tips > ${file}_prunedTree.txt
+done < "rerun_abs"
 
 while IFS= read -r file
 do
