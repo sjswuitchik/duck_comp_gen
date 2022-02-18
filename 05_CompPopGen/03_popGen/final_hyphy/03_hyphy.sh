@@ -160,10 +160,10 @@ do
   echo -e "#SBATCH --mem=9000\n" >> run_absrel_${file}.sh
   echo -e "source activate align\n" >> run_absrel_${file}.sh
   echo -e "hyphy absrel --alignment ${file}_uniq_hmm.fasta --tree ${file}_prunedTree.txt" >> run_absrel_${file}.sh
-done < "rerun_absrel"
+done < "rerun_abs"
 
 while IFS= read -r file
 do
   sbatch run_absrel_${file}.sh
   sleep 2
-done < "rerun_absrel"
+done < "rerun_abs"
