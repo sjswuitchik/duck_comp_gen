@@ -84,7 +84,7 @@ done < "rerun_busted"
 ls *ABSREL.json > all_abs
 sed -i 's/\_codon\_hmm\.fasta\.ABSREL\.json//g' all_abs
 comm -3 clean_aligns all_abs > rerun_abs
-comm -3 reun_busted rerun_abs
+comm -3 rerun_busted rerun_abs
 # same alignments failed both, looks like it's a dup seq issue
 # remake scripts with new workflow for dup seqs 
 
@@ -135,9 +135,6 @@ ls *BUSTED.json > all_bus
 sed -i 's/\_codon\_hmm\.fasta\.BUSTED\.json//g' all_bus
 sed -i 's/\_uniq\_hmm\.fasta\.BUSTED\.json//g' all_bus
 comm -3 clean_aligns all_bus > rerun_bus
-
-
-
 
 while IFS= read -r file
 do
