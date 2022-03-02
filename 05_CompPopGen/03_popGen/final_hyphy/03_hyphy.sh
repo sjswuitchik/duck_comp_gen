@@ -167,3 +167,8 @@ do
   sbatch run_absrel_${file}.sh
   sleep 2
 done < "rerun_abs"
+
+ls *ABSREL.json > all_abs
+sed -i 's/\_codon\_hmm\.fasta\.ABSREL\.json//g' all_abs
+sed -i 's/\_uniq\_hmm\.fasta\.ABSREL\.json//g' all_abs
+comm -3 clean_aligns all_abs > rerun_abs
