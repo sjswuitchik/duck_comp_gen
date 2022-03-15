@@ -14,5 +14,6 @@ python3 hyphy-interface/hyphy_to_csv.py -i absrel_out -m absrel --overwrite -o a
 grep -v '^#' busted_output.csv | sed 's/\_codon\_hmm\.fasta\.BUSTED\.json//g' | sed 's/\_uniq\_hmm\.fasta\.BUSTED\.json//g' > busted_output_clean.csv
 grep -v '^#' absrel_output.csv | sed 's/\_codon\_hmm\.fasta\.ABSREL\.json//g' | sed 's/\_uniq\_hmm\.fasta\ABSREL\.json//g' > absrel_output_clean.csv
 
-# filter aBSREL results for OGs with hetAtr 
-awk -F , '$2 ~ /hetAtr/ { nf = split($2, branches, ";"); for (i = 1; i <= nf; i++) if (branches[i] ~ /hetAtr/) break; split($4, ps_values, ";"); print $1, branches[i], ps_values[i] } ' absrel_output_clean.csv > absrel_output_clean_hetAtr
+## filter aBSREL results for OGs with hetAtr 
+#awk -F , '$2 ~ /hetAtr/ { nf = split($2, branches, ";"); for (i = 1; i <= nf; i++) if (branches[i] ~ /hetAtr/) break; split($4, ps_values, ";"); print $1, branches[i], ps_values[i] } ' absrel_output_clean.csv > absrel_output_clean_hetAtr
+## nb: no longer same absrel output fields, need to fix this after fields are finalized 
