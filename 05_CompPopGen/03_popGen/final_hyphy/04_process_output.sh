@@ -16,3 +16,6 @@ grep -v '^#' absrel_output.csv | sed 's/\_codon\_hmm\.fasta\.ABSREL\.json//g' | 
 
 # parse aBSREL output to associate FDR-corrected pvalue with node 
 ./species_pval.awk absrel_output_clean.csv > absrel_output_clean_parse.csv
+
+# grab hetAtr only, just in case 
+grep 'hetAtr' absrel_output_clean_parse.csv > absrel_output_clean_parse_hetAtr.csv
