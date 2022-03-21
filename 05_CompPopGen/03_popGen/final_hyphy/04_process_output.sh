@@ -19,3 +19,6 @@ grep -v '^#' absrel_output.csv | sed 's/\_codon\_hmm\.fasta\.ABSREL\.json//g' | 
 
 # grab hetAtr only, just in case 
 grep 'hetAtr' absrel_output_clean_parse.csv > absrel_output_clean_parse_hetAtr.csv
+sed -n 1p absrel_output_clean_parse.csv > abs_head
+cat abs_head absrel_output_clean_parse_hetAtr.csv > absrel_output_clean_parse_hetAtr_head.csv
+## nb: this is messy and coded in an airport, come back and fix this up later
