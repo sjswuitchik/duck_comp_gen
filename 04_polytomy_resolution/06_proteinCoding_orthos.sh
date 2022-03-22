@@ -3,7 +3,7 @@ module load jdk/10.0.1-fasrc01
 mkdir orthos
 
 # copy over orthogroup alignments from HyPhy runs
-cp -v ../compGen/transfer/* orthos/
+cp -v ../compGen/og_fastas/*_codon_hmm.fasta ../compGen/og_fastas/*_uniq_hmm.fasta orthos/
 
 # run RAxML
 sbatch run_raxml_prot.sh
