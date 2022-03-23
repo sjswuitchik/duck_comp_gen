@@ -22,3 +22,7 @@ grep 'hetAtr' absrel_output_clean_parse.csv > absrel_output_clean_parse_hetAtr.c
 sed -n 1p absrel_output_clean_parse.csv > abs_head
 cat abs_head absrel_output_clean_parse_hetAtr.csv > absrel_output_clean_parse_hetAtr_head.csv
 ## nb: this is messy and coded in an airport, come back and fix this up later
+
+# add in Rscript for getting to branch01:branch03
+
+awk 'BEGIN { FS = OFS = ","} NR == 1 {print "file,total_branches,sig_branches,hetAtr_gene"; next} { match($0, /hetAtr_[^,]+/); hetAtr_gene = substr($0, RSTART, RLENGTH); print $1, $2, $3, hetAtr_gene}' abs_cleanR.csv > abs_clean_final.csv
