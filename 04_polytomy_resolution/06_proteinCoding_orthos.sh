@@ -8,7 +8,9 @@ cp -v ../compGen/og_fastas/*_codon_hmm.fasta ../compGen/og_fastas/*_uniq_hmm.fas
 # run RAxML
 sbatch run_raxml_prot.sh
 
-cd ../Astral
+git clone https://github.com/smirarab/ASTRAL.git
+cd ASTRAL
+./make.sh
 cp ../polytomy_coding/prot.tree .
 
 # run ASTRAL
