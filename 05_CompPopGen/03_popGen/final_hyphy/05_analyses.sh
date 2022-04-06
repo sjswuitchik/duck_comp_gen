@@ -10,6 +10,7 @@ Rscript absrel_ortho_wrangling.R
 # download Entrez ID records from https://www.ncbi.nlm.nih.gov/sites/batchentrez using galGal_protIDs.tsv, and 'Send To' File > GenPept with 'Show GI' option
 ./parse_gp.awk sequence.gp > entrezIDs.tsv
 
+# download the background records from NCBI datasets in split batches
 split -l 3000 all_galGal_protIDs.tsv all_galGal_prot
 
 for file in *.gp;
@@ -17,7 +18,9 @@ do
   ./parse_gp.awk $file > ${file}.tsv
 done
 
-# download the background records from NCBI datasets (gbff) 
-./parse_gp.awk genomic.gbff > bg_entrezIDs.tsv
+for file in *.tsv;
+do
+  cat $file >> cat.tsv
+done
 
 Rscript go_analyses.R
