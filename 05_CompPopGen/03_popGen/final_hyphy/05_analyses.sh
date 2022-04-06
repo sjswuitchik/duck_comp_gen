@@ -20,7 +20,7 @@ done
 
 for file in *.tsv;
 do
-  cat $file >> cat.tsv
+  cat $file >> bg_entrezIDs.tsv
 done
 
 Rscript go_analyses.R
