@@ -11,7 +11,7 @@
 
 for file in *_codon.msa;
 do
-if [ -f ${file}_hmm.fasta]; then
+if [ -f ${file}_hmm.fasta ]; then
   continue;
 fi
   singularity exec --cleanenv /n/singularity_images/informatics/hmmcleaner/hmmcleaner_0.180750.sif HmmCleaner.pl $file
