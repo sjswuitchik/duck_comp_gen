@@ -7,9 +7,7 @@ bg <- read_delim("bg_entrezIDs.tsv", delim = '\t', col_names = c("prot", "gene_s
   separate(gene_id, into = c(NA, "ncbi"), sep = "GeneID:", remove = T)
 
 calc_enrich <- function(targetset, background, ont) { 
-  enrichGO(targetset$ncbi,'org.Gg.eg.db',
-           pvalueCutoff=1.5,
-           qvalueCutoff = 1.5, minGSSize=5, maxGSSize=2000, 
+  enrichGO(targetset$ncbi,'org.Gg.eg.db', 
            pAdjustMethod="BH",
            universe=background$ncbi,
            keyType="ENTREZID",
