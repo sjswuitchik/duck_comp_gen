@@ -13,7 +13,7 @@ source activate raxml
 
 for file in orthos/*.fasta;
 do
-if [ -f ${file}.raxml.bestTree]; then
+if [ -f ${file}.raxml.bestTree ]; then
   continue;
 fi
   raxml-ng --msa $file --model HKY+G4 --prefix $file --all --seed 2 --redo --bs-metric fbp
