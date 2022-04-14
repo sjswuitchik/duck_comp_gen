@@ -77,3 +77,10 @@ clean.mart <- sub1[-1,]
 left_join(goList, clean.mart, by = c("ID" = "goID")) %>% 
   na.omit() %>% 
   write_delim(., "martList.tsv", delim = "\t", col_names = T)
+
+## see if any cand genes are in ortho list
+cand <- read_delim("cand_genes.csv", delim = ',')
+test <- left_join(cand, target, by = c("Locus" = "gene_sym"))
+chris <- read_delim("/cand_genes_chris.csv", delim = ',', col_names = c("gene_name", "gene_sym"))
+test <- left_join(chris, target, by = 'gene_sym')
+
