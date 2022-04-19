@@ -11,4 +11,4 @@
 
 module load jdk/16-fasrc01
 
-java -Xmx64g -jar astral.5.7.8.jar -i prot.tree -o prot.astral.tree 2> prot.log
+java -jar astral.5.7.8.jar -i prot.tree -o prot.astral.tree 2> prot.log
