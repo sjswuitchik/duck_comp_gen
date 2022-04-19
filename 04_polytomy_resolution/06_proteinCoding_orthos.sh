@@ -16,7 +16,7 @@ cat orthos/*.support > prot.support.tree
 git clone https://github.com/smirarab/ASTRAL.git
 cd ASTRAL
 ./make.sh
-cp ../polytomy_coding/prot.tree .
+cp ../prot.tree .
 
 # run ASTRAL
 java -jar astral.5.7.8.jar -i prot.tree -o prot.astral.tree 2> prot.log
