@@ -19,4 +19,4 @@ cd ASTRAL
 cp ../prot.tree .
 
 # run ASTRAL
-java -jar astral.5.7.8.jar -i prot.tree -o prot.astral.tree 2> prot.log
+sbatch run_astral_prot.sh
