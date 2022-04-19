@@ -1,5 +1,5 @@
 # in /n/holyscratch01/informatics/swuitchik/ducks/polytomy_coding
-module load jdk/10.0.1-fasrc01
+module load jdk/16-fasrc01
 mkdir orthos
 
 # copy over orthogroup alignments from HyPhy runs
