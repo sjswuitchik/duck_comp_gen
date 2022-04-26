@@ -4,7 +4,7 @@
 sbatch mafftAlign.sh
 sbatch muscleAlign.sh
 
-##### CNEE alignments from MUSCLE were manually trimmed to remove sites where indels where present in >1 spp
+##### CNEE alignments from MUSCLE were manually trimmed to remove sites where indels were present in >1 spp
 
 # rename CNEE alignments to deal with that one stupid parsing mistake from way back
 #conda create -n raxml -c bioconda raxml-ng modeltest-ng rename 
