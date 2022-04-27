@@ -13,10 +13,12 @@ cat orthos/*.bestTree > prot.tree
 
 cat orthos/*.support > prot.support.tree
 
+sed 's/_[^:]*//g' prot.tree > prot.trim.tee
+
 git clone https://github.com/smirarab/ASTRAL.git
 cd ASTRAL
 ./make.sh
-cp ../prot.tree .
+cp ../prot.trim.tree .
 
 # run ASTRAL
 sbatch run_astral_prot.sh
