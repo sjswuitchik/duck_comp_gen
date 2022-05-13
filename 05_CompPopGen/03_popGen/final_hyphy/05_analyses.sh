@@ -24,3 +24,9 @@ do
 done
 
 Rscript go_analyses.R
+
+
+
+#### GSE approach misc - clean later
+awk 'BEGIN {FS = OFS = "\t"} {gsub(/\.[0-9]+/, "", $2); print}' absrel_ogs.tsv > absrel_ogs_stripped.tsv
+split -l 1000 galGal_protIDs_all.tsv galGal_prot
