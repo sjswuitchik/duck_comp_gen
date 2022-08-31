@@ -29,7 +29,7 @@ comm -3 codon_aligns og_aligns
 #OG0013409
 #OG0013485
 
-# redo run_hyphy_prep.sh for missed groups 
+# redo run_hyphy_prep.sh for missed groups - screen 49683
 
 # clean alignments
 sbatch run_hmmCleaner.sh
