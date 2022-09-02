@@ -26,7 +26,8 @@ Code is currently being organized and optimized. Code and select data* related t
 `03_cnee_analyses`: Compilation of conserved non-coding elements from Aves and vertebrates and multiple PhyloAcc (https://phyloacc.github.io/) analyses  
 `04_OrthoFinder`: Generation of orthogroups using OrthoFinder (https://github.com/davidemms/OrthoFinder)  
 `04_polytomy_resolution`: Resolution of phylogenetic polytomy between the focal species using coding and non-coding sequences  
-`05_CompPopGen`: VCF generation and quality checks using snpArcher (https://github.com/harvardinformatics/snpArcher), McDonald-Kreitman tests & SnIPRE (Eilertson et al. 2012) for selection using the framework outlined in https://github.com/sjswuitchik/compPopGen_ms/tree/master/MKpipeline, tests for selection using HyPhy (https://github.com/veg/hyphy), demographic inference using Stairway (Liu & Fu 2020), and identification of selective sweeps using SweepFinder2 (DeGiorgio et al. 2016) 
+`05_CompPopGen`: VCF generation and quality checks using snpArcher (https://github.com/harvardinformatics/snpArcher), McDonald-Kreitman tests & SnIPRE (Eilertson et al. 2012) for selection using the framework outlined in https://github.com/sjswuitchik/compPopGen_ms/tree/master/MKpipeline, tests for selection using HyPhy (https://github.com/veg/hyphy), demographic inference using Stairway (Liu & Fu 2020), and identification of selective sweeps using SweepFinder2 (DeGiorgio et al. 2016)  
+`prelim_analyses`: initial analyses of chromosome-only assemblies; not current. 
 
 
 
