@@ -1,6 +1,6 @@
-##########################################
-## Re-doing ducks with NCBI submissions ##
-##########################################
+##################################
+## CACTUS with NCBI submissions ##
+##################################
 
 # /n/holyscratch01/informatics/swuitchik/ducks_project/cactus_ncbi 
 
