@@ -7,4 +7,4 @@ This directory contains:
 * `config.ini`, the BUSCO configuration file  
   
   
-Raw data, assemblies, and assocaiated outputs are archived in /n/holylfs05/LABS/informatics/Users/swuitchik/ducks/00_raw_data & /n/holylfs05/LABS/informatics/Users/swuitchik/ducks/01_assemblies
+Raw data, assemblies, and assocaiated outputs are archived in `/n/holylfs05/LABS/informatics/Users/swuitchik/ducks/00_raw_data` &   `/n/holylfs05/LABS/informatics/Users/swuitchik/ducks/01_assemblies`
