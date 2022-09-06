@@ -5,4 +5,7 @@ This directory contains:
 * script `01b_run_CompAug_hints.sh`, which contains the code for genome annotation using Comparative Augustus with RNA seq hints from chicken, mallard, and ruddy duck
 * script `02_BUSCO.sh`, which contains the code for quality checking the annotations with BUSCO
 * `input_files` directory, which contains files generated in the Comparative Augustus & BUSCO scripts that are required as inputs in subsequent steps of the analyses (e.g., hints.tbl)  or are specific input files distributed with the software that have been edited (e.g., config.ini)
-* `subscripts` directory, which contains 
+* `subscripts` directory, which contains contains any scripts used in the main scripts  
+  
+  
+Data associated with these analyses is archived at `/n/holylfs05/LABS/informatics/Users/swuitchik/ducks/02_ncbi_analyses/03_CompAugAnnotation`
