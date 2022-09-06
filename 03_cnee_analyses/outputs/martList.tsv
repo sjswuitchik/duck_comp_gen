@@ -1,0 +1,22 @@
+gene	goID	goTerm		* info from bioMart and UniProt galGal databases
+PCDH9	"GO:0007155, GO:0016021, GO:0016020, GO:0005509, GO:0005886, GO:0007156"	"calcium ion binding, homophilic cell adhesion via plasma membrane adhesion molecules, plasma membrane"		
+ZC3H3	"GO:0005634, GO:0046872"	"metal ion binding, nucleus"		
+LOC107053636	NA	NA		
+LOC112532727	NA	NA		
+LOC107053637	NA	NA		
+C6H10orf107	NA	NA		
+TMEFF2	"GO:0005515, GO:0005604, GO:0005886, GO:0009887, GO:0009888, GO:0016020, GO:0016021, GO:0016477, GO:0030336, GO:0034446, GO:0044319, GO:0045720, GO:0051497"	"animal organ morphogenesis, basement membrane, cell migration, integral component of membrane, membrane, negative regulation of cell migration, negative regulation of integrin biosynthetic process, negative regulation of stress fiber assembly, plasma membrane, protein binding, substrate adhesion-dependent cell spreading, tissue development, wound healing, spreading of cells"		
+LOC107053801	NA	NA		
+SDPR	NA	NA		
+LOC112532830	NA	NA		
+LOC101751657	NA	NA		
+ZIC4	"GO:0000977, GO:0000981, GO:0003676, GO:0003677, GO:0005634, GO:0006357, GO:0007417, GO:0046872, GO:1990837"	"central nervous system development, DNA binding, DNA-binding transcription factor activity, RNA polymerase II-specific, metal ion binding, nucleic acid binding, nucleus, regulation of transcription by RNA polymerase II, RNA polymerase II regulatory region sequence-specific DNA binding, sequence-specific double-stranded DNA binding"		
+LOC112533010	NA	NA		
+ZIC1	"GO:0000977, GO:0000978, GO:0000981, GO:0001228, GO:0003676, GO:0003677, GO:0003700, GO:0005634, GO:0005654, GO:0005737, GO:0006357, GO:0007389, GO:0007417, GO:0007420, GO:0007628, GO:0008589, GO:0021510, GO:0042307, GO:0045893, GO:0045944, GO:0046872, GO:1990837"	"adult walking behavior, brain development, central nervous system development, cytoplasm, DNA binding, DNA-binding transcription activator activity, RNA polymerase II-specific, DNA-binding transcription factor activity, DNA-binding transcription factor activity, RNA polymerase II-specific, metal ion binding, nucleic acid binding, nucleoplasm, nucleus, pattern specification process, positive regulation of protein import into nucleus, positive regulation of transcription by RNA polymerase II, positive regulation of transcription, DNA-templated, regulation of smoothened signaling pathway, regulation of transcription by RNA polymerase II, RNA polymerase II cis-regulatory region sequence-specific DNA binding, RNA polymerase II regulatory region sequence-specific DNA binding, sequence-specific double-stranded DNA binding, spinal cord development"		
+LOC112533005	NA	NA		
+LOC101748259	NA	NA		
+LOC112530376	NA	NA		
+TCF4Z	NA	NA		
+LOC101751186	NA	NA		
+LOC112530624	NA	NA		
+LOC112530625	NA	NA		
