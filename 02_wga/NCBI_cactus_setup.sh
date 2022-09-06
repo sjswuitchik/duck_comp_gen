@@ -3,7 +3,6 @@
 ##########################################
 
 # /n/holyscratch01/informatics/swuitchik/ducks_project/cactus_ncbi 
-# FASTAs are already soft masked, so starting from CACTUS
 
 # download all genomes from NCBI for WGA
 
