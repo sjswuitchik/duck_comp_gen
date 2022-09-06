@@ -1,4 +1,4 @@
-## Genome assemblies directory  
+## Genome assemblies using Supernova
 
 This directory contains:  
 * script `01_assemblies.sh`, which contains the code for assembling the genomes and running the BUSCO for QC
