@@ -33,4 +33,4 @@ Code is currently being organized and optimized. Code and select data* related t
 
 
 
-\* select data available through GitHub where file sizes are compatible with GitHub file size permissions. Genome assemblies are available on NCBI (BioProject PRJNA588796).
+\* select data available through GitHub where files are compatible with GitHub file size permissions. Genome assemblies are available on NCBI (BioProject PRJNA588796).
