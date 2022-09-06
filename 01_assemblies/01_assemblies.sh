@@ -2,6 +2,8 @@
 ## Genome assemblies & initial QC ##
 ####################################
 
+### results are archived in /n/holylfs05/LABS/informatics/Users/swuitchik/ducks/01_assemblies
+
 # Supernova assembly
 
 nohup ./run_supernova.sh stiNae 01_stiNae/ &> nohup_stiNae.out&
