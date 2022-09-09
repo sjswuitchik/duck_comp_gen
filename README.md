@@ -20,7 +20,7 @@ Genome assembly and comparative genomics project with the freckled duck (Sticton
 
 Code is currently being organized and optimized. Code and select data* related to the following analyses can be found in these directories: 
 
-`01_assemblies`: Genome assemblies using Supernova of 10X data and quality checks with BUSCO 
+`01_assemblies`: Genome assemblies using Supernova of 10X data and quality checks with BUSCO  
 `02_wga`: Generation of a whole genome alignment of Galloanserae genomes using CACTUS  
 `03_ComparativeAugustus`: Generation of genome annotations (both _de novo_ and hinted) with Comparative Augustus and quality checks with BUSCO  
 `03_cnee_analyses`: Compilation of conserved non-coding elements from Aves and vertebrates and multiple PhyloAcc (https://phyloacc.github.io/) analyses  
