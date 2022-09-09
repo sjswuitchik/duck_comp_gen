@@ -1,3 +1,23 @@
+## FASTQ to VCF with snakemake workflow  
+  
+This directory contains the files necessary to run an earlier version of the snpArcher workflow (https://github.com/harvardinformatics/snpArcher) of FASTQ to VCF generation. The files and directories contained here include:  
+  
+* script `01_run_fastq2vcf.sh`, which contains the code for generating a VCF containing black-headed duck reseq data and a male freckled duck aligned to the black-headed duck genome  
+* script `02_run_fastq2vcf_reseq.sh`, which contains the code for generating VCFs for each focal species aligned to the respective reference genome
+* script `03_vcfQC.sh`, which contains the code for initial QC on the black-headed duck and the freckled duck VCFs, both aligned to the black-headed duck reference genome  
+* 
+
+
+
+
+
+
+
+
+
+
+
+
 ## Notes for running snakemake pipeline ##
 
 ### allDucks run ###
