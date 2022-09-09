@@ -8,3 +8,5 @@ This directory contains:
 * script `05_analyses.sh`,
 * script `06_singleCopy_OGs.sh`,
 * `subscripts` directory,
+  
+Data associated with these analyses are archived in `/n/holylfs05/LABS/informatics/Users/swuitchik/ducks/02_ncbi_analyses/06_compGen/hyphy`
