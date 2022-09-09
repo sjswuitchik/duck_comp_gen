@@ -1,3 +1,22 @@
+## MK & SnIPRE tests  
+  
+This directory contains analyses following an earlier version of the MK pipeline detailed in https://github.com/sjswuitchik/compPopGen_ms/tree/master/MKpipeline. The files and subdirectories contained here are:  
+  
+* script `00_setup_pipeline.sh`, which contains the necessary pre-processing steps 
+* script `01_pipeline.sh`, which contains the semi-automated pipeline steps
+* script `02_prelim_results.R`, which contains the code required to produce the outputs
+* `outputs` directory, which contains
+* `required_files` directory, which contains
+* `subscripts` directory, which contains 
+* `directory_tree.pdf`, which outlines how the working directories should be set up for `02_pipeline.sh` to automatically navigate the directory structure
+
+
+
+
+
+
+
+
 # Pipeline for comparative genomics 
 
 Automatic pipeline to concatenate and filter VCFs, annotate variants with snpEff, and run SnIPRE, MK tests, and direction of selection calculations. Minor configuration and preprocessing required before running pipeline.sh, outlined below.
