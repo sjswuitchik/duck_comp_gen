@@ -9,3 +9,6 @@ This directory contains analyses following an earlier version of the MK pipeline
 * `required_files` directory, which contains the sources files for SnIPRE
 * `subscripts` directory, which contains any scripts used in the main scripts detailed above
 * `directory_tree.pdf`, which outlines how the working directories should be set up for `02_pipeline.sh` to automatically navigate the directory structure
+  
+  
+Data associated with these analyses are archived at `/n/holylfs05/LABS/informatics/Users/swuitchik/ducks/02_ncbi_analyses/06_compGen/mk_tests`
