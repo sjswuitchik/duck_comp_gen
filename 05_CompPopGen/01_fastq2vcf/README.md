@@ -10,6 +10,7 @@ This directory contains the files necessary to run an earlier version of the snp
 * `subscripts` directory, which contains any scripts used in the main scripts detailed above
   
   
+Data associated with these analyses are archived at `/n/holylfs05/LABS/informatics/Users/swuitchik/ducks/02_ncbi_analyses/05_vcfSnakemake`
   
   
 #### Species-specific runs ####
