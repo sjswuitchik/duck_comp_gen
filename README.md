@@ -39,5 +39,5 @@ When relevant, each directory in this repository will consist of:
 \* select data available through GitHub where files are compatible with GitHub file size permissions. Genome assemblies are available on NCBI (BioProject PRJNA588796).  
   
   
-The `prelim_analyses` directory contains the initial analyses of chromosome-only assemblies; not current. 
+The `archived_analyses` directory contains the initial analyses of chromosome-only assemblies; not current. 
 
