@@ -9,4 +9,4 @@ This directory contains:
 * `subscripts` directory, which contains any scripts used in the main scripts listed above
   
   
-The data associated with these analyses are archived in `insert path here`
+The data associated with these analyses are archived in `/n/holylfs05/LABS/informatics/Users/swuitchik/ducks/02_ncbi_analyses/phylogenetics`
