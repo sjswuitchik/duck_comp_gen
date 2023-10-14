@@ -2,8 +2,8 @@
 # alignments are in /n/holylfs05/LABS/informatics/Everyone/duck_genomics/align/cds_align
 
 # in /n/holylfs05/LABS/informatics/Everyone/duck_genomics/align/cds_align
-for file in OG*/OG*.MAFFT.Without_low_SP_Col.With_Names;
+for file in OG*;
 do
-cp $file /scratch/swuitchik/duck_aligns
+cp $file/$file.MAFFT.Without_low_SP_Col.With_Names /scratch/swuitchik/duck_aligns
 done
 
