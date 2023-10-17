@@ -2,6 +2,7 @@
 ############################################################
 # For spider genomes, 01.2022
 # Trims and filters codon alignments
+## from https://github.com/gwct/murine-discordance/blob/main/scripts/03-selection-tests/08_aln_filter.py
 ############################################################
 
 import sys, os, argparse
