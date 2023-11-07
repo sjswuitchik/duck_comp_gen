@@ -2,7 +2,7 @@
 
 Authors:
 
-Sara Smith Wuitchik (Assistant Professor, Mount Royal University; ssmith6@mtroyal.ca)
+Sara Smith (Assistant Professor, Mount Royal University; ssmith6@mtroyal.ca)
 
 LaDeana Hillier (Department of Genome Sciences, Washington University; lhillier@uw.edu)
 
